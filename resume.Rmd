@@ -1,12 +1,24 @@
 ---
-title: "Chi sono"
-description: |
-  Breve curriculum vitae.
+title: "Corrado Caudek"
+image: "corrado.jpg"
+links:
+  - label: ORCID
+    url: "https://orcid.org/0000-0002-1404-0420"
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=OYLOGvMAAAAJ&hl=en"
+  - label: Facebook
+    url: "https://www.facebook.com/Caudeklab-107236460995667/"
+  - label: Twitter
+    url: "https://twitter.com/ccaudek/"
+  - label: GitHub
+    url: "https://github.com/ccaudek/"
+  - label: Email
+    url: "mailto:corrado.caudek@unifi.it"
+output:
+  postcards::jolla
 ---
+ 
+Sono un goriziano e un orgoglioso relitto vagabondo dell'[Università di Trieste](https://www.units.it). Ho conseguito il dottorato di ricerca in psicologia sperimentale  presso la [University of Virginia](https://www.virginia.edu), a Charlottesville, nel 1993.
+Successivamente, ho completato un post-dottorato presso il [Center for Neural Science](https://as.nyu.edu/cns.html) della [New York University](http://www.nyu.edu) e un post-dottorato presso l'Università degli Studi di Trieste. Ho lavorato per diversi anni all'Università degli Studi di Trieste e attualmente sono professore associato all'[Università degli Studi di Firenze](https://www.unifi.it), dipartimento [NEUROFARBA](https://www.neurofarba.unifi.it), Sezione di Psicologia.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-Sono un goriziano e un orgoglioso relitto vagabondo dell'[Università di Trieste](https://www.units.it). Ho conseguito il dottorato di ricerca in psicologia sperimentale  presso la [University of Virginia](https://www.virginia.edu), a Charlottesville, nel 1993. Attualmente sono professore associato presso l'[Università degli Studi di Firenze](https://www.unifi.it), dipartimento [NEUROFARBA](https://www.neurofarba.unifi.it), Sezione di Psicologia.
 
