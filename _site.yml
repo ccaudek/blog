@@ -1,7 +1,7 @@
-name: "caudeklab"
-title: "CaudekLab"
+name: "blog"
+title: "Il blog di Corrado Caudek"
 description: |
-  CaudekLab
+  Materiali per laureandi, tirocinanti, studenti
 output_dir: "_site"
 navbar:
   right:

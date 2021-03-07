@@ -1,7 +1,7 @@
 ---
-title: "Informazioni su questo blog"
+title: "Informazioni"
 description: |
-  Qui troverete materiali utili per i laureandi e i tirocinanti, e materiali utili per gli studenti dei miei insegnamenti.
+  Qui troverete materiali utili per i laureandi e i tirocinanti, e informazioni per gli studenti dei miei insegnamenti.
 ---
 
 ```{r setup, include=FALSE}
