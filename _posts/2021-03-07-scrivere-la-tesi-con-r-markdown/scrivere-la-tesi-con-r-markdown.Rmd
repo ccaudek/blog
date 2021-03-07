@@ -11,6 +11,9 @@ output:
     self_contained: false
 draft: false
 creative_commons: CC BY
+categories:
+  - R
+  - tesi
 ---
 
 

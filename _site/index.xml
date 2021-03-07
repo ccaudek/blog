@@ -13,6 +13,7 @@
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-07-bibliografia</link>
       <description>Bibliografia della prova finale e della tesi di laurea magistrale.</description>
+      <category>tesi</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-07-bibliografia</guid>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
     </item>
@@ -21,6 +22,7 @@
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-07-istruzioniprovafinalel24</link>
       <description>Tutto quello che avreste sempre voluto sapere sulla stesura dell'elaborato finale e non avete mai osato chiedere.</description>
+      <category>tesi</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-07-istruzioniprovafinalel24</guid>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
     </item>
@@ -29,6 +31,7 @@
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-07-pagina-facebook</link>
       <description>Social media.</description>
+      <category>social media</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-07-pagina-facebook</guid>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
     </item>
@@ -37,6 +40,8 @@
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-07-scrivere-la-tesi-con-r-markdown</link>
       <description>Video tutorial sull'uso di R Markdown per la tesi di laurea.</description>
+      <category>R</category>
+      <category>tesi</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-07-scrivere-la-tesi-con-r-markdown</guid>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
     </item>
