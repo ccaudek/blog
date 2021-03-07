@@ -4,7 +4,7 @@ description: |
   Materiali per laureandi, tirocinanti, studenti
 base_url: https://github.com/ccaudek/blog
 output_dir: "_site"
-theme: theme.css
+# theme: styles-layout.css
 navbar:
 #  logo:
 #    image: images/caudeklab_logo.jpg
