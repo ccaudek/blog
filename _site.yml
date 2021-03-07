@@ -2,9 +2,8 @@ name: "blog"
 title: "Il blog di Corrado Caudek"
 description: |
   Materiali per laureandi, tirocinanti, studenti
-output_dir: "_site"
 base_url: https://github.com/ccaudek/blog
-google_analytics: "G-VTS54G9ZSV"
+output_dir: "_site"
 theme: theme.css
 navbar:
   right:
@@ -14,4 +13,23 @@ navbar:
       href: about.html
     - text: "Resume"
       href: resume.html
+    - icon: fa fa-twitter
+      href: https://twitter.com/ccaudek
+    - icon: fa fa fa-github
+      href: https://github.com/ccaudek
 output: distill::distill_article
+google_analytics: "G-VTS54G9ZSV"
+twitter:
+  site: "@ccaudek"
+  creator: "@ccaudek"
+rss:
+  full_content: true
+collections:
+  posts:
+      share: [twitter]
+      citations: true
+
+
+
+
+
