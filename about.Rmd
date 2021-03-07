@@ -1,7 +1,7 @@
 ---
-title: "Informazioni"
+title: "Materiali e informazioni"
 description: |
-  Qui troverete materiali utili per i laureandi e i tirocinanti, e informazioni per gli studenti dei miei insegnamenti.
+  Materiali (possibilmente) utili per i laureandi e i tirocinanti, e informazioni per gli studenti dei miei insegnamenti.
 ---
 
 ```{r setup, include=FALSE}
