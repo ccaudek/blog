@@ -1,0 +1,25 @@
+---
+title: "CaudekLab"
+description: |
+  Benvenuti nel sito di Corrado Caudek.
+author:
+  - name: Corrado Caudek 
+    url: https://example.com/norajones
+    affiliation: Università degli Studi di Firenze
+    affiliation_url: https://www.unifi.it/p-doc2-2018-0-A-2c2a342f3b29-1.html
+date: 03-07-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+
+

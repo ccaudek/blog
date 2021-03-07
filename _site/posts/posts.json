@@ -1,0 +1,36 @@
+[
+  {
+    "path": "posts/2021-03-07-scrivere-la-tesi-con-r-markdown/",
+    "title": "Scrivere la tesi con R Markdown",
+    "description": "Video tutorial sull'uso di R Markdown per la tesi di laurea.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-03-07",
+    "categories": [],
+    "contents": "\nSeguendo questo link potete trovare un video-tuturial sull’uso di R Markdown per la scrittura della tesi di laurea. Il materiale che ho predisposto può essere scaricato selezionando questo link.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-03-07T08:46:12+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/welcome/",
+    "title": "CaudekLab",
+    "description": "Benvenuti nel sito di Corrado Caudek.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-03-07",
+    "categories": [],
+    "contents": "\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-03-07T08:40:23+01:00",
+    "input_file": {}
+  }
+]

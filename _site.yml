@@ -1,0 +1,14 @@
+name: "caudeklab"
+title: "CaudekLab"
+description: |
+  CaudekLab
+output_dir: "_site"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Resume"
+      href: resume.html
+output: distill::distill_article

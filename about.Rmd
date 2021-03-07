@@ -1,0 +1,9 @@
+---
+title: "Informazioni su questo blog"
+description: |
+  Qui troverete materiali utili per i laureandi e i tirocinanti, e materiali utili per gli studenti dei miei insegnamenti.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```

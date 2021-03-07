@@ -1,0 +1,28 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "Informazioni su questo blog",
+      "description": "Qui troverete materiali utili per i laureandi e i tirocinanti, e materiali utili per gli studenti dei miei insegnamenti.",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-03-07T08:56:39+01:00"
+    },
+    {
+      "path": "index.html",
+      "title": "CaudekLab",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-03-07T08:56:40+01:00"
+    },
+    {
+      "path": "resume.html",
+      "title": "Chi sono",
+      "description": "Breve curriculum vitae.",
+      "author": [],
+      "contents": "\nSono un goriziano e un orgoglioso relitto vagabondo dell’Università di Trieste. Ho conseguito il dottorato di ricerca in psicologia sperimentale presso la University of Virginia, a Charlottesville, nel 1993. Attualmente sono professore associato presso l’Università degli Studi di Firenze, dipartimento NEUROFARBA, Sezione di Psicologia.\n\n\n\n",
+      "last_modified": "2021-03-07T08:56:40+01:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
