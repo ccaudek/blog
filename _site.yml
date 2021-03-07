@@ -3,6 +3,8 @@ title: "Il blog di Corrado Caudek"
 description: |
   Materiali per laureandi, tirocinanti, studenti
 output_dir: "_site"
+base_url: https://github.com/ccaudek/blog
+google_analytics: "G-VTS54G9ZSV"
 navbar:
   right:
     - text: "Home"
