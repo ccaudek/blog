@@ -9,9 +9,9 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "About"
+    - text: "Argomenti"
       href: about.html
-    - text: "Resume"
+    - text: "Curriculum vitae"
       href: resume.html
     - icon: fa fa-twitter
       href: https://twitter.com/ccaudek
@@ -28,8 +28,3 @@ collections:
   posts:
       share: [twitter]
       citations: true
-
-
-
-
-
