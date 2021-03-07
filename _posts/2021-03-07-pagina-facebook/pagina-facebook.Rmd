@@ -1,0 +1,20 @@
+---
+title: "Pagina facebook"
+description: |
+  Social media.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-07-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+È attiva la pagina [facebook](https://www.facebook.com/Caudeklab-107236460995667/) del laboratorio.  Contiene informazioni su progetti in corso e presentazioni dei laureandi. È una creazione dei torocinanti del laboratorio.
+
