@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 Il blog è scritto in R Markdown usando le funzioni del pacchetto `distill`.
-Ho seguito le istruzioni contenute in [Building a blog with distill](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/). 
+Ho seguito le istruzioni contenute in [Building a blog with distill](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/) e [Creating a Blog](https://rstudio.github.io/distill/blog.html).
 
 
 

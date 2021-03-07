@@ -79,9 +79,9 @@
     ],
     "date": "2021-03-07",
     "categories": [],
-    "contents": "\nIl blog è scritto in R Markdown usando le funzioni del pacchetto distill. Ho seguito le istruzioni contenute in Building a blog with distill.\n\n\n\n",
+    "contents": "\nIl blog è scritto in R Markdown usando le funzioni del pacchetto distill. Ho seguito le istruzioni contenute in Building a blog with distill e Creating a Blog.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T14:37:20+01:00",
+    "last_modified": "2021-03-07T16:58:09+01:00",
     "input_file": {}
   }
 ]
