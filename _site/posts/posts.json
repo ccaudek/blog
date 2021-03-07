@@ -6,14 +6,14 @@
     "author": [
       {
         "name": "Corrado Caudek",
-        "url": "https://example.com/norajones"
+        "url": "https://caudekblog.netlify.app"
       }
     ],
     "date": "2021-03-07",
     "categories": [],
     "contents": "\nSeguendo questo link potete trovare un video-tuturial sull’uso di R Markdown per la scrittura della tesi di laurea. Il materiale che ho predisposto può essere scaricato selezionando questo link.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T08:46:12+01:00",
+    "last_modified": "2021-03-07T10:37:58+01:00",
     "input_file": {}
   },
   {
@@ -23,14 +23,14 @@
     "author": [
       {
         "name": "Corrado Caudek",
-        "url": "https://example.com/norajones"
+        "url": "https://caudekblog.netlify.app"
       }
     ],
     "date": "2021-03-07",
     "categories": [],
-    "contents": "\n\n\n\n",
+    "contents": "\nIl blog è scritto in R Markdown usando le funzioni del pacchetto distill. Ho seguito le istruzioni contenute in Building a blog with distill.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T08:40:23+01:00",
+    "last_modified": "2021-03-07T10:41:03+01:00",
     "input_file": {}
   }
 ]

@@ -4,7 +4,7 @@ description: |
   Video tutorial sull'uso di R Markdown per la tesi di laurea.
 author:
   - name: Corrado Caudek
-    url: https://example.com/norajones
+    url: https://caudekblog.netlify.app
 date: 03-07-2021
 output:
   distill::distill_article:

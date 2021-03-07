@@ -4,7 +4,7 @@ description: |
   Benvenuti nel sito di Corrado Caudek.
 author:
   - name: Corrado Caudek 
-    url: https://example.com/norajones
+    url: https://caudekblog.netlify.app
     affiliation: Università degli Studi di Firenze
     affiliation_url: https://www.unifi.it/p-doc2-2018-0-A-2c2a342f3b29-1.html
 date: 03-07-2021
@@ -20,6 +20,10 @@ knitr::opts_chunk$set(echo = FALSE)
 # https://rstudio.github.io/distill/blog.html
 
 ```
+
+Il blog è scritto in R Markdown usando le funzioni del pacchetto `distill`.
+Ho seguito le istruzioni contenute in [Building a blog with distill](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/). 
+
 
 
 
