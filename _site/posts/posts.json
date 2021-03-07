@@ -13,7 +13,7 @@
     "categories": [],
     "contents": "\nHo creato un breve video con le istruzioni per creare la bibliografia delle tesi di laurea. Ci sono tanti tutorial sul web per affrontare questo problema: le semplici considerazioni che fornisco qui sono un possibile punto di partenza.\nAl di là delle cose che dico qui, consiglio fortemente tutti i laureandi, triennali e magistrali, di scrivere la tesi di laurea in R Markdown, usando le indicazioni fornite in un altro post e, soprattutto, di utilizzare bibtex per la bibliografia, in modo tale essere sicuri di ottenere il risultato corretto senza doversi preoccupare di applicare le (complicate) regole APA – i ricercatori fanno così quando scrivono un articolo.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T16:30:32+01:00",
+    "last_modified": "2021-03-07T18:54:58+01:00",
     "input_file": {}
   },
   {
@@ -30,7 +30,7 @@
     "categories": [],
     "contents": "\nMediante questo link potete accedere ad un video in cui rispondo a tutte le possibili domande che potreste avere su questo argomento. Descriverò la procedura che consiglio per realizzare l’elaborato finale e per preparare la presentazione orale. Una volta scritto l’elaborato finale seguendo queste istruzioni, potete iniziare a lavorare alla presentazione orale. Sulla presentazione orale riceverete poi altri feedback negli incontri settimanali con i laureandi che saranno specificamente dedicati a questo tema.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T16:23:34+01:00",
+    "last_modified": "2021-03-07T18:56:02+01:00",
     "input_file": {}
   },
   {
@@ -47,7 +47,7 @@
     "categories": [],
     "contents": "\nÈ attiva la pagina facebook del laboratorio. Contiene informazioni su progetti in corso e presentazioni dei laureandi. È una creazione dei torocinanti del laboratorio.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T16:25:55+01:00",
+    "last_modified": "2021-03-07T18:56:30+01:00",
     "input_file": {}
   },
   {
@@ -64,7 +64,7 @@
     "categories": [],
     "contents": "\nSeguendo questo link potete trovare un video-tutorial sull’uso di R Markdown per la scrittura della tesi di laurea. Il materiale che ho predisposto può essere scaricato selezionando questo link. Buon lavoro!\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T12:40:17+01:00",
+    "last_modified": "2021-03-07T18:56:55+01:00",
     "input_file": {}
   },
   {
@@ -81,7 +81,7 @@
     "categories": [],
     "contents": "\nIl blog è scritto in R Markdown usando le funzioni del pacchetto distill. Ho seguito le istruzioni contenute in Building a blog with distill e Creating a Blog.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-07T16:58:09+01:00",
+    "last_modified": "2021-03-07T18:57:19+01:00",
     "input_file": {}
   }
 ]
