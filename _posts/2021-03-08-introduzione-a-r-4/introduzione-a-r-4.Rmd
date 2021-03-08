@@ -1,0 +1,141 @@
+---
+title: "Introduzione a R (4)"
+description: |
+  Il quarto post sulla sintassi di base di R: input/output.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Leggere i dati
+
+
+Caricare i dati in R è una delle cose più importanti che si devono fare. Se non puoi importare i dati in R, allora non importa quali trucchetti potresti avere imparato: nulla può essere fatto. Importare i dati è anche una delle cose più frustranti - non solo in R, ma in generale. Se sei fortunato, i dati che stai cercando di caricare in R sono stati salvati come file .csv. L'estensione .csv sta per "Valori separati da virgola" e significa che i dati sono memorizzati in righe con virgole che separano le variabili. In questo caso, è facile importare i dati in R.
+
+Ora, anche se sei fortunato e i tuoi dati sono in formato .csv, se sei un novizio del computer, allora avrai ancora qualche frustrazione nell'importare il file in R. Infatti, è necessario comunicare ad R **dove** sul computer è stato salvato il file da importare.
+
+È possibile risolvere tale problema specificando il percorso completo o il percorso relativo al file che si desidera caricare. In generale, è sempre meglio utilizzare un *percorso relativo*, in maniera tale che, se si copia la cartella di un progetto da un computer all'altro, tutto continua a funzionare.
+
+È una buona pratica impostare una determinata struttura di file con dati memorizzati in una cartella separata per ciascun progetto. Vediamo come si possa fare questo.  
+
+
+# Creare un progetto con RStudio
+
+Come indicato nell'esercizio 1 qui sotto, creiamo una cartella chiamata `psicometria`, dove salveremo tutti gli scritp Rmd che creeremo in questo corso. Una volta creata questa cartella, apriamo RStudio e creiamo un nuovo progetto. Per creare un progetto, da RStudio utilizziamo il percorso `File/New Project...` Quello che facciamo in questo modo è di comunicare ad R che questo specifico progetto è situato nella cartella di lavoro `psicometria`.
+L'indirizzo di questa cartella può essere ottenuto con l'istruzione `getwd()`.
+
+Possiamo creare altre cartelle, dentro `psicometria`.  Per esempio, creiamo da cartella `data`, dove salveremo i file di dati. Per fare un esercizio, utilizzeremo il file di dati `wais.csv` che può essere scaricato da Moodle. 
+I dati in questo file corrispondono ai punteggi di quattro sottoscale della WAIS-IV completate da 90 studenti del corso di Psicometria dell'AA 2015/2016. Per fare un confronto, sappiamo che, nella popolazione, i punteggi di ciascuna sottoscala si distribuiscono normalmente con media 10 e deviazione standard 3.
+
+Salviamo questo file nella cartella `data` e poniamoci il problema di importare tali dati in R. 
+
+# Importare i dati in formato .csv
+
+Per leggere i dati contenuti in un file esterno, dobbiamo usare una funzione R capace di leggere i dati in quel formato e dobbiamo specificare dove si trova il file di dati che vogliamo importare. I dati sono conenuti del file ```wais.csv```; dunque il file è in formato .csv. Per leggere i dati userò la funzione ```read_csv()``` e, per usare tale funzione, prima devo caricare il boundle di pacchetti ```tidyverse```.
+
+
+## Dove si trova il file dei dati?
+
+Ora si pone il problema di specificare dove si trova il file sul computer. 
+È facile risolvere questo problema se abbiamo definito con R un progetto che identifica la cartella di lavoro che ci interessa.
+
+Avendo già creato il progetto *psicometria*, per specificare dove si trova il file che vogliamo importare possiamo utilizzare la funzione `here::here()`. Ovvero, rispetto alla cartella di lavoro che abbiamo definito, basta specificare *in maniera relativa* la cartella in cui abbiamo inserito il file. La sintassi da usare è la seguente:
+
+```{r}
+library("here")
+here("data", "wais.csv")
+```
+
+In questo modo viene precisato l'indirizzo del file che voglio importare.
+
+Per importare i dati usiamo l'indirizzo specificato come indicato sopra:
+
+```{r}
+library("tidyverse")
+df <- read_csv(here("data", "wais.csv"))
+```
+
+## Esaminare i dati con `glimpse()`
+
+Possiamo esaminare il contenuto di `df` nel modo seguente:
+
+```{r}
+glimpse(df)
+```
+
+L'output di `glimpse()` ci comunica che ci sono 90 osservazioni e 7 variabili. I primi valori di ciascuna variabile vengono stampati. La funzione `glimpse()` ci dice anche quale classe di dati appartengono le variabili. Per esempio, `personal_code` appartiene alla classe `char`. Ciò vuol dire che le modalità di tale variabile sono delle stringhe alfanumeriche. Le altre varibili sono di `type` `dbl`, il che vuol dire che sono dei numeri reali.
+
+Possiamo anche esaminare i dati con la funzione `head()`
+
+```{r}
+head(df)
+```
+
+oppure con `summary()`
+
+```{r}
+summary(df)
+```
+
+## Formati diversi
+
+I dati possono essere in vari formati (Excel, SPSS, SAS, solo testo, RDS, ...). Il pacchetto `rio` si pone l'obiettivo di semplificare il processo di importazione dei dati in R e l'esportazione dei dati da R. Dopo avere installato il pacchetto, `install.packages("rio")`, lo carichiamo:
+
+```{r}
+library("rio")
+```
+
+Per garantire che `rio` sia completamente funzionante, la prima volta che si usa `rio` eseguiamo la seguente istruzione:
+
+```{r, eval=FALSE}
+install_formats()
+```
+
+A questo punto, importare i dati è molto semplice
+
+```{r}
+df1 <- rio::import(here("data", "wais.csv"))
+
+# confirm identical
+all.equal(df, df1, check.attributes = FALSE)
+```
+
+Leggiamo un file di dati in formato Excel:
+
+```{r}
+df2 <- rio::import(here("data", "Jordan_etal.xls"))
+glimpse(df2)
+```
+
+# Esportare i dati
+
+È possibile salvare i dati che abbiamo manipolato in R in un file esterno.
+
+```{r}
+rio::export(df2, "jordan.csv")
+rio::export(df2, "jordan.rds")
+```
+
+Se adesso guardiamo nella cartella di lavoro dove stiamo lavorando, vedremo che sono stati creati i file `jordan.csv` e `jordan.rds`.
+
+
+-----
+
+**Session Info**:
+
+```{r,results='asis', echo=FALSE}
+sessionInfo()
+```
+
+
+
+

@@ -1,0 +1,318 @@
+---
+title: "Introduzione a R (6)"
+description: |
+  Il sesto post sulla sintassi di base di R: `ggplot()`.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Creare grafici con `ggplot2`
+
+La visualizzazione si pone l'obiettivo di rappresentare i dati tramite linee, forme, colori e così via. Esiste una relazione strutturata, una mappatura, tra le variabili nei dati e la loro rappresentazione nel grafico visualizzato sullo schermo o sulla pagina. La funzione `ggplot()` fornisce una serie di strumenti per mappare i dati sugli elementi visivi del grafico, per specificare il tipo di grafico che si desidera ottenere e per controllare in modo preciso i dettagli di come le informazioni verranno visualizzate. Un ottimo approfondimento delle tematiche della visualizzazione si può trovare in [Data visualizazion: a practical introduction](http://socviz.co/index.html#preface) di Kieran Healy. 
+
+Il pacchetto `ggplot2` fornisce un'implementazione della cosiddetta grammatica della grafica (*grammar of graphics*) di Wilkinson. Tale *grammatica* consiste in uno schema generale da applicare alla visualizzazione dei dati e permette di organizzare un grafico attraverso la *combinazione* di componenti semantiche distinte, come oggetti geometrici, scale e coordinate. Per questa ragione, in `ggplot2` un grafico è costituito da una serie di strati (layers).
+
+Nella visualizzazione è necessario specificare le connessioni tra le variabili nei dati e i colori, i punti e le forme che vengono rappresentate sullo schermo. In `ggplot()`, queste connessioni logiche tra i dati e gli elementi del grafico sono chiamate *mappature estetiche*, o semplicemente estetiche, e vengono specificate dalla funzione  `aes()`.
+
+La funzione da cui si parte per inizializzare un grafico è `ggplot()`. Tale funzione richiede due argomenti: il primo è il data frame che contiene i dati da visualizzare; il secondo è la funzione `aes()` che specifica come le variabili nei dati si associano logicamente alle mappature estetiche del grafico. 
+
+La funzione `aes()` richiede di specificare *x* e *y*, ovvero i nomi delle colonne del data frame che rappresentano le variabili da porre rispettivamente sugli assi orizzontale e verticale.
+
+È poi necessario specificare il tipo di grafico che vogliamo costruire (ad esempio un grafico a dispersione, un grafico a scatola o un grafico a barre), aggiungendo all'oggetto creato da `ggplot()` tutte le componenti necessarie. In `ggplot()` la tipologia del grafico da costruire è chiamata `geom()`. Funzioni del tipo `geom_...()` vengono quindi usate per aggiungere al livello di base barre, linee, punti, e così via.
+Nello specifico, la tipologia del grafico viene specificata dalle seguenti funzioni: 
+
+- `geom_bar()`: crea un grafico a barre;
+- `geom_point()`: crea un diagramma a dispersione;
+- `geom_line()`: crea un layer con una linea retta;
+- `geom_histogram()`: crea un istogramma;
+- `geom_boxplot()`: crea un box-plot;
+- `geom_errorbar()`: crea un grafico a barre che rappresenta gli intervalli di confidenza.
+
+Infine, tramite altre funzioni, ad esempio `labs()`, sarà possibile definire i dettagli più fini.
+
+Una generica istruzione ha la seguente forma:
+
+```{r, eval=FALSE}
+my_graph <- 
+  ggplot(my_data, aes(x_var, y_var)) +
+  geom_...()
+```
+
+La prima volta che si usa il pacchetto `ggplot2` è necessario installarlo.
+Per fare questo possiamo installare `tidyverse` che, oltre a contenere `ggplot2`, fornisce altre utili funzioni per l’analisi dei dati.
+Per attivare il pacchetto `tidyverse` si usa l’istruzione:
+
+```{r}
+library("tidyverse")
+```
+
+Ogni volta che si inizia una sessione R è necessario attivare i pacchetti che si vogliono usare, ma non è necessario istallarli una nuova volta.
+<!-- Se è necessario specificare il pacchetto nel quale è contenuta la funzione (o il data frame) che vogliamo utilizzare, usiamo la sintassi `package::function()`.  -->
+<!-- Per esempio, l’istruzione `ggplot2::ggplot()` rende esplicito che stiamo usando la funzione `ggplot()` contenuta nel pacchetto `ggplot2`. -->
+
+# Diagramma a dispersione con la funzione `geom_point()`
+
+A titolo eseplificativo utilizzeremo il dataset `msleep` fornito dal pacchetto `ggplot2` che descrive le ore di sonno medie di 83 specie di mammiferi. Poniamoci il problema di rappresentare graficamente la relazione tra il numero medio di ore di sonno giornaliero (`sleep_total`) e il peso dell'animale (`bodywt`) (Savage e West, 2007).  
+
+Innanzitutto carichiamo i dati in R:
+
+```{r}
+data(msleep)
+```
+
+Generiamo un diagramma a dispersione con le impostazioni di default di `ggplot2`:
+
+```{r}
+p <- msleep %>%
+  ggplot(
+    aes(x = bodywt, y = sleep_total)
+  ) +
+  geom_point()
+
+print(p)
+```
+
+Tramite la mappatura estetica `geom_point()` viene creato un diagramma a dispersione.
+
+Per visualizzare maggiori informazioni, coloriamo in maniera diversa i punti che rappresentano animali carnivori, erbivori, ecc. Tale risultato si ottiene specificando l'argomento `col = ` nella funzione `aes()`:
+
+```{r}
+p <- msleep %>%
+  ggplot(
+    aes(
+      x = bodywt, y = sleep_total, col = vore
+    )
+  ) +
+  geom_point()
+print(p)
+```
+
+È chiaro, anche senza fare alcuna analisi statistica, che la relazione tra le due variabili non è lineare. Trasformando in maniera logaritmica i valori dell'asse `x` la relazione si linearizza.
+
+```{r}
+p <- msleep %>%
+  ggplot(
+    aes(
+      x = log(bodywt), y = sleep_total, col = vore
+    )
+  ) +
+  geom_point()
+print(p)
+```
+
+Cambiamo ora il tema del grafico, aggiungiamo le etichette sugli assi e il titolo. Per cambiare il tema del grafico, usiamo il `cowplot` con l'istruzione `theme_set()`:
+
+```{r}
+library("cowplot")
+theme_set(theme_cowplot())
+
+msleep %>%
+  ggplot(
+    aes(x = log(bodywt), y = sleep_total, col = vore)
+  ) +
+  geom_point(size = 2) +
+  theme(legend.title = element_blank()) +
+  labs(
+    x = "Log Peso Corporeo",
+    y = "Totale Ore di Sonno",
+    title = "Il sonno in 83 specie di mammiferi", subtitle = "Savage e West (2007)"
+  )
+```
+
+
+# Istogramma con la funzione `geom_histogram()`
+
+Creiamo ora un istogramma che rappresenta la distribuzione del (logaritmo del) peso medio del cervello delle 83 specie di mammiferi considerate da Savage e West (2007).
+
+```{r}
+msleep %>%
+  ggplot(
+    aes(log(brainwt))
+  ) +
+  geom_histogram(aes(y = ..density..)) +
+  labs(
+    x = "Log Peso Cervello",
+    y = "Frequenza Relativa"
+  ) +
+  theme(legend.title = element_blank())
+```
+
+L’argomento `aes(y=..density..)` in `geom_histogram()` produce le frequenze relative. 
+L’opzione di default (senza questo argomento) porta `ggplot()` a rappresentare le frequenze assolute.
+
+# Esercizio con dati WAIS
+
+Utilizzando i dati contenuti nel file ```wais.csv```, l'obiettivo è di esaminare la distribuzine dei punteggi Ricerca di simboli, separatamente per maschi e femmine. Tali distribuzioni condizionate possono essere visualizzate con un box plot. Prima di fare questo, però, è necessario trasformare e ricodificare i dati.
+
+## Leggere i dati
+
+I valori riportati corrispondono ai punteggi di quattro sottoscale della WAIS-IV completate da 72 studenti del corso di Psicometria dell'AA 2015/2016. Nella popolazione, i punteggi di ciascuna sottoscala si distribuiscono normalmente con media 10 e deviazione standard 3.
+
+Iniziamo a leggere i dati in R. Sul mio computer, i dati ```wais.csv``` sono contenuti della cartella `data`. 
+
+```{r}
+library("here")
+library("tidyverse")
+
+temp <- read_csv(here("data", "wais.csv"))
+summary(temp)
+```
+
+Elimino le osservazioni contenenti dati mancanti (codificati in R con `NA`).
+
+```{r error=FALSE, message=FALSE, warning=FALSE}
+df_wais <- temp[complete.cases(temp), ]
+summary(df_wais)
+```
+
+Posso ora rimuovere l'oggetto `temp`:
+
+```{r}
+rm(temp)
+```
+
+
+## Definisco la variabile 'genere'
+
+Definisco la variabile ```sex``` (genere) estraendo il settimo carattere da ```personal_code```. Per fare questo uso la funzione ```substr()```. La variabile ```sex``` viene poi trasformata in un fattore in quanto rappresenta una variabile qualitativa. Usando la funzione ```summary``` vediamo che ci sono 73 femmine e 9 maschi.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+
+df_wais$sex <- substr(df_wais$personal_code, 7, 7)
+df_wais$sex <- factor(df_wais$sex)
+summary(df_wais$sex)
+```
+
+## Statistiche descrittive condizionate alle modalità di una variabile categoriale
+
+Esaminiamo la media e la deviazione standard della variabile RS separatamente per maschi e femmine. Per fare questo, uso l'operatore "pipe" ```%>%``` che prende l'output di una funzione e lo trasforma nell'input della funzione successiva.  Così, l'istruzione ```df_wais %>%``` significa: prendi il data frame ```df_wais``` (ovvero quello che viene prodotto quando la stringa ```df_wais``` viene digitata sullo schermo) e usalo come input per la funzione ```group_by```.  Tale funzione raggruppa i dati in funzione delle modalità della variabile ```sex```, nel caso presente.  Ovvero, tutte le manipolazioni che verranno effettuate sul data frame in seguito saranno fatte separatamente per le due modalità di ```sex```. La pipe successiva passa questo input alla funzione ```summarise()```, la quale consente di calcolare delle statistiche descrittive.  Nel caso presente, la media ```mean()``` e la deviazione standard ```sd()```, entrambe per la variabile ```RS```. Nell'output che verrà prodotto, le medie dei punteggi ```RS``` per maschi e femmine costituiranno gli elementi di un vettore chiamato ```m```; le deviazioni standard dei punteggi ```RS``` per maschi e femmine costituiranno gli elementi di un vettore chiamato ```std```.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+df_wais %>%
+  group_by(sex) %>%
+  summarise(
+    m = mean(RS),
+    std = sd(RS)
+  )
+```
+
+## Box plot con la funzione `geom_boxplot()`
+
+Il box plot fornisce una rappresetazione grafica della distribuzione di una variabile. In particolare, descrive visivamente la forma della distribuzione e la tendenza centrale (mediana). Nel grafico seguente viene riportato un boxplot separato per maschi e femmine. Usiamo `ggplot()` con la `geom_boxplot()`:
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+p1 <- df_wais %>%
+  ggplot(
+    aes(x = sex, y = RS)
+  ) +
+  geom_boxplot()
+print(p1)
+```
+
+Sovrapponiamo ai due boxplot i dati grezzi.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+p1 <- df_wais %>%
+  ggplot(
+    aes(sex, RS)
+  ) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, col = "gray46")
+print(p1)
+```
+
+Aggiungiamo le etichette a ciascun asse.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+p1 <- df_wais %>%
+  ggplot(
+    aes(sex, RS)
+  ) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, col = "gray46") +
+  labs(
+    title = "Sottoscala RS della WAIS-IV in funzione del genere",
+    subtitle = "Campione di studenti di Psicometria",
+    x = "Genere",
+    y = "Ricerca di Simboli"
+  )
+print(p1)
+```
+
+Poniamoci ora il problema di modificare le modalità della variabile ```sex```.  Per fare questo uso la funzione ```fct_recode``` contenuta nel pacchetto ```forcats```.
+Si noti che la modalità della variabile che vogliamo cambiare si trova a destra dell'uguale, tra virgolette; la nuova modalità si trova a sinistra del segno di uguale, anch'essa tra virgolette.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+library("forcats")
+df_wais <- df_wais %>%
+  mutate(
+    sex = fct_recode(
+      sex,
+      "Femmmine" = "F",
+      "Maschi" = "M"
+    )
+  )
+```
+
+Rifaccio ora il grafico dopo avere modificato il data frame.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+p1 <- df_wais %>%
+  ggplot(
+    aes(sex, RS)
+  ) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, col = "gray46") +
+  labs(
+    title = "Sottoscala RS della WAIS-IV in funzione del genere",
+    subtitle = "Campione di studenti di Psicometria",
+    x = "Genere",
+    y = "Ricerca di Simboli"
+  ) 
+
+print(p1)
+```
+
+Possiamo colorare il boxplot usando l'argomento `fill = ` nella funzione `aes()`:
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+p1 <- df_wais %>%
+  ggplot(
+    aes(sex, RS, fill = sex)
+  ) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, col = "gray46") +
+  labs(
+    title = "Sottoscala RS della WAIS-IV in funzione del genere",
+    subtitle = "Campione di studenti di Psicometria",
+    x = "Genere",
+    y = "Ricerca di Simboli"
+  ) +
+  theme(legend.position = "none")
+
+print(p1)
+```
+
+
+-----
+
+**Session Info**:
+
+```{r,results='asis', echo=FALSE}
+sessionInfo()
+```

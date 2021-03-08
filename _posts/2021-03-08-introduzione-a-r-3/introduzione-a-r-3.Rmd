@@ -1,0 +1,313 @@
+---
+title: "Introduzione a R (3)"
+description: |
+  Il terzo post sulla sintassi di base di R: strutture di controllo.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In R esistono strutture di controllo specifiche per regolare il flusso di esecuzione di un programma. Le istruzioni di controllo `if` ... `else` consentono di selezionare tra diversi blocchi di codice. I loop permettono di ripetere ciclicamente blocchi di istruzioni per un numero prefissato di volte o fino a che una determinata condizione logica viene soddisfatta. Questo li rende utili per la programmazione di simulazioni numeriche.
+
+# Blocchi di istruzioni
+
+Un blocco di istruzioni è formato da tutte le linee di programma che sono comprese entro una coppia di parentesi graffe, apera e chiusa. La formazione di un blocco serve principalmente per isolare un gruppo di istruzioni che costituiscono una parte ben definita di programma. La struttura generale  di un blocco è la seguente:
+
+```{r, eval=FALSE}
+{
+  istruzioni
+}
+```
+
+
+# Esecuzione selettiva di blocchi
+
+È frequente scrivere programmi che eseguono azioni diverse in corrispondenza di condizioni diverse -- il caso più ovvio è il valore di una particolare variabile. Situazioni del genere possono ben essere gestite mediante una successione di istruzioni `if` ... `else if` ... `else`.
+
+In R l'istruzione condizionale `if` possiede la seguente sintassi:
+
+```{r, eval=FALSE}
+if (espressione) 
+  istruzioni da eseguire se la espressione == TRUE
+```
+
+Ad esempio
+
+```{r}
+x <- 30
+if (x > 18) 
+  print("il voto è sufficiente")
+```
+
+```{r}
+x <- 17
+if (x > 18) 
+  print("il voto è sufficiente")
+```
+
+In questo secondo caso, la condizione non è soddisfatta quindi non viene stampato nulla.
+
+Ci possono però essere molteplici condizioni da valutare. Per fare questo usiamo la sintassi `if () else if () else`:
+
+```{r, eval=FALSE}
+if (espressione1) {
+  istruzioni da eseguire se la espressione1 == TRUE
+}
+else if (espressione2) {
+  istruzioni da eseguire se la espressione2 == TRUE
+} else {
+  istruzioni da eseguire se nessuna delle espressioni è verificata
+}
+```
+
+Ad esempio, 
+
+```{r}
+temp_eval <- function(x) {
+  if (x > 40) {
+    "è troppo caldo"
+  } else if (x > 30) {
+    "è molto caldo"
+  } else if (x > 20) {
+    "ottimo!"
+  } else {
+    "fa troppo freddo"
+  }
+}
+
+temp_eval(15)
+```
+
+## Funzione `if` vettorializzata
+
+La funzione `if` può essere applicata ad una sola condizione TRUE o FALSE.  Che fare quando abbiamo a disposizione un vettore di valori logici? Di questo si occupa la funzione `ifelse`. Tale funzione prende tre argomenti: il primo argomento è una condizione da valutare; il secondo argomento è l'output se la condizione è vera; il terzo argomento specifica l'output se la condizione è fals. Se ad `ifelse` viene passato un vettore, allora la condizione del specificata dal primo argomento viene valutata per ciascun elemento del vettore. Si avrà in output un vettore della stessa lughezza di quello in input; ogni elemento di tale vettore sarà dato dalla scelta fatta da `ifelse` tra il secondo e terzo argomento, a seconda che l'espressione specificata nel primo argomento sia o meno verificata.  
+
+Per esempio
+
+```{r}
+x <- 1:10
+ifelse(x <= 5, "valore piccolo", "valore grande")
+```
+
+
+# Il ciclo `for`
+
+Il ciclo `for` è una struttura di controllo iterativa che opera sugli elementi di un vettore. Ha la seguente struttura di base:
+
+```{r, eval=FALSE}
+for (indice in vettore) { 
+  esegui_azione 
+}
+```
+
+ovvero, `esegui_azione` viene eseguito una volta per ciascun elemento di `vettore`, incrementando il valore di `indice` dopo ciascuna iterazione.
+
+Per esempio, il seguente ciclo `for` non fa altro che stampare il valore della variabile contatore `i` in ciascuna esecuzione del ciclo:
+
+```{r}
+for (i in 1:3) { 
+  print(i)
+}
+```
+
+Un esempio (leggermente) più complicato è il seguente:
+
+```{r}
+x <- seq(1, 9, by = 2) 
+x
+
+sum_x <- 0
+for (i in seq_along(x)) {
+  sum_x <- sum_x + x[i]
+  cat("L'indice corrente e'", i, "\n")
+  cat("La frequenza cumulata e'", sum_x, "\n")
+}
+```
+
+Un esempio più complicato è il seguente. Chiadiamoci quanti numeri pari sono contenuti in un vettore. Per rispondere a questa domanda scriviamo la funzione `count_even_numbers()`:
+
+```{r}
+count_even_numbers <- function(x) {
+  count <- 0
+  for (i in seq_along(x)) {
+    if (x[i] %% 2 == 0) 
+      count <- count + 1
+  }
+  count
+}
+```
+
+Nella funzione `count_even_numbers()` abbiamo inizializzato la variabile `count` a zero. Prima dell’esecuzione del ciclo `for`, dunque, `count` vale zero. 
+Il ciclo `for` viene eseguito tante volte quanti sono gli elementi che costituiscono il vettore `x`. L'indice `i` dunque assume valori compresi tra 1 e il valore che corrisponde al numero di elementi di `x`.
+Infatti
+
+```{r}
+x
+seq_along(x)
+```
+
+ 
+L’operazione modulo, indicato con `%%` dà come risultato il resto della *divisione euclidea* del primo numero per il secondo. 
+Intuitivamente, la divisione euclidea è quell'operazione che si fa quando si suddivide un numero *a* di oggetti in gruppi di *b* oggetti ciascuno e si conta quanti gruppi sono stati formati e quanti oggetti sono rimasti.
+Per esempio, `9 %% 2` dà come risultato 1 perché questo è il resto della divisione [9/2] = 4, quindi 9 - (2 * 4) = 1 e dunque il resto è 1. 
+L'operazione modulo dà come risultato 0 per tutti i numeri pari.
+
+In ciascuna esecuzione del ciclo `for` l'operazione modulo viene eseguita, successivamente, su uno degli elementi di `x`. 
+Se l’operazione modulo dà 0 come risultato, ovvero se il valore considerato è un numero pari, allora la variabile count viene incrementata di un’unità.
+
+L'ultima istruzione prima della parentesi graffa chiusa riporta ciò che viene ritornato dalla funzione. 
+
+Per esempio:
+
+```{r}
+count_even_numbers(x)
+```
+
+```{r}
+count_even_numbers(c(x, 24))
+```
+
+```{r}
+count_even_numbers(c(2, 4, 6, 8))
+```
+
+# Simulazione del gioco d'azzardo Sopra-Sotto 7
+
+Nel gioco d’azzardo con due dadi Sopra-Sotto 7 (Under-Over 7) vengono accettati tre tipi di scommesse:
+
+1. una scommessa alla pari che il totale sarà inferiore a 7;
+2. una scommessa alla pari che il totale sarà superiore a 7;
+3. una scommessa che il totale sarà proprio 7, pagata 4 a 1.
+
+Poniamoci il problema di valutare se è conveniente la scommessa che il totale sarà 7 (vedremo in seguito come sia possibile risolvere questo problema in maniera formale, senza eseguire una simulazione). 
+Iniziamo con il definire il vettore die che contiene ciascuno dei risultati possibili del lancio di un dado:
+
+```{r}
+die <- c(1, 2, 3, 4, 5, 6) 
+die
+```
+
+La funzione expand.grid() elenca tutte le possibili combinazioni degli elementi di 𝑛 vettori. Con essa possiamo dunque creare tutte le possibili combinazioni possibili con due dadi: dato che ogni dado ha sei facce, le combinazioni possibili sono 6 × 6 = 36:
+
+```{r}
+rolls <- expand.grid(die, die) 
+rolls
+```
+
+La funzione expand.grid() può anche essere usata con più di due vettori; per esempio, potremmo usarla per elencare tutte le possibili combinazioni possibili con tre dadi, quattro dadi, ecc.
+
+Calcoliamo ora la somma dei due lanci. Per fare questo sommiamo due vettori, dato che la somma di vettori viene eseguita in R elemento per elemento:
+
+```{r}
+rolls$value <- rolls$Var1 + rolls$Var2 
+head(rolls, n = 3)
+```
+
+La somma è contenuta nella colonna value del data.frame rolls.
+Passiamo ora il data.frame `rolls` alla funzione `roll_dice()`. Questa fun- zione sceglie una riga a caso del data.frame e valuta il valore della variabile `value`. Se `value` (la somma dei due lanci) è uguale a 7, la funzione ritorna una vincita di 4; altrimenti ritorna una vincita di 0.
+
+```{r}
+roll_dice <- function(df) {
+  random <- sample(1:nrow(df), size = 1)
+  if (df[random, 3] == 7) {
+    return(4)
+  } else {
+    return(0)
+  }
+}
+```
+
+Si noti che il valore del data.frame all'intero della funzione `roll_dice` è `df`, mentre, quando invochiamo la funzione usiamo come argomento di `roll_dice` l'oggetto `rolls`. Questo succede perché, quando eseguiamo l'istruzione `roll_dice(rolls)`, comunichiamo ad R che vogliamo che venga eseguita la funzione `roll_dice()` e che passiamo alla funzione l'oggetto `rolls`.  L'oggetto `rolls` è l'argomento che passiamo alla funzione `roll_dice()`. La funzione è stata definita in modo tale che il suo argomento, **localmente**, si chiama `df`. All'interno della funzione, dunque, le operazioni sull'argomento che è stato passato alla funzione verranno eseguite sull'oggetto `df`. 
+
+Questo significha, in generale, che gli oggetti che vengono manipolati all'interno di una funzione hanno un'esistenza **locale**, ovvero, non esistono al di fuori della funzione. Si dice: *What Happens in Vegas, stays in Vegas.* Lo stesso vale per le funzioni: qualsiasi cosa succeda dentro ad una funzione, *fuori non si vede*.
+
+Usiamo ora un ciclo for per ripetere 100,000 volte una scommessa unitaria.
+
+```{r}
+n_bets <- 1e5
+outcome <- rep(NA, n_bets)
+for (i in 1:n_bets) {
+  outcome[i] <- roll_dice(rolls)
+}
+```
+
+Lo scalare `n_bets` specifica il numero di ripetizioni del ciclo `for`. L’istruzione
+
+```{r}
+outcome <- rep(NA, n_bets)
+```
+
+crea un vettore vuoto, chiamato `outcome`, dove verranno salvati i risultati calcolati ad ogni esecuzione del ciclo. 
+Si noti l'utilizzo delle parentesi quadre. L'istruzione `[i]` significa che facciamo riferimento all'elemento i-esimo di `outcome`.
+La prima volta che si entra nel ciclo, il contatore `ì` vale 1.
+Dunque, la vincita della prima scommessa sarà salvata nel primo elemento del vettore `outcome`.
+Eseguite tutte le istruzioni contenute nel blocco del ciclo, il contatore assume il valore 2 e le istruzioni contenute nel corpo del ciclo vengono eseguite una seconda volta. 
+
+La funzione `roll_dice()` ritornerà la vincita (in generale, diversa da quella precedente) per una seconda scommessa e questo risultato verrà salvato nel secondo elemento del vettore outcome. 
+Questo processo viene ripetuto `n_bets` volte. 
+Il fatto che la variabile contatore assuma il valore finale previsto (nel nostro caso `n_bets` = 100000) è la condizione che fa terminare il ciclo.
+
+Una volta completata l’esecuzione del ciclo, il vettore `outcome` conterrà le medie di 100000 scommesse. 
+La media di questi 100,000 numeri è quello che ci possiamo aspettare di guadagnare, o di perdere, per ogni scommessa unitaria. 
+Se tale valore è uguale a 1, questo vuol dire che, a lungo andare, ci aspettiamo né di vincere né di perdere, ma di ricevere una somma uguale alla posta versata. 
+Se tale valore è minore di 1 ci aspettiamo a lungo andare di perdere una proporzione della posta versata pari a 1 meno il valore trovato dalla simulazione. 
+Se tale valore è maggiore di 1 ci aspettiamo a lungo andare di vincere una proporzione della posta versata pari al valore trovato dalla simulazione meno 1. 
+Nel caso presente, il risultato della simulazione è 0.669 (contro un risultato teorico di 0.667). 
+Ciò significa che, puntando 100 euro, a lungo andare ci aspettiamo di perdere 33.1 euro.
+
+***
+
+# Esercizi
+
+__1.__ Utilizzando un ciclo `for`, si stampi il valore del contatore del ciclo, quando il ciclo `for` viene eseguito 10 volte. Si usi la funzione `print()` per stampare il risultato desiderato in ciscuna iterazione.
+
+
+__2.__ Sia `x = c(3, 1, 7, 9)`. Utilizzando un ciclo `for`, si crei un nuovo vettore `y` i cui elementi hanno un valore doppio rispetto a `x`.
+
+
+__3.__ Si usi un ciclo `for` per stampare, ad ogni iterazione, il numero *1* un numero di volte uguale al contatore del ciclo. Per esempio, la terza volta che il ciclo viene eseguito va stampata la sequenza *1 1 1*.
+
+```{r, eval=FALSE, echo=FALSE}
+for (i in 1: 3)
+  print(rep(1, i))
+```
+
+__4.__ Si carichi il data.frame `iris` fornito da R. Si trovi il numero di elementi distinti in ciascuna colonna del data.frame. Per trovare la soluzione si utilizzi un ciclo `for`. La soluzione è riportata qui sotto.
+
+[*Suggerimento.* I data.frame forniti da R si leggono nel workspace mediante la funzione `data()`. Per risolvere il problema dobbiamo prima definire un vettore vuoto dove salveremo i risultati. Poi dobbiamo trovare il modo per fare riferimento a ciascuna colonna del data.frame all'interno del ciclo `for`. Un modo per fare questo è di fare riferimento a ciascuna colonna i-esima del data.frame df con la sintassi `df[[i]]`. Infine, dobbiamo trovare un modo per contare il numero di elementi distinti di un vettore. La funzione `unique()` fa proprio questo.
+
+```{r, echo=FALSE}
+data(iris)
+
+n_col <- ncol(iris)
+n_unique <- rep(NA, n_col)
+for (i in 1:n_col) {
+  n_unique[i] <- length(unique(iris[[i]]))
+}
+names(n_unique) <- names(iris)
+n_unique
+```
+
+
+-----
+
+**Session Info**:
+
+```{r, results='asis', echo=FALSE}
+sessionInfo()
+```
+

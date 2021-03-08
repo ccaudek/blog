@@ -1,0 +1,499 @@
+---
+title: "Introduzione a R (1)"
+description: |
+  Il primo di una serie di post che presentano la sintassi di base di R.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Sintassi
+
+È difficile sapere da dove iniziare quando si deve imparare un nuovo linguaggio di programmazione. Questi file `Rmd` hanno lo scopo di fornire qualche informazione di base che spero possa dare un'idea generale di come R viene usato. 
+
+Ci sono approcci diversi per imparare un linguaggio di programmazione come R. L'approccio meno efficiente è quello che ci porta a cercare le informazioni a proposito della sintassi di R quando ci servono per risolvere un problema specifico. Questo approccio è motivato dal fatto che non è molto divertente studiare la sintassi di un linguaggio di programmazione in termini astratti. Questo è l'approccio che seguo io. Per cui, secondo me, il modo migliore per imparare la sintassi di R è quello di... usare R e cercare con Google la soluzione di ciascuno specifico problema di sintassi, quando esso si presenta.
+
+L'approccio più *tradizionale* (e molto più efficiente) è invece quello di leggere un manuale in cui tutto viene presentato in maniera sistematica. È facilissimo trovare in rete un enorme numero di guide all'utilizzo dell'ambiente statistico R. Uno dei punti di entrata in questo mondo è sicuramente il testo scritto da Hadley Wickham: [R for Data Science](https://r4ds.had.co.nz/). Può anche essere utile e/o divertente leggere i messaggi twitter che utilizzano l'hashtag [#rstats](https://twitter.com/hashtag/rstats?f=tweets&vertical=default&src=refgoogle).
+
+
+# R: linguaggio + ambiente
+
+R è un port al linguaggio S, sviluppata presso i Bell Labs. R è open source e gratuito da utilizzare e distribuire. Può essere installato e utilizzato sui principali sistemi operativi.
+
+R può essere inteso come un linguaggio e un ambiente integrati che sono stati progettati avendo come finalità il calcolo statistico e l'analisi dei dati. 
+A tal fine, la sua struttura rappresenta un compromesso tra una base di codice he è stata ottimizzata per le procedure matematiche sopra la quale sono state sviluppate funzionalità di alto livello che possono essere utilizzate in modo interattivo. In altre parole, è un ottimo strumento per lavorare in modo interattivo con dati quantitativi.
+
+Le funzionalità di R si stanno estendendo sempre più attraverso pacchetti forniti dagli utenti. Useremo un certo numero di pacchetti in questo insegnamento, soprattutto quelli sviluppati all'interno della famiglia `tidyverse`.
+
+## RStudio: Ambiente di sviluppo integrato (IDE) per R
+
+RStudio fa quasi tutto ciò che è può essere fatto con R, in maniera più semplice. Quindi è un ottimo programma completo per l'utilizzo di R. Lo consiglio vivamente.
+
+# Assegnazione
+
+In R, qualcunque cosa è un oggetto. 
+Gli oggetti sono come scatole in cui possiamo mettere le cose: dati, funzioni e persino altri oggetti.
+
+Prima di discutere i tipi di dati e le strutture, il primo argomento che presenteremo relativamente alla sintassi di R è come assegnare valori agli oggetti. In R, il mezzo principale di assegnazione è la freccia, `<-`, che è un simbolo minore di `<`, seguito da un trattino, `-`.
+
+```{r, echo=TRUE}
+x <- 3
+x
+```
+
+e anche
+
+```{r, echo=TRUE}
+y <- "estate"
+y
+```
+
+# R usato come un calcolatore
+
+R può essere usato come qualunque calcolatore portatile.  Avendo a disposizione un computer è ridicolo usare un calcolatore portatile. All'esame, molti studenti si ostinano ad usare uno smartphone per fare i calcoli. Credetemi, è molto più facile fare i calcoli usando R su un computer!
+
+Le operazioni algebriche si svolgono nel modo seguente:
+
+```{r, echo=TRUE}
+5 + 2
+7 - 3
+10 * 3
+21 / 3
+x^2
+sqrt(9)
+```
+
+# Esecuzione di comandi in R
+
+## Tre modi per eseguire i comandi in R
+
+### Usare la console.
+
+Digitare / copiare i comandi direttamente nella "console" (non una buona idea, a meno che facciamo qualcosa di estremamente semplice e non ci interessa salvare il procedimento). 
+
+### Usare uno script R (file .R). 
+
+Uno script R può essere creato in RStudio mediante il menu a tendina File > New File > R Script. Può essere salvato come un qualunque altro file e può essere riutilizzato e modificato in un secondo momento.
+È possibile eseguire un comando alla volta, più comandi alla volta o l'intero script.
+    - __Cmd / Ctrl + Invio__: esegue le linee evidenziate
+    - __Cmd / Ctrl + Maiusc + Invio__ (senza evidenziare alcuna riga): esegue l'intero script.
+
+### Usare un file RMarkdown (file .Rmd). 
+
+I file RMarkdown possono essere creati in RStudio mediante il menu a tendina File > New File > R Notebook.
+Un file RMarkdown è costituito da diversi "code chunks".
+È possibile eseguire un comando alla volta, un blocco alla volta o eseguire "knit" sull'intero documento.
+    - __Cmd / Ctrl + Invio__: esegue le linee evidenziate all'interno del blocco
+    - __Cmd / Ctrl + Shift + k__: "knit" per l'intero documento
+
+# Oggetti
+
+R è un linguaggio di programmazione "object-oriented" (come Python). 
+Ma cos'è un "oggetto"?
+
+- Intuitivamente, possiamo pensare che gli oggetti siano qualcosa a cui vengono assegnati dei valori.
+
+```{r, echo=TRUE}
+a <- 5
+a
+b <- "eilà!"
+b
+```
+
+> Objects are like boxes in which we can put things: data, functions, and even other objects.
+
+Si noti che per assegnare un numero all'oggetto _a_ abbiamo digitato il numero a sinistra dell'operatore di assegnazione.
+Nel caso di una stringa, invece, è stato necessario scrivere la serie di simboli alfanumerici tra virgolette.
+
+Non c'è limite al numero di oggetti che R può contenere (tranne la memoria).
+
+
+## Classi di oggetti
+
+Gli oggetti possono essere categorizzati in base alle categorie "__type__" e  "__class__".
+
+- Ad esempio, una data è un oggetto con _type_ numerico e una _class_ "date";
+- un dataset è un oggetto con specifiche caratteristiche _type_ e _class_.
+
+
+# Vettori
+
+L'oggetto fondamentale in R è il _vettore_
+
+- Un vettore è un insieme di valori.
+- I singoli valori all'interno di un vettore sono chiamati "elementi".
+- I valori in un vettore possono essere numerici o possono essere delle stringhe alfanumeriche (ad esempio "Pomodoro") o appartenenti ad altre classi _type_.
+
+Di seguito utilizzeremo la funzione di concatenazione `c()` per creare un vettore.
+
+- Il file di aiuto dice che la funzione `c()` "concatena i suoi argomenti in un vettore o in un elenco".
+
+```{r, echo=TRUE}
+?c
+```
+
+Creiamo ora un vettore in cui gli elementi sono dei numeri
+
+```{r, echo=TRUE}
+x <- c (4, 7, 9)
+x
+```
+
+oppure un vettore in cui gli elementi sono delle stringhe
+
+```{r, echo=TRUE}
+animali <- c("leoni", "tigri", "orsi", "Aaaargh!")
+animali
+```
+
+# Funzioni
+
+Le "funzioni" R applicano diversi tipi di trasformazioni a oggetti con diverse caratteristiche _type_ e _class_.
+
+## Funzione `mean()`
+
+Ad esempio, la funzione `mean()` calcola la media per oggetti con _type_ = numerico e _class_ = vector; la funzione `mean()` non può essere applicata ad  oggetti con `type = character` (ad es. "eilà!").
+
+```{r, echo=TRUE}
+x
+mean(x)
+animali
+mean(animali)
+```
+
+
+## Funzione `length()` 
+
+La funzione `length() ritorna il numero di elementi di un vettore.
+
+```{r, echo=TRUE}
+x
+length(x)
+
+animali
+length(animali)
+```
+
+
+Un singolo numero (o una singola stringa / carattere) è un vettore con `length==1`
+
+```{r, echo=TRUE}
+z <- 5
+length(z)
+length("Maria")
+```
+
+# Data type di un vettore
+
+Il "type" di un vettore descrive la classe a cui appartengono gli elementi del vettore.
+Si possono definire sei diversi "types" di elementi dei vettori, ma qui ne considereremo solo tre:
+
+- numeric: 
+    - "integer" (e.g., 5)
+    - "double" (e.g., 5.5)
+- character (e.g., "ozan")
+- logical (e.g., `TRUE`, `FALSE`)
+
+La funzione `typeof()` viene usata per esaminare il "type" di un vettore:
+
+```{r, echo=TRUE}
+x
+typeof(x)
+animali
+typeof(animali)
+```
+
+
+## Data type `character`
+
+A differenza dei tipi di dati "numeric" utilizzati per memorizzare i numeri, il tipo di dati "character" viene utilizzato per memorizzare __stringhe__ di testo.
+
+- Le stringhe possono contenere qualsiasi combinazione di numeri, lettere, simboli, ecc.
+- I vettori di tipo "character" sono a volte indicati come vettori di tipo alfanumerico.
+
+Quando si crea un vettore in cui gli elementi hanno `type == character` (o quando si fa riferimento al valore di una stringa), si pongano le virgolette singole o doppie attorno al testo.
+
+Il testo tra virgolette è chiamato _stringa_.
+
+```{r, echo=TRUE}
+c1 <- c("cane", 'felicità', 'cioccolata', 'tranquillità')
+c1
+typeof(c1)
+length(c1)
+```
+
+I valori numerici possono anche essere memorizzati come stringhe
+
+```{r, echo=TRUE}
+c2 <- c("1", "2", "3")
+c2
+typeof(c2)
+```
+
+In tale caso però non possiamo applicare ad essi alcuna operazione aritmetica:
+
+```{r, echo=TRUE}
+mean(c2)
+```
+
+
+## Data type `logical`
+ 
+
+I vettori logici possono assumere tre possibili valori: `TRUE`, `FALSE`, `NA`.
+
+- `TRUE`, `FALSE`, `NA` sono delle parole chiave; hanno un significato diverso dalle stringhe `"TRUE"`, `"FALSE"`, `"NA"`
+- La parola chiave `NA` viene utilizzata per codificare i dati mancanti.
+
+```{r, echo=TRUE}
+typeof(TRUE)
+typeof("TRUE")
+
+typeof(c(TRUE,FALSE,NA))
+typeof(c(TRUE,FALSE,NA,"FALSE"))
+
+log <- c(TRUE,TRUE,FALSE,NA,FALSE)
+typeof(log)
+length(log)
+```
+
+## I vettori sono __omogenei__
+
+Tutti gli elementi di un vettore devono appartenere allo stesso tipo di dati.
+
+Se un vettore contiene elementi di diverso tipo, il vettore sarà della classe `type` dell'elemento più "complesso",
+
+I tipi di vettori atomici, dal più semplice al più complesso, seguono la seguente gerarchia:
+
+- logical < integer < double < character
+
+```{r, echo=TRUE}
+typeof(c(TRUE, TRUE, NA))
+typeof(c(TRUE, TRUE, NA, 1L)) 
+typeof(c(TRUE, TRUE, NA, 1.5))
+typeof(c(TRUE, TRUE, NA, 1.5, "come va?"))
+```
+
+
+# Sequenze
+
+Definizione: una sequenza è un insieme di numeri in ordine ascendente o discendente
+
+Un vettore contenente una "sequenza" di numeri (ad es. 1, 2, 3) può essere creato usando l'operatore `:` con la notazione `start : end`
+
+```{r, echo=TRUE}
+-5:5
+5:-5
+s <- 1:10 
+s
+length(s)
+```
+
+Su possono creare sequenze usando la funzione `seq()`:
+
+```{r, echo=TRUE}
+seq(from = 1, to = 1, by = 1)
+```
+
+```{r, echo=TRUE}
+seq(10, 15)
+seq(from = 10, to = 15, by = 1)
+seq(from = 100, to = 150, by = 10)
+```
+
+
+# Aritmetica vettorializzata
+
+Le operazioni aritmetiche sui vettori vengono applicate ``elemento per elemento''.
+
+Questo è un punto estremamente importante a cui è necessario prestare particolare attenzione.
+
+Ad esempio, se un singolo valore viene sommato ad un vettore, tale valore verrà sommato a ciascun elemento del vettore:
+
+```{r, echo=TRUE}
+1:3
+1:3 + 0.5
+(1:3) * 2
+```
+
+Anche le operazioni aritmetiche che coinvolgono due vettori __della stessa lunghezza__ vengono applicate ``elemento per elemento''.
+
+- Per la somma di due vettori, ad esempio, R esegue quanto segue: somma il primo elemento del vettore 1 al primo elemento del vettore 2; somma il secondo elemento del vettore 1 al secondo elemento del vettore 2; ecc.
+- Lo stesso vale per le altre operazioni algebriche sui vettori.
+
+```{r, echo=TRUE}
+c(1, 1, 1) + c(1, 0, -2)
+c(1, 1, 1) * c(1, 0, -2)
+```
+
+# Dati di tipo `data.frame`
+
+La matrice dei dati può essere codificata in R usando quella struttura di dati che va sotto il nome di `data.frame`.
+
+La maggior parte delle volte i `data.frame` vengono importati da fonti esterne. Tuttavia, è anche possibile crearli direttamente in R.  A questo fine usiamo la funzione `data.frame()`:
+
+```{r, echo=TRUE}
+df <- data.frame(
+  col_a = c(1, 2, 3, 4),
+  col_b = c(5, 6, 7, 8),
+  col_c = c(9, 10, 11, 12)
+)
+```
+
+Stampiamo il contenuto di `df` sulla console:
+
+```{r, echo=TRUE}
+df
+```
+
+```{r, echo=TRUE}
+## check
+is.data.frame(df)
+```
+
+
+```{r, echo=TRUE}
+head(df) # stampa le prime 6 righe
+```
+
+I data.frame possiedono vari attributi:
+
+```{r, echo=TRUE}
+names(df)
+dim(df) 
+str(df)
+```
+
+- Le colonne di un data.frame sono le variabili;
+- Le variabili sono vettori.
+- Ciascuna riga del data.frame corrisponde ad un'osservazione (per esempio, un soggetto).
+
+Estraiamo da `df` la variabile `col_a`:
+
+```{r, echo=TRUE}
+df$col_a
+```
+
+Esaminiamo la variabile `col_a` con più attenzione:
+
+```{r, echo=TRUE}
+length(df$col_a) # length=numbero di righe/osservazioni
+str(df$col_a)
+```
+
+
+# Che cosa c'è da capire su vettori e data.frame?
+
+Struttura di base
+
+1. __Vettori__: 
+  sono oggetti di `type` __logical__, __integer__, __double__, __character__. 
+
+    - gli elementi di un vettore devono tutti appartere alla stessa classe `type`.
+    
+2. __data.frame__: 
+  sono collezioni di oggetti.
+  
+    - Gli elementi di un data.frame possono avere classi diverse tra loro (es., vettori numerici e vettori i cui elementi sono alfanumerici).
+
+- Buona pratica: eseguire semplici diagnostiche su qualsiasi nuovo oggetto:
+    - `length()` : quanti __elementi__ ci sono in nell'oggetto?
+    - `typeof()` : a che __type__ di dati appatiene l'oggetto?
+    - `str()` : mostra la struttura gerarchica dell'oggetto.
+
+
+## Selezione di elementi
+
+R dispone di un sistema di notazione che consente di estrarre singoli elementi dagli oggetti. 
+Per estrarre un valore da un data.frame, per esempio, dobbiamo scrivere il nome del data.frame seguito da una coppia di parentesi quadre:
+
+> df[ , ]
+
+All'interno delle parentesi quadre ci sono due indici separati da una virgola.
+R usa il primo indice per selezionare un sottoinsieme di righe del data.frame e il secondo indice per selezionare un sottoinsieme di colonne.
+Ad esempio:
+
+```{r, echo=TRUE}
+df
+df[1, 1]
+df[, 1]
+df[2, ]
+df[1:2, 3]
+```
+
+Per estrarre un'intera colonna, è anche possibile usare l'operatore `$` mediante la  sintassi descritta in precedenza.
+Possiamo anche estrarre più di una colonna alla volta:
+
+```{r, echo=TRUE}
+df[, c("col_b", "col_c")]
+```
+
+***
+
+# Esercizi
+
+__1.__ Siano `x <- c(1,2,3)` e `y <- c(6,5,4)`. Si predica quello che produrrà R quando le seguenti istruzioni vengono eseguite. Si verifichino le predizioni implementando le istruzioni seguenti in R.
+
+a) x * 2
+a) x * y
+a) x[1] * y[2]
+
+__2.__ Siano `x <- c(1,2,3)` e `y <- c(6,5,4)`. Qual è il valore di `x` dopo avere eseguito ciascuna delle seguenti istruzioni? Si assuma che ciascuna istruzione venga eseguita dopo che `x` e `y` sono stati inizializzati come indicato sopra.
+
+a) x + x
+a) x <- x + x
+a) y <- x + x
+a) x <- x + 1
+
+__3.__ Si determini il valore assunto dal vettore `vec` dopo avere eseguito le istruzioni seguenti:
+
+a) vec <- 1:10
+a) vec <- 1:10 * 2
+a) vec <- 1:10^2
+a) vec <- 1:10 + 1
+a) vec <- 1:(10 * 2)
+
+__4.__ Si usi R per calcolare la somma dei quadrati dei numeri da 1 a 100: \(1^2 + 2^2 + \dotsb + 99^2 + 100^2\).
+
+__5.__ Sia `x` il vettore ottenuto utilizzando l'istruzione `x <- seq(10, 30, 2)`.
+
+a) Di quanti elementi è composto il vetore `x`?
+a) Che cos'è `x[2]`?
+a) Che cos'è `x[1:5]`?
+a) Che cos'è `x[1:3*2]`?
+a) Che cos'è `x > 25`?
+a) Che cos'è `x[x > 25]`?
+a) Che cos'è `x[-1]`?
+a) Che cos'è `x[-1:-3]`?
+
+__6.__ Si consideri il  data.frame `airquality` (fornito da R). 
+
+a) Quante variabili e quante osservazioni ci sono?
+a) Qual è il nome delle variabili?
+a) Qual è la classe (`type`) di ciascuna variabile?
+a) È sensato codificare ciascuna variabile del data.frame nel formato riportato di default? Quale potrebbe essere un'alternativa migliore?
+
+
+-----
+
+**Session Info**:
+
+```{r,results='asis', echo=FALSE}
+sessionInfo()
+```
+
+

@@ -1,0 +1,171 @@
+---
+title: "Introduzione a R (5)"
+description: |
+  Il quinto post sulla sintassi di base di R: `tidyverse`.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Manipolazione dei dati
+
+Si chiamano “dati grezzi” quelli che provengono dal mondo circostanze, i dati raccolti per mezzo degli strumenti usati negli esperimenti, per mezzo di interviste, di questionari, ecc. 
+Questi dati raramente vengono forniti con una struttura logica precisa. 
+Per poterli elaborare mediante dei software dobbiamo prima trasformarli in maniera tale che abbiano una struttura logica organizzata. 
+La struttura che solitamente si utilizza è quella tabellare (matrice dei dati), ovvero si dispongono i dati in una tabella nella quale a *ciascuna riga corrisponde ad un'osservazione e ciascuna colonna corrisponde ad una variabile* rilevata. 
+In R una tale struttura è chiamata* data fram*e.
+
+Il pacchetto `dplyr`, che è al momento uno dei pacchetti più utilizzati per la gestione dei dati, offre una serie di funzionalità che consentono di ottenere il risultato descritto in precedenza e consente inoltre di eseguire le operazioni più comuni di manipolazione dei dati in maniera più semplice rispetto a quanto succeda quando usiamo le funzioni base di R.
+
+`dplyr` si fonda su cinque funzioni base: 
+
+- `filter()`, 
+- `select()`, 
+- `mutate()`, 
+- `arrange()`,
+- `summarise()`. 
+
+A questi cinque comandi di base si aggiungono
+
+- il [pipe](https://uc-r.github.io/pipe) `%>%` che serve a concatenare più operazioni, 
+- `group_by` che viene utilizzato per il subsetting.
+
+In particolare, considerando una matrice osservazioni per variabili (colonne), `select()` e `mutate()` si occupano di organizzare le variabili, `filter()` e `arrange()` i casi (righe), e `summarise()` i gruppi.
+
+Per introdurre le funzionalità di base di dplyr, usiamo i dati contenuti nel file sheffield.csv che può essere scaricato da Moodle.
+Carichiamo i pacchetti `tidyverse` e `here`: 
+
+```{r}
+library("tidyverse")
+library("here")
+```
+
+Creiamo l’oggetto `df_sheffield` leggendo da il file .csv nella working directory:
+
+```{r}
+library(here)
+df_sheffield <- read_csv(here("data", "sheffield.csv"))
+```
+
+Con l'istruzione `here("data", "sheffield.csv")` ho specificato che, rispetto alla cartella di lavoro di default del progetto, il file si trova nella cartella `data`. 
+
+I dati sono stati raccolti in una ricerca che ho eseguito un po' di tempo fa sul problema della menzogna (Caudek, Lorenzino, & Liperoti, 2017). 
+La teoria del carico cognitivo della menzogna ipotizza che mentire richieda un maggior carico cognitivo che dire la verità. In linea con questa ipotesi è stato dimostrato che le risposte menzognere sono tipicamente associate ad un innalzamento delle latenze di risposta rispetto alle risposte veritiere. Lo Sheffild Lie Test è una procedura comuterizzata che richiede ai soggetti di rispondere ad una serie di domande presentate sullo schermo in un ordine randomizzato. In metà delle prove ai soggetti viene chiesto di dire la verità e nell’altra metà di mentire. Il risultato tipico è che i tempi di reazione tendono ad essere maggiori quando ai soggetti viene chiesto di mentire piuttosto che di dire la verità.
+
+I dati contenuti nel file `sheffield.csv` riportano i tempi di reazione medi di 75 soggetti. Nel file sono contenute le seguenti variabili: `lie` indica se la consegna era di mentire o di dire la verità, `self` distingue le domande riferite al soggetto dalle domande riferite ad un estraneo, `sex` riporta il genere, `age` riporta l’età dei soggetti, pr_speed riporta i punteggi della scala WAIS relativa alla velocità di elaborazione, `wrkn_mem` riporta i punteggi della scala WAIS relativa alla memoria di lavoro, `mrt` riporta la media dei tempi di reazione.
+
+## Filtrare le righe del data.frame con `filter()`
+
+La funzione `filter()` consente di selezionare un sottoinsieme di osservazioni in un dataset. Per esempio, possiamo selezionare tutte le osservazioni nella variabile `lie` contrassegnate come yes e tutte le osservazioni nella variabile `self` contrassegnate come no:
+
+```{r}
+df_sheffield %>% 
+  dplyr::filter(lie == "yes", self == "no")
+```
+
+## Selezionare le colonne del data.frame con `select()`
+
+La funzione `select()` consente di selezionare un sottoinsieme di variabili in un dataset. 
+Per esempio, possiamo selezionare solo le variabili `id` e `mrt`:
+
+```{r}
+df_sheffield %>% 
+  dplyr::select(id, mrt)
+```
+
+## Aggiungere una colonna al data.frame con `mutate()`
+
+Talvolta vogliamo creare una nuova variabile in uno stesso dataset ad esempio sommando o dividendo due variabili, oppure calcolandone la media. 
+A questo scopo si usa la funzione `mutate()`. 
+Per esempio, la somma dei punteggi di velocità di elaborazione pr_speed e di memoria di lavoro wrkn_mem della WAIS si trova come:
+
+```{r}
+df <- df_sheffield %>%
+  mutate(
+    wais_sub = pr_speed + wrkn_mem
+  ) %>%
+  select(pr_speed, wrkn_mem, wais_sub)
+head(df)
+```
+
+## Ordinare i dati con `arrange()`
+
+La funzione `arrange()` serve a ordinare i dati in base ai valori di una o più variabili. 
+Per esempio, possiamo ordinare la variabile `mrt` dal valore più alto al più basso in questo modo:
+
+```{r}
+df_sheffield %>% 
+  arrange(desc(mrt))
+```
+
+## Raggruppare i dati con `group_by()`
+
+La funzione `group_by()` serve a raggruppare insieme i valori in base a una o più variabili.
+La vedremo in uso in seguito insieme a `summarise()`.
+
+## Sommario dei dati con `summarise()`
+
+La funzione `summarise()` collassa il dataset in una singola riga dove viene riportato il risultato della statistica richiesta. 
+Per esempio, la media dei tempi di reazione è
+
+```{r}
+df_sheffield %>% 
+  summarise(
+    y = mean(mrt, na.rm = TRUE) 
+  )
+```
+
+Calcoliamo ora la media dei tempi di reazione in funzione delle variabili `self` e `lie`, ma solo per le femmine:
+
+```{r}
+df_sheffield %>% 
+  dplyr::filter(sex == "F") %>% 
+  group_by(self, lie) %>% 
+  summarise(
+    y = mean(mrt, na.rm = TRUE) 
+  )
+```
+
+
+# Esercizi
+
+__1.__ Utilizziamo nuovamente i dati sulla menzogna discussi in precedenza.
+
+a) Si crei sul proprio computer una cartella chiamata `psicometria`. 
+a) Si apra RStudio e si crei un nuovo progetto che ha `psicometria` come cartella di lavoro. 
+a) Nella cartella `psicometria` si creino delle altre cartelle. Una sarà chiamata `data` e in essa verranno salvati i file contenti i dati che utilizzeremo in questo corso. Altre cartelle avranno, ciascuna, il nome dell'argomento considerato.  Ad esempio, se l'argomento trattato è *probabilità* potremmo creare una cartella con questo nome. Tuttavia, vi incoraggio a **non usare mai** caratteri speciali nel nome dei file e delle cartelle. Invece dello spazio potete usare il trattino basso. Gli accenti vanno eliminati.  È più semplice (ed elegante) scrivere in inglese, così il problema non si pone.  Quindi la cartella può essere chiamata `probability`.
+Considerate che R è sensibile alle maiuscole: `probability` e `Probability` non sono a stessa cosa!
+a) Si salvi il file `sheffield.csv` nella cartella `data`. 
+a) Utilizzando la funzione `here()` del pacchetto `here` si specifichi dov'è il file `sheffield.csv` e si leggano i dati in R. 
+a) Si generi un istogramma della variabile `mrt` che riporta la media dei tempi di reazione per ciascun soggetto in ciascuna condizione.
+
+__2.__ Utilizzando gli stessi dati, si determini 
+
+a) se in questo campione le femmine, in media, hanno valori più alti o più bassi dei maschi sulla variabile che codifica la velocità di elaborazione nella WAIS (`pr_speed`);
+a) se in questo campione le femmine, in media, hanno valori più alti o più bassi dei maschi sulla variabile che codifica la memoria di lavoro nella WAIS (`wrkn_mem`).
+
+
+-----
+
+**Session Info**:
+
+```{r,results='asis', echo=FALSE}
+sessionInfo()
+```
+
+

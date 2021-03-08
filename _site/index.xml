@@ -7,7 +7,66 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Introduzione a R (1)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-1</link>
+      <description>Il primo di una serie di post che presentano la sintassi di base di R.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-1</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduzione a R (2)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-2</link>
+      <description>Il secondo post sulla sintassi di base di R.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-2</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduzione a R (3)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-3</link>
+      <description>Il terzo post sulla sintassi di base di R: strutture di controllo.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-3</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduzione a R (4)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-4</link>
+      <description>Il quarto post sulla sintassi di base di R: input/output.</description>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-4</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduzione a R (5)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-5</link>
+      <description>Il quinto post sulla sintassi di base di R: `tidyverse`.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-5</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduzione a R (6)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-6</link>
+      <description>Il sesto post sulla sintassi di base di R: `ggplot()`.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-6</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-6/introduzione-a-r-6_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Le citazioni</title>
       <dc:creator>Corrado Caudek</dc:creator>

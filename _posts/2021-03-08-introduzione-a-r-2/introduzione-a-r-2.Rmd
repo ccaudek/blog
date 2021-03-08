@@ -1,0 +1,315 @@
+---
+title: "Introduzione a R (2)"
+description: |
+  Il secondo post sulla sintassi di base di R.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Funzioni
+
+R offre la possibilità di utilizzare molteplici **funzioni** che permettono di svolgere svariate operazioni, più o meno complicate.
+
+
+## Sintassi di base
+
+Per esempio lancio di un dado può essere simulato da R con la funzione `sample()`. 
+La funzione `sample()` prende due argomenti, il nome di un vettore e un numero chiamato `size`.  
+La funzione `sample()` ritorna un numero di elementi del vettore pari a `size`:
+
+```{r}
+# definiamo i valori che possono essere ottenuti dal lancio di un dado
+die <- 1:6
+die
+# simuliamo il lancio di due dadi (o di due lanci di un dado)
+sample(die, 2)
+```
+
+Come si fa a sapere quanti e quali argomenti sono richiesti da una funzione? Tale informazione viene fornita dalla funzione `args()`. 
+Per esempio,
+
+```{r}
+args(sample)
+```
+
+ci informa che il primo argomento della funzione `sample()` è un vettore chiamato `x`, il secondo argomento è chiamato `size` ed ha il significato descritto sopra, il terzo argomento, `replace`, specifica se il campionamento è eseguito con o senza reimmissione, e il quarto argomento, `prob`, assegna delle probabilità agli elementi del vettore. 
+
+Si noti che gli argomenti sono contenuti all'interno di **parentesi tonde**.
+
+Il significato degli argomenti viene spiegato nel file di help della funzione. Si noti che agli ultimi due argomenti sono stati assegnati dei valori, detti di default. 
+Ciò significa che, se l’utilizzatore non li cambia, verranno usati da R. `replace = FALSE` significa che il campionamento viene eseguito senza reimmissione. 
+Se desideriamo un campionamento con reimmissione, basta specificare `replace = TRUE` (nel caso di una singola estrazione è ovviamente irrilevante).
+Ad esempio, l'istruzione seguente simula i risultati di 10 lanci indipendenti di un dado:
+
+```{r}
+sample(die, 10, replace = TRUE)
+```
+
+Lo stesso risultato può essere ottenuto in lanci diversi.
+Infine, `prob = NULL` specifica che non viene alterata la probabilità di estrazione degli elementi del vettore. 
+Manipolando questo argomento è possibile simulare i risultati di un dado ``truccato'', ovvero nel quale i numeri hanno probabilità diversa di essere osservati.
+
+In generale, gli argomenti di una funzione, possono essere oggetti come vettori, matrici, altre funzioni, parametri o operatori logici.
+
+## Scrivere proprie funzioni
+
+Abbiamo visto in precedenza come sia possibile simulare il risultati prodotti dai lanci di due dadi. 
+Possiamo replicare questo processo digitando ripetutamente le stesse istruzioni nella console. 
+Otterremo ogni volta risultati diversi perché, ad ogni ripetizione, il generatore di numeri pseudo-casuali di R dipende dal valore ottenuto dal clock interno della macchina. 
+Tuttavia, questa procedura è praticamente difficile da perseguire se il numero di ripetizioni è alto.
+In tal caso è vantaggioso scrivere una funzione contenente il codice che specifica il numero di ripetizioni. 
+In questo modo, per trovare il risultato cercato basterà chiamare la funzione una sola volta.
+
+Le funzioni di R sono costituite da tre elementi: il *nome*, il *blocco del codice* e una serie di *argomenti*. 
+Per creare una funzione è necessario immagazzinare in R questi tre elementi e `function()` consente di ottenere tale risultato usando la sintassi seguente:
+
+```{r, eval = FALSE}
+nome_funzione <- function(arg1, arg2, ...) {
+  espressione1
+  espressione2
+  return(risultato)
+}
+```
+
+La formattazione del codice mediante l'uso di spazi e rientri non è necessaria ma è altamente raccomandata per minimizzare la probabilità di compiere errori.
+
+Una chiamata di funzione è poi eseguita nel seguente modo:
+
+```{r, eval=FALSE}
+nome_funzione(arg1, arg2, ...)
+```
+
+Per potere essere utilizzata, una funzione deve essere presente nella memoria di lavoro di R. 
+Le funzioni salvate in un file possono essere richiamate utilizzando la funzione `source()`, ad esempio, 
+
+```{r, eval=FALSE}
+source("file_funzioni.R")
+```
+
+Consideriamo ora la funzione che ritorna la **somma dei punti prodotti dal lancio di due dadi onesti**:
+
+```{r}
+roll <- function () {
+  die <- 1:6
+  dice <- sample(die, size = 2, replace = TRUE) 
+  return(sum(dice))
+}
+```
+
+La funzione `roll()` crea il vettore `die` che contiene sei elementi: i numeri da 1 a 6. 
+La funzione `sample()` con l’argomento `replace = TRUE` e l’argomento `size = 2` trova i numeri usciti dal lancio di due dadi. 
+Tramite l’operatore di attribuzione questi due numeri sono immagazzinati nel vettore `dice`. 
+La funzione `sum()` somma i gli elementi del vettore `dice`. 
+Infine, la funzione `return()` (**opzionale**) ritorna il risultato trovato.
+
+Invocando la funzione `roll()` si ottiene dunque un punteggio che è uguale alla somma dei valori dei due dadi lanciati. 
+In generale, si trova un risultato diverso ogni volta che la funzione viene usata. 
+La funzione `set.seed()` ci permette di replicare esattamente i risultati della generazione di numeri casuali. 
+Per ottenere questo risultato, basta assegnare al seed un numero arbitrario:
+
+```{r}
+set.seed(12345)
+roll()
+```
+
+
+# Pacchetti
+
+Le funzioni di R sono organizzate in pacchetti, i più importanti dei quali sono già disponibili quando si accede al programma.
+
+## Istallazione e upgrade dei pacchetti
+
+Alcuni pacchetti non sono presenti nella release di base di R. 
+Per installare un pacchetto non presente è sufficiente scrivere nella console:
+
+```{r, eval=FALSE}
+install.packages("nome_pacchetto") 
+```
+
+Ad esempio,
+
+```{r, eval=FALSE}
+install.packages("ggplot2") 
+```
+
+La prima volta che si usa questa funzione durante una sessione di lavoro si dovrà anche selezionare da una lista il sito mirror da cui scaricare il pacchetto.
+Il R Core Development Team lavora continuamente per migliorare le prestazioni di R, per correggere errori e per consentire l’uso di R con nuove tecnologie. Di conseguenza, periodicamente vengono rilasciate nuove versioni di R.
+Informazioni a questo proposito sono fornite sulla pagina web https://www.r-project.org/. 
+Per installare una nuova versione di R si segue la stessa procedura che si è seguita per installare la versione corrente.
+Anche gli autori dei pacchetti periodicamente rilasciano nuove versioni dei loro pacchetti che contengono miglioramenti di varia natura. 
+Per eseguire l’upgrade dei pacchetti ggplot2 e dplyr, ad esempio, si usa la seguente istruzione:
+
+```{r, eval=FALSE}
+update.packages(c("ggplot2", "dplyr"))
+```
+
+Per eseguire l'upgrade di tutti i pacchetti l’istruzione è
+
+```{r, eval=FALSE}
+update.packages()
+```
+
+
+## Caricare un pacchetto in R
+
+L’istallazione dei pacchetti non rende immediatamente disponibili le funzioni in essi contenute. 
+L’istallazione di un pacchetto semplicemente copia il codice sul disco rigido della macchina in uso. 
+Per potere usare le funzioni contenute in un pacchetto installato è necessario caricare il pacchetto in R. 
+Ciò si ottiene con il comando:
+
+```{r, eval=FALSE}
+library("ggplot2")
+```
+
+se si vuole caricare il pacchetto `ggplot2`. 
+A questo punto diventa possibile usare le funzioni contenute in `ggplot2`.
+
+Per sapere quali sono i pacchetti già presenti nella release di R con cui si sta lavorando, basta digitare:
+
+```{r}
+sessionInfo()
+```
+
+# Giocare a poker con R
+
+Per fare un esempio che ci consenta di applicare le nozioni discusse in precedenza ad una situazione concreta, consideriamo il gioco del poker.
+
+Definiamo un data.frame che codifica le carte di un mazzo di 52 carte:
+
+```{r}
+deck <- data.frame(
+  face = c(
+  "king", "queen", "jack", "ten", " nine", "eight","seven", "six", 
+  "five", "four", "three", "two ", "ace", "king", "queen", "jack", 
+  "ten", "nine", "eight", " seven", "six", "five", "four", "three", 
+  "two", "ace", "king" , "queen", "jack", "ten", "nine", "eight", 
+  "seven", "six", " five", "four", "three", "two", "ace", "king", 
+  "queen", "jack ", "ten", "nine", "eight", "seven", "six", "five", 
+  "four", " three", "two", "ace"
+  ), 
+  suit = c(
+    "spades", "spades", "spades" , "spades", "spades", "spades", 
+    "spades", "spades", "spades" , "spades", "spades", "spades", 
+    "spades", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs",
+    "clubs", "clubs", "clubs ", "clubs", "clubs", "clubs", "clubs",
+    "diamonds", "diamonds ", "diamonds", "diamonds", "diamonds",
+    "diamonds", "diamonds ", "diamonds", "diamonds", "diamonds",
+    "diamonds", "diamonds ", "diamonds", "hearts", "hearts", 
+    "hearts", "hearts", " hearts", "hearts", "hearts", "hearts", 
+    "hearts", "hearts", " hearts", "hearts", "hearts"
+  ), 
+  value = c(
+    13, 12, 11, 10, 9, 8 , 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 
+    9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 
+    3, 2, 1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+  )
+)
+```
+
+Così facendo abbiamo ottenuto il seguente risultato:
+
+```{r}
+deck
+```
+
+Poniamoci il problema di mescolare il mazzo di carte e di estrarre a caso alcune carte dal mazzo. 
+
+L'istruzione
+
+```{r}
+deck[1:52, ]
+```
+
+ritorna tutte le righe e tutte e le colonne del data.frame deck. Le righe sono identificate dal primo indice che, nel caso presente, va da 1 a 52.
+
+Permutare in modo casuale l'indice delle righe equivale a mescolare il mazzo di carte. 
+Per fare questo, utilizziamo la funzione `sample()` ponendo `replace=FALSE` e size uguale alla dimensione del vettore che contiene gli indici da 1 a 52:
+
+```{r}
+random <-
+  sample(
+    1:52,
+    size = 52, 
+    replace = FALSE
+  )
+random
+```
+
+Utilizzando ora il vettore `random` di indici permutati otteniamo il risultato cercato:
+
+```{r}
+deck_shuffled <- deck[random, ] 
+head(deck_shuffled)
+```
+
+Possiamo ora scrivere una funzione che include le istruzioni precedenti:
+
+```{r}
+shuffle <- function(cards) {
+  random <- sample(1:52, size = 52, replace = FALSE)
+  return(cards[random, ])
+}
+```
+
+Invocando la funzione `shuffle()` possiamo dunque generare un data.frame che rappresenta un mazzo di carte mescolato:
+
+```{r}
+deck_shuffled <- shuffle(deck)
+```
+
+Se immaginiamo di distribuire le carte di questo mazzo a due giocatori di
+poker, per il primo giocatore avremo:
+
+```{r}
+deck_shuffled[c(1, 3, 5, 7, 9), ]
+```
+
+e per il secondo:
+
+```{r}
+deck_shuffled[c(2, 4, 6, 8, 10), ]
+```
+
+***
+
+# Esercizi
+
+__1.__ Sia `x = c(2, 1, 6, 4)`.  Si calcoli la media di `x`. 
+
+a) Si trovi la soluzione utilizzando le semplici operazioni algebriche di somma e divisione, specificando l'ordine corretto con il quale vengono eseguite le operazioni mediante le partentesi tonde.
+
+a) La funzione `mean()` ritorna la media di un vettore. Si trovi la soluzione  utilizzando la funzione `mean()`. 
+
+a) Si trovi la soluzione utilizzando le funzioni base di R, quando viene implementata la formula $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$. 
+Per applicare questa formula, possiamo utilizzare le seguenti ulteriori funzioni R: 
+
+  - `length()`, la quale ritorna *il numero* degli elementi del vettore che viene passato come argomento alla funzione;
+  - `sum()`, la quale ritorna *la somma* degli elementi del vettore che viene passato come argomento alla funzione.
+
+
+__2.__ Sia `x = c(2, 1, 6, 4)`.  Si scriva una funzione che calcola la media di `x` divisa per valore massimo di `x`. Si trovi il risultato cercato utilizzando la funzione così definita. In R, le funzioni `min()`  e `max()` ritornano il minimo e il massimo del vettore che viene passato come argomento.
+
+__3.__ Sia `x = c(2, 1, 6, 4)`.  Si verifichi che la somma degli scarti degli elementi del vettore `x` dalla media \(\bar{x}\) è uguale a zero. [Suggerimento: si trovi il vettore di scargi di ciascun elemento `x` da \(\bar{x}\). Si sommino gli elementi del vettore che contiene gli scarti dalla media.]
+
+**Session Info**:
+
+```{r,results='asis', echo=FALSE}
+sessionInfo()
+```
+
+
