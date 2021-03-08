@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://github.com/ccaudek/blog/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -86,637 +85,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Il blog di Corrado Caudek: I miei post</title>
+  <title>Istogramma</title>
 
+  <meta property="description" itemprop="description" content="Dati BDI-II di Zetsche, Bürkners &amp; Renneberg (2020)."/>
 
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-03-08"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-03-08"/>
+  <meta name="article:author" content="Corrado Caudek"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Il blog di Corrado Caudek: I miei post"/>
+  <meta property="og:title" content="Istogramma"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Dati BDI-II di Zetsche, Bürkners &amp; Renneberg (2020)."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Il blog di Corrado Caudek"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Il blog di Corrado Caudek: I miei post"/>
-  <meta property="twitter:site" content="@ccaudek"/>
-  <meta property="twitter:creator" content="@ccaudek"/>
+  <meta property="twitter:title" content="Istogramma"/>
+  <meta property="twitter:description" content="Dati BDI-II di Zetsche, Bürkners &amp; Renneberg (2020)."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["I miei post"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories"]}},"value":[{"type":"character","attributes":{},"value":["Istogramma"]},{"type":"character","attributes":{},"value":["Dati BDI-II di Zetsche, Bürkners & Renneberg (2020).\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["03-08-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R","Psicometria"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["istogramma_files/anchor-4.2.2/anchor.min.js","istogramma_files/bowser-1.9.3/bowser.min.js","istogramma_files/distill-2.2.21/template.v2.js","istogramma_files/figure-html5/unnamed-chunk-11-1.png","istogramma_files/figure-html5/unnamed-chunk-13-1.png","istogramma_files/figure-html5/unnamed-chunk-15-1.png","istogramma_files/figure-html5/unnamed-chunk-16-1.png","istogramma_files/figure-html5/unnamed-chunk-8-1.png","istogramma_files/header-attrs-2.7.3/header-attrs.js","istogramma_files/jquery-1.11.3/jquery.min.js","istogramma_files/popper-2.6.0/popper.min.js","istogramma_files/tippy-6.2.7/tippy-bundle.umd.min.js","istogramma_files/tippy-6.2.7/tippy-light-border.css","istogramma_files/tippy-6.2.7/tippy.css","istogramma_files/tippy-6.2.7/tippy.umd.min.js","istogramma_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2032,476 +1434,389 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7.3/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="istogramma_files/header-attrs-2.7.3/header-attrs.js"></script>
+  <script src="istogramma_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="istogramma_files/popper-2.6.0/popper.min.js"></script>
+  <link href="istogramma_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="istogramma_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="istogramma_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="istogramma_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="istogramma_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="istogramma_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="istogramma_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <script type="text/javascript" cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-VTS54G9ZSV"></script>
-  <script type="text/javascript" cookie-consent="tracking">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-VTS54G9ZSV');
-  </script>
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"I miei post","authors":[]}
+{"title":"Istogramma","description":"Dati BDI-II di Zetsche, Bürkners & Renneberg (2020).","authors":[{"author":"Corrado Caudek","authorURL":"https://caudekblog.netlify.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-08T00:00:00.000+00:00","citationText":"Caudek, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Il blog di Corrado Caudek</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">Argomenti</a>
-<a href="resume.html">Curriculum vitae</a>
-<a href="https://twitter.com/ccaudek">
-<i class="fa fa-twitter" aria-hidden="true"></i>
-</a>
-<a href="https://github.com/ccaudek">
-<i class="fa fa-github" aria-hidden="true"></i>
-</a>
-<a href="index.xml">
-<i class="fa fa-rss" aria-hidden="true"></i>
-</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="I miei post">I miei post</h1>
-<a href="posts/2021-03-08-introduzione-a-r-1/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Psicometria"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduzione a R (1)</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Psicometria</div>
-</div>
-<p>Il primo di una serie di post che presentano la sintassi di base di R.</p>
-</div>
-</a>
-<a href="posts/2021-03-08-introduzione-a-r-2/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Psicometria"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduzione a R (2)</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Psicometria</div>
-</div>
-<p>Il secondo post sulla sintassi di base di R.</p>
-</div>
-</a>
-<a href="posts/2021-03-08-introduzione-a-r-3/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Psicometria"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduzione a R (3)</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Psicometria</div>
-</div>
-<p>Il terzo post sulla sintassi di base di R: strutture di controllo.</p>
-</div>
-</a>
-<a href="posts/2021-03-08-introduzione-a-r-4/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduzione a R (4)</h2>
-<div class="dt-tags"></div>
-<p>Il quarto post sulla sintassi di base di R: input/output.</p>
-</div>
-</a>
-<a href="posts/2021-03-08-introduzione-a-r-5/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Psicometria"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduzione a R (5)</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Psicometria</div>
-</div>
-<p>Il quinto post sulla sintassi di base di R: `tidyverse`.</p>
-</div>
-</a>
-<a href="posts/2021-03-08-introduzione-a-r-6/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Psicometria"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-03-08-introduzione-a-r-6/introduzione-a-r-6_files/figure-html5/unnamed-chunk-4-1.png"/>
-</div>
-<div class="description">
-<h2>Introduzione a R (6)</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Psicometria</div>
-</div>
-<p>Il sesto post sulla sintassi di base di R: `ggplot()`.</p>
-</div>
-</a>
-<a href="posts/2021-03-08-istogramma/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Psicometria"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-03-08-istogramma/istogramma_files/figure-html5/unnamed-chunk-8-1.png"/>
-</div>
-<div class="description">
-<h2>Istogramma</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Psicometria</div>
-</div>
-<p>Dati BDI-II di Zetsche, Bürkners &amp; Renneberg (2020).</p>
-</div>
-</a>
-<a href="posts/2021-03-07-bibliografia/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["tesi"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 7, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Le citazioni</h2>
-<div class="dt-tags">
-<div class="dt-tag">tesi</div>
-</div>
-<p>Bibliografia della prova finale e della tesi di laurea magistrale.</p>
-</div>
-</a>
-<a href="posts/2021-03-07-istruzioniprovafinalel24/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["tesi"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 7, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Istruzioni per la prova finale L-24</h2>
-<div class="dt-tags">
-<div class="dt-tag">tesi</div>
-</div>
-<p>Tutto quello che avreste sempre voluto sapere sulla stesura dell'elaborato finale e non avete mai osato chiedere.</p>
-</div>
-</a>
-<a href="posts/2021-03-07-pagina-facebook/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["social media"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 7, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Pagina facebook</h2>
-<div class="dt-tags">
-<div class="dt-tag">social media</div>
-</div>
-<p>Social media.</p>
-</div>
-</a>
-<a href="posts/2021-03-07-scrivere-la-tesi-con-r-markdown/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","tesi"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 7, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Scrivere la tesi con R Markdown</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">tesi</div>
-</div>
-<p>Video tutorial sull'uso di R Markdown per la tesi di laurea.</p>
-</div>
-</a>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["social media"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 7, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Corrado Caudek</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>L'inizio</h2>
-<div class="dt-tags">
-<div class="dt-tag">social media</div>
-</div>
-<p>Benvenuti nel mio blog.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:Articles">Articles</a>
-<span class="category-count">(12)</span>
-</li>
-<li>
-<a href="#category:Psicometria">Psicometria</a>
-<span class="category-count">(6)</span>
-</li>
-<li>
-<a href="#category:R">R</a>
-<span class="category-count">(7)</span>
-</li>
-<li>
-<a href="#category:social_media">social media</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:tesi">tesi</a>
-<span class="category-count">(3)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>I miei post</h1>
+<h1>Istogramma</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">R</div>
+<div class="dt=tag">Psicometria</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Dati BDI-II di Zetsche, Bürkners &amp; Renneberg (2020).</p></p>
 </div>
 
+<div class="d-byline">
+  Corrado Caudek <a href="https://caudekblog.netlify.app" class="uri">https://caudekblog.netlify.app</a> 
+  
+<br/>03-08-2021
+</div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 class="unnumbered" id="obiettivi-di-questo-tutorial">Obiettivi di questo tutorial</h1>
+<p>In questo tutorial ci poniamo il problema di costruire un istrogramma utilizzando la funzione <code>ggplot()</code> del pacchetto <code>ggplot2</code> in R. Vedremo quali sono i limiti degli istogrammi. Concluderemo introducendo una rappresentazione alternativa, la <em>densità della frequenza dei dati</em>, la quale attenua i limiti degli istogrammi.</p>
+<p>Considereremo qui i dati di Zetsche, Bürkner, &amp; Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.</p>
+<h1 id="carichiamo-i-pacchetti-necessari">Carichiamo i pacchetti necessari</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://mc-stan.org/bayesplot/'>"bayesplot"</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>theme_set</span><span class='op'>(</span><span class='fu'>bayesplot</span><span class='fu'>::</span><span class='fu'><a href='https://mc-stan.org/bayesplot/reference/theme_default.html'>theme_default</a></span><span class='op'>(</span>base_size<span class='op'>=</span><span class='fl'>14</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://yihui.org/knitr/'>"knitr"</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://haozhu233.github.io/kableExtra/'>"kableExtra"</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://patchwork.data-imaginist.com'>"patchwork"</a></span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>table_nums</span> <span class='op'>&lt;-</span> <span class='fu'>captioner</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/captioner/man/captioner.html'>captioner</a></span><span class='op'>(</span>prefix <span class='op'>=</span> <span class='st'>"Tavola"</span><span class='op'>)</span>
+<span class='va'>figure_nums</span> <span class='op'>&lt;-</span> <span class='fu'>captioner</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/captioner/man/captioner.html'>captioner</a></span><span class='op'>(</span>prefix <span class='op'>=</span> <span class='st'>"Figura"</span><span class='op'>)</span>
+<span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>fig.align <span class='op'>=</span> <span class='st'>"center"</span>, fig.width<span class='op'>=</span><span class='fl'>7</span>, fig.height<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://here.r-lib.org/'>"here"</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="manipolazione-dei-dati-importazione-e-pulizia">Manipolazione dei dati (importazione e pulizia)</h1>
+<h2 id="importazione-dei-dati">Importazione dei dati</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://here.r-lib.org/'>"here"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://r-forge.r-project.org/projects/car/'>"car"</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="trasformazione-dei-dati-grezzi-nel-formato-appropriato">Trasformazione dei dati grezzi nel formato appropriato</h2>
+<p>Considereremo qui i dati di Zetsche, Bürkner, &amp; Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.</p>
+<p>Creiamo la varibile <code>bdi</code> che contiene i valori del valore BDI-II dei 66 soggetti:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bysubj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+<span class='va'>bdi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>0</span>,  <span class='fl'>1</span>,
+  <span class='fl'>1</span>,  <span class='fl'>1</span>,  <span class='fl'>1</span>,  <span class='fl'>1</span>,  <span class='fl'>1</span>,  <span class='fl'>1</span>,  <span class='fl'>1</span>,  <span class='fl'>2</span>,  <span class='fl'>2</span>,  <span class='fl'>2</span>,  <span class='fl'>2</span>,  <span class='fl'>3</span>,  <span class='fl'>3</span>, <span class='fl'>3</span>,  <span class='fl'>5</span>,  <span class='fl'>7</span>,  <span class='fl'>9</span>, <span class='fl'>12</span>, <span class='fl'>19</span>,
+  <span class='fl'>22</span>, <span class='fl'>22</span>, <span class='fl'>24</span>, <span class='fl'>25</span>, <span class='fl'>25</span>, <span class='fl'>26</span>, <span class='fl'>26</span>, <span class='fl'>26</span>, <span class='fl'>27</span>, <span class='fl'>27</span>, <span class='fl'>28</span>, <span class='fl'>28</span>, <span class='fl'>30</span>, <span class='fl'>30</span>, <span class='fl'>30</span>, <span class='fl'>31</span>, <span class='fl'>31</span>, <span class='fl'>33</span>,
+  <span class='fl'>33</span>, <span class='fl'>34</span>, <span class='fl'>35</span>, <span class='fl'>35</span>, <span class='fl'>35</span>, <span class='fl'>36</span>, <span class='fl'>39</span>, <span class='fl'>41</span>, <span class='fl'>43</span>, <span class='fl'>43</span>, <span class='fl'>44</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="calcolo-delle-frequenze-assolute">Calcolo delle frequenze assolute</h1>
+<p>I seguenti cut-off vengono usati per interpretare il BDI‐II:</p>
+<ul>
+<li>depressione minima = 0 – 13,</li>
+<li>depressione lieve = 14 – 19,</li>
+<li>depressione moderata = 20 – 28,</li>
+<li>depressione severa = 29 – 63.</li>
+</ul>
+<p>Calcoliamo le frequenze assolute per i seguenti intervalli aperti a destra: [0, 13.5), [13.5, 19.5), [19.5, 28.5), [28.5, 63). Esaminando i dati, vediamo che 36 soggetti cadono nella prima classe. Dobbiamo però eseguire quest’operazione di conteggio utilizzando R.</p>
+<h2 id="funzione-cut">Funzione <code>cut()</code></h2>
+<p>Uno dei modi possibili per calcolare le frequenze assolute è quello di usare la funzione <code>cut()</code>. Mediante tal funzione è possibile dividere il <em>campo di variazione</em> (ovvero, la differenza tra il valore massimo di una distribuzione ed il valore minimo) di una variabile continua <code>x</code> in intervalli e codificare ciascun valore <code>x</code> nei termini dell’intervallo a cui appartiene. Tale risultato si ottiene nel modo seguente.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span><span class='op'>(</span>
+  <span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi</span>,
+  breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>13.5</span>, <span class='fl'>19.5</span>, <span class='fl'>28.5</span>, <span class='fl'>63</span><span class='op'>)</span>,
+  include.lowest <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+    <span class='st'>"minimal"</span>, <span class='st'>"mild"</span>, <span class='st'>"moderate"</span>, <span class='st'>"severe"</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span>
+</code></pre>
+</div>
+<pre><code> [1] minimal  minimal  minimal  minimal  minimal  minimal  minimal 
+ [8] minimal  minimal  minimal  minimal  minimal  minimal  minimal 
+[15] minimal  minimal  minimal  minimal  minimal  minimal  minimal 
+[22] minimal  minimal  minimal  minimal  minimal  minimal  minimal 
+[29] minimal  minimal  minimal  minimal  minimal  minimal  minimal 
+[36] minimal  mild     moderate moderate moderate moderate moderate
+[43] moderate moderate moderate moderate moderate moderate moderate
+[50] severe   severe   severe   severe   severe   severe   severe  
+[57] severe   severe   severe   severe   severe   severe   severe  
+[64] severe   severe   severe  
+Levels: minimal mild moderate severe</code></pre>
+</div>
+<p>Possiamo ora usare la funzione <code>table()</code>. La funzione <code>table()</code> ritorna una tabella con le frequenze assolute di ciascuna modalità della variabile in input.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+ minimal     mild moderate   severe 
+      36        1       12       17 </code></pre>
+</div>
+<p>Per ottenere le frequenze relative è sufficiente dividere ciascuna frequenza assoluta per il numero totale di osservazioni:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+   minimal       mild   moderate     severe 
+0.54545455 0.01515152 0.18181818 0.25757576 </code></pre>
+</div>
+<p>In questo modo abbiamo ottenuto le distribuzioni di frequenza assoluta e relativa.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Limiti delle classi</th>
+<th>Frequenza assoluta</th>
+<th>Frequenza relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[0, 13.5)</td>
+<td>36</td>
+<td>36/66</td>
+</tr>
+<tr class="even">
+<td>[13.5, 19.5)</td>
+<td>1</td>
+<td>1/66</td>
+</tr>
+<tr class="odd">
+<td>[19.5, 28.5)</td>
+<td>12</td>
+<td>12/66</td>
+</tr>
+<tr class="even">
+<td>[28.5, 63]</td>
+<td>17</td>
+<td>17/66</td>
+</tr>
+</tbody>
+</table>
+<h1 id="istogramma">Istogramma</h1>
+<p>L’istogramma delle frequenze assolute disegna un rettangolo sopra ogni intervallo specificato, la cui altezza corrisponde alla frequenza assoluta della classe. Per esempio, alla classe [0, 13.5] abbiamo associato la frequenza assoluta di 36. Nell’istogramma delle frequenze assolute l’altezza del primo rettangolo sarà dunque uguale a 36.</p>
+<p>Nell’istogramma delle frequenze relative viene invece rappresentata la frequenza relativa delle classi: l’area di ogni rettangolo è proporzionale alla frequenza relativa della classe. Come si trova l’altezza delle barre dell’istogramma in tali circostanze? Per la classe [0, 13.5), ad esempio, la frequenza relativa è 36/66. Tale valore corrisponde all’area del rettangolo. Dato che la base del rettangolo è 13.5, l’altezza sarà 36/66 / 13.5, ovvero {r 36/66 / 13.5}. E così via per le altre barre dell’istogramma.</p>
+<h1 id="disegnare-un-istogramma-con-ggplot">Disegnare un istogramma con <code>ggplot()</code></h1>
+<p>Una rappresentazione grafica dell’istogramma delle frequenze relative si ottiene nel modo seguente:</p>
+<h2 id="visualizzazione-con-ggplot">Visualizzazione con <code>ggplot()</code></h2>
+<p>Il pacchetto <code>ggplot2</code> è un potente strumento per rappresentare graficamente i dati. Le iniziali del nome, <code>gg</code>, si riferiscono alla ‘’Grammar of Graphics’’, che è un modo di pensare le figure come una serie di layer stratificati. Originariamente descritta da Leland Wilkinson, la grammatica dei grafici è stata aggiornata e applicata in R da Hadley Wickham, il creatore del pacchetto. Per chiarezza, precisiamo che la funzione <code>ggplot()</code> utilizza intervalli aperti a destra.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='va'>bysubj</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bdi</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>..density..</span><span class='op'>)</span>,
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>13.5</span>, <span class='fl'>19.5</span>, <span class='fl'>28.5</span>, <span class='fl'>44.1</span><span class='op'>)</span> <span class='co'># il valore BDI-II massimo è 44</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span>breaks<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>13.5</span>, <span class='fl'>19.5</span>, <span class='fl'>28.5</span>, <span class='fl'>44.1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='st'>"BDI-II"</span>,
+    y <span class='op'>=</span> <span class='st'>"Densità di frequenza"</span>
+  <span class='op'>)</span>
+<span class='va'>p1</span>
+</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-8-1.png" alt="Figura  1: Istogramma delle frequenze relative creato con `ggplot()`." width="672" />
+<p class="caption">
+Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot()</code>.
+</p>
+</div>
+</div>
+<p>È più comune, però, utilizzare classi di ampiezza uguale.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>bysubj</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bdi</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>..density..</span><span class='op'>)</span>,
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>44.1</span>, length.out <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span>breaks<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.00</span>,  <span class='fl'>7.35</span>, <span class='fl'>14.70</span>, <span class='fl'>22.05</span>, <span class='fl'>29.40</span>, <span class='fl'>36.75</span>, <span class='fl'>44.10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='st'>"BDI-II"</span>,
+    y <span class='op'>=</span> <span class='st'>"Densità di frequenza"</span>,
+    caption <span class='op'>=</span> <span class='st'>"Fonte: Zetsche, Buerkner, &amp; Renneberg (2020)"</span>
+  <span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p1</span> <span class='op'>+</span> <span class='va'>p2</span>
+</code></pre>
+</div>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="limite-dellistogramma">Limite dell’istogramma</h2>
+<p>Come abbiamo notato sopra, uno dei limiti degli istogrammi è che il profilo dell’istogramma è arbitrario: a seconda del numero e dei limiti delle classi che vengono scelte, cambiano sia il numero che la forma delle barre dell’istogramma.</p>
+<h1 id="la-densità-della-frequenza-dei-dati">La densità della frequenza dei dati</h1>
+<p>Il problema precedente può essere alleviato utilizzando una rappresentazione alternativa della distribuzione di frequenza, ovvero la stima della <em>densità della frequenza</em> dei dati. Un modo semplice per pensare a tale rappresentazione, che in inglese va sotto il nome di <em>density plot</em>, è quello di immaginare un grande campione di dati, in modo che diventi possibile definire un enorme numero di classi di equivalenza di ampiezza molto piccola, le quali non risultino vuote. In tali circostanze, la funzione di densità empirica non è altro che il profilo `lisciato’ dell’istogramma. La stessa idea si applica anche quando il campione è più piccolo. Un esempio è fornito nella figura seguente.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='va'>bysubj</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bdi</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>..density..</span><span class='op'>)</span>, 
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>44.1</span>, length.out <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_density</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bdi</span><span class='op'>)</span>, 
+    adjust <span class='op'>=</span> <span class='fl'>0.5</span>, 
+    size <span class='op'>=</span> <span class='fl'>0.8</span>, 
+    fill <span class='op'>=</span> <span class='st'>"steelblue3"</span>, 
+    alpha <span class='op'>=</span> <span class='fl'>0.5</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='st'>"BDI-II"</span>,
+    y <span class='op'>=</span> <span class='st'>"Densità di frequenza"</span>
+  <span class='op'>)</span>
+<span class='va'>p3</span>
+</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-13-1.png" alt="Figura  3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati." width="672" />
+<p class="caption">
+Figure 2: Figura 3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati.
+</p>
+</div>
+</div>
+<p>Guardando il grafico della densità della frequenza dei dati possiamo notare che ci sono due valori che tendono a ricorrere più spesso nella distribuzione dei punteggi del BDI-II. Il primo valore tipico è di poco superiore allo zero. Il secondo valore tipico è all’incirca uguale a 25. Tali valori tipici si chiamano <em>mode</em>. Nel caso presente è sensato che una moda della distribuzione corrisponda ad un valore BDI-II molto basso, dato che il campione include 36 soggetti sani, e che una moda corrisponda ad un valore BDI-II di depressione moderata/severa, in quanto il campione include 30 soggetti clinicamente depressi. Ovviamente, se vogliamo rappresentare solo la densità della frequenza dei dati (senza l’istogramma) procediamo come indicato qui sotto.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p4</span> <span class='op'>&lt;-</span> <span class='va'>bysubj</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bdi</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_density</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bdi</span><span class='op'>)</span>, 
+    adjust <span class='op'>=</span> <span class='fl'>0.5</span>, 
+    size <span class='op'>=</span> <span class='fl'>0.8</span>, 
+    fill <span class='op'>=</span> <span class='st'>"steelblue3"</span>, 
+    alpha <span class='op'>=</span> <span class='fl'>0.5</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='st'>"BDI-II"</span>,
+    y <span class='op'>=</span> <span class='st'>"Densità di frequenza"</span>,
+    caption <span class='op'>=</span> <span class='st'>"Fonte: Zetsche, Buerkner, &amp; Renneberg (2020)"</span>
+  <span class='op'>)</span>
+<span class='va'>p4</span>
+</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-15-1.png" alt="Figura  4: Grafico della stima della densità della frequenza dei dati." width="672" />
+<p class="caption">
+Figure 3: Figura 4: Grafico della stima della densità della frequenza dei dati.
+</p>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p3</span> <span class='op'>+</span> <span class='va'>p4</span>
+</code></pre>
+</div>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<h1 id="conclusioni">Conclusioni</h1>
+<ul>
+<li>L’area totale di un istogramma è pari a 1.0.</li>
+<li>Quando guardiamo un istogramma dobbiamo pensare che l’area di ciascuna barra è uguale alla <em>frequenza relativa</em> (ovvero alla proporzione) dei casi che cadono in quella classe.</li>
+<li>L’istogramma ci dice come si <em>distribuiscono</em> (proporzionalmente) le osservazioni di un campione nelle classi che sono state definite.</li>
+<li>Il fatto che l’area totale dell’istogramma sia unitaria significa che essa è la somma di tutte le proporzioni rappresentate dalla barre dell’istogramma.</li>
+<li>Il grafico della <em>funzione di densità empirica</em> attenua l’arbitrarietà della scelta del numero e della dimensione delle classi dell’istogramma e ci fornisce una rappresentazione grafica maggiormente comprensibile.</li>
+</ul>
+<h1 class="unnumbered" id="original-computing-environment">Original Computing Environment</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/sessionInfo.html'>sessionInfo</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>R version 3.6.3 (2020-02-29)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] it_IT.UTF-8/it_IT.UTF-8/it_IT.UTF-8/C/it_IT.UTF-8/it_IT.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods  
+[7] base     
+
+other attached packages:
+ [1] car_3.0-10       carData_3.0-4    here_1.0.1      
+ [4] patchwork_1.1.1  kableExtra_1.3.4 knitr_1.31      
+ [7] bayesplot_1.8.0  forcats_0.5.1    stringr_1.4.0   
+[10] dplyr_1.0.4      purrr_0.3.4      readr_1.4.0     
+[13] tidyr_1.1.2      tibble_3.1.0     ggplot2_3.3.3   
+[16] tidyverse_1.3.0 
+
+loaded via a namespace (and not attached):
+ [1] httr_1.4.2           sass_0.3.1           jsonlite_1.7.2      
+ [4] viridisLite_0.3.0    modelr_0.1.8         bslib_0.2.4         
+ [7] assertthat_0.2.1     highr_0.8            cellranger_1.1.0    
+[10] yaml_2.2.1           gdtools_0.2.3        pillar_1.5.1        
+[13] backports_1.2.1      glue_1.4.2           digest_0.6.27       
+[16] rvest_0.3.6          colorspace_2.0-0     captioner_2.2.3     
+[19] htmltools_0.5.1.9000 plyr_1.8.6           pkgconfig_2.0.3     
+[22] broom_0.7.5          haven_2.3.1          scales_1.1.1        
+[25] webshot_0.5.2        svglite_1.2.3.2      openxlsx_4.2.3      
+[28] distill_1.2          rio_0.5.26           downlit_0.2.1       
+[31] farver_2.1.0         generics_0.1.0       ellipsis_0.3.1      
+[34] withr_2.4.1          cli_2.3.1            magrittr_2.0.1      
+[37] crayon_1.4.1         readxl_1.3.1         evaluate_0.14       
+[40] fs_1.5.0             fansi_0.4.2          xml2_1.3.2          
+[43] foreign_0.8-75       tools_3.6.3          data.table_1.14.0   
+[46] hms_1.0.0            lifecycle_1.0.0      munsell_0.5.0       
+[49] reprex_1.0.0         zip_2.1.1            compiler_3.6.3      
+[52] jquerylib_0.1.3      systemfonts_1.0.1    rlang_0.4.10        
+[55] debugme_1.1.0        grid_3.6.3           ggridges_0.5.3      
+[58] rstudioapi_0.13      labeling_0.4.2       rmarkdown_2.7.3     
+[61] gtable_0.3.0         abind_1.4-5          DBI_1.1.1           
+[64] curl_4.3             R6_2.5.0             lubridate_1.7.9.2   
+[67] utf8_1.1.4           rprojroot_2.0.2      stringi_1.5.3       
+[70] Rcpp_1.0.6           vctrs_0.3.6          dbplyr_2.1.0        
+[73] tidyselect_1.1.0     xfun_0.21           </code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2513,15 +1828,13 @@ function init_posts_list() {
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
-<div class="distill-site-nav distill-site-footer">
-<p>© Corrado Caudek 2021 · Made with ❤ with <a href="https://github.com/distillpub/template/blob/master/AUTHORS">The Distill Template Authors</a> and <a href="https://www.rstudio.com">RStudio, Inc</a>.</p>
-<p>Software licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, v2.0</a>.</p>
-</div>
 <!--/radix_placeholder_navigation_after_body-->
-
 
 </body>
 

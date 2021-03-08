@@ -68,6 +68,17 @@
       <media:content url="https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-6/introduzione-a-r-6_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
+      <title>Istogramma</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-08-istogramma</link>
+      <description>Dati BDI-II di Zetsche, Bürkners &amp; Renneberg (2020).</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-08-istogramma</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-08-istogramma/istogramma_files/figure-html5/unnamed-chunk-8-1.png" medium="image" type="image/png" width="1344" height="960"/>
+    </item>
+    <item>
       <title>Le citazioni</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-07-bibliografia</link>
