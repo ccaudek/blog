@@ -89,7 +89,9 @@ allora otteniamo una diversa distribuzione di frequenze assolute:
 | [4, 6) | 1 |
 | [6, 8) | 1 |
 
-Usiamo ora R per ottenere i risultati precedenti. 
+Usiamo ora R per ottenere i risultati precedenti.  
+
+Uno dei modi possibili per calcolare le frequenze assolute è quello di usare la funzione `cut()`. Mediante tal funzione è possibile dividere il *campo di variazione* (ovvero, la differenza tra il valore massimo di una distribuzione ed il valore minimo) di una variabile continua `x` in intervalli e codificare ciascun valore `x` nei termini dell'intervallo a cui appartiene. 
 
 Iniziamo con gli intervalli aperti a sinistra e chiusi a destra:
 
@@ -99,8 +101,14 @@ x_cat <- cut(
   breaks = c(0, 2, 4, 6, 8),
   right = TRUE
 )
+```
+
+Possiamo ora usare la funzione `table()` la quale ritorna una tabella con le frequenze assolute di ciascuna modalità della variabile in input.
+
+```{r}
 table(x_cat)
 ```
+
 
 La distribuzione di frequenze per intervalli chiusi a sinistra e aperti a destra è:
 
@@ -110,8 +118,12 @@ x_cat <- cut(
   breaks = c(0, 2, 4, 6, 8),
   right = FALSE
 )
+```
+
+```{r}
 table(x_cat)
 ```
+
 
 ## Istogramma
 
@@ -183,11 +195,6 @@ I seguenti cut-off vengono usati per interpretare il BDI‐II:
 
 Calcoliamo le frequenze assolute per i seguenti intervalli aperti a destra: [0, 13.5), [13.5, 19.5), [19.5, 28.5), [28.5, 63). Esaminando i dati, vediamo che 36 soggetti cadono nella prima classe. Dobbiamo però eseguire quest'operazione di conteggio utilizzando R. 
 
-
-## Funzione `cut()`
-
-Uno dei modi possibili per calcolare le frequenze assolute è quello di usare la funzione `cut()`. Mediante tal funzione è possibile dividere il *campo di variazione* (ovvero, la differenza tra il valore massimo di una distribuzione ed il valore minimo) di una variabile continua `x` in intervalli e codificare ciascun valore `x` nei termini dell'intervallo a cui appartiene. Tale risultato si ottiene nel modo seguente.
-
 ```{r}
 bysubj$bdi_level <- cut(
   bysubj$bdi,
@@ -200,8 +207,6 @@ bysubj$bdi_level <- cut(
 
 bysubj$bdi_level
 ```
-
-Possiamo ora usare la funzione `table()`. La funzione `table()` ritorna una tabella con le frequenze assolute di ciascuna modalità della variabile in input.
 
 ```{r}
 table(bysubj$bdi_level)
@@ -230,14 +235,7 @@ L'istogramma delle frequenze assolute disegna un rettangolo sopra ogni intervall
 Nell'istogramma delle frequenze relative viene invece rappresentata la frequenza relativa delle classi: l'area di ogni rettangolo è proporzionale alla frequenza relativa della classe. Come si trova l'altezza delle barre dell'istogramma in tali circostanze? Per la classe [0, 13.5), ad esempio, la frequenza relativa è 36/66. Tale valore corrisponde all'area del rettangolo.  Dato che la base del rettangolo è 13.5, l'altezza sarà 36/66 / 13.5, ovvero {r 36/66 / 13.5}. E così via per le altre barre dell'istogramma.
 
 
-# Disegnare un istogramma con `ggplot()`
-
- Una rappresentazione grafica dell'istogramma delle frequenze relative si ottiene nel modo seguente:
-
-
 ## Visualizzazione con `ggplot()`
-
-Il pacchetto `ggplot2` è un potente strumento per rappresentare graficamente i dati. Le iniziali del nome, `gg`, si riferiscono alla ''Grammar of Graphics'', che è un modo di pensare le figure come una serie di layer stratificati. Originariamente descritta da Leland Wilkinson, la grammatica dei grafici è stata aggiornata e applicata in R da Hadley Wickham, il creatore del pacchetto. Per chiarezza, precisiamo che la funzione `ggplot()` utilizza intervalli aperti a destra.
 
 ```{r, echo=FALSE}
 Fig_1_cap <- figure_nums(

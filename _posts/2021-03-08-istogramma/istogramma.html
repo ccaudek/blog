@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["istogramma_files/anchor-4.2.2/anchor.min.js","istogramma_files/bowser-1.9.3/bowser.min.js","istogramma_files/distill-2.2.21/template.v2.js","istogramma_files/figure-html5/unnamed-chunk-11-1.png","istogramma_files/figure-html5/unnamed-chunk-13-1.png","istogramma_files/figure-html5/unnamed-chunk-15-1.png","istogramma_files/figure-html5/unnamed-chunk-16-1.png","istogramma_files/figure-html5/unnamed-chunk-18-1.png","istogramma_files/figure-html5/unnamed-chunk-20-1.png","istogramma_files/figure-html5/unnamed-chunk-21-1.png","istogramma_files/figure-html5/unnamed-chunk-6-1.png","istogramma_files/figure-html5/unnamed-chunk-7-1.png","istogramma_files/figure-html5/unnamed-chunk-8-1.png","istogramma_files/header-attrs-2.7.3/header-attrs.js","istogramma_files/jquery-1.11.3/jquery.min.js","istogramma_files/popper-2.6.0/popper.min.js","istogramma_files/tippy-6.2.7/tippy-bundle.umd.min.js","istogramma_files/tippy-6.2.7/tippy-light-border.css","istogramma_files/tippy-6.2.7/tippy.css","istogramma_files/tippy-6.2.7/tippy.umd.min.js","istogramma_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["istogramma_files/anchor-4.2.2/anchor.min.js","istogramma_files/bowser-1.9.3/bowser.min.js","istogramma_files/distill-2.2.21/template.v2.js","istogramma_files/figure-html5/unnamed-chunk-11-1.png","istogramma_files/figure-html5/unnamed-chunk-13-1.png","istogramma_files/figure-html5/unnamed-chunk-15-1.png","istogramma_files/figure-html5/unnamed-chunk-16-1.png","istogramma_files/figure-html5/unnamed-chunk-18-1.png","istogramma_files/figure-html5/unnamed-chunk-20-1.png","istogramma_files/figure-html5/unnamed-chunk-21-1.png","istogramma_files/figure-html5/unnamed-chunk-22-1.png","istogramma_files/figure-html5/unnamed-chunk-23-1.png","istogramma_files/figure-html5/unnamed-chunk-6-1.png","istogramma_files/figure-html5/unnamed-chunk-7-1.png","istogramma_files/figure-html5/unnamed-chunk-8-1.png","istogramma_files/figure-html5/unnamed-chunk-9-1.png","istogramma_files/header-attrs-2.7.3/header-attrs.js","istogramma_files/jquery-1.11.3/jquery.min.js","istogramma_files/popper-2.6.0/popper.min.js","istogramma_files/tippy-6.2.7/tippy-bundle.umd.min.js","istogramma_files/tippy-6.2.7/tippy-light-border.css","istogramma_files/tippy-6.2.7/tippy.css","istogramma_files/tippy-6.2.7/tippy.umd.min.js","istogramma_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1580,6 +1580,7 @@ a \leq x &lt; b,
 </tbody>
 </table>
 <p>Usiamo ora R per ottenere i risultati precedenti.</p>
+<p>Uno dei modi possibili per calcolare le frequenze assolute è quello di usare la funzione <code>cut()</code>. Mediante tal funzione è possibile dividere il <em>campo di variazione</em> (ovvero, la differenza tra il valore massimo di una distribuzione ed il valore minimo) di una variabile continua <code>x</code> in intervalli e codificare ciascun valore <code>x</code> nei termini dell’intervallo a cui appartiene.</p>
 <p>Iniziamo con gli intervalli aperti a sinistra e chiusi a destra:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1588,7 +1589,13 @@ a \leq x &lt; b,
   breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>,
   right <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x_cat</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Possiamo ora usare la funzione <code>table()</code> la quale ritorna una tabella con le frequenze assolute di ciascuna modalità della variabile in input.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x_cat</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>x_cat
@@ -1603,7 +1610,12 @@ a \leq x &lt; b,
   breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>,
   right <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x_cat</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x_cat</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>x_cat
@@ -1633,7 +1645,7 @@ a \leq x &lt; b,
   <span class='op'>)</span> 
 </code></pre>
 </div>
-<p><img src="istogramma_files/figure-html5/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <p>Questo ci conferma che, di default, <code>ggplot()</code> usa intervalli chiusi a destra.</p>
 <p>Cambiamo ora il default e specifichiamo intervalli chiusi a sinistra:</p>
@@ -1649,7 +1661,7 @@ a \leq x &lt; b,
   <span class='op'>)</span> 
 </code></pre>
 </div>
-<p><img src="istogramma_files/figure-html5/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <h1 id="manipolazione-dei-dati-importazione-e-pulizia">Manipolazione dei dati (importazione e pulizia)</h1>
 <p>Considereremo ora i dati di Zetsche, Bürkner, &amp; Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.</p>
@@ -1676,8 +1688,6 @@ a \leq x &lt; b,
 <li>depressione severa = 29 – 63.</li>
 </ul>
 <p>Calcoliamo le frequenze assolute per i seguenti intervalli aperti a destra: [0, 13.5), [13.5, 19.5), [19.5, 28.5), [28.5, 63). Esaminando i dati, vediamo che 36 soggetti cadono nella prima classe. Dobbiamo però eseguire quest’operazione di conteggio utilizzando R.</p>
-<h2 id="funzione-cut">Funzione <code>cut()</code></h2>
-<p>Uno dei modi possibili per calcolare le frequenze assolute è quello di usare la funzione <code>cut()</code>. Mediante tal funzione è possibile dividere il <em>campo di variazione</em> (ovvero, la differenza tra il valore massimo di una distribuzione ed il valore minimo) di una variabile continua <code>x</code> in intervalli e codificare ciascun valore <code>x</code> nei termini dell’intervallo a cui appartiene. Tale risultato si ottiene nel modo seguente.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span><span class='op'>(</span>
@@ -1704,7 +1714,6 @@ a \leq x &lt; b,
 [64] severe   severe   severe  
 Levels: minimal mild moderate severe</code></pre>
 </div>
-<p>Possiamo ora usare la funzione <code>table()</code>. La funzione <code>table()</code> ritorna una tabella con le frequenze assolute di ciascuna modalità della variabile in input.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>bysubj</span><span class='op'>$</span><span class='va'>bdi_level</span><span class='op'>)</span>
@@ -1759,10 +1768,7 @@ Levels: minimal mild moderate severe</code></pre>
 <h1 id="istogramma-1">Istogramma</h1>
 <p>L’istogramma delle frequenze assolute disegna un rettangolo sopra ogni intervallo specificato, la cui altezza corrisponde alla frequenza assoluta della classe. Per esempio, alla classe [0, 13.5] abbiamo associato la frequenza assoluta di 36. Nell’istogramma delle frequenze assolute l’altezza del primo rettangolo sarà dunque uguale a 36.</p>
 <p>Nell’istogramma delle frequenze relative viene invece rappresentata la frequenza relativa delle classi: l’area di ogni rettangolo è proporzionale alla frequenza relativa della classe. Come si trova l’altezza delle barre dell’istogramma in tali circostanze? Per la classe [0, 13.5), ad esempio, la frequenza relativa è 36/66. Tale valore corrisponde all’area del rettangolo. Dato che la base del rettangolo è 13.5, l’altezza sarà 36/66 / 13.5, ovvero {r 36/66 / 13.5}. E così via per le altre barre dell’istogramma.</p>
-<h1 id="disegnare-un-istogramma-con-ggplot">Disegnare un istogramma con <code>ggplot()</code></h1>
-<p>Una rappresentazione grafica dell’istogramma delle frequenze relative si ottiene nel modo seguente:</p>
 <h2 id="visualizzazione-con-ggplot">Visualizzazione con <code>ggplot()</code></h2>
-<p>Il pacchetto <code>ggplot2</code> è un potente strumento per rappresentare graficamente i dati. Le iniziali del nome, <code>gg</code>, si riferiscono alla ‘’Grammar of Graphics’’, che è un modo di pensare le figure come una serie di layer stratificati. Originariamente descritta da Leland Wilkinson, la grammatica dei grafici è stata aggiornata e applicata in R da Hadley Wickham, il creatore del pacchetto. Per chiarezza, precisiamo che la funzione <code>ggplot()</code> utilizza intervalli aperti a destra.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -1782,8 +1788,8 @@ Levels: minimal mild moderate severe</code></pre>
 <span class='va'>p1</span>
 </code></pre>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
-<img src="istogramma_files/figure-html5/unnamed-chunk-13-1.png" alt="Figura  1: Istogramma delle frequenze relative creato con `ggplot()`." width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-15-1.png" alt="Figura  1: Istogramma delle frequenze relative creato con `ggplot()`." width="672" />
 <p class="caption">
 Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot()</code>.
 </p>
@@ -1815,7 +1821,7 @@ Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot(
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p1</span> <span class='op'>+</span> <span class='va'>p2</span>
 </code></pre>
 </div>
-<p><img src="istogramma_files/figure-html5/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <h2 id="limite-dellistogramma">Limite dell’istogramma</h2>
 <p>Come abbiamo notato sopra, uno dei limiti degli istogrammi è che il profilo dell’istogramma è arbitrario: a seconda del numero e dei limiti delle classi che vengono scelte, cambiano sia il numero che la forma delle barre dell’istogramma.</p>
@@ -1846,8 +1852,8 @@ Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot(
 <span class='va'>p3</span>
 </code></pre>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
-<img src="istogramma_files/figure-html5/unnamed-chunk-18-1.png" alt="Figura  3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati." width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-20-1.png" alt="Figura  3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati." width="672" />
 <p class="caption">
 Figure 2: Figura 3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati.
 </p>
@@ -1876,8 +1882,8 @@ Figure 2: Figura 3: Istogramma delle frequenze relative con sovrapposta la stima
 <span class='va'>p4</span>
 </code></pre>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
-<img src="istogramma_files/figure-html5/unnamed-chunk-20-1.png" alt="Figura  4: Grafico della stima della densità della frequenza dei dati." width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-22-1.png" alt="Figura  4: Grafico della stima della densità della frequenza dei dati." width="672" />
 <p class="caption">
 Figure 3: Figura 4: Grafico della stima della densità della frequenza dei dati.
 </p>
@@ -1888,7 +1894,7 @@ Figure 3: Figura 4: Grafico della stima della densità della frequenza dei dati.
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p3</span> <span class='op'>+</span> <span class='va'>p4</span>
 </code></pre>
 </div>
-<p><img src="istogramma_files/figure-html5/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <h1 id="conclusioni">Conclusioni</h1>
 <ul>
