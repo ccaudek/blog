@@ -25,9 +25,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 In questo tutorial ci poniamo il problema di costruire un istrogramma utilizzando la  funzione `ggplot()` del pacchetto `ggplot2` in R. Vedremo quali sono i limiti degli istogrammi. Concluderemo introducendo una rappresentazione alternativa, la *densità della frequenza dei dati*, la quale attenua i limiti degli istogrammi.
 
-Considereremo qui i dati di Zetsche, Bürkner, & Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti.  Uno di essi non ha risposto e quindi c'è un dato mancante.
-
-
 # Carichiamo i pacchetti necessari
 
 ```{r}
@@ -37,28 +34,129 @@ theme_set(bayesplot::theme_default(base_size=14))
 suppressPackageStartupMessages(library("knitr"))
 suppressPackageStartupMessages(library("kableExtra"))
 suppressPackageStartupMessages(library("patchwork"))
-
+suppressPackageStartupMessages(library("car"))
 table_nums <- captioner::captioner(prefix = "Tavola")
 figure_nums <- captioner::captioner(prefix = "Figura")
 knitr::opts_chunk$set(fig.align = "center", fig.width=7, fig.height=5)
-
-library("here")
 ```
+
+# Introduzione
+
+Iniziamo con delle considerazioni di base.  
+
+L'intervallo `(a, b]` si dice __aperto a sinistra e chiuso a destra__. Significa 
+
+$$
+a < x \leq b,
+$$
+
+ovvero, descrive la situazione nella quale i valori che coincidono con il limite superiore dell'intervallo verranno inclusi nell'intervallo, mentre i valori che coincidono con il limte inferiore dell'intervanno non verranno inclusi nell'intervallo.
+
+Consideriamo questi dati:
+
+```{r}
+x <- c(1, 2, 1, 1, 5, 3, 2, 6)
+```
+
+Supponiamo di volere i seguenti intervalli aperti a sinistra e chiusi a destra:
+
+- (0, 2]
+- (2, 4]
+- (4, 6]
+- (6, 8]
+
+Per la variabile `x`, la distribuzione di frequenze assolute diventa:
+
+| Intervallo | frequenza |
+|------------|-----------|
+| (0, 2] | 5 |
+| (2, 4] | 1 |
+| (4, 6] | 2 |
+| (6, 8] | 0 |
+
+Se invece consideriamo gli intervalli chiusi a sinistra e aperti a destra, `[a, b)`, ovvero
+
+$$
+a \leq x < b,
+$$
+
+allora otteniamo una diversa distribuzione di frequenze assolute:
+
+| Intervallo | frequenza |
+|------------|-----------|
+| [0, 2) | 3 |
+| [2, 4) | 3 |
+| [4, 6) | 1 |
+| [6, 8) | 1 |
+
+Usiamo ora R per ottenere i risultati precedenti. 
+
+Iniziamo con gli intervalli aperti a sinistra e chiusi a destra:
+
+```{r}
+x_cat <- cut(
+  x,
+  breaks = c(0, 2, 4, 6, 8),
+  right = TRUE
+)
+table(x_cat)
+```
+
+La distribuzione di frequenze per intervalli chiusi a sinistra e aperti a destra è:
+
+```{r}
+x_cat <- cut(
+  x,
+  breaks = c(0, 2, 4, 6, 8),
+  right = FALSE
+)
+table(x_cat)
+```
+
+## Istogramma
+
+Creiamo ora un istogramma usando i valori `x`.
+
+Qual è l'altezza della barra in corrispondeza dell'intervallo (0,2]?
+
+La base è pari a 2 e l'area è 5/8. Dunque l'altezza è 
+
+```{r}
+(5/8) / 2
+```
+
+Usiamo `ggplot()`
+
+```{r}
+x %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x = x)) +
+  geom_histogram(
+    aes(y = ..density..),
+    breaks = c(0, 2, 4, 6, 8) 
+  ) 
+```
+
+Questo ci conferma che, di default, `ggplot()` usa intervalli chiusi a destra.
+
+Cambiamo ora il default e specifichiamo intervalli chiusi a sinistra:
+
+```{r}
+x %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x = x)) +
+  geom_histogram(
+    aes(y = ..density..),
+    breaks = c(0, 2, 4, 6, 8),
+    closed = "left"
+  ) 
+```
+
 
 
 # Manipolazione dei dati (importazione e pulizia)
 
-## Importazione dei dati
-
-```{r}
-library("here")
-library("tidyverse")
-library("car")
-```
-
-## Trasformazione dei dati grezzi nel formato appropriato
-
-Considereremo qui i dati di Zetsche, Bürkner, & Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.
+Considereremo ora i dati di Zetsche, Bürkner, & Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti.  Uno di essi non ha risposto e quindi c'è un dato mancante.
 
 Creiamo la varibile `bdi` che contiene i valori del valore BDI-II dei 66 soggetti:
 

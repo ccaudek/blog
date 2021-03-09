@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["istogramma_files/anchor-4.2.2/anchor.min.js","istogramma_files/bowser-1.9.3/bowser.min.js","istogramma_files/distill-2.2.21/template.v2.js","istogramma_files/figure-html5/unnamed-chunk-11-1.png","istogramma_files/figure-html5/unnamed-chunk-13-1.png","istogramma_files/figure-html5/unnamed-chunk-15-1.png","istogramma_files/figure-html5/unnamed-chunk-16-1.png","istogramma_files/figure-html5/unnamed-chunk-8-1.png","istogramma_files/header-attrs-2.7.3/header-attrs.js","istogramma_files/jquery-1.11.3/jquery.min.js","istogramma_files/popper-2.6.0/popper.min.js","istogramma_files/tippy-6.2.7/tippy-bundle.umd.min.js","istogramma_files/tippy-6.2.7/tippy-light-border.css","istogramma_files/tippy-6.2.7/tippy.css","istogramma_files/tippy-6.2.7/tippy.umd.min.js","istogramma_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["istogramma_files/anchor-4.2.2/anchor.min.js","istogramma_files/bowser-1.9.3/bowser.min.js","istogramma_files/distill-2.2.21/template.v2.js","istogramma_files/figure-html5/unnamed-chunk-11-1.png","istogramma_files/figure-html5/unnamed-chunk-13-1.png","istogramma_files/figure-html5/unnamed-chunk-15-1.png","istogramma_files/figure-html5/unnamed-chunk-16-1.png","istogramma_files/figure-html5/unnamed-chunk-18-1.png","istogramma_files/figure-html5/unnamed-chunk-20-1.png","istogramma_files/figure-html5/unnamed-chunk-21-1.png","istogramma_files/figure-html5/unnamed-chunk-6-1.png","istogramma_files/figure-html5/unnamed-chunk-7-1.png","istogramma_files/figure-html5/unnamed-chunk-8-1.png","istogramma_files/header-attrs-2.7.3/header-attrs.js","istogramma_files/jquery-1.11.3/jquery.min.js","istogramma_files/popper-2.6.0/popper.min.js","istogramma_files/tippy-6.2.7/tippy-bundle.umd.min.js","istogramma_files/tippy-6.2.7/tippy-light-border.css","istogramma_files/tippy-6.2.7/tippy.css","istogramma_files/tippy-6.2.7/tippy.umd.min.js","istogramma_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1484,7 +1484,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <h1 class="unnumbered" id="obiettivi-di-questo-tutorial">Obiettivi di questo tutorial</h1>
 <p>In questo tutorial ci poniamo il problema di costruire un istrogramma utilizzando la funzione <code>ggplot()</code> del pacchetto <code>ggplot2</code> in R. Vedremo quali sono i limiti degli istogrammi. Concluderemo introducendo una rappresentazione alternativa, la <em>densità della frequenza dei dati</em>, la quale attenua i limiti degli istogrammi.</p>
-<p>Considereremo qui i dati di Zetsche, Bürkner, &amp; Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.</p>
 <h1 id="carichiamo-i-pacchetti-necessari">Carichiamo i pacchetti necessari</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1494,27 +1493,166 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://yihui.org/knitr/'>"knitr"</a></span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://haozhu233.github.io/kableExtra/'>"kableExtra"</a></span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://patchwork.data-imaginist.com'>"patchwork"</a></span><span class='op'>)</span><span class='op'>)</span>
-
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://r-forge.r-project.org/projects/car/'>"car"</a></span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>table_nums</span> <span class='op'>&lt;-</span> <span class='fu'>captioner</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/captioner/man/captioner.html'>captioner</a></span><span class='op'>(</span>prefix <span class='op'>=</span> <span class='st'>"Tavola"</span><span class='op'>)</span>
 <span class='va'>figure_nums</span> <span class='op'>&lt;-</span> <span class='fu'>captioner</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/captioner/man/captioner.html'>captioner</a></span><span class='op'>(</span>prefix <span class='op'>=</span> <span class='st'>"Figura"</span><span class='op'>)</span>
 <span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>fig.align <span class='op'>=</span> <span class='st'>"center"</span>, fig.width<span class='op'>=</span><span class='fl'>7</span>, fig.height<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://here.r-lib.org/'>"here"</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<h1 id="manipolazione-dei-dati-importazione-e-pulizia">Manipolazione dei dati (importazione e pulizia)</h1>
-<h2 id="importazione-dei-dati">Importazione dei dati</h2>
+<h1 id="introduzione">Introduzione</h1>
+<p>Iniziamo con delle considerazioni di base.</p>
+<p>L’intervallo <code>(a, b]</code> si dice <strong>aperto a sinistra e chiuso a destra</strong>. Significa</p>
+<p><span class="math display">\[
+a &lt; x \leq b,
+\]</span></p>
+<p>ovvero, descrive la situazione nella quale i valori che coincidono con il limite superiore dell’intervallo verranno inclusi nell’intervallo, mentre i valori che coincidono con il limte inferiore dell’intervanno non verranno inclusi nell’intervallo.</p>
+<p>Consideriamo questi dati:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://here.r-lib.org/'>"here"</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://r-forge.r-project.org/projects/car/'>"car"</a></span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>6</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<h2 id="trasformazione-dei-dati-grezzi-nel-formato-appropriato">Trasformazione dei dati grezzi nel formato appropriato</h2>
-<p>Considereremo qui i dati di Zetsche, Bürkner, &amp; Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.</p>
+<p>Supponiamo di volere i seguenti intervalli aperti a sinistra e chiusi a destra:</p>
+<ul>
+<li>(0, 2]</li>
+<li>(2, 4]</li>
+<li>(4, 6]</li>
+<li>(6, 8]</li>
+</ul>
+<p>Per la variabile <code>x</code>, la distribuzione di frequenze assolute diventa:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Intervallo</th>
+<th>frequenza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(0, 2]</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>(2, 4]</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>(4, 6]</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>(6, 8]</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Se invece consideriamo gli intervalli chiusi a sinistra e aperti a destra, <code>[a, b)</code>, ovvero</p>
+<p><span class="math display">\[
+a \leq x &lt; b,
+\]</span></p>
+<p>allora otteniamo una diversa distribuzione di frequenze assolute:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Intervallo</th>
+<th>frequenza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[0, 2)</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>[2, 4)</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>[4, 6)</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>[6, 8)</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Usiamo ora R per ottenere i risultati precedenti.</p>
+<p>Iniziamo con gli intervalli aperti a sinistra e chiusi a destra:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x_cat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>,
+  right <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x_cat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>x_cat
+(0,2] (2,4] (4,6] (6,8] 
+    5     1     2     0 </code></pre>
+</div>
+<p>La distribuzione di frequenze per intervalli chiusi a sinistra e aperti a destra è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x_cat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>,
+  right <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x_cat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>x_cat
+[0,2) [2,4) [4,6) [6,8) 
+    3     3     1     1 </code></pre>
+</div>
+<h2 id="istogramma">Istogramma</h2>
+<p>Creiamo ora un istogramma usando i valori <code>x</code>.</p>
+<p>Qual è l’altezza della barra in corrispondeza dell’intervallo (0,2]?</p>
+<p>La base è pari a 2 e l’area è 5/8. Dunque l’altezza è</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>(</span><span class='fl'>5</span><span class='op'>/</span><span class='fl'>8</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>2</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.3125</code></pre>
+</div>
+<p>Usiamo <code>ggplot()</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>..density..</span><span class='op'>)</span>,
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span> 
+  <span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<p>Questo ci conferma che, di default, <code>ggplot()</code> usa intervalli chiusi a destra.</p>
+<p>Cambiamo ora il default e specifichiamo intervalli chiusi a sinistra:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>..density..</span><span class='op'>)</span>,
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>,
+    closed <span class='op'>=</span> <span class='st'>"left"</span>
+  <span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<h1 id="manipolazione-dei-dati-importazione-e-pulizia">Manipolazione dei dati (importazione e pulizia)</h1>
+<p>Considereremo ora i dati di Zetsche, Bürkner, &amp; Renneberg (2020) e ci poniamo il problema di descrivere la distribuzione dei punteggi BDI-II dei 67 partecipanti. Uno di essi non ha risposto e quindi c’è un dato mancante.</p>
 <p>Creiamo la varibile <code>bdi</code> che contiene i valori del valore BDI-II dei 66 soggetti:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1618,7 +1756,7 @@ Levels: minimal mild moderate severe</code></pre>
 </tr>
 </tbody>
 </table>
-<h1 id="istogramma">Istogramma</h1>
+<h1 id="istogramma-1">Istogramma</h1>
 <p>L’istogramma delle frequenze assolute disegna un rettangolo sopra ogni intervallo specificato, la cui altezza corrisponde alla frequenza assoluta della classe. Per esempio, alla classe [0, 13.5] abbiamo associato la frequenza assoluta di 36. Nell’istogramma delle frequenze assolute l’altezza del primo rettangolo sarà dunque uguale a 36.</p>
 <p>Nell’istogramma delle frequenze relative viene invece rappresentata la frequenza relativa delle classi: l’area di ogni rettangolo è proporzionale alla frequenza relativa della classe. Come si trova l’altezza delle barre dell’istogramma in tali circostanze? Per la classe [0, 13.5), ad esempio, la frequenza relativa è 36/66. Tale valore corrisponde all’area del rettangolo. Dato che la base del rettangolo è 13.5, l’altezza sarà 36/66 / 13.5, ovvero {r 36/66 / 13.5}. E così via per le altre barre dell’istogramma.</p>
 <h1 id="disegnare-un-istogramma-con-ggplot">Disegnare un istogramma con <code>ggplot()</code></h1>
@@ -1644,8 +1782,8 @@ Levels: minimal mild moderate severe</code></pre>
 <span class='va'>p1</span>
 </code></pre>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
-<img src="istogramma_files/figure-html5/unnamed-chunk-8-1.png" alt="Figura  1: Istogramma delle frequenze relative creato con `ggplot()`." width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-13-1.png" alt="Figura  1: Istogramma delle frequenze relative creato con `ggplot()`." width="672" />
 <p class="caption">
 Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot()</code>.
 </p>
@@ -1677,7 +1815,7 @@ Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot(
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p1</span> <span class='op'>+</span> <span class='va'>p2</span>
 </code></pre>
 </div>
-<p><img src="istogramma_files/figure-html5/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <h2 id="limite-dellistogramma">Limite dell’istogramma</h2>
 <p>Come abbiamo notato sopra, uno dei limiti degli istogrammi è che il profilo dell’istogramma è arbitrario: a seconda del numero e dei limiti delle classi che vengono scelte, cambiano sia il numero che la forma delle barre dell’istogramma.</p>
@@ -1708,8 +1846,8 @@ Figure 1: Figura 1: Istogramma delle frequenze relative creato con <code>ggplot(
 <span class='va'>p3</span>
 </code></pre>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
-<img src="istogramma_files/figure-html5/unnamed-chunk-13-1.png" alt="Figura  3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati." width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-18-1.png" alt="Figura  3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati." width="672" />
 <p class="caption">
 Figure 2: Figura 3: Istogramma delle frequenze relative con sovrapposta la stima della densità della frequenza dei dati.
 </p>
@@ -1738,8 +1876,8 @@ Figure 2: Figura 3: Istogramma delle frequenze relative con sovrapposta la stima
 <span class='va'>p4</span>
 </code></pre>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
-<img src="istogramma_files/figure-html5/unnamed-chunk-15-1.png" alt="Figura  4: Grafico della stima della densità della frequenza dei dati." width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="istogramma_files/figure-html5/unnamed-chunk-20-1.png" alt="Figura  4: Grafico della stima della densità della frequenza dei dati." width="672" />
 <p class="caption">
 Figure 3: Figura 4: Grafico della stima della densità della frequenza dei dati.
 </p>
@@ -1750,7 +1888,7 @@ Figure 3: Figura 4: Grafico della stima della densità della frequenza dei dati.
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p3</span> <span class='op'>+</span> <span class='va'>p4</span>
 </code></pre>
 </div>
-<p><img src="istogramma_files/figure-html5/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="istogramma_files/figure-html5/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <h1 id="conclusioni">Conclusioni</h1>
 <ul>
@@ -1782,12 +1920,11 @@ attached base packages:
 [7] base     
 
 other attached packages:
- [1] car_3.0-10       carData_3.0-4    here_1.0.1      
- [4] patchwork_1.1.1  kableExtra_1.3.4 knitr_1.31      
- [7] bayesplot_1.8.0  forcats_0.5.1    stringr_1.4.0   
-[10] dplyr_1.0.4      purrr_0.3.4      readr_1.4.0     
-[13] tidyr_1.1.2      tibble_3.1.0     ggplot2_3.3.3   
-[16] tidyverse_1.3.0 
+ [1] car_3.0-10       carData_3.0-4    patchwork_1.1.1 
+ [4] kableExtra_1.3.4 knitr_1.31       bayesplot_1.8.0 
+ [7] forcats_0.5.1    stringr_1.4.0    dplyr_1.0.4     
+[10] purrr_0.3.4      readr_1.4.0      tidyr_1.1.2     
+[13] tibble_3.1.0     ggplot2_3.3.3    tidyverse_1.3.0 
 
 loaded via a namespace (and not attached):
  [1] httr_1.4.2           sass_0.3.1           jsonlite_1.7.2      
@@ -1812,11 +1949,11 @@ loaded via a namespace (and not attached):
 [58] rstudioapi_0.13      labeling_0.4.2       rmarkdown_2.7.3     
 [61] gtable_0.3.0         abind_1.4-5          DBI_1.1.1           
 [64] curl_4.3             R6_2.5.0             lubridate_1.7.9.2   
-[67] utf8_1.1.4           rprojroot_2.0.2      stringi_1.5.3       
-[70] Rcpp_1.0.6           vctrs_0.3.6          dbplyr_2.1.0        
-[73] tidyselect_1.1.0     xfun_0.21           </code></pre>
+[67] utf8_1.1.4           stringi_1.5.3        Rcpp_1.0.6          
+[70] vctrs_0.3.6          dbplyr_2.1.0         tidyselect_1.1.0    
+[73] xfun_0.21           </code></pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -1824,6 +1961,15 @@ loaded via a namespace (and not attached):
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
