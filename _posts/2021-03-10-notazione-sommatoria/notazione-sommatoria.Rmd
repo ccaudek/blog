@@ -1,7 +1,7 @@
 ---
 title: "Notazione sommatoria"
 description: |
-  A short description of the post.
+  Il simbolo $\Sigma$ si chiama sommatoria e denota la somma di un certo numero di addendi.
 author:
   - name: Corrado Caudek
     url: https://caudekblog.netlify.app
@@ -16,7 +16,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-La notazione delle sommatorie è molto utilizzata nell'analisi dei dati, per cui è necessario familiarizzarsi con essa.
+La notazione delle sommatorie è molto utilizzata nell'analisi dei dati per cui è necessario familiarizzarsi con essa.
 Questo argomento è trattato nell'appendice delle dispense, oppure su Wikipedia (https://it.wikipedia.org/wiki/Sommatoria).
 
 Per evitare errori di calcolo, possiamo usare R per risolvere questo tipo di problemi, il che ci fornisce anche la possibilità di fare un po' di esercizi sui vettori.
