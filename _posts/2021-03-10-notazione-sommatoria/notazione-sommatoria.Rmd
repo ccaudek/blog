@@ -9,6 +9,11 @@ date: 03-10-2021
 output:
   distill::distill_article:
     self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
 ---
 
 

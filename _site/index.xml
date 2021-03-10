@@ -23,6 +23,8 @@
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-10-notazione-sommatoria</link>
       <description>Simbolo di somma.</description>
+      <category>R</category>
+      <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-10-notazione-sommatoria</guid>
       <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
     </item>
@@ -61,6 +63,8 @@
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-4</link>
       <description>Il quarto post sulla sintassi di base di R: input/output.</description>
+      <category>R</category>
+      <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-08-introduzione-a-r-4</guid>
       <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
     </item>
