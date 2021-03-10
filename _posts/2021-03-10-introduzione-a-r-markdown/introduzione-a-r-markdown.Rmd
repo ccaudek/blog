@@ -21,10 +21,4 @@ Posto qui il [link](https://drive.google.com/file/d/1dTXClK-EB_FJc9N4OVNl62N4oB9
 
 Può anche risultare utile la lettura del seguente [documento](https://slides.djnavarro.net/starting-rmarkdown/#13).
 
------
 
-**Session Info**:
-
-```{r,results='asis', echo=FALSE}
-sessionInfo()
-```
