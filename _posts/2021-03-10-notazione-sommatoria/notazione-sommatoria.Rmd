@@ -1,7 +1,7 @@
 ---
 title: "Notazione sommatoria"
 description: |
-  Il simbolo $\Sigma$ si chiama sommatoria e denota la somma di un certo numero di addendi.
+  Simbolo di somma.
 author:
   - name: Corrado Caudek
     url: https://caudekblog.netlify.app
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 La notazione delle sommatorie è molto utilizzata nell'analisi dei dati per cui è necessario familiarizzarsi con essa.
 Questo argomento è trattato nell'appendice delle dispense, oppure su Wikipedia (https://it.wikipedia.org/wiki/Sommatoria).
 
-Per evitare errori di calcolo, possiamo usare R per risolvere questo tipo di problemi, il che ci fornisce anche la possibilità di fare un po' di esercizi sui vettori.
+Per evitare errori di calcolo, possiamo usare `R` per risolvere questo tipo di problemi, il che ci fornisce anche la possibilità di fare un po' di esercizi sui vettori.
 I vettori sono semplicemente un insieme ordinato di dati.
 Solitamente corrispondono a quello che chiamiamo *variabile*, ovvero ciò che uno psicologo misura e vuole descrivere o analizzare in qualche modo.
 Per esempio, una variabile può corrispondere al QI di un insieme di individui.
@@ -40,7 +40,7 @@ $$
 \sum_{i = 1}^5 x_i
 $$
 
-ciò significa, semplicemente, *somma tutti i valori*. Se sviluppiamo la notazione precedente, per questi dati avremo
+ciò significa *somma tutti i valori x che hanno l'indice che va da 1 a 5*. Se sviluppiamo la notazione precedente, per i dati dell'esempio avremo
 
 $$
 \sum_{i = 1}^5 x_i = x_1 + x_2 + x_3 + x_4 + x_5
@@ -49,15 +49,10 @@ $$
 laddove 
 
 $$
-x_1 = 102
-$$
-$$
-x_2 = 98
+x_1 = 102 \quad x_2 = 98 \quad x_3 = 122 \quad x_4 = 109 \quad x_5 = 89.
 $$
 
-eccetera.
-
-In `R` una sommatoria si svolge utilizzando la funzione `sum()`.  Quindi, nel caso presente, per i dati del vettore `x`, l'operazione aritmetica
+In `R` una sommatoria si svolge utilizzando la funzione `sum()`.  Quindi, nel caso presente, la somma
 
 $$
 \sum_{i = 1}^{n=5} x_i
