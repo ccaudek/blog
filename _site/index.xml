@@ -7,7 +7,17 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Introduzione a R Markdown</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-10-introduzione-a-r-markdown</link>
+      <description>Come si usa R Studio per creare un documento R Markdown.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-10-introduzione-a-r-markdown</guid>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Introduzione a R (1)</title>
       <dc:creator>Corrado Caudek</dc:creator>

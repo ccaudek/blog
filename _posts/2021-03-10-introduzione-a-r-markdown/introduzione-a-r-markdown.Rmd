@@ -1,0 +1,30 @@
+---
+title: "Introduzione a R Markdown"
+description: |
+  Come si usa R Studio per creare un documento R Markdown.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-10-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+---
+
+
+Posto qui il [link](https://drive.google.com/file/d/1dTXClK-EB_FJc9N4OVNl62N4oB9Olxdz/view?usp=sharing) ad un breve video-tutorial sull'uso di R Markdown.
+
+Può anche risultare utile la lettura del seguente [documento](https://slides.djnavarro.net/starting-rmarkdown/#13).
+
+-----
+
+**Session Info**:
+
+```{r,results='asis', echo=FALSE}
+sessionInfo()
+```
