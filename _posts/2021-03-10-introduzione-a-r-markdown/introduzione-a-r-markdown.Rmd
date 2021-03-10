@@ -16,7 +16,6 @@ categories:
   - Psicometria
 ---
 
-
 Posto qui il [link](https://drive.google.com/file/d/1dTXClK-EB_FJc9N4OVNl62N4oB9Olxdz/view?usp=sharing) ad un breve video-tutorial sull'uso di R Markdown.
 
 Può anche risultare utile la lettura del seguente [documento](https://slides.djnavarro.net/starting-rmarkdown/#13).

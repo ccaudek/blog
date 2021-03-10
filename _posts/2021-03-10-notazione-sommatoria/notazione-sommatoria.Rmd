@@ -1,0 +1,121 @@
+---
+title: "Notazione sommatoria"
+description: |
+  A short description of the post.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-10-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+La notazione delle sommatorie è molto utilizzata nell'analisi dei dati, per cui è necessario familiarizzarsi con essa.
+Questo argomento è trattato nell'appendice delle dispense, oppure su Wikipedia (https://it.wikipedia.org/wiki/Sommatoria).
+
+Per evitare errori di calcolo, possiamo usare R per risolvere questo tipo di problemi, il che ci fornisce anche la possibilità di fare un po' di esercizi sui vettori.
+I vettori sono semplicemente un insieme ordinato di dati.
+Solitamente corrispondono a quello che chiamiamo *variabile*, ovvero ciò che uno psicologo misura e vuole descrivere o analizzare in qualche modo.
+Per esempio, una variabile può corrispondere al QI di un insieme di individui.
+Abbiamo visto che, in R, possiamo definire questo insieme di dati (che si chiama *vettore*) usando la funzione `c()`.
+
+Supponiamo di avere misurato il QI di 5 persone e di avere ottenuto i risultati seguenti: 102, 98, 122, 109, 89.
+
+Per manipolare questi dati, dobbiamo prima renderli disponibili nel workspace della sessione di `R`:
+
+```{r}
+x <- c(102, 98, 122, 109, 89)
+x
+```
+
+Se usiamo la notazione di sommatoria per questi dati nella forma seguente
+
+$$
+\sum_{i = 1}^5 x_i
+$$
+
+ciò significa, semplicemente, *somma tutti i valori*. Se sviluppiamo la notazione precedente, per questi dati avremo
+
+$$
+\sum_{i = 1}^5 x_i = x_1 + x_2 + x_3 + x_4 + x_5
+$$
+
+laddove 
+
+$$
+x_1 = 102
+$$
+$$
+x_2 = 98
+$$
+
+eccetera.
+
+In `R` una sommatoria si svolge utilizzando la funzione `sum()`.  Quindi, nel caso presente, per i dati del vettore `x`, l'operazione aritmetica
+
+$$
+\sum_{i = 1}^{n=5} x_i
+$$
+
+in `R` diventa
+
+```{r}
+sum(x)
+```
+
+La notazione della sommatoria viene utilizzata, per esempio, nel calcolo della media:
+
+$$
+\bar{x} = \frac{\sum_{i = 1}^{n} x_i}{n}
+$$
+
+Nella formula precedente, sommiamo prima i valori contenuti nel vettore `x` e poi dividiamo il risultato ottenuto per *n = 5*, ovvero 520 / 5 = 104.
+
+In `R` abbiamo
+
+```{r}
+sum(x) / length(x)
+```
+
+laddove la funzione `length(x)` ci restituisce i numero di elementi che costituiscono il vettore `x`, ovvero 5.
+
+In maniera equivalente, per le proprietà delle sommatorie, la formula della media può essere scritta come
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i = 1}^{n} x_i = \sum_{i = 1}^{n}\frac{1}{n} x_i,
+$$
+
+il che significa che possiamo prima moltiplicare ciascun elemento di `x` per 1/n e poi sommare, come indicato qui di seguito:
+
+$$
+(1/5 \times 102) + (1/5 \times 98) + (1/5 \times  122) + (1/5 \times  109) + (1/5 \times  89)
+$$
+
+In `R` questo diventa
+
+```{r}
+sum(1/5 * x)
+```
+
+perché 
+
+```{r}
+1/5 * x
+```
+
+corrisponde al vettore
+
+$$
+(1/5 \times 102) + (1/5 \times 98) + (1/5 \times  122) + (1/5 \times  109) + (1/5 \times  89)
+$$
+
+dopodiché sommiamo utilizzando la funzione `sum()`.
+
+La cosa importante da ricordare è che le operazioni algebriche (in questo caso *moltiplicare per 1/5*), quando vengono applicate ad un vettore (nel nostro caso (102, 98, 122, 109, 89)) si calcolano __elemento per elemento__. Ovvero, a ciascun elemento viene applicata l'operazione algebrica indicata, cioè il valore 102 viene moltiplicato per 1/5, il valore 98 viene moltiplicato per 1/5, ecc.
+
