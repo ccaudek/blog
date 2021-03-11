@@ -1,5 +1,25 @@
 [
   {
+    "path": "posts/2021-03-11-manipolazione-dei-dati-con-dplyr/",
+    "title": "Manipolazione dei dati con dplyr",
+    "description": "Tutorial sull'uso delle funzionalità di base di dplyr per la manipolazione dei dati.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://caudekblog.netlify.app"
+      }
+    ],
+    "date": "2021-03-11",
+    "categories": [
+      "R",
+      "Psicometria"
+    ],
+    "contents": "\nAggiungo qui il link ad un video-tutorial che ho preparato relativamente alla manipolaizone dei dati usando le funzioni del pacchetto dplyr.\nNel video non faccio altro che commentare un tutorial predisposto da Allison Horst e disponibile seguendo questo link. Il tutorial di Allison Horst è fatto benissimo e non vedo ragioni di tradurlo o cambiarlo in qualche modo. Inoltre, se andate nella pagina web che ho indicato sopra, potete anche fare degli esercizi che vi consentono di verificare se avete capito come utilizzare in pratica le istruzioni R che vengono discusse – le risposte agli esercizi sono immediatamente disponibili il che rende il tutorial di Allison Horst un utilissimo strumento di apprendimento. Buon divertimento!\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-03-11T08:27:48+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-03-10-introduzione-a-r-markdown/",
     "title": "Introduzione a R Markdown",
     "description": "Creare un documento R Markdown con R Studio.",

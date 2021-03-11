@@ -7,7 +7,17 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Manipolazione dei dati con dplyr</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-11-manipolazione-dei-dati-con-dplyr</link>
+      <description>Tutorial sull'uso delle funzionalità di base di dplyr per la manipolazione dei dati.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-11-manipolazione-dei-dati-con-dplyr</guid>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Introduzione a R Markdown</title>
       <dc:creator>Corrado Caudek</dc:creator>
