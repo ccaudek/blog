@@ -1,7 +1,7 @@
 ---
 title: "Istogramma"
 description: |
-  Dati BDI-II di Zetsche, Bürkners & Renneberg (2020).
+  La rappresentazione grafica della distribuzione dei dati.
 author:
   - name: Corrado Caudek
     url: https://caudekblog.netlify.app
@@ -14,6 +14,7 @@ creative_commons: CC BY
 categories:
   - R
   - Psicometria
+preview: preview.png
 ---
 
 
@@ -29,12 +30,10 @@ In questo tutorial ci poniamo il problema di costruire un istrogramma utilizzand
 
 ```{r}
 suppressPackageStartupMessages(library("tidyverse")) 
-suppressPackageStartupMessages(library("bayesplot"))
 theme_set(bayesplot::theme_default(base_size=14))
 suppressPackageStartupMessages(library("knitr"))
 suppressPackageStartupMessages(library("kableExtra"))
 suppressPackageStartupMessages(library("patchwork"))
-suppressPackageStartupMessages(library("car"))
 table_nums <- captioner::captioner(prefix = "Tavola")
 figure_nums <- captioner::captioner(prefix = "Figura")
 knitr::opts_chunk$set(fig.align = "center", fig.width=7, fig.height=5)
