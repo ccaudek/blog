@@ -7,7 +7,19 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>La struttura del progetto</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-13-la-struttura-del-progetto</link>
+      <description>Salvare e assegnare un nome ai documenti di un progetto.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <category>Tesi</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-13-la-struttura-del-progetto</guid>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-13-la-struttura-del-progetto/preview.png" medium="image" type="image/png" width="568" height="912"/>
+    </item>
     <item>
       <title>Manipolazione dei dati con dplyr</title>
       <dc:creator>Corrado Caudek</dc:creator>
