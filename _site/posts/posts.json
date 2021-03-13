@@ -63,8 +63,8 @@
     "preview": "posts/2021-03-10-introduzione-a-r-markdown/preview.png",
     "last_modified": "2021-03-12T06:49:05+01:00",
     "input_file": {},
-    "preview_width": 1228,
-    "preview_height": 486
+    "preview_width": 872,
+    "preview_height": 1432
   },
   {
     "path": "posts/2021-03-10-notazione-sommatoria/",
@@ -266,9 +266,11 @@
       "tesi"
     ],
     "contents": "\nMediante questo link potete accedere ad un video in cui rispondo a tutte le possibili domande che potreste avere su questo argomento. Descriverò la procedura che consiglio per realizzare l’elaborato finale e per preparare la presentazione orale. Una volta scritto l’elaborato finale seguendo queste istruzioni, potete iniziare a lavorare alla presentazione orale. Sulla presentazione orale riceverete poi altri feedback negli incontri settimanali con i laureandi che saranno specificamente dedicati a questo tema.\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-03-07T21:31:13+01:00",
-    "input_file": {}
+    "preview": "posts/2021-03-07-istruzioniprovafinalel24/preview.png",
+    "last_modified": "2021-03-13T12:01:37+01:00",
+    "input_file": {},
+    "preview_width": 1034,
+    "preview_height": 736
   },
   {
     "path": "posts/2021-03-07-pagina-facebook/",
@@ -285,9 +287,11 @@
       "social media"
     ],
     "contents": "\nÈ attiva la pagina facebook del laboratorio. Contiene informazioni su progetti in corso e presentazioni dei laureandi. È una creazione dei torocinanti del laboratorio.\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-03-07T21:31:42+01:00",
-    "input_file": {}
+    "preview": "posts/2021-03-07-pagina-facebook/preview.png",
+    "last_modified": "2021-03-13T12:06:19+01:00",
+    "input_file": {},
+    "preview_width": 522,
+    "preview_height": 840
   },
   {
     "path": "posts/2021-03-07-scrivere-la-tesi-con-r-markdown/",
@@ -305,9 +309,11 @@
       "tesi"
     ],
     "contents": "\nSeguendo questo link potete trovare un video-tutorial sull’uso di R Markdown per la scrittura della tesi di laurea. Il materiale che ho predisposto può essere scaricato selezionando questo link. Buon lavoro!\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-03-07T21:32:16+01:00",
-    "input_file": {}
+    "preview": "posts/2021-03-07-scrivere-la-tesi-con-r-markdown/preview.png",
+    "last_modified": "2021-03-13T12:11:55+01:00",
+    "input_file": {},
+    "preview_width": 664,
+    "preview_height": 644
   },
   {
     "path": "posts/welcome/",
@@ -324,8 +330,10 @@
       "social media"
     ],
     "contents": "\nIl blog è scritto in R Markdown usando le funzioni del pacchetto distill. Ho seguito le istruzioni contenute in Building a blog with distill e Creating a Blog.\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-03-07T21:36:07+01:00",
-    "input_file": {}
+    "preview": "posts/welcome/preview.png",
+    "last_modified": "2021-03-13T12:14:13+01:00",
+    "input_file": {},
+    "preview_width": 596,
+    "preview_height": 422
   }
 ]

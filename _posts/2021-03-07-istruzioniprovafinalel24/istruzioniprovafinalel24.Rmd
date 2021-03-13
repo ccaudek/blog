@@ -13,6 +13,7 @@ draft: false
 creative_commons: CC BY
 categories:
   - tesi
+preview: preview.png
 ---
 
 

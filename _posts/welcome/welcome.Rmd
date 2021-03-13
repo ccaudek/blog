@@ -15,6 +15,7 @@ draft: false
 creative_commons: CC BY
 categories:
   - social media
+preview: preview.png
 ---
 
 ```{r setup, include=FALSE}
