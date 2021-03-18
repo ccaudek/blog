@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2021-03-18-varianza-e-valore-atteso-una-semplice-simulazione-in-r/",
+    "title": "Varianza e valore atteso",
+    "description": "Una semplice simulazione in R",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://caudekblog.netlify.app"
+      }
+    ],
+    "date": "2021-03-18",
+    "categories": [
+      "R",
+      "Psicometria"
+    ],
+    "contents": "\n\n\nlibrary(\"tidyverse\", warn.conflicts = FALSE)\n\n\n\nProblema\nSupponiamo di sapere che, sulla base dei dati di un campione molto grande, possiamo stabilire che nella popolazione oncologica, i punteggi di un test psicometrico atto a misurare l’astenia seguono la distribuzione di massa di probabilità indicata qui sotto:\nPunteggio\nProbabilità\n1\n0.1\n2\n0.5\n3\n0.3\n4\n0.1\nLaddove i valori indicano la frequenza con la quale tale sintomo, riduzione di energia dell’individuo, si manifesta. Per esempio, potremmo avere che 4 corrisponde a “molto spesso”, 3 corrisponde a “spesso”, 2 corrisponde a “alle volte” e 1 corrisponde a “raramente o mai”.\nRappresentazione grafica della distribuzione di massa di probabilità\n\n\n# valori della variabile aleatoria\ny <- 1:4\n\n# probabilità\npy <- c(0.1, 0.5, 0.3, 0.1)\n\nd <- data.frame(y, py)\n\nd %>% \n  ggplot(aes(y, py)) +\n  geom_point(size = 4) +\n  geom_linerange(aes(x=y, ymax=py, ymin=0.0)) +\n  ylim(0, 0.55) +\n  labs(\n    title = \"Astenia nella popolazione oncologica\",\n    x = \"Punteggio del test\",\n    y = \"Probabilità\"\n  )\n\n\n\n\nPoniamoci ora il problema di trovare il valore atteso del punteggio di astenia e la varianza del punteggio di astenia di questo ipotetico test. Soprattutto, ci poniamo il problema di assegnare un’interpretazione inuitiva a questi concetti.\nValore atteso\nLa definizione di valore atteso della variabile aleatoria \\(y\\) è\n\\[\n\\mathbb{E}(y) = \\sum_{i=1}^n y \\cdot p_i\n\\]\nil che, per i dati del problema, significa\n\\[\n1 \\cdot 0.1 + 2 \\cdot 0.5 + 3 \\cdot 0.3 + 4 \\cdot 0.1 = 2.4\n\\]\n\n\n1 * 0.1 + 2 * 0.5 + 3 * 0.3 + 4 * 0.1\n\n\n[1] 2.4\n\novvero\n\n\nev_y <- sum(y * py)\nev_y\n\n\n[1] 2.4\n\nInterpretazione\nMa che significa, in pratica, il valore atteso? Per rispondere a questa domanda, eseguiamo una simulazione. Ovvero, estraiamo un campione molto grade di osservazioni da una popolazione che ha le caratteristiche descritte, ovvero nella quale il valore 1 è presente nel 10% delle osservazioni, il valore 2 è presente nel 50% delle osservazioni, eccetera.\nImplemento qui di seguito una funzione che consente di estrarre dei campioni casuali, di qualunque ampiezza, da una siffatta popolazione:\n\n\nsample_distr = function(n) { \n  sample(\n    x = 1:4, \n    n, \n    replace = TRUE, \n    prob = c(0.1, 0.5, 0.3, 0.1)\n  ) \n}\n\n\n\nEstraggo ora un campione di ampiezza \\(n\\) = 100,000 e lo chiamo x:\n\n\nx <- sample_distr(1e5)\n\n\n\nCalcolo ora la media di tale campione:\n\n\nmean(x)\n\n\n[1] 2.39893\n\nIl risultato della simulazione mostra che la media di un capione molto grande estratto dalla popolazione specificata è (quasi) uguale al valore atteso della variabile aleatoria. Questo ci consente di assegnare un’inerpretazione intuitiva al concetto di valore atteso:\n\nil valore atteso è la media aritmetica di un numero molto grande di realizzazioni della variabile aleatoria.\n\nVarianza\nLa definizione di varianza di una variabile aleatoria è la seguente:\n\\[\nVar(y) = \\sum_{i=1}^n (y - \\mu)^2 \\cdot p_i\n\\]\nImplementiamo la formula in R per i dati del problema:\n\\[\n(1 - 4.4)^2 \\cdot 0.1 + (2 - 4.4)^2 \\cdot 0.5 +(3 - 4.4)^2 \\cdot 0.3 +(4 - 4.4)^2 \\cdot 0.1 = 0.64\n\\]\novvero\n\n\nsum((y - ev_y)^2 * py)\n\n\n[1] 0.64\n\nFormula alternativa\nUsiamo ora la formula alternativa per il calcolo della varianza:\n\\[\nVar(y) = \\mathbb{E}(y^2) - \\mathbb{E}(y)^2= \\sum_{i=1}^n (y^2 - \\mu)^2 \\cdot p_i - \\Bigg(\\sum_{i=1}^n y \\cdot p_i\\Bigg)\n\\]\n\n\nsum(y^2 * py) - ev_y^2\n\n\n[1] 0.64\n\nInterpretazione\nDi nuovo, ci chiediamo: che cosa è, in pratica, la varianza di una variabile aleatoria? Possiamo rispondere a questa domanda ripetendo il ragionamento fatto sopra.\nAvendo extratto 100,000 valori dalla popolazione di riferimento, calcoliamo la varianza di tali valori, usando la formula della statistica descrittiva:\n\n\nvar(x)\n\n\n[1] 0.6379312\n\net voilà! Il valore che abbiamo trovato, utilizzando la formula della statistica descrittiva (anche senza correggere il denominatore, dato che \\(n\\) è molto grande) ci dà un risultato molto simile a quello della varianza della variabile aleatoria.\nQuindi, anche in questo caso, l’interpretazione è semplice:\n\nla varianza di una variabile aleatoria è la varianza (nel senso della statistica descrittiva) di un numero molto grande di realizzazioni della variabile aleatoria.\n\nCome sempre, è più semplice utilizzare tale valore prendendo la radice quadrata: la deviazione standard, infatti, è espressa nella stessa unità di misura dei valori grezzi della variabile cosiderata.\n\n\n\n",
+    "preview": "posts/2021-03-18-varianza-e-valore-atteso-una-semplice-simulazione-in-r/varianza-e-valore-atteso-una-semplice-simulazione-in-r_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2021-03-18T09:01:06+01:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2021-03-13-la-struttura-del-progetto/",
     "title": "La struttura del progetto",
     "description": "Salvare e assegnare un nome ai documenti di un progetto.",

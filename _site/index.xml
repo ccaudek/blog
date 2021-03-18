@@ -7,7 +7,18 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Varianza e valore atteso</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-18-varianza-e-valore-atteso-una-semplice-simulazione-in-r</link>
+      <description>Una semplice simulazione in R</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-18-varianza-e-valore-atteso-una-semplice-simulazione-in-r</guid>
+      <pubDate>Thu, 18 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-18-varianza-e-valore-atteso-una-semplice-simulazione-in-r/varianza-e-valore-atteso-una-semplice-simulazione-in-r_files/figure-html5/unnamed-chunk-2-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>La struttura del progetto</title>
       <dc:creator>Corrado Caudek</dc:creator>
