@@ -1,0 +1,134 @@
+---
+title: "Distribuzioni di probabilità discrete (2)"
+description: |
+  Usiamo `R` per calcolare il valore atteso e la varianza di variabili aleatorie discrete.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-19-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - psicometria
+  - R
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Carichiamo il pacchetto `prob`:
+
+```{r}
+library("prob")
+```
+
+Consideriamo l'esperimento casuale corrispondente al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale:
+
+```{r}
+S <- rolldie(2, nsides = 6, makespace = TRUE)
+S
+```
+
+Definiamo due variabili aleatorie:
+
+- U: somma dei punti dei due dadi,
+- V: 1 se i punti del lancio del primo dado sono minori di 4, 0 altrimenti.
+
+```{r}
+S <- addrv(S, U = X1+X2, V = ifelse(X1 < 4, 1, 0))
+head(S)
+```
+
+Calcoliamo la distribuzione marginale di $U$:
+
+```{r}
+pu <- marginal(S, vars = "U")
+pu
+```
+
+Verifichiamo:
+
+```{r}
+sum(pu$U * pu$probs)
+```
+
+Lo stesso per $V$:
+
+```{r}
+pv <- marginal(S, vars = "V")
+pv
+```
+
+## Distribuzione di probabilità congiunta
+
+Creiamo ora la distribuzione di probabilità congiunta delle variabili $U$ e $V$:
+
+```{r}
+pj <- marginal(S, vars = c("U", "V"))
+pj
+```
+
+### Indipendenza
+
+Chiediamoci, di nuovo: $U$ e $V$ sono indipendenti?
+
+```{r}
+pu[pu$U == 3, ]$probs * pv[pv$V == 1, ]$probs
+pj[pj$U == 3 & pj$V == 1, ]$probs
+```
+
+Quindi, la risposta è negativa.
+
+## Valore atteso
+
+Consideriamo la variabile $U$. Calcoliamo il valore atteso e la varianza. Per fare questo, utilizzeremo le funzioni del pacchetto `distrEx`.
+
+```{r}
+library("distrEx")
+```
+
+Iniziamo con il valore atteso:
+
+```{r}
+X <- DiscreteDistribution(supp = pu$U, prob = pu$probs)
+mu <- E(X)
+mu
+```
+
+Verifichiamo:
+
+```{r}
+sum(pu$U * pu$probs)
+```
+
+Calcoliamo la varianza:
+
+```{r}
+var(X)
+```
+
+Verifichiamo:
+
+```{r}
+sum((pu$U - mu)^2 * pu$probs)
+```
+
+Infine, la deviazione standard:
+
+```{r}
+sd(X)
+```
+
+### Conclusioni {-}
+
+Le funzioni fornite dai pacchetti `prob` e `distrEx` ci consentono di trovare la soluzione dei più comuni problemi "scolastici" relativi alle variabili aletorie discrete. Una descrizione delle funzionalità di questi pacchetti è fornita, per esempio, in questo [documento](http://www.atmos.albany.edu/facstaff/timm/ATM315spring14/R/IPSUR.pdf).
+
+
+
+

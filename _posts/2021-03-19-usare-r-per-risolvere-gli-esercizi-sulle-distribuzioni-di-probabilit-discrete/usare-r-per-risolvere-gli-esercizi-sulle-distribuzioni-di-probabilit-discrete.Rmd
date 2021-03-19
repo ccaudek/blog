@@ -33,29 +33,29 @@ library("prob")
 
 # Il lancio di un dado
 
-Mediante la funzione `rolldie()`` è possibile generare lo spazio campionario per l'esperimento casuale consistente nel caso del lancio di un dado bilanciato:
+Se l'esperimento casuale consiste nel lancio di dado bilanciato, lo spazio campionario è dato da
 
 ```{r}
 rolldie(1, makespace = TRUE)
 ```
-Otteniamo un dataframe in cui ciascuna riga corrisponde ad un evento elementare. La colonna `probs` riporta la probabilità associata a ciascun evento elementare dello spazio campionario.
+La funzione `rolldie()` crea un dataframe in cui ciascuna riga corrisponde ad un punto dello spazio campionario (cioè un evento elementare). La colonna `probs` riporta la probabilità associata a ciascun punto dello spazio campionario.
 
 # Il lancio di due dadi
 
-Ovviamente possiamo essere più ambiziosi e costruire, ad esempio, lo spazio campionario che consiste nel lancio di due dadi bilanciati:
+Ovviamente possiamo essere più ambiziosi e costruire, ad esempio, lo spazio campionario associato all'esperimento casuale che consiste nel lancio di due dadi bilanciati:
 
 ```{r}
 S <- rolldie(2, makespace = TRUE)
 S
 ```
 
-Il dataframe $S$ è costituito da $6 \times 6$ righe:
+In questo caso, il dataframe $S$ è costituito da $6 \times 6$ righe:
 
 ```{r}
 nrow(S)
 ```
 
-Definiamo ora gli eventi $A$ e $B$. Siano $A$ e $B$ due eventi in $S$ tali per cui 
+Sullo spazio campionario $S$ definiamo ora gli eventi $A$ e $B$. Siano $A$ e $B$ due eventi in $S$ tali per cui 
 
 - $A$: i due lanci producono lo stesso risultato,
 - $B$: la somma dei punti dei due lanci è maggiore o uguale a 8.

@@ -9,6 +9,16 @@
     <generator>Distill</generator>
     <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Distribuzioni di probabilità discrete (2)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-2</link>
+      <description>Usiamo `R` per calcolare il valore atteso e la varianza di variabili aleatorie discrete.</description>
+      <category>psicometria</category>
+      <category>R</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-2</guid>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Distribuzioni di probabilità discrete (1)</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-19-usare-r-per-risolvere-gli-esercizi-sulle-distribuzioni-di-probabilit-discrete</link>
