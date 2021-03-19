@@ -1547,7 +1547,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1 id="valore-atteso">Valore atteso</h1>
 <p>La definizione di valore atteso della variabile aleatoria <span class="math inline">\(y\)</span> è</p>
 <p><span class="math display">\[
-\mathbb{E}(y) = \sum_{i=1}^n y \cdot p_i
+\mathbb{E}(y) = \sum_{i=1}^n y_i \cdot p_i
 \]</span></p>
 <p>il che, per i dati del problema, significa</p>
 <p><span class="math display">\[
@@ -1598,7 +1598,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 2.39893</code></pre>
+<pre><code>[1] 2.39906</code></pre>
 </div>
 <p>Il risultato della simulazione mostra che la media di un capione molto grande estratto dalla popolazione specificata è (quasi) uguale al valore atteso della variabile aleatoria. Questo ci consente di assegnare un’inerpretazione intuitiva al concetto di valore atteso:</p>
 <blockquote>
@@ -1607,7 +1607,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1 id="varianza">Varianza</h1>
 <p>La definizione di varianza di una variabile aleatoria è la seguente:</p>
 <p><span class="math display">\[
-Var(y) = \sum_{i=1}^n (y - \mu)^2 \cdot p_i
+Var(y) = \sum_{i=1}^n (y_i - \mu)^2 \cdot p_i
 \]</span></p>
 <p>Implementiamo la formula in R per i dati del problema:</p>
 <p><span class="math display">\[
@@ -1624,7 +1624,7 @@ Var(y) = \sum_{i=1}^n (y - \mu)^2 \cdot p_i
 <h2 id="formula-alternativa">Formula alternativa</h2>
 <p>Usiamo ora la formula alternativa per il calcolo della varianza:</p>
 <p><span class="math display">\[
-Var(y) = \mathbb{E}(y^2) - \mathbb{E}(y)^2= \sum_{i=1}^n (y^2 - \mu)^2 \cdot p_i - \Bigg(\sum_{i=1}^n y \cdot p_i\Bigg)
+Var(y) = \mathbb{E}(y^2) - \mathbb{E}(y)^2= \sum_{i=1}^n y_i^2\cdot p_i - \Bigg(\sum_{i=1}^n y_i \cdot p_i\Bigg)^2
 \]</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1641,7 +1641,7 @@ Var(y) = \mathbb{E}(y^2) - \mathbb{E}(y)^2= \sum_{i=1}^n (y^2 - \mu)^2 \cdot p_i
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.6379312</code></pre>
+<pre><code>[1] 0.6383175</code></pre>
 </div>
 <p><em>et voilà!</em> Il valore che abbiamo trovato, utilizzando la formula della statistica descrittiva (anche senza correggere il denominatore, dato che <span class="math inline">\(n\)</span> è molto grande) ci dà un risultato molto simile a quello della varianza della variabile aleatoria.</p>
 <p>Quindi, anche in questo caso, l’interpretazione è semplice:</p>

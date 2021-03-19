@@ -72,7 +72,7 @@ Poniamoci ora il problema di trovare il **valore atteso** del punteggio di asten
 La definizione di valore atteso della variabile aleatoria $y$ è
 
 $$
-\mathbb{E}(y) = \sum_{i=1}^n y \cdot p_i
+\mathbb{E}(y) = \sum_{i=1}^n y_i \cdot p_i
 $$
 
 il che, per i dati del problema, significa
@@ -131,7 +131,7 @@ Il risultato della simulazione mostra che la media di un capione molto grande es
 La definizione di varianza di una variabile aleatoria è la seguente:
 
 $$
-Var(y) = \sum_{i=1}^n (y - \mu)^2 \cdot p_i
+Var(y) = \sum_{i=1}^n (y_i - \mu)^2 \cdot p_i
 $$
 
 Implementiamo la formula in R per i dati del problema:
@@ -152,7 +152,7 @@ sum((y - ev_y)^2 * py)
 Usiamo ora la formula alternativa per il calcolo della varianza:
 
 $$
-Var(y) = \mathbb{E}(y^2) - \mathbb{E}(y)^2= \sum_{i=1}^n (y^2 - \mu)^2 \cdot p_i - \Bigg(\sum_{i=1}^n y \cdot p_i\Bigg)
+Var(y) = \mathbb{E}(y^2) - \mathbb{E}(y)^2= \sum_{i=1}^n y_i^2\cdot p_i - \Bigg(\sum_{i=1}^n y_i \cdot p_i\Bigg)^2
 $$
 
 ```{r}
