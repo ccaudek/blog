@@ -7,7 +7,17 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Distribuzioni di probabilità discrete (3)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</link>
+      <description>Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</guid>
+      <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Distribuzioni di probabilità discrete (2)</title>
       <dc:creator>Corrado Caudek</dc:creator>

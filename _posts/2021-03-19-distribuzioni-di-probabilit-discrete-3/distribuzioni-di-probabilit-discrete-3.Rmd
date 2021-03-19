@@ -1,0 +1,129 @@
+---
+title: "Distribuzioni di probabilità discrete (3)"
+description: |
+  Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-20-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Carichiamo i pacchetti necessari:
+
+```{r}
+library("prob")
+library("distrEx")
+```
+
+Consideriamo l'esperimento casuale corrispondente al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale e definiamo su di esso due variabili aleatorie:
+
+- U: somma dei punti dei due dadi,
+- V: 1 se i punti del lancio del primo dado sono minori di 4, 0 altrimenti.
+
+```{r}
+S <- rolldie(2, nsides = 6, makespace = TRUE)
+S <- addrv(S, U = X1+X2, V = ifelse(X1 < 4, 1, 0))
+S
+```
+
+Definiamo le distribuzioni marginali di probabilità per le due variabili aleatorie:
+
+```{r}
+pu <- marginal(S, vars = "U")
+pv <- marginal(S, vars = "V")
+```
+
+Calcoliamo il valore atteso di `U`
+
+```{r}
+U <- DiscreteDistribution(supp = pu$U, prob = pu$probs)
+mu_u <- E(U)
+mu_u
+```
+
+e il valore atteso di `V`:
+
+```{r}
+V <- DiscreteDistribution(supp = pv$V, prob = pv$probs)
+mu_v <- E(V)
+mu_v
+```
+
+Calcoliamo la distribizione di probabilità congiunta:
+
+```{r}
+pj <- marginal(S, vars = c("U", "V"))
+pj
+```
+
+# Covarianza
+
+Implementiamo in `R` la formula della covarianza:
+
+$$
+\sigma_{xy} = \sum_i \big(x_i - \mathbb{E}(x)\big)\big(y_i - \mathbb{E}(y)\big) \cdot p_i(x,y)
+$$
+ovvero 
+
+```{r}
+s_uv <- sum((pj$U - mu_u) * (pj$V - mu_v) * pj$probs)
+s_uv
+```
+
+Usiamo la formula alternativa per il calcolo della covarianza:
+
+$$
+\sigma_{xy} = \mathbb{E}(xy) -\mathbb{E}(x)\mathbb{E}(y)
+$$
+ovvero 
+
+```{r}
+sum((pj$U * pj$V) * pj$probs) - mu_u * mu_v
+```
+
+
+# Correlazione
+
+La correlazione è una covarianza standardizzata:
+
+$$
+\rho_{xy} = \frac{\sigma_{xy}}{\sigma_x\sigma_y}
+$$
+Iniziamo a calcolare le varianze delle due variabili aleatorie:
+
+```{r}
+v_u <- sum((pu$U - mu_u)^2 * pu$probs)
+v_u
+v_v <- sum((pv$V - mu_v)^2 * pv$probs)
+v_v
+```
+
+In maniera equivalente
+
+```{r}
+var(U)
+var(V)
+```
+
+Quindi la correlazione diventa:
+
+```{r}
+s_uv / sqrt(var(U) * var(V))
+```
+
+
+

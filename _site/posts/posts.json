@@ -1,5 +1,25 @@
 [
   {
+    "path": "posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/",
+    "title": "Distribuzioni di probabilità discrete (3)",
+    "description": "Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://caudekblog.netlify.app"
+      }
+    ],
+    "date": "2021-03-20",
+    "categories": [
+      "R",
+      "Psicometria"
+    ],
+    "contents": "\nCarichiamo i pacchetti necessari:\n\n\nlibrary(\"prob\")\nlibrary(\"distrEx\")\n\n\n\nConsideriamo l’esperimento casuale corrispondente al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale e definiamo su di esso due variabili aleatorie:\nU: somma dei punti dei due dadi,\nV: 1 se i punti del lancio del primo dado sono minori di 4, 0 altrimenti.\n\n\nS <- rolldie(2, nsides = 6, makespace = TRUE)\nS <- addrv(S, U = X1+X2, V = ifelse(X1 < 4, 1, 0))\nS\n\n\n   X1 X2  U V      probs\n1   1  1  2 1 0.02777778\n2   2  1  3 1 0.02777778\n3   3  1  4 1 0.02777778\n4   4  1  5 0 0.02777778\n5   5  1  6 0 0.02777778\n6   6  1  7 0 0.02777778\n7   1  2  3 1 0.02777778\n8   2  2  4 1 0.02777778\n9   3  2  5 1 0.02777778\n10  4  2  6 0 0.02777778\n11  5  2  7 0 0.02777778\n12  6  2  8 0 0.02777778\n13  1  3  4 1 0.02777778\n14  2  3  5 1 0.02777778\n15  3  3  6 1 0.02777778\n16  4  3  7 0 0.02777778\n17  5  3  8 0 0.02777778\n18  6  3  9 0 0.02777778\n19  1  4  5 1 0.02777778\n20  2  4  6 1 0.02777778\n21  3  4  7 1 0.02777778\n22  4  4  8 0 0.02777778\n23  5  4  9 0 0.02777778\n24  6  4 10 0 0.02777778\n25  1  5  6 1 0.02777778\n26  2  5  7 1 0.02777778\n27  3  5  8 1 0.02777778\n28  4  5  9 0 0.02777778\n29  5  5 10 0 0.02777778\n30  6  5 11 0 0.02777778\n31  1  6  7 1 0.02777778\n32  2  6  8 1 0.02777778\n33  3  6  9 1 0.02777778\n34  4  6 10 0 0.02777778\n35  5  6 11 0 0.02777778\n36  6  6 12 0 0.02777778\n\nDefiniamo le distribuzioni marginali di probabilità per le due variabili aleatorie:\n\n\npu <- marginal(S, vars = \"U\")\npv <- marginal(S, vars = \"V\")\n\n\n\nCalcoliamo il valore atteso di U\n\n\nU <- DiscreteDistribution(supp = pu$U, prob = pu$probs)\nmu_u <- E(U)\nmu_u\n\n\n[1] 7\n\ne il valore atteso di V:\n\n\nV <- DiscreteDistribution(supp = pv$V, prob = pv$probs)\nmu_v <- E(V)\nmu_v\n\n\n[1] 0.5\n\nCalcoliamo la distribizione di probabilità congiunta:\n\n\npj <- marginal(S, vars = c(\"U\", \"V\"))\npj\n\n\n    U V      probs\n1   5 0 0.02777778\n2   6 0 0.05555556\n3   7 0 0.08333333\n4   8 0 0.08333333\n5   9 0 0.08333333\n6  10 0 0.08333333\n7  11 0 0.05555556\n8  12 0 0.02777778\n9   2 1 0.02777778\n10  3 1 0.05555556\n11  4 1 0.08333333\n12  5 1 0.08333333\n13  6 1 0.08333333\n14  7 1 0.08333333\n15  8 1 0.05555556\n16  9 1 0.02777778\n\nCovarianza\nImplementiamo in R la formula della covarianza:\n\\[\n\\sigma_{xy} = \\sum_i \\big(x_i - \\mathbb{E}(x)\\big)\\big(y_i - \\mathbb{E}(y)\\big) \\cdot p_i(x,y)\n\\] ovvero\n\n\ns_uv <- sum((pj$U - mu_u) * (pj$V - mu_v) * pj$probs)\ns_uv\n\n\n[1] -0.75\n\nUsiamo la formula alternativa per il calcolo della covarianza:\n\\[\n\\sigma_{xy} = \\mathbb{E}(xy) -\\mathbb{E}(x)\\mathbb{E}(y)\n\\] ovvero\n\n\nsum((pj$U * pj$V) * pj$probs) - mu_u * mu_v\n\n\n[1] -0.75\n\nCorrelazione\nLa correlazione è una covarianza standardizzata:\n\\[\n\\rho_{xy} = \\frac{\\sigma_{xy}}{\\sigma_x\\sigma_y}\n\\] Iniziamo a calcolare le varianze delle due variabili aleatorie:\n\n\nv_u <- sum((pu$U - mu_u)^2 * pu$probs)\nv_u\n\n\n[1] 5.833333\n\nv_v <- sum((pv$V - mu_v)^2 * pv$probs)\nv_v\n\n\n[1] 0.25\n\nIn maniera equivalente\n\n\nvar(U)\n\n\n[1] 5.833333\n\nvar(V)\n\n\n[1] 0.25\n\nQuindi la correlazione diventa:\n\n\ns_uv / sqrt(var(U) * var(V))\n\n\n[1] -0.621059\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-03-19T16:26:11+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-03-19-distribuzioni-di-probabilit-discrete-2/",
     "title": "Distribuzioni di probabilità discrete (2)",
     "description": "Usiamo `R` per calcolare il valore atteso e la varianza di variabili aleatorie discrete.",
