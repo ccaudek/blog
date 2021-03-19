@@ -7,7 +7,18 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 18 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Distribuzioni di probabilità discrete (1)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-19-usare-r-per-risolvere-gli-esercizi-sulle-distribuzioni-di-probabilit-discrete</link>
+      <description>È possibile usare le funzioni contenute in alcuni pacchetti `R` per facilitare la soluzione degli esercizi sulle distribuzioni di probabilità discrete.</description>
+      <category>psicometria</category>
+      <category>R</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-19-usare-r-per-risolvere-gli-esercizi-sulle-distribuzioni-di-probabilit-discrete</guid>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-19-usare-r-per-risolvere-gli-esercizi-sulle-distribuzioni-di-probabilit-discrete/preview.png" medium="image" type="image/png" width="1280" height="586"/>
+    </item>
     <item>
       <title>Varianza e valore atteso</title>
       <dc:creator>Corrado Caudek</dc:creator>
