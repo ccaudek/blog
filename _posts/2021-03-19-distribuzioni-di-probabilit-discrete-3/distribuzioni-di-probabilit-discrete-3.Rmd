@@ -13,7 +13,7 @@ draft: false
 creative_commons: CC BY
 categories:
   - R
-  - Psicometria
+  - psicometria
 preview: preview.png
 ---
 

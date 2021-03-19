@@ -14,7 +14,7 @@ creative_commons: CC BY
 categories:
   - R
   - Psicometria
-  - Tesi
+  - tesi
 preview: preview.png
 ---
 

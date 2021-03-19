@@ -12,7 +12,7 @@ output:
 draft: false
 creative_commons: CC BY
 categories:
-  - psicometria
+  - Psicometria
   - R
 preview: preview.png
 ---
