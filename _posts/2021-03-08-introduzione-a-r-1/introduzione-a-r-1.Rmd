@@ -9,6 +9,8 @@ date: 03-08-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 2
 draft: false
 creative_commons: CC BY
 categories:
@@ -442,51 +444,6 @@ Possiamo anche estrarre più di una colonna alla volta:
 ```{r, echo=TRUE}
 df[, c("col_b", "col_c")]
 ```
-
-***
-
-# Esercizi
-
-__1.__ Siano `x <- c(1,2,3)` e `y <- c(6,5,4)`. Si predica quello che produrrà R quando le seguenti istruzioni vengono eseguite. Si verifichino le predizioni implementando le istruzioni seguenti in R.
-
-a) x * 2
-a) x * y
-a) x[1] * y[2]
-
-__2.__ Siano `x <- c(1,2,3)` e `y <- c(6,5,4)`. Qual è il valore di `x` dopo avere eseguito ciascuna delle seguenti istruzioni? Si assuma che ciascuna istruzione venga eseguita dopo che `x` e `y` sono stati inizializzati come indicato sopra.
-
-a) x + x
-a) x <- x + x
-a) y <- x + x
-a) x <- x + 1
-
-__3.__ Si determini il valore assunto dal vettore `vec` dopo avere eseguito le istruzioni seguenti:
-
-a) vec <- 1:10
-a) vec <- 1:10 * 2
-a) vec <- 1:10^2
-a) vec <- 1:10 + 1
-a) vec <- 1:(10 * 2)
-
-__4.__ Si usi R per calcolare la somma dei quadrati dei numeri da 1 a 100: \(1^2 + 2^2 + \dotsb + 99^2 + 100^2\).
-
-__5.__ Sia `x` il vettore ottenuto utilizzando l'istruzione `x <- seq(10, 30, 2)`.
-
-a) Di quanti elementi è composto il vetore `x`?
-a) Che cos'è `x[2]`?
-a) Che cos'è `x[1:5]`?
-a) Che cos'è `x[1:3*2]`?
-a) Che cos'è `x > 25`?
-a) Che cos'è `x[x > 25]`?
-a) Che cos'è `x[-1]`?
-a) Che cos'è `x[-1:-3]`?
-
-__6.__ Si consideri il  data.frame `airquality` (fornito da R). 
-
-a) Quante variabili e quante osservazioni ci sono?
-a) Qual è il nome delle variabili?
-a) Qual è la classe (`type`) di ciascuna variabile?
-a) È sensato codificare ciascuna variabile del data.frame nel formato riportato di default? Quale potrebbe essere un'alternativa migliore?
 
 
 -----

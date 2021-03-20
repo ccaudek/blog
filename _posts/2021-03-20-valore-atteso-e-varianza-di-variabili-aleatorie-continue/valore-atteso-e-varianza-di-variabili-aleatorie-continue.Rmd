@@ -9,6 +9,8 @@ date: 03-21-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 2
 draft: false
 creative_commons: CC BY
 categories:
