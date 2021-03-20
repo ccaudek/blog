@@ -102,12 +102,12 @@ integrate(
 
 # Il valore atteso
 
-Il valore atteso di una variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$ è 
+Il valore atteso di una variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$ è definito nel modo seguente:
 
 $$
 \mathbb{E}(Y) = \mu_Y = \int_a^b y f_Y(y) dy.
 $$
-Anche in questo caso dobbiamo trovare un integrale. Nel caso dell'esempio, iniziamo con il definire la funzione $g$:
+Anche in questo caso dobbiamo calcolare un integrale. Nel caso dell'esempio, iniziamo con il definire la funzione $g$:
 
 ```{r}
 g <- function(y) y * f(y)
@@ -128,24 +128,24 @@ EY
 # La varianza
 
 
-La varianza di una variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$ è 
+La varianza di una variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$ è definita come
 
 $$
 Var(Y) = \sigma^2_Y = \int_a^b (y - \mu_Y)^2 f_Y(y) dy.
 $$
 
-Per trovare la soluzione del problema del calcolo della varianza di una variabile aleatoria continua utilizzeremo qui la formula alternativa della varianza:
+Nel caso dell'esempio che stiamo discutendo, per calcolare la varianza di $Y$ utilizzeremo la  formula seguente:
 
 $$
 Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
 $$
-Per il problema che stiamo discutendo, iniziamo a definire la funzione composta $x^2$:
+Iniziamo a definire in `R` la funzione composta $x^2$:
 
 ```{r}
 h <- function(y) y^2 * f(y)
 ```
 
-Calcoliamo poi l'area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo infine il risultato desiderato:
+Calcoliamo poi l'area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo il risultato desiderato:
 
 ```{r}
 VarY <- integrate(
