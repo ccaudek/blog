@@ -7,7 +7,18 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 20 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Valore atteso e varianza di variabili aleatorie continue</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue</link>
+      <description>Usiamo `R` per il calcolo degli integrali.</description>
+      <category>R</category>
+      <category>psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue</guid>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue/preview.png" medium="image" type="image/png" width="608" height="730"/>
+    </item>
     <item>
       <title>Distribuzioni di probabilità discrete (3)</title>
       <dc:creator>Corrado Caudek</dc:creator>
