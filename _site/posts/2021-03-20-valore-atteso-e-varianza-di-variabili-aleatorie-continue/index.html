@@ -2517,7 +2517,7 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
 </div>
 <p><img src="valore-atteso-e-varianza-di-variabili-aleatorie-continue_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<p>Verifichiamo dunque che l’area sia unitaria:</p>
+<p>Verifichiamo che l’area sia unitaria:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
@@ -2530,7 +2530,8 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
 <pre><code>[1] 1</code></pre>
 </div>
 <h1 id="la-probabilità-pa-leq-y-leq-b">La probabilità <span class="math inline">\(P(a \leq Y \leq b)\)</span></h1>
-<p>La probabilità <span class="math inline">\(P(1.5 \leq Y \leq 2.5)\)</span> è l’area sottesa alla funzione di densità nell’intervallo [1.5, 2.5], ovvero</p>
+<p>Calcoliamo una probabilità, ovvero l’area sottesa alla funzione di densità in un intervallo. Per esempio, calcoliamo la probabilità <span class="math inline">\(P(1.5 \leq Y \leq 2.5)\)</span>.</p>
+<p>Per trovare l’area sottesa alla funzione di densità nell’intervallo [1.5, 2.5] utilizziamo la funzione <code>integrate()</code> come indicato di seguito:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
@@ -2546,15 +2547,14 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
 <p>Il valore atteso di una variabile aleatoria continua <span class="math inline">\(Y\)</span> avente una distribuzione di densità <span class="math inline">\(f_Y(y)\)</span> è</p>
 <p><span class="math display">\[
 \mathbb{E}(Y) = \mu_Y = \int_a^b y f_Y(y) dy.
-\]</span></p>
-<p>Nel caso dell’esempio, definiamo la funzione <span class="math inline">\(g\)</span>:</p>
+\]</span> Anche in questo caso dobbiamo trovare un integrale. Nel caso dell’esempio, iniziamo con il definire la funzione <span class="math inline">\(g\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>e quindi</p>
+<p>Il valore atteso è dato da:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>EX</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
@@ -2572,17 +2572,17 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
 <p><span class="math display">\[
 Var(Y) = \sigma^2_Y = \int_a^b (y - \mu_Y)^2 f_Y(y) dy.
 \]</span></p>
-<p>Per trovare la soluzione del problema che stiamo discutendo, ovvero per trovare la varianza della variabile aleatoria continua <span class="math inline">\(Y\)</span>, utilizzeremo la formula alternativa per il calcolo della varianza:</p>
+<p>Per trovare la soluzione del problema del calcolo della varianza di una variabile aleatoria continua utilizzeremo qui la formula alternativa della varianza:</p>
 <p><span class="math display">\[
 Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
-\]</span> Iniziamo a definire la funzione composta <span class="math inline">\(x^2\)</span>:</p>
+\]</span> Per il problema che stiamo discutendo, iniziamo a definire la funzione composta <span class="math inline">\(x^2\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Calcoliamo poi l’area sottesa dal grafico di tale funzione. Applicando infine la formula della varianza otteniamo il risultato desiderato:</p>
+<p>Calcoliamo poi l’area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo infine il risultato desiderato:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>VarX</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
