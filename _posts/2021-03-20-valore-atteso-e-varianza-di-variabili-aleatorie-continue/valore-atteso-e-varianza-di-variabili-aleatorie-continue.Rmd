@@ -49,19 +49,19 @@ Per definizione, $P(-\infty \leq Y \leq +\infty) = 1$ e quindi $\int_{-\infty}^{
 Supponiamo che 
 
 $$
-f_X (x) = \frac{3}{x^4}, \quad x > 1
+f_Y (y) = \frac{3}{y^4}, \quad y > 1
 $$
-Verifichiamo che $f_X (x)$ sia una funzione di densità. Definiamo la funzione $f_X (x)$ in `R` nel modo seguente:
+Verifichiamo che $f_Y(y)$ sia una funzione di densità. Definiamo la funzione $f_Y(y)$ in `R` nel modo seguente:
 
 ```{r}
-f <- function(x) 3 / x^4
+f <- function(y) 3 / y^4
 ```
 
 Mediante le seguenti istruzioni possiamo ottenere una rappresentazione grafica di $f_X(x)$.  Iniziamo a creare un data.frame fittizio
 
 ```{r}
 library("tidyverse", warn.conflicts = FALSE)
-p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
+p <- ggplot(data = data.frame(y = 0), mapping = aes(x = y))
 ```
 
 e utilizziamo la funzione `stat_function()` per creare il plot:
@@ -71,7 +71,7 @@ p +
   stat_function(fun = f) + 
   xlim(1, 5) +
   labs(
-    y = "f(x)"
+    y = "f(y)"
   )
 ```
 
@@ -110,18 +110,18 @@ $$
 Anche in questo caso dobbiamo trovare un integrale. Nel caso dell'esempio, iniziamo con il definire la funzione $g$:
 
 ```{r}
-g <- function(x) x * f(x)
+g <- function(y) y * f(y)
 ```
 
 Il valore atteso è dato da:
 
 ```{r}
-EX <- integrate(
+EY <- integrate(
   g,
   lower = 1,
   upper = Inf
 )$value
-EX
+EY
 ```
 
 
@@ -142,18 +142,18 @@ $$
 Per il problema che stiamo discutendo, iniziamo a definire la funzione composta $x^2$:
 
 ```{r}
-h <- function(x) x^2 * f(x)
+h <- function(y) y^2 * f(y)
 ```
 
 Calcoliamo poi l'area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo infine il risultato desiderato:
 
 ```{r}
-VarX <- integrate(
+VarY <- integrate(
   h,
   lower = 1,
   upper = Inf
-)$value - EX^2 
-VarX
+)$value - EY^2 
+VarY
 ```
 
 

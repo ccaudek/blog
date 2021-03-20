@@ -1512,11 +1512,11 @@ P(a \leq Y \leq b) = \int_a^b f_Y(y) dy.
 <p>Per definizione, <span class="math inline">\(P(-\infty \leq Y \leq +\infty) = 1\)</span> e quindi <span class="math inline">\(\int_{-\infty}^{+\infty} f_Y(y) dy = 1\)</span>.</p>
 <p>Supponiamo che</p>
 <p><span class="math display">\[
-f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
-\]</span> Verifichiamo che <span class="math inline">\(f_X (x)\)</span> sia una funzione di densità. Definiamo la funzione <span class="math inline">\(f_X (x)\)</span> in <code>R</code> nel modo seguente:</p>
+f_Y (y) = \frac{3}{y^4}, \quad y &gt; 1
+\]</span> Verifichiamo che <span class="math inline">\(f_Y(y)\)</span> sia una funzione di densità. Definiamo la funzione <span class="math inline">\(f_Y(y)\)</span> in <code>R</code> nel modo seguente:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fl'>3</span> <span class='op'>/</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>4</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fl'>3</span> <span class='op'>/</span> <span class='va'>y</span><span class='op'>^</span><span class='fl'>4</span>
 </code></pre>
 </div>
 </div>
@@ -1524,7 +1524,7 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span>, warn.conflicts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>, mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>, mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -1535,7 +1535,7 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
   <span class='fu'>stat_function</span><span class='op'>(</span>fun <span class='op'>=</span> <span class='va'>f</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>labs</span><span class='op'>(</span>
-    y <span class='op'>=</span> <span class='st'>"f(x)"</span>
+    y <span class='op'>=</span> <span class='st'>"f(y)"</span>
   <span class='op'>)</span>
 </code></pre>
 </div>
@@ -1574,19 +1574,19 @@ f_X (x) = \frac{3}{x^4}, \quad x &gt; 1
 \]</span> Anche in questo caso dobbiamo trovare un integrale. Nel caso dell’esempio, iniziamo con il definire la funzione <span class="math inline">\(g\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='va'>y</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>Il valore atteso è dato da:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>EX</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>EY</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
   <span class='va'>g</span>,
   lower <span class='op'>=</span> <span class='fl'>1</span>,
   upper <span class='op'>=</span> <span class='cn'>Inf</span>
 <span class='op'>)</span><span class='op'>$</span><span class='va'>value</span>
-<span class='va'>EX</span>
+<span class='va'>EY</span>
 </code></pre>
 </div>
 <pre><code>[1] 1.5</code></pre>
@@ -1602,19 +1602,19 @@ Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
 \]</span> Per il problema che stiamo discutendo, iniziamo a definire la funzione composta <span class="math inline">\(x^2\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='va'>y</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>Calcoliamo poi l’area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo infine il risultato desiderato:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>VarX</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>VarY</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
   <span class='va'>h</span>,
   lower <span class='op'>=</span> <span class='fl'>1</span>,
   upper <span class='op'>=</span> <span class='cn'>Inf</span>
-<span class='op'>)</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>-</span> <span class='va'>EX</span><span class='op'>^</span><span class='fl'>2</span> 
-<span class='va'>VarX</span>
+<span class='op'>)</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>-</span> <span class='va'>EY</span><span class='op'>^</span><span class='fl'>2</span> 
+<span class='va'>VarY</span>
 </code></pre>
 </div>
 <pre><code>[1] 0.75</code></pre>
