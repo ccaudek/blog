@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["Distribuzioni di probabilità discrete (3)"]},{"type":"character","attributes":{},"value":["Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["03-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R","Psicometria"]},{"type":"character","attributes":{},"value":["preview.png"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["Distribuzioni di probabilità discrete (3)"]},{"type":"character","attributes":{},"value":["Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["03-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R","psicometria"]},{"type":"character","attributes":{},"value":["preview.png"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1470,7 +1470,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
 <div class="dt=tag">R</div>
-<div class="dt=tag">Psicometria</div>
+<div class="dt=tag">psicometria</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>Usiamo <code>R</code> per calcolare la covarianza di due variabili aleatorie discrete.</p></p>
@@ -1483,6 +1483,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<p>In questo post ci porremo il problema di calcolare la covarianza e la correlazione di due variabili aleatorie discrete, utilizzando l’informazione fornita dalla distribuzione di probabilità congiunta. Vedremo come si possa usare <code>R</code> per semplificare i calcoli.</p>
 <p>Carichiamo i pacchetti necessari:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1491,11 +1492,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Consideriamo l’esperimento casuale corrispondente al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale e definiamo su di esso due variabili aleatorie:</p>
+<p>Consideriamo l’esperimento casuale che corrisponde al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale e definiamo su di esso le seguenti variabili aleatorie:</p>
 <ul>
 <li>U: somma dei punti dei due dadi,</li>
 <li>V: 1 se i punti del lancio del primo dado sono minori di 4, 0 altrimenti.</li>
 </ul>
+<p>Come nei post precedenti, otteniamo un elenco di tutti gli eventi elementari dello spazio campionario usando le istruzioni seguenti:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>S</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/rolldie.html'>rolldie</a></span><span class='op'>(</span><span class='fl'>2</span>, nsides <span class='op'>=</span> <span class='fl'>6</span>, makespace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -1541,39 +1543,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 35  5  6 11 0 0.02777778
 36  6  6 12 0 0.02777778</code></pre>
 </div>
-<p>Definiamo le distribuzioni marginali di probabilità per le due variabili aleatorie:</p>
+<p>Le istruzioni precedenti specificano, in corrispondenza di ogni punto dello spazio campionario (ovvero, in ciascuna riga del data.frame che viene generato), il valore assunto dalle due variabili aleatorie che sono state definite.</p>
+<p>La descrizione dello spazio campionario fornita da <code>R</code> è corretta: questo esperimento casuale produce infatti 6 <span class="math inline">\(\times\)</span> 6 esiti (eventi elementari) possibili. Ma si noti che alcune righe del data.frame si ripetono più volte. Possiamo dunque semplificare tale descrizione nel modo seguente:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/marginal.html'>marginal</a></span><span class='op'>(</span><span class='va'>S</span>, vars <span class='op'>=</span> <span class='st'>"U"</span><span class='op'>)</span>
-<span class='va'>pv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/marginal.html'>marginal</a></span><span class='op'>(</span><span class='va'>S</span>, vars <span class='op'>=</span> <span class='st'>"V"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>Calcoliamo il valore atteso di <code>U</code></p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>U</span> <span class='op'>&lt;-</span> <span class='fu'>DiscreteDistribution</span><span class='op'>(</span>supp <span class='op'>=</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>U</span>, prob <span class='op'>=</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
-<span class='va'>mu_u</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>U</span><span class='op'>)</span>
-<span class='va'>mu_u</span>
-</code></pre>
-</div>
-<pre><code>[1] 7</code></pre>
-</div>
-<p>e il valore atteso di <code>V</code>:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>V</span> <span class='op'>&lt;-</span> <span class='fu'>DiscreteDistribution</span><span class='op'>(</span>supp <span class='op'>=</span> <span class='va'>pv</span><span class='op'>$</span><span class='va'>V</span>, prob <span class='op'>=</span> <span class='va'>pv</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
-<span class='va'>mu_v</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>V</span><span class='op'>)</span>
-<span class='va'>mu_v</span>
-</code></pre>
-</div>
-<pre><code>[1] 0.5</code></pre>
-</div>
-<p>Calcoliamo la distribizione di probabilità congiunta:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/marginal.html'>marginal</a></span><span class='op'>(</span><span class='va'>S</span>, vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"U"</span>, <span class='st'>"V"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>pj</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>UV</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/marginal.html'>marginal</a></span><span class='op'>(</span><span class='va'>S</span>, vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"U"</span>, <span class='st'>"V"</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>UV</span>
 </code></pre>
 </div>
 <pre><code>    U V      probs
@@ -1594,35 +1569,132 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 15  8 1 0.05555556
 16  9 1 0.02777778</code></pre>
 </div>
-<h1 id="covarianza">Covarianza</h1>
-<p>Implementiamo in <code>R</code> la formula della covarianza:</p>
-<p><span class="math display">\[
-\sigma_{xy} = \sum_i \big(x_i - \mathbb{E}(x)\big)\big(y_i - \mathbb{E}(y)\big) \cdot p_i(x,y)
-\]</span> ovvero</p>
+<p>L’elenco dei valori che le due variabili aleatorie <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> possono assumere, insieme alla probabilità del loro verificarsi, fornisce la <em>distribuzione di probabilità congiunta</em> delle due variabili aleatorie.</p>
+<p>È anche possibile presentare la distribuzione di probabilità congiunta in forma tabulare. A tale fine possiamo utilizzare la funzione <code>xtabs()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>s_uv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>pj</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>-</span> <span class='va'>mu_u</span><span class='op'>)</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>pj</span><span class='op'>$</span><span class='va'>V</span> <span class='op'>-</span> <span class='va'>mu_v</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>pj</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/xtabs.html'>xtabs</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>probs</span>, <span class='fl'>3</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>U</span> <span class='op'>+</span> <span class='va'>V</span>, data <span class='op'>=</span> <span class='va'>UV</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    V
+U        0     1
+  2  0.000 0.028
+  3  0.000 0.056
+  4  0.000 0.083
+  5  0.028 0.083
+  6  0.056 0.083
+  7  0.083 0.083
+  8  0.083 0.056
+  9  0.083 0.028
+  10 0.083 0.000
+  11 0.056 0.000
+  12 0.028 0.000</code></pre>
+</div>
+<p>Ripetiamo ora il processo precedente chiedendo alla funzione <code>marginal()</code> di calcolare le due distribuzioni marginali univariate:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/marginal.html'>marginal</a></span><span class='op'>(</span><span class='va'>S</span>, vars <span class='op'>=</span> <span class='st'>"U"</span><span class='op'>)</span>
+<span class='va'>pu</span>
+</code></pre>
+</div>
+<pre><code>    U      probs
+1   2 0.02777778
+2   3 0.05555556
+3   4 0.08333333
+4   5 0.11111111
+5   6 0.13888889
+6   7 0.16666667
+7   8 0.13888889
+8   9 0.11111111
+9  10 0.08333333
+10 11 0.05555556
+11 12 0.02777778</code></pre>
+</div>
+<p>e</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/marginal.html'>marginal</a></span><span class='op'>(</span><span class='va'>S</span>, vars <span class='op'>=</span> <span class='st'>"V"</span><span class='op'>)</span>
+<span class='va'>pv</span>
+</code></pre>
+</div>
+<pre><code>  V probs
+1 0   0.5
+2 1   0.5</code></pre>
+</div>
+<p>In maniera equivalente, lo stesso risultato si trova applicando le funzioni <code>rowSums()</code> e <code>colSums()</code> all’oggetto creato da <code>xtabs()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>temp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/xtabs.html'>xtabs</a></span><span class='op'>(</span><span class='va'>probs</span> <span class='op'>~</span> <span class='va'>U</span> <span class='op'>+</span> <span class='va'>V</span>, data <span class='op'>=</span> <span class='va'>UV</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>temp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>         2          3          4          5          6          7 
+0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667 
+         8          9         10         11         12 
+0.13888889 0.11111111 0.08333333 0.05555556 0.02777778 </code></pre>
+</div>
+<p>e</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>temp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  0   1 
+0.5 0.5 </code></pre>
+</div>
+<h1 id="valore-atteso">Valore atteso</h1>
+<p>Calcoliamo ora il valore atteso delle due variabili aleatorie. Il valore atteso <code>U</code> è</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>U</span> <span class='op'>&lt;-</span> <span class='fu'>DiscreteDistribution</span><span class='op'>(</span>supp <span class='op'>=</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>U</span>, prob <span class='op'>=</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
+<span class='va'>mu_u</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>U</span><span class='op'>)</span>
+<span class='va'>mu_u</span>
+</code></pre>
+</div>
+<pre><code>[1] 7</code></pre>
+</div>
+<p>Il valore atteso di <code>V</code> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>V</span> <span class='op'>&lt;-</span> <span class='fu'>DiscreteDistribution</span><span class='op'>(</span>supp <span class='op'>=</span> <span class='va'>pv</span><span class='op'>$</span><span class='va'>V</span>, prob <span class='op'>=</span> <span class='va'>pv</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
+<span class='va'>mu_v</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/E.html'>E</a></span><span class='op'>(</span><span class='va'>V</span><span class='op'>)</span>
+<span class='va'>mu_v</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.5</code></pre>
+</div>
+<h1 id="covarianza">Covarianza</h1>
+<p>Utilizzando le informazioni precedenti possiamo ora calcolare la covarianza tra <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span>.</p>
+<p>La formula della covarianza</p>
+<p><span class="math display">\[
+\sigma_{xy} = \sum_i \big(x_i - \mathbb{E}(x)\big)\big(y_i - \mathbb{E}(y)\big) \cdot p_i(x,y)
+\]</span> può essere implementata in <code>R</code> nel modo seguente:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>s_uv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>UV</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>-</span> <span class='va'>mu_u</span><span class='op'>)</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>UV</span><span class='op'>$</span><span class='va'>V</span> <span class='op'>-</span> <span class='va'>mu_v</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>UV</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
 <span class='va'>s_uv</span>
 </code></pre>
 </div>
 <pre><code>[1] -0.75</code></pre>
 </div>
-<p>Usiamo la formula alternativa per il calcolo della covarianza:</p>
+<p>Lo stesso risultato si ottiene usando la formula alternativa per il calcolo della covarianza:</p>
 <p><span class="math display">\[
 \sigma_{xy} = \mathbb{E}(xy) -\mathbb{E}(x)\mathbb{E}(y)
-\]</span> ovvero</p>
+\]</span></p>
+<p>ovvero</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>pj</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>*</span> <span class='va'>pj</span><span class='op'>$</span><span class='va'>V</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>pj</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span> <span class='op'>-</span> <span class='va'>mu_u</span> <span class='op'>*</span> <span class='va'>mu_v</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>UV</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>*</span> <span class='va'>UV</span><span class='op'>$</span><span class='va'>V</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>UV</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span> <span class='op'>-</span> <span class='va'>mu_u</span> <span class='op'>*</span> <span class='va'>mu_v</span>
 </code></pre>
 </div>
 <pre><code>[1] -0.75</code></pre>
 </div>
 <h1 id="correlazione">Correlazione</h1>
-<p>La correlazione è una covarianza standardizzata:</p>
+<p>Conoscendo la covarianza è possibile calcolare la correlazione. La correlazione infatti è una covarianza standardizzata:</p>
 <p><span class="math display">\[
 \rho_{xy} = \frac{\sigma_{xy}}{\sigma_x\sigma_y}
-\]</span> Iniziamo a calcolare le varianze delle due variabili aleatorie:</p>
+\]</span></p>
+<p>Per standardizzare dobbiamo dividere per le due deviazioni standard. Iniziamo dunque a calcolare le varianze delle due variabili aleatorie <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>v_u</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>pu</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>-</span> <span class='va'>mu_u</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>*</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
@@ -1637,7 +1709,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>[1] 0.25</code></pre>
 </div>
-<p>In maniera equivalente</p>
+<p>oppure, in maniera equivalente</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/Var.html'>var</a></span><span class='op'>(</span><span class='va'>U</span><span class='op'>)</span>
@@ -1650,7 +1722,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>[1] 0.25</code></pre>
 </div>
-<p>Quindi la correlazione diventa:</p>
+<p>Abbiamo ora tutte le informazioni necessarie per il calcolo della correlazione:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>s_uv</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/Var.html'>var</a></span><span class='op'>(</span><span class='va'>U</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/Var.html'>var</a></span><span class='op'>(</span><span class='va'>V</span><span class='op'>)</span><span class='op'>)</span>
@@ -1658,7 +1730,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>[1] -0.621059</code></pre>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
