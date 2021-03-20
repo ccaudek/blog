@@ -12,7 +12,7 @@
       <title>Valore atteso e varianza di variabili aleatorie continue</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue</link>
-      <description>A short description of the post.</description>
+      <description>Usiamo `R` per il calcolo degli integrali.</description>
       <category>R</category>
       <category>psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue</guid>
