@@ -96,7 +96,11 @@ colSums(temp)
 
 # Valore atteso
 
-Calcoliamo ora il valore atteso delle due variabili aleatorie. Il valore atteso `U` è
+Calcoliamo ora il valore atteso delle due variabili aleatorie. 
+
+Utilizziamo la funzione `DiscreteDistribution()`. Il primo argomento richiede un vettore che specifica il supporto della variabile casuale discreta. Il secondo argomento è un vettore che, per ciasun valore della variabile casuale discreta, specifica il corrispondente valore della funzione di massa di probabilità. 
+
+Mediante la funzione `DiscreteDistribution()` otteniamo valore atteso di `U`:
 
 ```{r}
 U <- DiscreteDistribution(supp = pu$U, prob = pu$probs)
@@ -104,7 +108,7 @@ mu_u <- E(U)
 mu_u
 ```
 
-Il valore atteso di `V` è:
+Inoltre, il valore atteso di `V` è:
 
 ```{r}
 V <- DiscreteDistribution(supp = pv$V, prob = pv$probs)
@@ -115,7 +119,7 @@ mu_v
 
 # Covarianza
 
-Utilizzando le informazioni precedenti possiamo ora calcolare la covarianza tra $U$ e $V$.
+Utilizzando le informazioni precedenti possiamo calcolare la covarianza tra $U$ e $V$.
 
 La formula della covarianza
 

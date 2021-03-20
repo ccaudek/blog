@@ -103,14 +103,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete."/>
 <meta property="og:url" content="https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/"/>
+<meta property="og:image" content="https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/preview.png"/>
+<meta property="og:image:width" content="682"/>
+<meta property="og:image:height" content="428"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Il blog di Corrado Caudek"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="Il blog di Corrado Caudek: Distribuzioni di probabilità discrete (3)"/>
 <meta property="twitter:description" content="Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete."/>
 <meta property="twitter:url" content="https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/"/>
+<meta property="twitter:image" content="https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/preview.png"/>
+<meta property="twitter:image:width" content="682"/>
+<meta property="twitter:image:height" content="428"/>
 <meta property="twitter:site" content="@ccaudek"/>
 <meta property="twitter:creator" content="@ccaudek"/>
 
@@ -130,7 +136,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["distribuzioni-di-probabilit-discrete-3_files/anchor-4.2.2/anchor.min.js","distribuzioni-di-probabilit-discrete-3_files/bowser-1.9.3/bowser.min.js","distribuzioni-di-probabilit-discrete-3_files/distill-2.2.21/template.v2.js","distribuzioni-di-probabilit-discrete-3_files/header-attrs-2.7.3/header-attrs.js","distribuzioni-di-probabilit-discrete-3_files/jquery-1.11.3/jquery.min.js","distribuzioni-di-probabilit-discrete-3_files/popper-2.6.0/popper.min.js","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy-bundle.umd.min.js","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy-light-border.css","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy.css","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy.umd.min.js","distribuzioni-di-probabilit-discrete-3_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["distribuzioni-di-probabilit-discrete-3_files/anchor-4.2.2/anchor.min.js","distribuzioni-di-probabilit-discrete-3_files/bowser-1.9.3/bowser.min.js","distribuzioni-di-probabilit-discrete-3_files/distill-2.2.21/template.v2.js","distribuzioni-di-probabilit-discrete-3_files/header-attrs-2.7.3/header-attrs.js","distribuzioni-di-probabilit-discrete-3_files/jquery-1.11.3/jquery.min.js","distribuzioni-di-probabilit-discrete-3_files/popper-2.6.0/popper.min.js","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy-bundle.umd.min.js","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy-light-border.css","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy.css","distribuzioni-di-probabilit-discrete-3_files/tippy-6.2.7/tippy.umd.min.js","distribuzioni-di-probabilit-discrete-3_files/webcomponents-2.0.0/webcomponents.js","preview.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2639,7 +2645,9 @@ U        0     1
 0.5 0.5 </code></pre>
 </div>
 <h1 id="valore-atteso">Valore atteso</h1>
-<p>Calcoliamo ora il valore atteso delle due variabili aleatorie. Il valore atteso <code>U</code> è</p>
+<p>Calcoliamo ora il valore atteso delle due variabili aleatorie.</p>
+<p>Utilizziamo la funzione <code>DiscreteDistribution()</code>. Il primo argomento richiede un vettore che specifica il supporto della variabile casuale discreta. Il secondo argomento è un vettore che, per ciasun valore della variabile casuale discreta, specifica il corrispondente valore della funzione di massa di probabilità.</p>
+<p>Mediante la funzione <code>DiscreteDistribution()</code> otteniamo valore atteso di <code>U</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>U</span> <span class='op'>&lt;-</span> <span class='fu'>DiscreteDistribution</span><span class='op'>(</span>supp <span class='op'>=</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>U</span>, prob <span class='op'>=</span> <span class='va'>pu</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
@@ -2649,7 +2657,7 @@ U        0     1
 </div>
 <pre><code>[1] 7</code></pre>
 </div>
-<p>Il valore atteso di <code>V</code> è:</p>
+<p>Inoltre, il valore atteso di <code>V</code> è:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>V</span> <span class='op'>&lt;-</span> <span class='fu'>DiscreteDistribution</span><span class='op'>(</span>supp <span class='op'>=</span> <span class='va'>pv</span><span class='op'>$</span><span class='va'>V</span>, prob <span class='op'>=</span> <span class='va'>pv</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span>
@@ -2660,7 +2668,7 @@ U        0     1
 <pre><code>[1] 0.5</code></pre>
 </div>
 <h1 id="covarianza">Covarianza</h1>
-<p>Utilizzando le informazioni precedenti possiamo ora calcolare la covarianza tra <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span>.</p>
+<p>Utilizzando le informazioni precedenti possiamo calcolare la covarianza tra <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span>.</p>
 <p>La formula della covarianza</p>
 <p><span class="math display">\[
 \sigma_{xy} = \sum_i \big(x_i - \mathbb{E}(x)\big)\big(y_i - \mathbb{E}(y)\big) \cdot p_i(x,y)
