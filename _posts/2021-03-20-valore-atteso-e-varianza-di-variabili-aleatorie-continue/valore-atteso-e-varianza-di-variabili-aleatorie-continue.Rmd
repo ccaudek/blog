@@ -30,9 +30,9 @@ In questo post esamineremo il calcolo di
 - valore atteso,
 - varianza 
 
-di variabili aleatorie continue. 
+nel caso di variabili aleatorie continue. 
 
-La cattiva notizia è che la soluzione di tali problemi richiede la conoscenza del calcolo integrale. Oppure, se vogliamo evitare di avventurarci in quella direzione, la soluzione di tali problemi può facilmente essere ottenuta utilizzando un software, come ad esempio `R`.  Vedremo qui come si fa.
+La cattiva notizia è che la soluzione di tali problemi richiede la conoscenza del calcolo integrale. Oppure, se vogliamo evitare di avventurarci in quella direzione, possiamo trovare facilmente la soluzione utilizzando un software, come ad esempio `R`.  Vedremo qui come si fa.
 
 # La funzione di densità di probabilità
 
