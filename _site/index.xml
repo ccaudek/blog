@@ -14,7 +14,7 @@
       <link>https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue</link>
       <description>Usiamo `R` per il calcolo degli integrali.</description>
       <category>R</category>
-      <category>psicometria</category>
+      <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue</guid>
       <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
       <media:content url="https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue/preview.png" medium="image" type="image/png" width="608" height="730"/>
@@ -25,7 +25,7 @@
       <link>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</link>
       <description>Usiamo `R` per calcolare la covarianza di due variabili aleatorie discrete.</description>
       <category>R</category>
-      <category>psicometria</category>
+      <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</guid>
       <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
     </item>
