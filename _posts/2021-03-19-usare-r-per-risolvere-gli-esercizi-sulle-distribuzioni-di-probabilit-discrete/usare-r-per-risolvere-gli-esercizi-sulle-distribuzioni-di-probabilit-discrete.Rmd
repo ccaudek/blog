@@ -22,10 +22,10 @@ preview: preview.png
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# TL; DR
 
-# Distribuzione uniforme discreta
+Utilizzeremo qui le funzioni fornite dal pacchetto `prob` per affrontare alcuni comuni problemi di calcolo delle probabilità nel caso in cui lo spazio campionario è costitutito da un insieme finito di eventi elementari aventi tutti la stessa probabilità di verificarsi.
 
-Consideriamo i problemi nei quali lo spazio campionario è costitutito da un insieme di eventi elementari aventi tutti la stessa probabilità di verificarsi. Utilizzeremo qui le funzioni fornite dal pacchetto `prob`.
 
 ```{r}
 library("prob")
@@ -33,12 +33,13 @@ library("prob")
 
 # Il lancio di un dado
 
-Se l'esperimento casuale consiste nel lancio di dado bilanciato, lo spazio campionario è dato da
+Consideriamo l'esperimento casuale consistente nel lancio di dado bilanciato e utilizziamo la funzione `rolldie()`: 
 
 ```{r}
 rolldie(1, makespace = TRUE)
 ```
 La funzione `rolldie()` crea un dataframe in cui ciascuna riga corrisponde ad un punto dello spazio campionario (cioè un evento elementare). La colonna `probs` riporta la probabilità associata a ciascun punto dello spazio campionario.
+
 
 # Il lancio di due dadi
 
@@ -102,7 +103,7 @@ Prob(B)
 ```
 
 
-## Probabilità condizionata
+# Probabilità condizionata
 
 La probabilità condizionata di $A$ dato $B$ corrisponde alla somma delle probabilità degli eventi elementari in $A$, se consideriamo solo il sottoinsieme $B$. Esaminiamo dunque $B$:
 
@@ -133,7 +134,7 @@ Prob(A, given = B)
 Prob(B, given = A)
 ```
 
-## Indipendenza
+# Indipendenza
 
 Chiediamoci ora se $A$ e $B$ sono indipendenti.
 

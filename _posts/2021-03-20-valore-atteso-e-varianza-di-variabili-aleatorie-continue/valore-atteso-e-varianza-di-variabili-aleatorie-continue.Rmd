@@ -1,0 +1,155 @@
+---
+title: "Valore atteso e varianza di variabili aleatorie continue"
+description: |
+  A short description of the post.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-21-2021
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# TL; DR
+
+In questo post esamineremo il calcolo di
+
+- probabilità, 
+- valore atteso,
+- varianza 
+
+di variabili aleatorie continue. 
+
+La cattiva notizia è che la soluzione di tali problemi richiede la conoscenza del calcolo integrale. Oppure, se vogliamo evitare di avventurarci in quella direzione, la soluzione di tali problemi può facilmente essere ottenuta utilizzando un software, come ad esempio `R`.  Vedremo qui come si fa.
+
+# La funzione di densità di probabilità
+
+Consideriamo la variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$. La probabilità che $Y$ assuma valori compresi tra $a$ e $b$, con $a<b$, è
+
+$$
+P(a \leq Y \leq b) = \int_a^b f_Y(y) dy.
+$$
+
+Per definizione, $P(-\infty \leq Y \leq +\infty) = 1$ e quindi $\int_{-\infty}^{+\infty} f_Y(y) dy = 1$.
+
+Supponiamo che 
+
+$$
+f_X (x) = \frac{3}{x^4}, \quad x > 1
+$$
+Verifichiamo che $f_X (x)$ sia una funzione di densità. Definiamo la funzione $f_X (x)$ in `R` nel modo seguente:
+
+```{r}
+f <- function(x) 3 / x^4
+```
+
+Mediante le seguenti istruzioni possiamo ottenere una rappresentazione grafica di $f_X(x)$.  Iniziamo a creare un data.frame fittizio
+
+```{r}
+library("tidyverse", warn.conflicts = FALSE)
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
+```
+
+e utilizziamo la funzione `stat_function()` per creare il plot:
+
+```{r}
+p + 
+  stat_function(fun = f) + 
+  xlim(1, 5) +
+  labs(
+    y = "f(x)"
+  )
+```
+
+Verifichiamo dunque che l'area sia unitaria:
+
+```{r}
+integrate(
+  f, 
+  lower = 1, 
+  upper = Inf
+)$value
+```
+
+
+# La probabilità $P(a \leq Y \leq b)$
+
+La probabilità $P(1.5 \leq Y \leq 2.5)$ è l'area sottesa alla funzione di densità nell'intervallo [1.5, 2.5], ovvero
+
+```{r}
+integrate(
+  f, 
+  lower = 1.5, 
+  upper = 2.0
+)$value
+```
+
+# Il valore atteso
+
+Il valore atteso di una variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$ è 
+
+$$
+\mathbb{E}(Y) = \mu_Y = \int_a^b y f_Y(y) dy.
+$$
+
+Nel caso dell'esempio, definiamo la funzione $g$:
+
+```{r}
+g <- function(x) x * f(x)
+```
+
+e quindi
+
+```{r}
+EX <- integrate(
+  g,
+  lower = 1,
+  upper = Inf
+)$value
+EX
+```
+
+# La varianza
+
+
+La varianza di una variabile aleatoria continua $Y$ avente una distribuzione di densità $f_Y(y)$ è 
+
+$$
+Var(Y) = \sigma^2_Y = \int_a^b (y - \mu_Y)^2 f_Y(y) dy.
+$$
+
+Per trovare la soluzione del problema che stiamo discutendo, ovvero per trovare la varianza della variabile aleatoria continua $Y$, utilizzeremo la formula alternativa per il calcolo della varianza:
+
+$$
+Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
+$$
+Iniziamo a definire la funzione composta $x^2$:
+
+```{r}
+h <- function(x) x^2 * f(x)
+```
+
+Calcoliamo poi l'area sottesa dal grafico di tale funzione. Applicando infine la formula della varianza otteniamo il risultato desiderato:
+
+```{r}
+VarX <- integrate(
+  h,
+  lower = 1,
+  upper = Inf
+)$value - EX^2 
+VarX
+```
+
+

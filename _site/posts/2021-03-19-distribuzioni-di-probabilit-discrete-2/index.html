@@ -2163,14 +2163,18 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 
 <div class="d-article">
-<p>Carichiamo il pacchetto <code>prob</code>:</p>
+<h1 id="tl-dr">TL; DR</h1>
+<p>In questo post esamineremo nuovamente la nozione di indipendenza nel caso di due variabili aleatorie definite su uno spazio campionario discreto. Di tali variabili aleatorie discrete calcoleremo poi il valore atteso e la varianza.</p>
+<h1 id="distribuzioni-di-probabilità-marginali">Distribuzioni di probabilità marginali</h1>
+<p>Consideriamo l’esperimento casuale corrispondente al lancio di due dadi bilanciati.</p>
+<p>Carichiamo il pacchetto <code>prob</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://prob.r-forge.r-project.org'>"prob"</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Consideriamo l’esperimento casuale corrispondente al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale:</p>
+<p>e creiamo lo spazio campionario di questo esperimento casuale:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>S</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/prob/man/rolldie.html'>rolldie</a></span><span class='op'>(</span><span class='fl'>2</span>, nsides <span class='op'>=</span> <span class='fl'>6</span>, makespace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -2215,7 +2219,7 @@ gtag('config', 'G-VTS54G9ZSV');
 35  5  6 0.02777778
 36  6  6 0.02777778</code></pre>
 </div>
-<p>Definiamo due variabili aleatorie:</p>
+<p>Definiamo le seguenti variabili aleatorie:</p>
 <ul>
 <li>U: somma dei punti dei due dadi,</li>
 <li>V: 1 se i punti del lancio del primo dado sono minori di 4, 0 altrimenti.</li>
@@ -2273,7 +2277,7 @@ gtag('config', 'G-VTS54G9ZSV');
 1 0   0.5
 2 1   0.5</code></pre>
 </div>
-<h2 id="distribuzione-di-probabilità-congiunta">Distribuzione di probabilità congiunta</h2>
+<h1 id="distribuzione-di-probabilità-congiunta">Distribuzione di probabilità congiunta</h1>
 <p>Creiamo ora la distribuzione di probabilità congiunta delle variabili <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2299,8 +2303,8 @@ gtag('config', 'G-VTS54G9ZSV');
 15  8 1 0.05555556
 16  9 1 0.02777778</code></pre>
 </div>
-<h3 id="indipendenza">Indipendenza</h3>
-<p>Chiediamoci, di nuovo: <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> sono indipendenti?</p>
+<h1 id="indipendenza">Indipendenza</h1>
+<p>Chiediamoci: <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> sono indipendenti?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pu</span><span class='op'>[</span><span class='va'>pu</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>]</span><span class='op'>$</span><span class='va'>probs</span> <span class='op'>*</span> <span class='va'>pv</span><span class='op'>[</span><span class='va'>pv</span><span class='op'>$</span><span class='va'>V</span> <span class='op'>==</span> <span class='fl'>1</span>, <span class='op'>]</span><span class='op'>$</span><span class='va'>probs</span>
@@ -2314,7 +2318,7 @@ gtag('config', 'G-VTS54G9ZSV');
 <pre><code>[1] 0.05555556</code></pre>
 </div>
 <p>Quindi, la risposta è negativa.</p>
-<h2 id="valore-atteso">Valore atteso</h2>
+<h1 id="valore-atteso-e-varianza">Valore atteso e varianza</h1>
 <p>Consideriamo la variabile <span class="math inline">\(U\)</span>. Calcoliamo il valore atteso e la varianza. Per fare questo, utilizzeremo le funzioni del pacchetto <code>distrEx</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2340,7 +2344,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <pre><code>[1] 7</code></pre>
 </div>
-<p>Calcoliamo la varianza:</p>
+<p>Calcoliamo ora la varianza:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/distrEx/man/Var.html'>var</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
@@ -2364,7 +2368,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <pre><code>[1] 2.415229</code></pre>
 </div>
-<h3 class="unnumbered" id="conclusioni">Conclusioni</h3>
+<h2 class="unnumbered" id="conclusioni">Conclusioni</h2>
 <p>Le funzioni fornite dai pacchetti <code>prob</code> e <code>distrEx</code> ci consentono di trovare la soluzione dei più comuni problemi “scolastici” relativi alle variabili aletorie discrete. Una descrizione delle funzionalità di questi pacchetti è fornita, per esempio, in questo <a href="http://www.atmos.albany.edu/facstaff/timm/ATM315spring14/R/IPSUR.pdf">documento</a>.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

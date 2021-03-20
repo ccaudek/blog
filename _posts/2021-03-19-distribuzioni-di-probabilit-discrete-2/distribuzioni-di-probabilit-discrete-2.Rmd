@@ -22,20 +22,29 @@ preview: preview.png
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Carichiamo il pacchetto `prob`:
+# TL; DR
+
+In questo post esamineremo nuovamente la nozione di indipendenza nel caso di due variabili aleatorie definite su uno spazio campionario discreto. Di tali variabili aleatorie discrete calcoleremo poi il valore atteso e la varianza. 
+
+
+# Distribuzioni di probabilità marginali
+
+Consideriamo l'esperimento casuale corrispondente al lancio di due dadi bilanciati. 
+
+Carichiamo il pacchetto `prob`
 
 ```{r}
 library("prob")
 ```
 
-Consideriamo l'esperimento casuale corrispondente al lancio di due dadi bilanciati. Creiamo lo spazio campionario di questo esperimento casuale:
+e creiamo lo spazio campionario di questo esperimento casuale:
 
 ```{r}
 S <- rolldie(2, nsides = 6, makespace = TRUE)
 S
 ```
 
-Definiamo due variabili aleatorie:
+Definiamo le seguenti variabili aleatorie:
 
 - U: somma dei punti dei due dadi,
 - V: 1 se i punti del lancio del primo dado sono minori di 4, 0 altrimenti.
@@ -65,7 +74,7 @@ pv <- marginal(S, vars = "V")
 pv
 ```
 
-## Distribuzione di probabilità congiunta
+# Distribuzione di probabilità congiunta
 
 Creiamo ora la distribuzione di probabilità congiunta delle variabili $U$ e $V$:
 
@@ -74,9 +83,9 @@ pj <- marginal(S, vars = c("U", "V"))
 pj
 ```
 
-### Indipendenza
+# Indipendenza
 
-Chiediamoci, di nuovo: $U$ e $V$ sono indipendenti?
+Chiediamoci: $U$ e $V$ sono indipendenti?
 
 ```{r}
 pu[pu$U == 3, ]$probs * pv[pv$V == 1, ]$probs
@@ -85,7 +94,8 @@ pj[pj$U == 3 & pj$V == 1, ]$probs
 
 Quindi, la risposta è negativa.
 
-## Valore atteso
+
+# Valore atteso e varianza
 
 Consideriamo la variabile $U$. Calcoliamo il valore atteso e la varianza. Per fare questo, utilizzeremo le funzioni del pacchetto `distrEx`.
 
@@ -107,7 +117,7 @@ Verifichiamo:
 sum(pu$U * pu$probs)
 ```
 
-Calcoliamo la varianza:
+Calcoliamo ora la varianza:
 
 ```{r}
 var(X)
@@ -125,7 +135,7 @@ Infine, la deviazione standard:
 sd(X)
 ```
 
-### Conclusioni {-}
+## Conclusioni {-}
 
 Le funzioni fornite dai pacchetti `prob` e `distrEx` ci consentono di trovare la soluzione dei più comuni problemi "scolastici" relativi alle variabili aletorie discrete. Una descrizione delle funzionalità di questi pacchetti è fornita, per esempio, in questo [documento](http://www.atmos.albany.edu/facstaff/timm/ATM315spring14/R/IPSUR.pdf).
 

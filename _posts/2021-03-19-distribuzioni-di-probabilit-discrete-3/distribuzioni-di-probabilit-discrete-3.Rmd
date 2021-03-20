@@ -22,8 +22,11 @@ preview: preview.png
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# TL; DR
 
 In questo post ci porremo il problema di calcolare la covarianza e la correlazione di due variabili aleatorie discrete, utilizzando l'informazione fornita dalla distribuzione di probabilità congiunta.  Vedremo come si possa usare `R` per semplificare i calcoli.
+
+# La distribuzioni di probabilità congiunta
 
 Carichiamo i pacchetti necessari:
 
@@ -54,7 +57,7 @@ UV <- marginal(S, vars = c("U", "V"))
 UV
 ```
 
-L'elenco dei valori che le due variabili aleatorie $U$ e $V$ possono assumere, insieme alla probabilità del loro verificarsi, fornisce la _distribuzione di probabilità congiunta_ delle due variabili aleatorie. 
+L'elenco dei valori che le due variabili aleatorie $U$ e $V$ possono assumere, insieme alla probabilità del loro verificarsi, costituisce la _distribuzione di probabilità congiunta_ delle due variabili aleatorie. 
 
 È anche possibile presentare la distribuzione di probabilità congiunta in forma tabulare. A tale fine possiamo utilizzare la funzione `xtabs()`:
 
@@ -75,7 +78,6 @@ e
 pv <- marginal(S, vars = "V")
 pv
 ```
-
 
 In maniera equivalente, lo stesso risultato si trova applicando le funzioni `rowSums()` e `colSums()` all'oggetto creato da `xtabs()`:
 
@@ -130,7 +132,6 @@ Lo stesso risultato si ottiene usando la formula alternativa per il calcolo dell
 $$
 \sigma_{xy} = \mathbb{E}(xy) -\mathbb{E}(x)\mathbb{E}(y)
 $$
-
 ovvero 
 
 ```{r}

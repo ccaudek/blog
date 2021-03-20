@@ -1483,7 +1483,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<h1 id="tl-dr">TL; DR</h1>
 <p>In questo post ci porremo il problema di calcolare la covarianza e la correlazione di due variabili aleatorie discrete, utilizzando l’informazione fornita dalla distribuzione di probabilità congiunta. Vedremo come si possa usare <code>R</code> per semplificare i calcoli.</p>
+<h1 id="la-distribuzioni-di-probabilità-congiunta">La distribuzioni di probabilità congiunta</h1>
 <p>Carichiamo i pacchetti necessari:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1569,7 +1571,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 15  8 1 0.05555556
 16  9 1 0.02777778</code></pre>
 </div>
-<p>L’elenco dei valori che le due variabili aleatorie <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> possono assumere, insieme alla probabilità del loro verificarsi, fornisce la <em>distribuzione di probabilità congiunta</em> delle due variabili aleatorie.</p>
+<p>L’elenco dei valori che le due variabili aleatorie <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> possono assumere, insieme alla probabilità del loro verificarsi, costituisce la <em>distribuzione di probabilità congiunta</em> delle due variabili aleatorie.</p>
 <p>È anche possibile presentare la distribuzione di probabilità congiunta in forma tabulare. A tale fine possiamo utilizzare la funzione <code>xtabs()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1680,8 +1682,7 @@ U        0     1
 <p>Lo stesso risultato si ottiene usando la formula alternativa per il calcolo della covarianza:</p>
 <p><span class="math display">\[
 \sigma_{xy} = \mathbb{E}(xy) -\mathbb{E}(x)\mathbb{E}(y)
-\]</span></p>
-<p>ovvero</p>
+\]</span> ovvero</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>UV</span><span class='op'>$</span><span class='va'>U</span> <span class='op'>*</span> <span class='va'>UV</span><span class='op'>$</span><span class='va'>V</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>UV</span><span class='op'>$</span><span class='va'>probs</span><span class='op'>)</span> <span class='op'>-</span> <span class='va'>mu_u</span> <span class='op'>*</span> <span class='va'>mu_v</span>

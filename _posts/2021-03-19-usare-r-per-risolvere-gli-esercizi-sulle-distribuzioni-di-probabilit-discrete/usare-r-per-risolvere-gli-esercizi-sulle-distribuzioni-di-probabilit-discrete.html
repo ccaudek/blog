@@ -1483,8 +1483,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h1 id="distribuzione-uniforme-discreta">Distribuzione uniforme discreta</h1>
-<p>Consideriamo i problemi nei quali lo spazio campionario è costitutito da un insieme di eventi elementari aventi tutti la stessa probabilità di verificarsi. Utilizzeremo qui le funzioni fornite dal pacchetto <code>prob</code>.</p>
+<h1 id="tl-dr">TL; DR</h1>
+<p>Utilizzeremo qui le funzioni fornite dal pacchetto <code>prob</code> per affrontare alcuni comuni problemi di calcolo delle probabilità nel caso in cui lo spazio campionario è costitutito da un insieme finito di eventi elementari aventi tutti la stessa probabilità di verificarsi.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://prob.r-forge.r-project.org'>"prob"</a></span><span class='op'>)</span>
@@ -1492,7 +1492,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h1 id="il-lancio-di-un-dado">Il lancio di un dado</h1>
-<p>Se l’esperimento casuale consiste nel lancio di dado bilanciato, lo spazio campionario è dato da</p>
+<p>Consideriamo l’esperimento casuale consistente nel lancio di dado bilanciato e utilizziamo la funzione <code>rolldie()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/prob/man/rolldie.html'>rolldie</a></span><span class='op'>(</span><span class='fl'>1</span>, makespace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -1627,7 +1627,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>[1] 0.4166667</code></pre>
 </div>
-<h2 id="probabilità-condizionata">Probabilità condizionata</h2>
+<h1 id="probabilità-condizionata">Probabilità condizionata</h1>
 <p>La probabilità condizionata di <span class="math inline">\(A\)</span> dato <span class="math inline">\(B\)</span> corrisponde alla somma delle probabilità degli eventi elementari in <span class="math inline">\(A\)</span>, se consideriamo solo il sottoinsieme <span class="math inline">\(B\)</span>. Esaminiamo dunque <span class="math inline">\(B\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1686,7 +1686,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>[1] 0.5</code></pre>
 </div>
-<h2 id="indipendenza">Indipendenza</h2>
+<h1 id="indipendenza">Indipendenza</h1>
 <p>Chiediamoci ora se <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> sono indipendenti.</p>
 <p>Per affrontare questo problema dobbiamo calcolare la probabilità <span class="math inline">\(P(A \cap B)\)</span>. Per fare questo dobbiamo selezionare le righe di <span class="math inline">\(S\)</span> nelle quali la colonna <code>X1</code> è uguale alla colonna <code>X2</code> e poi sommare i valori di probabilità contenuti nella colonna <code>probs</code>. Usiamo la funzione <code>intersect()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
