@@ -96,7 +96,7 @@ Per trovare l'area sottesa alla funzione di densità nell'intervallo [1.5, 2.5] 
 integrate(
   f, 
   lower = 1.5, 
-  upper = 2.0
+  upper = 2.5
 )$value
 ```
 
