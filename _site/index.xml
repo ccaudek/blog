@@ -20,6 +20,17 @@
       <media:content url="https://github.com/ccaudek/blog/posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue/preview.png" medium="image" type="image/png" width="608" height="730"/>
     </item>
     <item>
+      <title>Il teorema di Bayes, tanto tempo fa</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-21-il-teorema-di-bayes-tanto-tempo-fa</link>
+      <description>Teorema di Bayes e Covid-19.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-21-il-teorema-di-bayes-tanto-tempo-fa</guid>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-21-il-teorema-di-bayes-tanto-tempo-fa/preview.png" medium="image" type="image/png" width="632" height="800"/>
+    </item>
+    <item>
       <title>Distribuzioni di probabilità discrete (3)</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</link>
