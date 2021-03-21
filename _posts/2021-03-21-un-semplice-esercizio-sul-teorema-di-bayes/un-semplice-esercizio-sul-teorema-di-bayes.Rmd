@@ -1,0 +1,111 @@
+---
+title: "Un semplice esercizio sul teorema di Bayes"
+description: |
+  Aggiorniamo le nostre credenze usando Bayes.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-21-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Supponiamo che uno psicologo sia impegnato in uno studio che richiede la trasposizione digitale di un archivio cartaceo di cartelle cliniche. Supponiamo inoltre che tale lavoro di trascrizione venga eseguito da tre tirocinanti: M., L. e C. 
+
+# La distribuzione a priori
+
+I tre tirocinanti trascrivono un numero diverso di cartelle cliniche: M. trascrive il 60% delle cartelle, L. il 30% e C. il rimanente 10%. Siano $M$, $L$ e $C$ gli eventi: la trascrizione di una cartella clinica è stata fatta, rispettivamente, da  M., L. o C..
+
+
+# La verosimiglianza 
+
+Per evitare errori di trascrizione, devono essere fatti dei controlli incrociati. Da tali controlli emerge che c'è una probabilità d'errore diversa per i tre tirocinanti. Supponiamo che, in passato, i tre tirocinanti abbiano già lavorato per lo psicologo e, sulla base di questa esperienza precedente, si può dire che la probabilità di un errore di trascrizione per i tre tirocinanti è la seguente:
+
+| M. | L. | C. |
+|--|----|----|
+|0.003| 0.007 | 0.010 |
+
+
+# La distribuzione a posteriori
+
+Supponiamo che, nello studio considerato, è stato commesso un errore di trascrizione. Ci chiediamo: avendo osservato un errore, qual è la probabilità che a commettere l'errore sia stato M., L. o C.?
+
+Per rispondere a questa domanda usiamo il teorema di Bayes. Alla luce del fatto che è stato commesso un errore, la probabilità che il responsabile sia M. è:
+
+$$
+P(M \mid E) = \frac{P(M \cap E)}{P(E)} = \frac{P(E \mid M) P(M)}{P(E \mid M) P(M) + P(E \mid L) P(L) + P(E \mid C) P(C)},
+$$
+ovvero
+
+$$
+\begin{align}
+P(M \mid E) &= \frac{P(E \mid M) P(M)}{P(E \mid M) P(M) + P(E \mid L) P(L) + P(E \mid C) P(C)}\notag\\
+&=\frac{0.003 \cdot 0.6}{0.003 \cdot 0.6 + 0.007 \cdot 0.3 + 0.010 \cdot 0.1} = 0.367.
+\end{align}
+$$
+È possibile applicare la stessa formula per calcolare le rimanenti due probabilità, cioè $P(L \mid E)$ e $P(C \mid E)$. Possiamo però facilitare i calcoli usando `R` come indicato qui sotto. 
+
+Definiamo una distribuzione di probabilità a priori che descrive la nostra credenza su chi possa essere il responsabile di un errore, senza avere informazioni ulteriori.  Se, ad esempio, sappiamo che M. completa il 99% del lavoro, e sappiamo che c'è un errore, allora, probabilmente, il responsabile sarà M.. Nel caso dell'esercizio, la distribuzione a priori per i tre tirocinanti è:
+
+```{r}
+prior <- c(0.6, 0.3, 0.1)
+```
+
+Ma sappiamo anche che la probabilità di un errore varia tra i diversi tirocinanti.  La verosimiglianza di osservare un errore per ciascuno dei tirocinanti è:
+
+```{r}
+like <- c(0.003, 0.007, 0.01)
+```
+
+Si noti che la verosimiglianza, a differenza della distribuzione a priori, non è una distribuzione di probabilità.
+
+Supponiamo che sia stato commesso un errore di trascrizione. Usando il teorema di Bayes possiamo combinare le informazioni  precedenti 
+
+```{r}
+post <- prior * like
+post/sum(post)
+```
+
+per trovare le probabilità a posteriori $P(M \mid E)$ (ovvero, la probabilità che il responsabile sia M. dato che è stato osservato un errore), $P(L \mid E)$ e $P(C \mid E)$.
+
+A differenza della verosimiglianza, la distribuzione a posteriori è una distribuzione di probabilità. Infatti
+
+```{r}
+sum(post/sum(post))
+```
+
+## L'aggiornamento Bayesiano
+
+Il teorema di Bayes è utile soprattutto perché ci consente di eseguire quell'operazione che va sotto il nome di aggiornamento Bayesiano, ovvero l'aggiornamento delle nostre credenze via via che nuove informazioni risultano disponibili.
+Supponiamo che le nuove informazioni siano le seguenti: sono stati commessi altri 7 errori di trascrizione. Supponiamo inoltre di credere che _tutti_ gli errori siano stati commessi dallo stesso tirocinante. Avendo a disposizione tali nuove informazioni, come si trasformano le probabilità a posteriori?
+
+Mediante l'aggiornamento Bayesiano, le nuove probabilità a posteriori diventano:
+
+```{r}
+newprior <- post
+post <- newprior * like^7 
+post/sum(post)
+```
+
+Vediamo ora che il tirocinante che ha la probabilità maggiore di avere commesso un errore di trascrizione in tutti gli otto documenti non è più L. ma diventa C. (non ho spiegato perché ho elevato la verosimiglianza alla settima potenza, ma spero che si capisca).
+
+
+
+
+
+

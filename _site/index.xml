@@ -31,6 +31,17 @@
       <media:content url="https://github.com/ccaudek/blog/posts/2021-03-21-il-teorema-di-bayes-tanto-tempo-fa/preview.png" medium="image" type="image/png" width="632" height="800"/>
     </item>
     <item>
+      <title>Un semplice esercizio sul teorema di Bayes</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-21-un-semplice-esercizio-sul-teorema-di-bayes</link>
+      <description>Aggiorniamo le nostre credenze usando Bayes.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-21-un-semplice-esercizio-sul-teorema-di-bayes</guid>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-21-un-semplice-esercizio-sul-teorema-di-bayes/preview.png" medium="image" type="image/png" width="1132" height="486"/>
+    </item>
+    <item>
       <title>Distribuzioni di probabilità discrete (3)</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</link>
