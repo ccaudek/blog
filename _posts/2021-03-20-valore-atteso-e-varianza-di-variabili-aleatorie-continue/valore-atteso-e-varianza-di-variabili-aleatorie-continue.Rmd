@@ -139,13 +139,13 @@ Nel caso dell'esempio che stiamo discutendo, per calcolare la varianza di $Y$ ut
 $$
 Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
 $$
-Iniziamo a definire in `R` la funzione composta $x^2$:
+Iniziamo a definire in `R` la funzione necessaria per calcolare il valore atteso di $y^2$:
 
 ```{r}
 h <- function(y) y^2 * f(y)
 ```
 
-Calcoliamo poi l'area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo il risultato desiderato:
+Calcoliamo poi l'area sottesa dal grafico di tale funzione (cioè il valore atteso di $y^2$) e applichiamo la formula della varianza (ovvero, sottraiamo da tale valore il quadrato del valore atteso) per ottenere il risultato desiderato:
 
 ```{r}
 VarY <- integrate(

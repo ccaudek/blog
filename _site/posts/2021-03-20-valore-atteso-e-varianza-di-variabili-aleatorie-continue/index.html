@@ -2587,14 +2587,14 @@ Var(Y) = \sigma^2_Y = \int_a^b (y - \mu_Y)^2 f_Y(y) dy.
 <p>Nel caso dell’esempio che stiamo discutendo, per calcolare la varianza di <span class="math inline">\(Y\)</span> utilizzeremo la formula seguente:</p>
 <p><span class="math display">\[
 Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
-\]</span> Iniziamo a definire in <code>R</code> la funzione composta <span class="math inline">\(x^2\)</span>:</p>
+\]</span> Iniziamo a definire in <code>R</code> la funzione necessaria per calcolare il valore atteso di <span class="math inline">\(y^2\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='va'>y</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>*</span> <span class='fu'>f</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Calcoliamo poi l’area sottesa dal grafico di tale funzione. Applicando la formula della varianza otteniamo il risultato desiderato:</p>
+<p>Calcoliamo poi l’area sottesa dal grafico di tale funzione (cioè il valore atteso di <span class="math inline">\(y^2\)</span>) e applichiamo la formula della varianza (ovvero, sottraiamo da tale valore il quadrato del valore atteso) per ottenere il risultato desiderato:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>VarY</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
