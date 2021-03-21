@@ -22,8 +22,8 @@ preview: preview.png
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+thematic::thematic_rmd()
 ```
-
 
 Supponiamo che uno psicologo sia impegnato in uno studio che richiede la trasposizione digitale di un archivio cartaceo di cartelle cliniche. Supponiamo inoltre che tale lavoro di trascrizione venga eseguito da tre tirocinanti: M., L. e C. 
 

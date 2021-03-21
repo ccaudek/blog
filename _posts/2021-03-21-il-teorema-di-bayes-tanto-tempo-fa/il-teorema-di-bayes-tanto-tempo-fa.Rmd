@@ -22,6 +22,7 @@ preview: preview.png
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+thematic::thematic_rmd()
 ```
 
 Pubblico in questo post dei materiali che sono utili per un esercizio sul teorema di Bayes.  In realtà, ho scritto questo testo il 22 marzo 2020.  Assume un significato diverso oggi.

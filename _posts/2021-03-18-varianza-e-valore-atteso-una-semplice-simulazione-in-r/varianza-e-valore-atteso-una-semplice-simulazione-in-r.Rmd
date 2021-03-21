@@ -19,6 +19,7 @@ categories:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+thematic::thematic_rmd()
 ```
 
 ```{r, message = FALSE, warning = FALSE}

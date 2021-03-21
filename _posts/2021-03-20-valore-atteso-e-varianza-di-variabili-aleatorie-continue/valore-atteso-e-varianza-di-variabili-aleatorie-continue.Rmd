@@ -22,7 +22,9 @@ preview: preview.png
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+thematic::thematic_rmd()
 ```
+
 
 # TL; DR
 
