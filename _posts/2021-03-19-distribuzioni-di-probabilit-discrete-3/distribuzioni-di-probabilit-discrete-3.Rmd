@@ -100,7 +100,7 @@ Calcoliamo ora il valore atteso delle due variabili aleatorie.
 
 Utilizziamo la funzione `DiscreteDistribution()`. Il primo argomento richiede un vettore che specifica il supporto della variabile casuale discreta. Il secondo argomento è un vettore che, per ciasun valore della variabile casuale discreta, specifica il corrispondente valore della funzione di massa di probabilità. 
 
-Mediante la funzione `DiscreteDistribution()` otteniamo valore atteso di `U`:
+Mediante la funzione `DiscreteDistribution()` otteniamo il valore atteso di `U`:
 
 ```{r}
 U <- DiscreteDistribution(supp = pu$U, prob = pu$probs)
