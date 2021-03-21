@@ -175,8 +175,8 @@ _et voilà!_ Il valore che abbiamo trovato, utilizzando la formula della statist
 
 Quindi, anche in questo caso, l'interpretazione è semplice: 
 
-> la varianza di una variabile aleatoria è la varianza (nel senso della statistica descrittiva) di un numero molto grande di realizzazioni della variabile aleatoria.
+> la varianza di una variabile aleatoria non è altro che la varianza, nel senso della statistica descrittiva, di un numero molto grande di realizzazioni della variabile aleatoria.
 
-Come sempre, è più semplice utilizzare tale valore prendendo la radice quadrata: la deviazione standard, infatti, è espressa nella stessa unità di misura dei valori grezzi della variabile cosiderata.
+Come sempre, è più semplice interpretare la radice quadrata della varianza: la deviazione standard, infatti, è espressa nella stessa unità di misura dei valori grezzi della variabile in esame.
 
 
