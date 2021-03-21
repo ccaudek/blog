@@ -2601,7 +2601,7 @@ Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
 </code></pre>
 </div>
 </div>
-<p>Calcoliamo poi l’area sottesa dal grafico di tale funzione (cioè il valore atteso di <span class="math inline">\(y^2\)</span>) e applichiamo la formula della varianza (ovvero, sottraiamo da tale valore il quadrato del valore atteso) per ottenere il risultato desiderato:</p>
+<p>Calcoliamo poi l’area sottesa dal grafico di tale funzione (cioè il valore atteso di <span class="math inline">\(y^2\)</span>) e, sottraendo da tale valore il quadrato del valore atteso, otteniamo il risultato desiderato:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>VarY</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>
@@ -2613,9 +2613,6 @@ Var(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2.
 </code></pre>
 </div>
 <pre><code>[1] 0.75</code></pre>
-</div>
-<div class="theorem">
-<p>Random variables built from many independent events tend to be normal.</p>
 </div>
 <h3 class="unnumbered" id="informazioni-sulla-sessione-di-lavoro">Informazioni sulla sessione di lavoro</h3>
 <details>
