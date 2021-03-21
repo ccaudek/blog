@@ -56,7 +56,7 @@
       <title>Distribuzioni di probabilità discrete (1)</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-19-usare-r-per-risolvere-gli-esercizi-sulle-distribuzioni-di-probabilit-discrete</link>
-      <description>È possibile usare le funzioni contenute in alcuni pacchetti `R` per facilitare la soluzione degli esercizi sulle distribuzioni di probabilità discrete.</description>
+      <description>Le funzioni contenute del pacchetto `prob` possono facilitare la soluzione di esercizi sulle distribuzioni di probabilità discrete.</description>
       <category>Psicometria</category>
       <category>R</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-19-usare-r-per-risolvere-gli-esercizi-sulle-distribuzioni-di-probabilit-discrete</guid>

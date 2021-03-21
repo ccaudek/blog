@@ -1,7 +1,7 @@
 ---
 title: "Distribuzioni di probabilità discrete (1)"
 description: |
-  È possibile usare le funzioni contenute in alcuni pacchetti `R` per facilitare la soluzione degli esercizi sulle distribuzioni di probabilità discrete.
+  Le funzioni contenute del pacchetto `prob` possono facilitare la soluzione di esercizi sulle distribuzioni di probabilità discrete.
 author:
   - name: Corrado Caudek
     url: https://caudekblog.netlify.app
@@ -33,19 +33,34 @@ Utilizzeremo qui le funzioni fornite dal pacchetto `prob` per affrontare alcuni 
 library("prob")
 ```
 
-# Il lancio di un dado
+# Pacchetto `prob`
 
-Consideriamo l'esperimento casuale consistente nel lancio di dado bilanciato e utilizziamo la funzione `rolldie()`: 
+Consideriamo l'esperimento casuale del lancio di una moneta. I risultati sono `H` (head) e `T` (tail). Possiamo esplicitare lo spazio campionario di questo esperimento casuale con la funzione `tosscoin()`:
+
+```{r}
+library("prob")
+tosscoin(1)
+```
+
+In maniera equivalente possiamo generare lo spazio campionario dell'esperimento casuale del lancio di tre monete:
+
+```{r}
+tosscoin(3)
+```
+
+Il pacchetto `prob` fornisce anche funzioni per generare lo spazio campionario dell'esperimento casuale che consiste nel lancio di un dado, o dell'estrazione di una carta da un mazzo di carte da poker ben mescolato.
+
+Per l'esperimento casuale consistente nel lancio di dado bilanciato si usa la funzione `rolldie()`: 
 
 ```{r}
 rolldie(1, makespace = TRUE)
 ```
+
+Il valore di default della funzione `rolldie()` specifica un dado a 6 facce, ma possiamo specificarne altri valori con l'argomento `nsides`. Ad esempio, l'istruzione `rolldie(3, nsides = 4)` viene usata per far specificare il caso di un dado a 4 facce lanciato tre volte. 
+
 La funzione `rolldie()` crea un dataframe in cui ciascuna riga corrisponde ad un punto dello spazio campionario (cioè un evento elementare). La colonna `probs` riporta la probabilità associata a ciascun punto dello spazio campionario.
 
-
-# Il lancio di due dadi
-
-Ovviamente possiamo essere più ambiziosi e costruire, ad esempio, lo spazio campionario associato all'esperimento casuale che consiste nel lancio di due dadi bilanciati:
+Con le istruzioni seguenti generiamo lo spazio campionario associato all'esperimento casuale che consiste nel lancio di due dadi bilanciati:
 
 ```{r}
 S <- rolldie(2, makespace = TRUE)
@@ -58,12 +73,19 @@ In questo caso, il dataframe $S$ è costituito da $6 \times 6$ righe:
 nrow(S)
 ```
 
-Sullo spazio campionario $S$ definiamo ora gli eventi $A$ e $B$. Siano $A$ e $B$ due eventi in $S$ tali per cui 
+
+## Eventi
+
+Un evento $A$ è semplicemente un insieme di risultati dell'esperimento casuale o, in altre parole, un sottoinsieme dello spazio campionario. Dopo che l'esperimento casuale è stato eseguito, diciamo che l'evento $A$ si è verificato se il risultato dell'esperimento appartiene ad $A$. Diciamo che un gruppo di eventi $A_1$, $A_2$, $A_3$,... sono mutuamente esclusivi o disgiunti se $Ai ∩ Aj = ∅$ per ogni coppia distinta $A_i \neq A_j$. Ad esempio, nell'esperimento del lancio della moneta gli eventi $A$ = {Heads} e $B$ = {Tails} sono mutuamente esclusivi.
+
+Come possiamo definire un evento usando `R`?
+
+Ritorniamo allo spazio campionario $S$ dell'esperimento casuale corrispondente al lancio di due dadi bilanciati. Definiamo ora gli eventi $A$ e $B$ in $S$ tali per cui 
 
 - $A$: i due lanci producono lo stesso risultato,
 - $B$: la somma dei punti dei due lanci è maggiore o uguale a 8.
 
-Per identificare tali eventi è sufficiente estrarre dal dataframe `S` le righe (eventi elementari) che corrispondono alla definizione dei due eventi:
+Per identificare tali eventi usando `R` è sufficiente estrarre dal dataframe che descrive `S` le righe (eventi elementari) che soddisfano le condizioni specificate dalla definizione degli eventi medesimi:
 
 ```{r}
 A <- subset(S, X1 == X2)
@@ -74,17 +96,19 @@ B <- subset(S, X1 + X2 >= 8)
 A
 ```
 
-La probabilità del verificarsi dell'evento $A$ è 
+Siamo ora nelle condizioni di potere calcolare la probabilità del verificarsi dell'evento $A$, ovvero 
 
 ```{r}
 6 / 36
 ```
 
-In `R` dobbiamo sommare i valori della colonna `probs` e questo viene fatto dalla funzione `Prob()` che prende come argomento l'oggetto che corrisponde al sottoinsieme di $S$ che abbiamo definito:
+Per replicare tale risultato in `R` dobbiamo sommare i valori della colonna `probs`. Ciò viene ottenuto passando alla funzione `Prob()` l'oggetto che corrisponde al sottoinsieme di $S$ che abbiamo definito:
 
 ```{r}
 Prob(A)
 ```
+
+Ovviamente, nel caso dell'esempio che stiamo discutendo ciò è poco utile, in quanto era facile trovare il risultato senza ricorrere ad `R`. Ma, in generale, il problema può essere complesso e, in tali condizioni, contare è difficile. In quei casi ricorrere ad `R` facilita la soluzione del problema.
 
 Facciamo la stessa cosa per $B$:
 
@@ -103,6 +127,8 @@ ovvero
 ```{r}
 Prob(B)
 ```
+
+Una descrizione approfondita dell'uso delle funzioni presenti nel pacchetto `prob` per risolvere questo tipo di problemi è fornita nel testo di [G. Jay Kerns](http://www.atmos.albany.edu/facstaff/timm/ATM315spring14/R/IPSUR.pdf). Qui di seguito forniamo solo alcuni esempi per fare capire come ci si può usare `R` per risolvere problemi di questo tipo.
 
 
 # Probabilità condizionata
