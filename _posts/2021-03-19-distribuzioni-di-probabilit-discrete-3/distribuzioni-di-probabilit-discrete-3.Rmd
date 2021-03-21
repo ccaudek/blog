@@ -177,3 +177,16 @@ s_uv / sqrt(var(U) * var(V))
 
 
 
+### Informazioni sulla sessione di lavoro {-}
+
+<details>
+<summary>
+Session Info
+</summary>
+Sono qui fornite le informazioni sulla sessione di lavoro insieme all'elenco dei pacchetti usati. I pacchetti contrassegnati con un asterisco(*) sono stati usati esplicitamente nello script.
+```{r, echo = FALSE}
+sessioninfo::session_info()
+```
+
+</details>
+

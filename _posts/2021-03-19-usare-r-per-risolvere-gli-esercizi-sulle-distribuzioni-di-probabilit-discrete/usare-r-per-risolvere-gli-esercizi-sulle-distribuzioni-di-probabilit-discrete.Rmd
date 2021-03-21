@@ -191,3 +191,17 @@ Prob(A) * Prob(B)
 ```
 
 il che non corrisponde al valore `r Prob(intersect(A, B))`. Possiamo dunque concludere che gli eventi $A$ e $B$ non sono indipendenti.
+
+
+### Informazioni sulla sessione di lavoro {-}
+
+<details>
+<summary>
+Session Info
+</summary>
+Sono qui fornite le informazioni sulla sessione di lavoro insieme all'elenco dei pacchetti usati. I pacchetti contrassegnati con un asterisco(*) sono stati usati esplicitamente nello script.
+```{r, echo = FALSE}
+sessioninfo::session_info()
+```
+
+</details>
