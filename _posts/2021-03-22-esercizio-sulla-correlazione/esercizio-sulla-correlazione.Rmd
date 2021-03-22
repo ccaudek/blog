@@ -1,0 +1,84 @@
+---
+title: "Esercizio sulla correlazione"
+description: |
+  Usiamo R per controllare l'algebra.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-22-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Si consideri il seguente problema.
+
+Supponiamo che $X1$ e $X2$ siano due variabili aleatorie indipendenti con media 0 e varianza $\sigma^2$. Qual è la correlazione di $X1 + 2\cdot X2$ e $4 \cdot X1 − X2$? 
+
+__Soluzione__ 
+
+Scriviamo $U = X1 + 2 X2$ e $V = 4X1 - X2$.
+
+Calcoliamo la covarianza:
+
+$$
+\begin{align}
+cov(X1 + 2 X2, V) &= cov(X1, V) + 2 cov(X2, V) \notag\\
+&= cov(X1, 4X1-X2) + 2 cov(X2, 4X1-X2) \notag\\
+&= 4 cov(X1, X1) - cov(X1, X2) + 2[4 cov(X1, X2) - cov(X2, X2)].\notag
+\end{align}
+$$
+Ricordando che $X1$ e $X2$ sono indipendenti e che hanno entrambe la stessa varianza, otteniamo
+
+$$
+cov(U, V) = 4 \sigma^2 - 2 \sigma^2 = 2 \sigma^2.
+$$
+Calcoliamo le due varianze:
+
+$$
+var(U) = var(X1 + 2 X2) = var(X1) + 4 var(X2) = 5 \sigma^2,
+$$
+$$
+var(V) = var(4X1 - X2) = 16 var(X1) + var(X2) = 17 \sigma^2.
+$$
+Calcoliamo la correlazione:
+
+$$
+r = \frac{cov(U, V)}{\sqrt{var(U)var(V)}} = \frac{2 \sigma^2}{\sqrt{5 \sigma^2 \cdot 17 \sigma^2}} = 0.2169.
+$$
+
+Usiamo `R` per controllare il risultato simulando un numero molto grande di valori per le due variabili:
+
+```{r}
+X_1 <- rnorm(1e7)
+X_2 <- rnorm(1e7)
+U <- X_1 + 2*X_2
+V <- 4*X_1 - X_2
+```
+
+Calcoliamo la covarianza:
+
+```{r}
+mean(U*V)
+```
+
+Calcoliamo la correlazione:
+
+```{r}
+mean(U*V) / sqrt(var(U)*var(V))
+```
+
+

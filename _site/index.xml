@@ -7,7 +7,18 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 21 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Esercizio sulla correlazione</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-22-esercizio-sulla-correlazione</link>
+      <description>Usiamo R per controllare l'algebra.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-22-esercizio-sulla-correlazione</guid>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-22-esercizio-sulla-correlazione/preview.png" medium="image" type="image/png" width="1426" height="624"/>
+    </item>
     <item>
       <title>Valore atteso e varianza di variabili aleatorie continue</title>
       <dc:creator>Corrado Caudek</dc:creator>

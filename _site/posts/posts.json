@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2021-03-22-esercizio-sulla-correlazione/",
+    "title": "Esercizio sulla correlazione",
+    "description": "Usiamo R per controllare l'algebra.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://caudekblog.netlify.app"
+      }
+    ],
+    "date": "2021-03-22",
+    "categories": [
+      "R",
+      "Psicometria"
+    ],
+    "contents": "\nSi consideri il seguente problema.\nSupponiamo che \\(X1\\) e \\(X2\\) siano due variabili aleatorie indipendenti con media 0 e varianza \\(\\sigma^2\\). Qual è la correlazione di \\(X1 + 2\\cdot X2\\) e \\(4 \\cdot X1 − X2\\)?\nSoluzione\nScriviamo \\(U = X1 + 2 X2\\) e \\(V = 4X1 - X2\\).\nCalcoliamo la covarianza:\n\\[\n\\begin{align}\ncov(X1 + 2 X2, V) &= cov(X1, V) + 2 cov(X2, V) \\notag\\\\\n&= cov(X1, 4X1-X2) + 2 cov(X2, 4X1-X2) \\notag\\\\\n&= 4 cov(X1, X1) - cov(X1, X2) + 2[4 cov(X1, X2) - cov(X2, X2)].\\notag\n\\end{align}\n\\] Ricordando che \\(X1\\) e \\(X2\\) sono indipendenti e che hanno entrambe la stessa varianza, otteniamo\n\\[\ncov(U, V) = 4 \\sigma^2 - 2 \\sigma^2 = 2 \\sigma^2.\n\\] Calcoliamo le due varianze:\n\\[\nvar(U) = var(X1 + 2 X2) = var(X1) + 4 var(X2) = 5 \\sigma^2,\n\\] \\[\nvar(V) = var(4X1 - X2) = 16 var(X1) + var(X2) = 17 \\sigma^2.\n\\] Calcoliamo la correlazione:\n\\[\nr = \\frac{cov(U, V)}{\\sqrt{var(U)var(V)}} = \\frac{2 \\sigma^2}{\\sqrt{5 \\sigma^2 \\cdot 17 \\sigma^2}} = 0.2169.\n\\]\nUsiamo R per controllare il risultato simulando un numero molto grande di valori per le due variabili:\n\n\nX_1 <- rnorm(1e7)\nX_2 <- rnorm(1e7)\nU <- X_1 + 2*X_2\nV <- 4*X_1 - X_2\n\n\n\nCalcoliamo la covarianza:\n\n\nmean(U*V)\n\n\n[1] 1.999482\n\nCalcoliamo la correlazione:\n\n\nmean(U*V) / sqrt(var(U)*var(V))\n\n\n[1] 0.2168761\n\n\n\n\n",
+    "preview": "posts/2021-03-22-esercizio-sulla-correlazione/preview.png",
+    "last_modified": "2021-03-22T14:00:59+01:00",
+    "input_file": {},
+    "preview_width": 1426,
+    "preview_height": 624
+  },
+  {
     "path": "posts/2021-03-20-valore-atteso-e-varianza-di-variabili-aleatorie-continue/",
     "title": "Valore atteso e varianza di variabili aleatorie continue",
     "description": "Usiamo `R` per il calcolo degli integrali.",
