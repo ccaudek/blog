@@ -1,0 +1,98 @@
+/*----------- FONTS -----------*/
+
+/* serif font for headers */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* sans serif font */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* monospace font for code */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&display=swap');
+
+/* This seems to be the starting point
+html {
+  font-size: 16px;
+}*/
+
+/* change header font, color, and weight */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Libre Baskerville";
+  color: #096B72;
+  font-weight: 400;
+}
+
+
+/* change body font, color, and bump size */
+body {
+  font-family: "Work Sans";
+  color: #405359;
+  font-size: 1.2rem;
+}
+
+/* change code font and bump size */
+d-article div.sourceCode code,
+d-article pre code {
+	font-family: "DM Mono", monospace;
+	font-size: 1rem;
+}
+
+/* metadata section */
+d-byline h3 {
+	font-size: 0.9rem;
+	color: rgba(0, 0, 0, 0.75);
+	letter-spacing: .2em;
+}
+
+d-byline {
+	font-size: 1.0rem;
+}
+
+/* The TOC on top */
+.d-contents nav h3 {
+	margin-top: 0;
+	margin-bottom: 1em;
+	font-size: 0.9rem;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.75);
+	text-transform: uppercase;
+  letter-spacing: .2em;
+}
+
+.d-contents nav a {
+	font-size: 1.0rem;
+	border-bottom: none;
+	text-decoration: none color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav > ul > li > a {
+	font-weight: normal;
+}
+
+.d-contents {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+}
+
+/* APPENDIX */
+/* I'm unable to affect the color of either of these */
+/* the text here gets flagged for low contrast */
+d-appendix h3 {
+	color: rgba(0,0,0,0.75);
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+d-appendix {
+	color: rgba(0,0,0,0.6);
+}
+
+d-footnote-list a.footnote-backlink {
+	color: rgba(0,0,0,0.6);
+}
+
+/* asides- cannot bump font size or change color */
+d-article aside {
+	font-size: .8rem
+	color: rgba(0, 0, 0, 0.9);
+}
