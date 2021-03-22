@@ -147,7 +147,7 @@ Iniziamo a definire in `R` la funzione necessaria per calcolare il valore atteso
 h <- function(y) y^2 * f(y)
 ```
 
-Calcoliamo poi l'area sottesa dal grafico di tale funzione (cioè il valore atteso di $y^2$) e,  sottraendo da tale valore il quadrato del valore atteso, otteniamo il risultato desiderato:
+Calcoliamo poi il valore atteso di $y^2$ e,  sottraendo da tale valore il quadrato del valore atteso, otteniamo il risultato desiderato:
 
 ```{r}
 VarY <- integrate(
