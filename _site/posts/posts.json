@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2021-03-23-esercizi-sulla-distribuzione-binomiale/",
+    "title": "Esercizi sulla distribuzione binomiale",
+    "description": "Sequenze di prove Bernoulliane.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://caudekblog.netlify.app"
+      }
+    ],
+    "date": "2021-03-23",
+    "categories": [
+      "R",
+      "Psicometria"
+    ],
+    "contents": "\nLa funzione dbinom() fornisce le probabilità per possibili valori di una variabile aleatoria binomiale. Come minimo richiede tre argomenti. Il primo argomento è un vettore di quantili (i possibili valori della variabile aleatoria X). Il secondo e il terzo argomento sono i parametri che definiscono la distribuzione binomiale, vale a dire, n (il numero di prove Bernoulliane indipendenti) e p (la probabilità di successo in ciascuna prova). Ad esempio, per una distribuzione binomiale con n = 5, p = 0.5, i valori possibili per X sono 0,1,2,3,4,5. La funzione dbinom(x, n, p) ritornerà i valori di probabilità \\(P(X = x)\\) per \\(x = 0, 1, 2, 3, 4, 5\\). Ovvero\n\n\nn <- 5\np <- 0.5\nx <- 0:n\ndbinom(x, n, p)\n\n\n[1] 0.03125 0.15625 0.31250 0.31250 0.15625 0.03125\n\nIl grafico della distribuzione di probabilità binomiale può essere visualizzato come indicato nella figura seguente:\n\n\nx <- 0:12\nprob <- dbinom(x, 12, 0.5)\nbarplot(\n  prob,\n  col = \"red\",\n  ylim = c(0,.2),\n  names.arg=x,\n  main=\"Distribuzione Binomiale (n=12, p=0.5)\"\n)\n\n\n\n\nSi noti che la distribuzione binomiale è simmetrica quando p = 0,5. Per dimostrare che la distribuzione binomiale ha un’asimmetria negativa quando p è maggiore di 0.5, si consideri il seguente esempio:\n\n\nn <- 9\np <- .8 \nx <- 0:n\nprob <- dbinom(x, n, p)\nbarplot(\n  prob,\n  names.arg = x,\n  main=\"Distribuzione Binomiale (n=9, p=0.7)\",\n  col=\"lightblue\"\n)\n\n\n\n\nQuando p è minore di 0.5 la distribuzione binomiale è ha un’asimmetria positiva come indicato di seguito.\n\n\nn <- 9\np <- .2 \nx <- 0:n\nprob <- dbinom(x, n, p)\nbarplot(\n  prob,\n  names.arg = x,\n  main=\"Distribuzione Binomiale (n=9, p=0.3)\",\n  col=\"lightblue\"\n)\n\n\n\n\nIllustreremo ora l’uso della funzione di distribuzione cumulativa pbinom(). Questa funzione può essere utilizzata per calcolare la probabilità \\(P (X \\leq x)\\). Il primo argomento di questa funzione è un vettore di quantili (valori di x).\nAd esempio: si calcoli la probabilità \\(P(X \\leq 2)\\) nella distribuzione Bin(n=5, p=0.5):\n\n\npbinom(2, 5, 0.5)\n\n\n[1] 0.5\n\novvero\n\n\nsum(dbinom(0:2, 5, 0.5))\n\n\n[1] 0.5\n\nPer calcolare probabilità del tipo \\(P( a \\leq X \\leq b)\\) procediamo nel modo seguente:\n\n\n# P(3<= X <= 5) = P(X=3) + P(X=4) + P(X=5) in a Bin(n=9,p=0.6) dist\nsum(dbinom(c(3,4,5), 9, 0.6))\n\n\n[1] 0.4923556\n\nPossiamo presentare la distribuzione Binomiale in una tabella nel modo seguente:\n\n\nn <- 10\np <- 0.4\nx <- 0:n\nprob = dbinom(x, n, p) \ncdf = pbinom(x, n, p) \ndist_table = cbind(x, prob, cdf)\ndist_table\n\n\n       x         prob         cdf\n [1,]  0 0.0060466176 0.006046618\n [2,]  1 0.0403107840 0.046357402\n [3,]  2 0.1209323520 0.167289754\n [4,]  3 0.2149908480 0.382280602\n [5,]  4 0.2508226560 0.633103258\n [6,]  5 0.2006581248 0.833761382\n [7,]  6 0.1114767360 0.945238118\n [8,]  7 0.0424673280 0.987705446\n [9,]  8 0.0106168320 0.998322278\n[10,]  9 0.0015728640 0.999895142\n[11,] 10 0.0001048576 1.000000000\n\nLa funzione rbinom() viene usata per generare campioni casuali di una determinata ampiezza avendo specificato una distribuzione Binomiale di determinati parametri.\n\n\nx_val <- names(table(rbinom(1000, 8, .5)))\nbarplot(\n  as.vector(table(rbinom(1000, 8, 0.5))), names.arg = x_val,\n  main=\"Simulazione di una distribuzione Binomiale\\n di parametri n=8, p=0.5\"\n)\n\n\n\n\nEsempio\nIl database di uno psicologo mostra che dei pazienti affetti da ansia sociale, il 60% migliora dopo il trattamento. Qual è la probabilità che, se estraiamo a caso le cartelle di 10 pazienti, esattamente 6 di questi mostrino un miglioramento dopo il trattamento?\nTroviamo la soluzione applicando la funzione dbinom():\n\n\nn <-  10\np <- 0.60 \nx <- 6\ndbinom(x, n, p)\n\n\n[1] 0.2508227\n\n\nEsempio\nUn test è costituito da 6 domande con 4 alternative di risposta ciascuna. Se un rispondente completa il test ma si limita a tirare a caso, qual è la probabilità di almeno una risposta corretta?\n\n\n1 - dbinom(0, 6, 1/4)\n\n\n[1] 0.8220215\n\n\nEsempio\nSe una moneta bilanciata viene lanciata 8 volte, qual è la probabilità di ottenere più di cinque volte testa?\n\n\n1 - pbinom(5, 8, 0.5)\n\n\n[1] 0.1445312\n\n\nEsempio\nUn dado truccato produce il risultato ‘6’ in 8 lanci su 30. Il dado viene lanciato 12 volte. Qual è il valore atteso del numero di volte in cui si osserverà il risultato ‘6’? Qual è la deviazione standard del numero di volte in cui si osserva ‘6’?\n\n\n12 * 8/30\n\n\n[1] 3.2\n\n\n\nsqrt(12 * 8/30 * (1 - 8/30))\n\n\n[1] 1.531883\n\n\n\n\n",
+    "preview": "posts/2021-03-23-esercizi-sulla-distribuzione-binomiale/esercizi-sulla-distribuzione-binomiale_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2021-03-23T18:42:02+01:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2021-03-22-esercizio-sulla-correlazione/",
     "title": "Esercizio sulla correlazione",
     "description": "Usiamo R per controllare l'algebra.",
@@ -106,8 +128,8 @@
     "preview": "posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/preview.png",
     "last_modified": "2021-03-21T15:20:44+01:00",
     "input_file": {},
-    "preview_width": 682,
-    "preview_height": 428
+    "preview_width": 660,
+    "preview_height": 1004
   },
   {
     "path": "posts/2021-03-19-distribuzioni-di-probabilit-discrete-2/",

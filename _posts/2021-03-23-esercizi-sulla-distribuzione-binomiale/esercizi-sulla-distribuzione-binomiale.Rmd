@@ -1,0 +1,173 @@
+---
+title: "Esercizi sulla distribuzione binomiale"
+description: |
+  Sequenze di prove Bernoulliane.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-23-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+La funzione `dbinom()` fornisce le probabilità per possibili valori di una variabile aleatoria binomiale. Come minimo richiede tre argomenti. Il primo argomento è un vettore di quantili (i possibili valori della variabile aleatoria _X_). Il secondo e il terzo argomento sono i parametri che definiscono la distribuzione binomiale, vale a dire, _n_ (il numero di prove Bernoulliane indipendenti) e _p_ (la probabilità di successo in ciascuna prova). Ad esempio, per una distribuzione binomiale con _n_ = 5, _p_ = 0.5, i valori possibili per _X_ sono 0,1,2,3,4,5. La funzione `dbinom(x, n, p)` ritornerà i valori di probabilità $P(X = x)$ per $x = 0, 1, 2, 3, 4, 5$. Ovvero
+
+```{r}
+n <- 5
+p <- 0.5
+x <- 0:n
+dbinom(x, n, p)
+```
+Il grafico della distribuzione di probabilità binomiale può essere visualizzato come indicato nella figura seguente:
+
+```{r}
+x <- 0:12
+prob <- dbinom(x, 12, 0.5)
+barplot(
+  prob,
+  col = "red",
+  ylim = c(0,.2),
+  names.arg=x,
+  main="Distribuzione Binomiale (n=12, p=0.5)"
+)
+```
+
+Si noti che la distribuzione binomiale è simmetrica quando p = 0,5. Per dimostrare che la distribuzione binomiale ha un'asimmetria negativa quando _p_ è maggiore di 0.5, si consideri il seguente esempio:
+
+```{r}
+n <- 9
+p <- .8 
+x <- 0:n
+prob <- dbinom(x, n, p)
+barplot(
+  prob,
+  names.arg = x,
+  main="Distribuzione Binomiale (n=9, p=0.7)",
+  col="lightblue"
+)
+```
+
+Quando _p_ è minore di 0.5 la distribuzione binomiale è ha un'asimmetria positiva come indicato di seguito.
+
+```{r}
+n <- 9
+p <- .2 
+x <- 0:n
+prob <- dbinom(x, n, p)
+barplot(
+  prob,
+  names.arg = x,
+  main="Distribuzione Binomiale (n=9, p=0.3)",
+  col="lightblue"
+)
+```
+
+Illustreremo ora l'uso della funzione di distribuzione cumulativa `pbinom()`. Questa funzione può essere utilizzata per calcolare  la probabilità $P (X \leq x)$. Il primo argomento di questa funzione è un vettore di quantili (valori di _x_).
+
+Ad esempio: si calcoli la probabilità $P(X \leq 2)$ nella distribuzione `Bin(n=5, p=0.5)`:
+
+```{r}
+pbinom(2, 5, 0.5)
+```
+
+ovvero
+
+```{r}
+sum(dbinom(0:2, 5, 0.5))
+```
+
+Per calcolare probabilità del tipo $P( a \leq X \leq b)$ procediamo nel modo seguente:
+
+```{r}
+# P(3<= X <= 5) = P(X=3) + P(X=4) + P(X=5) in a Bin(n=9,p=0.6) dist
+sum(dbinom(c(3,4,5), 9, 0.6))
+```
+
+
+Possiamo presentare la distribuzione Binomiale in una tabella nel modo seguente:
+
+```{r}
+n <- 10
+p <- 0.4
+x <- 0:n
+prob = dbinom(x, n, p) 
+cdf = pbinom(x, n, p) 
+dist_table = cbind(x, prob, cdf)
+dist_table
+```
+
+
+La funzione `rbinom()` viene usata per generare campioni casuali di una determinata ampiezza avendo specificato una distribuzione Binomiale di determinati parametri.
+
+```{r}
+x_val <- names(table(rbinom(1000, 8, .5)))
+barplot(
+  as.vector(table(rbinom(1000, 8, 0.5))), names.arg = x_val,
+  main="Simulazione di una distribuzione Binomiale\n di parametri n=8, p=0.5"
+)
+```
+
+
+
+__Esempio__
+
+Il database di uno psicologo mostra che dei pazienti affetti da ansia sociale, il 60% migliora dopo il trattamento. Qual è la probabilità che, se estraiamo a caso le cartelle di 10 pazienti, esattamente 6 di questi mostrino un miglioramento dopo il trattamento?
+
+Troviamo la soluzione applicando la funzione `dbinom()`:
+
+```{r}
+n <-  10
+p <- 0.60 
+x <- 6
+dbinom(x, n, p)
+```
+\
+
+__Esempio__
+
+Un test è costituito da 6 domande con 4 alternative di risposta ciascuna. Se un rispondente completa il test ma si limita a tirare a caso, qual è la probabilità di almeno una risposta corretta?
+
+```{r}
+1 - dbinom(0, 6, 1/4)
+```
+
+\
+
+__Esempio__
+
+Se una moneta bilanciata viene lanciata 8 volte, qual è la probabilità di ottenere più di cinque volte testa?
+
+```{r}
+1 - pbinom(5, 8, 0.5)
+```
+
+\
+
+__Esempio__
+
+Un dado truccato produce il risultato '6' in 8 lanci su 30. Il dado viene lanciato 12 volte. Qual è il valore atteso del numero di volte in cui si osserverà il risultato '6'? Qual è la deviazione standard del numero di volte in cui si osserva '6'?
+
+
+```{r}
+12 * 8/30
+```
+
+
+```{r}
+sqrt(12 * 8/30 * (1 - 8/30))
+```
+

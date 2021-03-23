@@ -7,7 +7,18 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 22 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Esercizi sulla distribuzione binomiale</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-23-esercizi-sulla-distribuzione-binomiale</link>
+      <description>Sequenze di prove Bernoulliane.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-23-esercizi-sulla-distribuzione-binomiale</guid>
+      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-23-esercizi-sulla-distribuzione-binomiale/esercizi-sulla-distribuzione-binomiale_files/figure-html5/unnamed-chunk-2-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Esercizio sulla correlazione</title>
       <dc:creator>Corrado Caudek</dc:creator>
@@ -61,7 +72,7 @@
       <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3</guid>
       <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/preview.png" medium="image" type="image/png" width="682" height="428"/>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-19-distribuzioni-di-probabilit-discrete-3/preview.png" medium="image" type="image/png" width="660" height="1004"/>
     </item>
     <item>
       <title>Distribuzioni di probabilità discrete (2)</title>
