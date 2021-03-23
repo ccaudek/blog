@@ -157,6 +157,21 @@ Se una moneta bilanciata viene lanciata 8 volte, qual è la probabilità di otte
 
 \
 
+
+__Esempio__
+
+Uno psicologo realizza un esperimento in cui la difficoltà delle prove viene stablita per ogni soggetto in maniera tale da produrre 3 errori in 5 prove.  Si consideri un campione casuale di 10 prove. Si trovi la probabilità di osservare (a) esattamente 6 errori, (b) meno di 9 errori.
+
+```{r}
+dbinom(6, 10, .6)
+```
+
+```{r}
+pbinom(8, 10, .6)
+```
+
+\
+
 __Esempio__
 
 Un dado truccato produce il risultato '6' in 8 lanci su 30. Il dado viene lanciato 12 volte. Qual è il valore atteso del numero di volte in cui si osserverà il risultato '6'? Qual è la deviazione standard del numero di volte in cui si osserva '6'?
@@ -170,4 +185,7 @@ Un dado truccato produce il risultato '6' in 8 lanci su 30. Il dado viene lancia
 ```{r}
 sqrt(12 * 8/30 * (1 - 8/30))
 ```
+
+
+
 
