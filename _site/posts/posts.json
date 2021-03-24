@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2021-03-24-la-campana-di-gauss/",
+    "title": "La campana di Gauss",
+    "description": "Una prima occhiata alla distribuzione gaussiana.",
+    "author": [
+      {
+        "name": "Corrado Caudek",
+        "url": "https://caudekblog.netlify.app"
+      }
+    ],
+    "date": "2021-03-24",
+    "categories": [
+      "R",
+      "Psicometria"
+    ],
+    "contents": "\n\nContents\nFunzione gaussiana\nLa funzione di ripartizione\nQuantili e densità\n\nLa probabilità\nIl valore atteso\nLa varianza\nL’interpretazione dei parametri\n\n\nCarichiamo i pacchetti che ci servono.\n\n\nlibrary(\"tidyverse\", warn.conflicts = FALSE)\nlibrary(\"gghighlight\")\n\n\n\nFunzione gaussiana\nUna funzione gaussiana è una funzione della seguente forma:\n\\[\nf(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \n  \\exp\\left( -\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^{\\!2}\\,\\right)\n\\]\nladdove \\(\\mu\\) e \\(\\sigma\\) sono i paramemtri della distribuzione.\nIn R la formula diventa:\n\n\ngauss <- function(x, mu, sigma) {\n  1 / sqrt(2 * pi * sigma^2) * exp(-(x - mu)^2 / (2 * sigma^2)) \n}\n\n\n\nL’area è unitaria, per qualsiasi valore \\(\\mu\\) e \\(\\sigma\\):\n\n\narea <- integrate(\n  gauss, \n  mu = 100,\n  sigma = 15,\n  lower = -Inf, \n  upper = Inf)$value\narea\n\n\n[1] 1\n\n\n\narea <- integrate(\n  gauss, \n  mu = 0,\n  sigma = 1,\n  lower = -Inf, \n  upper = Inf)$value\narea\n\n\n[1] 1\n\nIl fatto che la distribuzione gaussiana dipende dai parametri \\(\\mu\\) e \\(\\sigma\\) significa che, al variare del valore dei parametri varia la forma della curva di densità: la variazione di \\(\\mu\\) trasla la curva di densità in maniera rigida sull’asse \\(\\mathbb{R}\\); la variazione di \\(\\sigma\\) allarga e appiattisce la curva di densità.\nDisegnamo la funzione di densità usando, come parametri, \\(\\mu\\) = 100 e \\(\\sigma\\) = 15 – ovvero, specifichiamo la distribuzione del QI.\n\n\nmu <- 100\nsigma <- 15\nx <- seq(55, 145, length.out = 1e3)\nplot(x, gauss(x, mu, sigma), type = 'l', ylab = \"Densità\")\n\n\n\n\nLo stesso risultato si ottene con\n\n\nplot(x, dnorm(x, 100, 15), type = 'l', ylab = \"Densità\")\n\n\n\n\nLa funzione di ripartizione\n\n\ncurve(\n  pnorm(x), \n  xlim = c(-3.5, 3.5), \n  ylab = \"Probabilità\", \n  main = \"Funzione cumulativa della normale standardizzata\"\n)\n\n\n\n\nQuantili e densità\nDefiniamo i seguenti quantili e calcoliamo la densità corrispondente per il caso della normale standardizzata:\n\n\nquants <- c(-1.96, 0, 1.96)\ngauss(quants, 0, 1)\n\n\n[1] 0.05844094 0.39894228 0.05844094\n\nLo stesso risultato si ottene con\n\n\ndnorm(quants, 0, 1)\n\n\n[1] 0.05844094 0.39894228 0.05844094\n\nLa probabilità\nCalcoliamo ora le probabilità, ovvero le aree. Iniziamo con la probabilità \\(P(X < 115)\\) per il QI.\n\n\ndf <- data.frame(x = seq(55, 165, length.out = 100)) %>% \n  mutate(y = dnorm(x, mean=100, sd=15))\n\nggplot(df, aes(x, y)) + \n  geom_area(fill = \"sky blue\") + \n  gghighlight(x < 115) +\n  labs(\n    x = \"QI\",\n    y = \"Densità\"\n  ) +\n  papaja::theme_apa()\n\n\n\n\nIl risultato cercato è\n\n\nintegrate(\n  gauss, \n  mu = 100,\n  sigma = 15,\n  lower = -Inf, \n  upper = 115)\n\n\n0.8413447 with absolute error < 3.8e-06\n\novvero\n\n\npnorm(115, 100, 15)\n\n\n[1] 0.8413447\n\nConsideriamo ora l’area sottesa alla funzione di densità nell’intervallo \\(\\mu \\pm 1.96 \\sigma\\).\n\n\ndf <- data.frame(x = seq(55, 165, length.out = 100)) %>% \n  mutate(y = dnorm(x, mean=100, sd=15))\n\nggplot(df, aes(x, y)) + \n  geom_area(fill = \"sky blue\") + \n  gghighlight(x > 100 - 1.96*15 & x < 100 + 1.96*15) +\n  labs(\n    x = \"QI\",\n    y = \"Densità\"\n  ) +\n  papaja::theme_apa()\n\n\n\n\nLa probabilità cercata è\n\n\nintegrate(\n  gauss, \n  mu = 100,\n  sigma = 15,\n  lower = 100 - 1.96*15, \n  upper = 100 + 1.96*15)\n\n\n0.9500042 with absolute error < 1e-11\n\novvero\n\n\npnorm(100 + 1.96 * 15, 100, 15) - pnorm(100 - 1.96 * 15, 100, 15)\n\n\n[1] 0.9500042\n\nIl valore atteso\nIl valore atteso di una variabile aleatoria continua \\(X\\) è\n\\[\n\\mathbb{E}(X) = \\mu_X = \\int xf_X(x)dx.\n\\]\nPer calcolare il valore numerico dell’integrale con R definiamo la seguente funzione:\n\n\ng <- function(x) x * gauss(x, 100, 15)\n\n\n\nPossiamo ora usare integrate() per trovare la soluzione che cerchiamo:\n\n\nEX <- integrate(\n  g,\n  lower = -Inf,\n  upper = Inf\n)$value\nEX\n\n\n[1] 100\n\nLa varianza\nLa varianza di una variabile aleatoria continua \\(X\\) è\n\\[\nvar(X) = \\mu_X = \\int (x - \\mu)^2f_X(x)dx.\n\\] In R definiamo la seguente funzione\n\n\nh <- function(x) x^2 * gauss(x, 100, 15)\n\n\n\ne poi calcoliamo l’integrale\n\n\nVarX <- integrate(\n  h,\n  lower = -Inf,\n  upper = Inf\n)$value - EX^2 \nVarX\n\n\n[1] 225\n\nsqrt(VarX)\n\n\n[1] 15\n\nL’interpretazione dei parametri\nIn conclusione, la distribuzione gaussiana dipende da due parametri: \\(\\mu\\) e \\(\\sigma^2\\). Tali parametri corrispondono al valore atteso (cioè alla media) e alla varianza (cioè alla dispersione dei valori attorno al massimo della curva) della distribuzione.\n\n\n\n",
+    "preview": "posts/2021-03-24-la-campana-di-gauss/la-campana-di-gauss_files/figure-html5/unnamed-chunk-5-1.png",
+    "last_modified": "2021-03-24T13:34:46+01:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2021-03-23-esercizi-sulla-distribuzione-binomiale/",
     "title": "Esercizi sulla distribuzione binomiale",
     "description": "Sequenze di prove Bernoulliane.",
