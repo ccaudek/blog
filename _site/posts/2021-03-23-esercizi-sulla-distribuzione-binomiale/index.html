@@ -2603,7 +2603,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <p><img src="esercizi-sulla-distribuzione-binomiale_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
-<p><strong>Esempio</strong></p>
+<p><strong>Esempio 1</strong></p>
 <p>Il database di uno psicologo mostra che dei pazienti affetti da ansia sociale, il 60% migliora dopo il trattamento. Qual è la probabilità che, se estraiamo a caso le cartelle di 10 pazienti, esattamente 6 di questi mostrino un miglioramento dopo il trattamento?</p>
 <p>Troviamo la soluzione applicando la funzione <code>dbinom()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2618,7 +2618,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <p><br />
 </p>
-<p><strong>Esempio</strong></p>
+<p><strong>Esempio 2</strong></p>
 <p>Un test è costituito da 6 domande con 4 alternative di risposta ciascuna. Se un rispondente completa il test ma si limita a tirare a caso, qual è la probabilità di almeno una risposta corretta?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2629,7 +2629,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <p><br />
 </p>
-<p><strong>Esempio</strong></p>
+<p><strong>Esempio 3</strong></p>
 <p>Se una moneta bilanciata viene lanciata 8 volte, qual è la probabilità di ottenere più di cinque volte testa?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2640,7 +2640,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <p><br />
 </p>
-<p><strong>Esempio</strong></p>
+<p><strong>Esempio 4</strong></p>
 <p>Uno psicologo realizza un esperimento in cui la difficoltà delle prove viene stablita per ogni soggetto in maniera tale da produrre 3 errori in 5 prove. Si consideri un campione casuale di 10 prove. Si trovi la probabilità di osservare (a) esattamente 6 errori, (b) meno di 9 errori.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2658,7 +2658,7 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <p><br />
 </p>
-<p><strong>Esempio</strong></p>
+<p><strong>Esempio 5</strong></p>
 <p>Un dado truccato produce il risultato ‘6’ in 8 lanci su 30. Il dado viene lanciato 12 volte. Qual è il valore atteso del numero di volte in cui si osserverà il risultato ‘6’? Qual è la deviazione standard del numero di volte in cui si osserva ‘6’?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2674,7 +2674,59 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 <pre><code>[1] 1.531883</code></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><br />
+</p>
+<p><strong>Esempio 6</strong></p>
+<p>Se gli eventi <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> sono indipendenti, e <span class="math inline">\(A\)</span> ha una probabilità del 50% di verificarsi e <span class="math inline">\(B\)</span> ha una probabilità del 30% di verificarsi, qual è la probabilità che vengano osservati insieme? Si risponda usando una simulazione in <code>R</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1e7</span>
+<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>1</span>, <span class='fl'>0.5</span><span class='op'>)</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>1</span>, <span class='fl'>0.3</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>A</span> <span class='op'>&amp;</span> <span class='va'>B</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code>[1] 0.150216</code></pre>
+</div>
+<p><br />
+</p>
+<p><strong>Esempio 7</strong></p>
+<p>Se gli eventi <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> sono indipendenti, e <span class="math inline">\(A\)</span> ha una probabilità del 40% di verificarsi e <span class="math inline">\(B\)</span> ha una probabilità del 75% di verificarsi, qual è la probabilità che venga osservato uno di essi oppure l’altro? Si risponda usando una simulazione in <code>R</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1e7</span>
+<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>1</span>, <span class='fl'>0.4</span><span class='op'>)</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>1</span>, <span class='fl'>0.75</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>A</span> <span class='op'>|</span> <span class='va'>B</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code>[1] 0.8500116</code></pre>
+</div>
+<p><br />
+</p>
+<p><strong>Esempio 8</strong></p>
+<p>Supponiamo che <span class="math inline">\(X\)</span> sia una variabile aleatoria Binomiale di parametri (10, 0.3) e <span class="math inline">\(Y\)</span> sia un’altra variabile aleatoria Binomiale di parametri (10, 0.65); supponiamo che <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> siano indipendenti. Qual è la probabilità che una di queste variabili sia minore o uguale a 5? Stimare questa probabilità utilizzando una simulazione e calcolare la probabilità esatta.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1e7</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>10</span>, <span class='fl'>0.3</span><span class='op'>)</span>
+<span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>10</span>, <span class='fl'>0.65</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>&lt;=</span><span class='fl'>5</span> <span class='op'>|</span> <span class='va'>Y</span><span class='op'>&lt;=</span><span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9644439</code></pre>
+</div>
+<p>oppure</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>prob_X_less</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>pbinom</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>0.3</span><span class='op'>)</span>
+<span class='va'>prob_Y_less</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>pbinom</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>0.65</span><span class='op'>)</span>
+<span class='va'>prob_X_less</span> <span class='op'>+</span> <span class='va'>prob_Y_less</span> <span class='op'>-</span> <span class='va'>prob_X_less</span><span class='op'>*</span><span class='va'>prob_Y_less</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9644174</code></pre>
+</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">

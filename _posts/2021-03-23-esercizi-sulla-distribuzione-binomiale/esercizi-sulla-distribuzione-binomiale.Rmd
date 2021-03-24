@@ -123,7 +123,7 @@ barplot(
 
 
 
-__Esempio__
+__Esempio 1__
 
 Il database di uno psicologo mostra che dei pazienti affetti da ansia sociale, il 60% migliora dopo il trattamento. Qual è la probabilità che, se estraiamo a caso le cartelle di 10 pazienti, esattamente 6 di questi mostrino un miglioramento dopo il trattamento?
 
@@ -137,7 +137,7 @@ dbinom(x, n, p)
 ```
 \
 
-__Esempio__
+__Esempio 2__
 
 Un test è costituito da 6 domande con 4 alternative di risposta ciascuna. Se un rispondente completa il test ma si limita a tirare a caso, qual è la probabilità di almeno una risposta corretta?
 
@@ -147,7 +147,7 @@ Un test è costituito da 6 domande con 4 alternative di risposta ciascuna. Se un
 
 \
 
-__Esempio__
+__Esempio 3__
 
 Se una moneta bilanciata viene lanciata 8 volte, qual è la probabilità di ottenere più di cinque volte testa?
 
@@ -158,7 +158,7 @@ Se una moneta bilanciata viene lanciata 8 volte, qual è la probabilità di otte
 \
 
 
-__Esempio__
+__Esempio 4__
 
 Uno psicologo realizza un esperimento in cui la difficoltà delle prove viene stablita per ogni soggetto in maniera tale da produrre 3 errori in 5 prove.  Si consideri un campione casuale di 10 prove. Si trovi la probabilità di osservare (a) esattamente 6 errori, (b) meno di 9 errori.
 
@@ -172,7 +172,7 @@ pbinom(8, 10, .6)
 
 \
 
-__Esempio__
+__Esempio 5__
 
 Un dado truccato produce il risultato '6' in 8 lanci su 30. Il dado viene lanciato 12 volte. Qual è il valore atteso del numero di volte in cui si osserverà il risultato '6'? Qual è la deviazione standard del numero di volte in cui si osserva '6'?
 
@@ -187,5 +187,57 @@ sqrt(12 * 8/30 * (1 - 8/30))
 ```
 
 
+\
 
+__Esempio 6__
+
+
+Se gli eventi $A$ e $B$ sono indipendenti, e $A$ ha una probabilità del 50% di verificarsi e $B$ ha una probabilità del 30% di verificarsi, qual è la probabilità che vengano osservati insieme? Si risponda usando una simulazione in `R`. 
+
+```{r}
+n <- 1e7
+A <- rbinom(n, 1, 0.5)
+B <- rbinom(n, 1, 0.3)
+mean(A & B) 
+```
+
+
+\
+
+__Esempio 7__
+
+Se gli eventi $A$ e $B$ sono indipendenti, e $A$ ha una probabilità del 40% di verificarsi e $B$ ha una probabilità del 75% di verificarsi, qual è la probabilità che venga osservato uno di essi oppure l'altro? Si risponda usando una simulazione in `R`. 
+
+```{r}
+n <- 1e7
+A <- rbinom(n, 1, 0.4)
+B <- rbinom(n, 1, 0.75)
+mean(A | B) 
+```
+
+
+
+\
+
+__Esempio 8__
+
+
+Supponiamo che $X$ sia una variabile aleatoria Binomiale di parametri (10, 0.3) e $Y$ sia un'altra variabile aleatoria Binomiale di parametri (10, 0.65); supponiamo che $X$  e $Y$ siano indipendenti. Qual è la probabilità che una di queste variabili sia minore o uguale a 5? 
+Stimare questa probabilità utilizzando una simulazione e calcolare la probabilità esatta. 
+
+
+```{r}
+n <- 1e7
+X <- rbinom(n, 10, 0.3)
+Y <- rbinom(n, 10, 0.65)
+mean(X<=5 | Y<=5)
+```
+
+oppure
+
+```{r}
+prob_X_less <- pbinom(5, 10, 0.3)
+prob_Y_less <- pbinom(5, 10, 0.65)
+prob_X_less + prob_Y_less - prob_X_less*prob_Y_less
+```
 
