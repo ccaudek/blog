@@ -185,7 +185,7 @@ pnorm(100 + 1.96 * 15, 100, 15) - pnorm(100 - 1.96 * 15, 100, 15)
 ```
 
 
-## Il valore atteso
+# Il valore atteso
 
 Il valore atteso di una variabile aleatoria continua $X$ è
 
@@ -211,7 +211,7 @@ EX
 ```
 
 
-## La varianza
+# La varianza
 
 La varianza di una variabile aleatoria continua $X$ è
 
@@ -237,7 +237,7 @@ sqrt(VarX)
 ```
 
 
-## L'interpretazione dei parametri
+# L'interpretazione dei parametri
 
 In conclusione, la distribuzione gaussiana dipende da due parametri: $\mu$ e $\sigma^2$. Tali parametri corrispondono al valore atteso (cioè alla media) e alla varianza  (cioè alla dispersione dei valori attorno al massimo della curva) della distribuzione.
 
