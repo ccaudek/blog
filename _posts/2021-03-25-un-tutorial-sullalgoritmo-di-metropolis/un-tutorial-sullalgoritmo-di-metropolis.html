@@ -1676,7 +1676,10 @@ r = \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)} = \frac{
 <p>Altrimenti, decidiamo di tenere i valori proposti con una probabilità minore di 1, ovvero non sempre, ma soltanto con una probabilità definita dal metodo descritto nei punti <strong>d</strong>, <strong>e</strong>. In altri termini, la probabilità con la quale i valori proposti sono accettati è uguale al rapporto <span class="math inline">\(r\)</span>: se <span class="math inline">\(r\)</span> è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell’interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L’effetto di questo algoritmo è quello di consentirci di “campionare” la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.</p>
 <p>In termini logaritmici, il rapporto <span class="math inline">\(r\)</span> descritto sopra diventa:</p>
 <p><span class="math display">\[
-log(r) = log \Bigg( \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)}\Bigg) = log\Big(p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)\Big) - log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})\Big),
+\begin{align}
+log(r) &amp;= log \Bigg( \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)}\Bigg) = log\Big(p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)\Big) - \notag\\
+&amp;log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})\Big),\notag
+\end{align}
 \]</span></p>
 <p>ovvero</p>
 <p><span class="math display">\[

@@ -225,7 +225,10 @@ In altri termini, la probabilità con la quale i valori proposti sono accettati 
 In termini logaritmici, il rapporto $r$ descritto sopra diventa:
 
 $$
-log(r) = log \Bigg( \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)}\Bigg) = log\Big(p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)\Big) - log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})\Big),
+\begin{align}
+log(r) &= log \Bigg( \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)}\Bigg) = log\Big(p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)\Big) - \notag\\
+&log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})\Big),\notag
+\end{align}
 $$
 
 ovvero
