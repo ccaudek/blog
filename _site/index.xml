@@ -9,10 +9,10 @@
     <generator>Distill</generator>
     <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Un tutorial sull'algoritmo di Metropolis</title>
+      <title>Catena di Markov Monte Carlo</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-25-un-tutorial-sullalgoritmo-di-metropolis</link>
-      <description>A short description of the post.</description>
+      <description>Un tutorial sull'algoritmo di Metropolis.</description>
       <category>R</category>
       <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-03-25-un-tutorial-sullalgoritmo-di-metropolis</guid>

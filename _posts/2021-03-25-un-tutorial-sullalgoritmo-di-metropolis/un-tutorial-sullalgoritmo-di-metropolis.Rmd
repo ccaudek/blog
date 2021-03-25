@@ -1,7 +1,7 @@
 ---
-title: "Un tutorial sull'algoritmo di Metropolis"
+title: "Catena di Markov Monte Carlo"
 description: |
-  A short description of the post.
+  Un tutorial sull'algoritmo di Metropolis.
 author:
   - name: Corrado Caudek
     url: https://caudekblog.netlify.app
