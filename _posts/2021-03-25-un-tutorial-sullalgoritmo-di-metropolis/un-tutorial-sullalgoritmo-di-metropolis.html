@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Un tutorial sull'algoritmo di Metropolis</title>
+
+  <meta property="description" itemprop="description" content="A short description of the post."/>
+
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-03-25"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-03-25"/>
+  <meta name="article:author" content="Corrado Caudek"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Un tutorial sull&#39;algoritmo di Metropolis"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A short description of the post."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Un tutorial sull&#39;algoritmo di Metropolis"/>
+  <meta property="twitter:description" content="A short description of the post."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["Un tutorial sull'algoritmo di Metropolis"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["03-25-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R","Psicometria"]},{"type":"character","attributes":{},"value":["preview.png"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["un-tutorial-sullalgoritmo-di-metropolis_files/anchor-4.2.2/anchor.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/bowser-1.9.3/bowser.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/distill-2.2.21/template.v2.js","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-12-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-15-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-16-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-3-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-5-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-6-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-7-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-8-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/header-attrs-2.7.3/header-attrs.js","un-tutorial-sullalgoritmo-di-metropolis_files/jquery-1.11.3/jquery.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/popper-2.6.0/popper.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-bundle.umd.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-light-border.css","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.css","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.umd.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/header-attrs-2.7.3/header-attrs.js"></script>
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/popper-2.6.0/popper.min.js"></script>
+  <link href="un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="un-tutorial-sullalgoritmo-di-metropolis_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Un tutorial sull'algoritmo di Metropolis","description":"A short description of the post.","authors":[{"author":"Corrado Caudek","authorURL":"https://caudekblog.netlify.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-25T00:00:00.000+00:00","citationText":"Caudek, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Un tutorial sull’algoritmo di Metropolis</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">R</div>
+<div class="dt=tag">Psicometria</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>A short description of the post.</p></p>
+</div>
+
+<div class="d-byline">
+  Corrado Caudek <a href="https://caudekblog.netlify.app" class="uri">https://caudekblog.netlify.app</a> 
+  
+<br/>03-25-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#introduzione">Introduzione</a></li>
+<li><a href="#obiettivo">Obiettivo</a></li>
+<li><a href="#distribuzioni-a-priori">Distribuzioni a priori</a></li>
+<li><a href="#verosimiglianza">Verosimiglianza</a>
+<ul>
+<li><a href="#lalgoritmo-di-metropolis">L’algoritmo di Metropolis</a></li>
+<li><a href="#implementazione-in-r">Implementazione in <code>R</code></a></li>
+<li><a href="#distribuzione-a-priori-non-uniforme-per-mu">Distribuzione a priori non uniforme per <span class="math inline">\(\mu\)</span></a></li>
+<li><a href="#un-campione-più-grande">Un campione più grande</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h1 id="introduzione">Introduzione</h1>
+<p>L’obiettivo di questo tutorial è dimostrare come funziona l’algoritmo Metropolis quando viene applicato a un caso specifico in cui la distribuzione a posteriori (o distribuzione target) è nota. Nella presente simulazione useremo una distribuzione target Normale di parametri <span class="math inline">\(\mu\)</span> = 3 e <span class="math inline">\(\sigma^2\)</span> = 1.</p>
+<p>Supponiamo però di non conoscere le proprietà della distribuzione target, ma di avere a disposizione solo un campione casuale di <span class="math inline">\(n\)</span> osservazioni tratte da questa distribuzione. Il problema che ci poniamo è quello di stimare i parametri della distribuzione, ipotizzando che sia una Normale, alla luce dei dati osservati.</p>
+<p>I dati sono contenuti in un vettore chiamato <span class="math inline">\(y\)</span>, con <span class="math inline">\(y_1, y_2, \dots, y_n\)</span>. In <code>R</code> abbiamo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>20</span>, mean<span class='op'>=</span><span class='fl'>3</span>, sd<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="obiettivo">Obiettivo</h1>
+<p>Il nostro obiettivo è quello di trovare la distribuzione a posteriori congiunta dei parametri sconosciuti <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span> di una distribuzione Normale. Ipotizziamo infatti che i nostri dati provengano da una tale distribuzione e vogliamo trovare i parametri maggiormente plausibili della distribuzione, alla luce dei dati osservati.</p>
+<p>Se applichiamo il teorema di Bayes otteniamo la seguente espressione:</p>
+<p><span class="math display">\[
+p(\mu, \sigma^2 \mid y) = \frac{p(y \mid \mu, \sigma^2) \cdot p(\mu, \sigma^2)}{\int\int p(y \mid \mu, \sigma^2) \cdot p(\mu, \sigma^2) \cdot d\mu \cdot d\sigma^2}.
+\]</span></p>
+<p>Ci focalizziamo qui sul numeratore in quanto il denominatore è solo una costante:</p>
+<p><span class="math display">\[
+p(\mu, \sigma^2 \mid y) \propto p(y \mid \mu, \sigma^2) \cdot p(\mu, \sigma^2).
+\]</span></p>
+<p>Non siamo tanto interessati alla distribuzione a posteriori congiunta dei parametri, quanto alle distribuzioni marginali a posteriori per ciascun parametro sconosciuto: <span class="math inline">\(p(\mu \mid y)\)</span> e <span class="math inline">\(p(\sigma^2 \mid y)\)</span>.</p>
+<p>I vari termini dell’espressione precedente corrispondono alle quantità seguenti:</p>
+<ul>
+<li>distribuzione a posteriori congiunta: <span class="math inline">\(p(\mu, \sigma^2 \mid y)\)</span>,</li>
+<li>verosimiglianza, <span class="math inline">\(p(y \mid \mu, \sigma^2)\)</span>,</li>
+<li>distribuzione a priori, <span class="math inline">\(p(\mu, \sigma^2)\)</span>.</li>
+</ul>
+<p>Esplicitiamo ora ciascuno dei termini precedenti.</p>
+<h1 id="distribuzioni-a-priori">Distribuzioni a priori</h1>
+<p>Se assumiamo che <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span> sono indipendenti, possiamo riscrivere la distribuzione a priori congiunta come il prodotto di due distribuzioni a priori:</p>
+<p><span class="math display">\[
+p(\mu, \sigma^2) = p(\mu) \cdot p(\sigma^2).
+\]</span></p>
+<p>Per iniziare, assumiamo una distribuzione a priori uniforme per entrambi i parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>, ipotizzando un qualche intervallo ragionevole:</p>
+<p><span class="math display">\[
+p(\mu) = Unif(-50, 50),\\
+p(\sigma^2) = Unif(0, 100).
+\]</span></p>
+<p>Creaiamo una funzione <code>R</code> che ritorna le densità a priori per <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Per comodità le esprimiamo su una scala logaritmica:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>prior_mu</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>dunif</a></span><span class='op'>(</span><span class='va'>mu</span>, min<span class='op'>=</span><span class='op'>-</span><span class='fl'>50</span>, max<span class='op'>=</span><span class='fl'>50</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+  
+<span class='va'>prior_sigma2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sigma2</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>dunif</a></span><span class='op'>(</span><span class='va'>sigma2</span>, min<span class='op'>=</span><span class='fl'>0</span>, max<span class='op'>=</span><span class='fl'>100</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Esaminiamo le distribuzioni a priori:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>mus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='op'>-</span><span class='fl'>50</span>, to<span class='op'>=</span><span class='fl'>50</span>, length.out <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>sigmas2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='fl'>0</span>, to<span class='op'>=</span><span class='fl'>100</span>, length.out <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+
+<span class='co'># Densità di mu</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>mus</span>, 
+  <span class='fu'>prior_mu</span><span class='op'>(</span><span class='va'>mus</span><span class='op'>)</span>, 
+  type <span class='op'>=</span> <span class='st'>'l'</span>, 
+  col <span class='op'>=</span> <span class='st'>"red"</span>, 
+  xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span>, 
+  ylab <span class='op'>=</span> <span class='st'>"Densità"</span>
+<span class='op'>)</span>
+
+<span class='co'># Densità di sigma2</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>sigmas2</span>, 
+  <span class='fu'>prior_sigma2</span><span class='op'>(</span><span class='va'>sigmas2</span><span class='op'>)</span>, 
+  type <span class='op'>=</span> <span class='st'>'l'</span>, 
+  col <span class='op'>=</span> <span class='st'>"red"</span>, 
+  xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>, 
+  ylab <span class='op'>=</span> <span class='st'>"Densità"</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<h1 id="verosimiglianza">Verosimiglianza</h1>
+<p>Per <span class="math inline">\(n\)</span> osservazioni indipendenti tratte da una Normale, la verosimiglianza è data dalla seguente espressione:</p>
+<p><span class="math display">\[
+p(y \mid \mu, \sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}}.
+\]</span></p>
+<p>Dato che le osservazioni sono indipendenti, la verosimiglianza che si verifichino simultaneamente è data dal prodotto della verosimiglianza di ciascuna separata osservazione. Ma qual è la verosimiglianza che una singola osservazione si verifichi? Ciascuna osservazione è una realizzazione di una Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>, dunque la plausibilita di <span class="math inline">\(X=x\)</span> è data dalla curva di densità di una Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Il nostro problema è che non conosciamo <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>, ma questo non è un problema. Sappiamo infatti che la funzione di verosimiglianza descrive la verosimiglianza relativa dei dati considerati tutti i possibili valori che i parametri possono assumere.</p>
+<p>Se sappiamo calcolare la funzione di verosimiglianza per una singola osservazione <span class="math inline">\(y\)</span>, è facile trovare la verosimiglianza congiunta per tutte le osservazioni del campione. Se il campione è casuale, allora le osservazioni sono indipendenti ed è sufficiente fare il prodotto delle singole verosimiglianze. La seguente funzione <code>R</code> ci consente di calcolare tale verosimiglianza congiunta per tutte le osservazioni del campione:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>likelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/prod.html'>prod</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>data</span>, mean<span class='op'>=</span><span class='va'>mu</span>, sd<span class='op'>=</span><span class='va'>sigma</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Per creare una rappresentazione grafica del risultato che abbiamo ottenuto, consideriamo una sequenza di valori possibili per il parametro <span class="math inline">\(\mu\)</span> e teniamo costante il valore <span class="math inline">\(\sigma^2\)</span>. In questo modo otterremo una curva anziché una superficie. Per la presente simulazione utilizziamo i valori indicati qui sotto:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Valori per il parametro mu</span>
+<span class='va'>mus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='op'>-</span><span class='fl'>5</span>, to<span class='op'>=</span><span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1e3</span><span class='op'>)</span>
+<span class='co'># Teniamo costante il valore sigma2</span>
+<span class='va'>std</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+<span class='co'># Utilizziamo i dati del campione</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>y</span>
+<span class='co'># Calcoliamo i valori della funzione di verosimiglianza per mu</span>
+<span class='va'>likelihood_vector</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>mus</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>likelihood_vector</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'>likelihood</span><span class='op'>(</span><span class='va'>data</span>, mu<span class='op'>=</span><span class='va'>mus</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>, sigma<span class='op'>=</span><span class='va'>std</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Creaimo un grafico della verosimiglianza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>mus</span>,
+  <span class='va'>likelihood_vector</span>,
+  type <span class='op'>=</span> <span class='st'>'l'</span>,
+  col <span class='op'>=</span> <span class='st'>"red"</span>,
+  xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span>,
+  ylab <span class='op'>=</span> <span class='st'>"Verosimiglianza"</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p>Si noti che i valori di verosimiglianza sono molto piccoli. Per evitare problemi numerici nei calcoli usiamo i logaritmi. Di conseguenza, possiamo ri-scrivere il prodotto della distribuzione Normale come una somma di elementi.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>loglikelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>data</span>, mean<span class='op'>=</span><span class='va'>mu</span>, sd<span class='op'>=</span><span class='va'>sigma</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Creaiamo il diagramma per la log-verosimiglianza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='op'>-</span><span class='fl'>5</span>, to<span class='op'>=</span><span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1e3</span><span class='op'>)</span>
+<span class='va'>std</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>y</span>
+<span class='va'>loglikelihood_vector</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+
+<span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>mus</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>loglikelihood_vector</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'>loglikelihood</span><span class='op'>(</span><span class='va'>data</span>, mu<span class='op'>=</span><span class='va'>mus</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>, sigma<span class='op'>=</span><span class='va'>std</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>mus</span>, 
+  <span class='va'>loglikelihood_vector</span>,
+  type<span class='op'>=</span><span class='st'>'l'</span>,
+  col<span class='op'>=</span><span class='st'>"red"</span>,
+  xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span>,
+  ylab<span class='op'>=</span><span class='st'>"Log-verosimiglianza"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<h2 id="lalgoritmo-di-metropolis">L’algoritmo di Metropolis</h2>
+<p>Siamo ora pronti per applicare l’algoritmo Metropolis in modo da poter campionare dalla distribuzione a posteriori congiunta dei parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Quello che facciamo in ciascuna interazione è trovare una coppia di valori proposti per i parametri sconosciuti <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span> per poi se accettare o meno la proposta fatta. L’algoritmo di Metropolis può essere descritto nel modo seguente.</p>
+<p><strong>a.</strong> Inizializziamo il vettore dei parametri <span class="math inline">\(\theta^0 = (\mu^0, sigma^0)\)</span> (per semplificare la notazione facciamo qui riferimento alla deviazione standard anziché alla varianza).</p>
+<p><strong>b.</strong> Scegliamo a caso due valori proposti <span class="math inline">\(\mu^p\)</span> e <span class="math inline">\(\sigma^p\)</span> estraendoli dalla distribuzione proposta. La distribuzione proposta è una distribuzione simmetrica centrata sul valore del parametro nel passo precedente della catena. Qui utilizzo, quale distribuzione proposta, una distribuzione Normale.</p>
+<p><strong>c.</strong> Calcoliamo il rapporto tra le densità</p>
+<p><span class="math display">\[
+r = \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)} = \frac{p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)}{p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})}.
+\]</span></p>
+<p>Il termine al numeratore rappresenta il prodotto tra la verosimiglianza dei dati alla luce dei valori proposti dei parametri e le distribuzioni a priori assegnate ai valori proposti dei parametri, nell’ipotesi che <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> siano indipendenti. In altri termini, il numeratore corrisponde alla densità a posteriori del valore proposto dei parametri, alla luce dei dati. Al denominatore abbiamo la densità a posteriori del valore dei parametri nel passo precedente della catena, alla luce dei dati.</p>
+<p>Il rapporto tra queste due densità (ovvero tra le ordinate delle due funzioni a posteriori) si chiede la seguente domanda: alla luce dei dati, risultano più plausibili i valori proposti dei parametri o quelli del passo precedente della catena?</p>
+<p>Se il rapporto è maggiore di 1 allora i valori proposti vengono sempre accettati in quanto la densità a posteriori calcolata con i nuovi parametri proposti è maggiore della densità a posteriore calcolata con i valori dei parametri definiti nell’interazione precedente della catena.</p>
+<p>Altrimenti, decidiamo di tenere i valori proposti con una probabilità minore di 1, ovvero non sempre, ma soltanto con una probabilità definita dal metodo descritto nei punti <strong>d</strong>, <strong>e</strong>. In altri termini, la probabilità con la quale i valori proposti sono accettati è uguale al rapporto <span class="math inline">\(r\)</span>: se <span class="math inline">\(r\)</span> è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell’interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L’effetto di questo algoritmo è quello di consentirci di “campionare” la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.</p>
+<p>In termini logaritmici, il rapporto <span class="math inline">\(r\)</span> descritto sopra diventa:</p>
+<p><span class="math display">\[
+log(r) = log \Bigg( \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)}\Bigg) = log\Big(p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)\Big) - log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})\Big),
+\]</span></p>
+<p>ovvero</p>
+<p><span class="math display">\[
+\begin{align}
+log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\Big) + log \Big( p(\sigma^p)\Big)\Bigg) - \notag\\
+\Bigg(&amp;log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})\Big) + log\Big( p(\mu^{i-1})\Big) + log \Big( p(\sigma^{i-1})\Big)\Bigg). \notag
+\end{align}
+\]</span></p>
+<p><strong>d.</strong> Scegliamo un <code>u</code> a caso da una distribuzione uniforme, <span class="math inline">\(Unif(0, 1)\)</span>.</p>
+<p><strong>e.</strong> Decidiamo se tenere i valori proposti dei parametri: se <span class="math inline">\(u &lt; min(1, r)\)</span> allora</p>
+<p><span class="math display">\[
+\theta^{i+1} = \theta^p,
+\]</span></p>
+<p>altrimenti</p>
+<p><span class="math display">\[
+\theta^{i+1} = \theta^i.
+\]</span></p>
+<p><strong>f.</strong> Ritorniamo al punto <strong>b</strong> dell’algoritmo di Metropolis e ripetiamo il processo fino a raggiungere il numero prefissato di iterazioni.</p>
+<h2 id="implementazione-in-r">Implementazione in <code>R</code></h2>
+<p>Usiamo i dati contenuti nel vettore <code>y</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>y</span>
+</code></pre>
+</div>
+</div>
+<p>Definiamo la funzione di log-verosimiglianza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>joint</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'>loglikelihood</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>prior_mu</span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>prior_sigma2</span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Scriviamo una funzione <code>R</code> per l’algoritmo di Metropolis:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>run_metropolis</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='co'># Matrice dove salvare i due parametri della catena</span>
+  <span class='co'># numero di righe = numero di iterazioni + 1 </span>
+  <span class='co'># numbero delle colonne = numero dei parametri (ovvero 2)</span>
+  <span class='va'>chain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span><span class='op'>(</span>dim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>iterations</span><span class='op'>+</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+  
+  <span class='co'># Inizializzo la prima riga della catena con i valori iniziali (arbitrari) dei parametri</span>
+  <span class='va'>chain</span><span class='op'>[</span><span class='fl'>1</span>, <span class='op'>]</span> <span class='op'>=</span> <span class='va'>startvalue</span>
+  
+  <span class='co'># variabili che consentono di salvare il numero di valori accettati e rigettati</span>
+  <span class='va'>n_accept</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+  <span class='va'>n_reject</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+  
+  <span class='co'># Loop con l'algoritmo di Metropolis </span>
+  <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>iterations</span><span class='op'>)</span> <span class='op'>{</span>
+    
+    <span class='co'># Il valore proposto mu è estratto a caso da una Normale con media uguale al </span>
+    <span class='co'># valore mu dell'interazione precedente e deviazione standard pari a </span>
+    <span class='co'># sigma_proposal_mu.</span>
+    <span class='va'>proposal_mu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1</span>, mean<span class='op'>=</span><span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>1</span><span class='op'>]</span>, sd<span class='op'>=</span><span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+  
+    <span class='co'># Il valore proposto sigma è estratto a caso da una distribuzione </span>
+    <span class='co'># Uniforme(-0.5, 0.5) che viene sommato al valore del parametro sigma </span>
+    <span class='co'># nell'interazione precedente </span>
+    <span class='va'>proposal_sigma</span> <span class='op'>&lt;-</span> <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>1</span>, min <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.5</span>, max<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
+    <span class='co'># Logaritmo del rapporto tra le densità a posteriori: al mumeratore la </span>
+    <span class='co'># densità calcolata con i parametri prposti, al denominatore quella </span>
+    <span class='co'># calcolata con i parametri dell'interazione precedente.</span>
+    <span class='va'>r_ratio</span> <span class='op'>&lt;-</span> <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>proposal_mu</span>, <span class='va'>proposal_sigma</span><span class='op'>)</span> <span class='op'>-</span> <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>1</span><span class='op'>]</span>,<span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+    
+    <span class='co'># Qui viene affronatato un problema prettamente numerico: se per qualche </span>
+    <span class='co'># ragione il rapporto r_ratio non è un valore numerico, allora si ripete il </span>
+    <span class='co'># presente passo della catena.</span>
+    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='va'>r_ratio</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"NaN"</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span><span class='op'>+</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='op'>]</span>
+      <span class='va'>n_reject</span> <span class='op'>&lt;-</span> <span class='va'>n_reject</span><span class='op'>+</span><span class='fl'>1</span>
+    <span class='op'>}</span>
+    <span class='kw'>else</span>
+    <span class='co'># Si estrae un numero casuale tra 0 e 1 e lo si confronta con il valore di </span>
+    <span class='co'># r_ratio. Dal momento che abbiamo preso il logaritmo di r_ratio, è </span>
+    <span class='co'># necessario esponenziare per riportare r_ratio sulla scala corretta.</span>
+      <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='va'>r_ratio</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+        <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span><span class='op'>+</span><span class='fl'>1</span>, <span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>proposal_mu</span>, <span class='va'>proposal_sigma</span><span class='op'>)</span>
+        <span class='co'># Si conta il numero di volte in cui i parametri proposti vengono </span>
+        <span class='co'># accettati -- un valore sensato del tasso di accettazione è di circa il</span>
+        <span class='co'># 20%</span>
+        <span class='va'>n_accept</span> <span class='op'>&lt;-</span> <span class='va'>n_accept</span><span class='op'>+</span><span class='fl'>1</span>
+      <span class='op'>}</span>
+    
+    <span class='kw'>else</span> <span class='op'>{</span>
+      <span class='co'># Rigetto i valori proposti e, per il prossimo passo della catena, tengo </span>
+      <span class='co'># i valori correnti dei parametri  </span>
+      <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span><span class='op'>+</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>=</span> <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span>
+      <span class='va'>n_reject</span> <span class='op'>=</span> <span class='va'>n_reject</span><span class='op'>+</span><span class='fl'>1</span>
+    <span class='op'>}</span>
+  <span class='op'>}</span>
+  <span class='co'># Creo una lista in cui salverò i valori dei parametri nella catena e il</span>
+  <span class='co'># numero dei valori dei parametri che vengono accettati dall'algoritmo di </span>
+  <span class='co'># Metropolis e il numero dei valori che vengono rifiutati </span>
+  <span class='va'>list_c</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>chain</span>, <span class='va'>n_accept</span>, <span class='va'>n_reject</span><span class='op'>)</span>
+  
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>list_c</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Prima di lanciare la simulazione definiamo i parametri necessari:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Numero di iterazioni</span>
+<span class='va'>iterations</span> <span class='op'>&lt;-</span> <span class='fl'>1e6</span>
+<span class='co'># Valori iniziali dei parametri mu e sigma</span>
+<span class='va'>startvalue</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='co'># I dati</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>y</span>
+<span class='co'># Per manipolare il tasso di accettazione, trovo empiricamente un valore </span>
+<span class='co'># per la varianza della distribuzione proposta del parametro mu.</span>
+<span class='va'>sigma_proposal_mu</span> <span class='op'>&lt;-</span> <span class='fl'>1.0</span>
+</code></pre>
+</div>
+</div>
+<p>Lancio ora l’algoritmo di Metropolis e salvo l’output nella lista ´results_m´:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results_m</span> <span class='op'>&lt;-</span> <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Calcolo il tasso di accettazione:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>acpt_rate</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>acpt_rate</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.1981716</code></pre>
+</div>
+<p>Il primo elemento della lista <code>chain_n</code> è una matrice che contiene i valori che sono stati campionati dall’algoritmo di Metropolis dalla distribuzione a posteriori dei parametri:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>chain_m</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Una rappresentazione grafica dei risultati prodotti dall’algoritmo di Metropolis è fornita qui di seguito.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>, type<span class='op'>=</span><span class='st'>"l"</span>, ylab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span>, xlab<span class='op'>=</span><span class='st'>"Iterazione"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fl'>3</span>, col<span class='op'>=</span><span class='st'>"blue"</span>, lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>, type<span class='op'>=</span><span class='st'>"l"</span>, ylab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>)</span>, xlab<span class='op'>=</span><span class='st'>"Iterazione"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fl'>1</span>, col<span class='op'>=</span><span class='st'>"blue"</span>, lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='fl'>8000</span>, <span class='fl'>5.6</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Media della catena"</span>,<span class='st'>"Valore vero della media"</span><span class='op'>)</span>, col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>,<span class='st'>"blue"</span><span class='op'>)</span>, lty<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, cex<span class='op'>=</span><span class='fl'>1</span>, border<span class='op'>=</span><span class='st'>"black"</span>, bty<span class='op'>=</span><span class='st'>"o"</span>, box.lwd <span class='op'>=</span> <span class='fl'>1</span>, box.col <span class='op'>=</span> <span class='st'>"black"</span>, bg <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>, bw<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"l"</span>, xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span>, main<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"red"</span>, lty<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fl'>3</span>,col<span class='op'>=</span><span class='st'>"blue"</span>,lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"l"</span>, xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>)</span>, main<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"red"</span>, lty<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fl'>1</span>, col<span class='op'>=</span><span class='st'>"blue"</span>, lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
+</div>
+<p>La stima a posteriori per il parametro <span class="math inline">\(\mu\)</span> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 3.141238</code></pre>
+</div>
+<p>La stima a posteriori per il parametro <span class="math inline">\(\sigma^2\)</span> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1.043072</code></pre>
+</div>
+<p>In conclusione, l’algoritmo ha funzionato: sulla base delle informazioni fornite dai dati siamo riusciti a trovare delle stime ragionevoli dei parametri della distribuzione Normale da cui il campione di dati è stato estratto.</p>
+<h2 id="distribuzione-a-priori-non-uniforme-per-mu">Distribuzione a priori non uniforme per <span class="math inline">\(\mu\)</span></h2>
+<p>Poniamoci ora il problema di studiare l’influenza delle distribuzoni a priori. Nella simulazione precedente abbiamo utilizzato delle distribuzioni a priori uniformi. Ma che cosa succede se vengono utilizzate delle distribuzioni a priori centrata su valori molto lontani dai valori veri dei parametri?</p>
+<p>Per rispondere a questa domanda, lasciamo inalterata la distribuzione a priori di <span class="math inline">\(\sigma^2\)</span> e scegliamo la seguente distribuzione a priori per il parametro <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\mathcal{N}(\mu=20, \sigma=1)\)</span>. In altri termini, affermiamo che, prima di guardare i dati, i valori plausibili per il parametro <span class="math inline">\(\mu\)</span> sono valori nell’interno di 20. In realtà, sappiamo che, nella simulazione, il valore corretto è <span class="math inline">\(\mu\)</span> = 3. Pertanto, definendo una distribuzione a priori per <span class="math inline">\(\mu\)</span> molto lontana dal “valore vero” di <span class="math inline">\(\mu\)</span>, ci chiediamo che effetto avrà questa credenza a priori sulla distribuzione a posteriori.</p>
+<p>Ricordiamo che, come nella simulazione precedente, anche ora il campione è molto piccolo: <span class="math inline">\(n\)</span> = 20.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>prior2_mu</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>mu</span>, <span class='fl'>30</span>, <span class='fl'>2</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+  
+<span class='va'>prior_sigma2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sigma2</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>dunif</a></span><span class='op'>(</span><span class='va'>sigma2</span>, min<span class='op'>=</span><span class='fl'>0</span>, max<span class='op'>=</span><span class='fl'>100</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Calcoliamo la log-verosimiglianza</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>y</span>
+<span class='va'>joint</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'>loglikelihood</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>prior2_mu</span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>prior_sigma2</span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>e lanciamo l’algoritmo di Metropolis:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sigma_proposal_mu</span> <span class='op'>&lt;-</span> <span class='fl'>6.0</span>
+<span class='va'>results_m</span> <span class='op'>&lt;-</span> <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Il tasso di accettazione è ragionevole:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>acpt_rate</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>acpt_rate</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.2327735</code></pre>
+</div>
+Esaminiamo i risultati:
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>chain_m</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>La stima a posteriori per il parametro <span class="math inline">\(\mu\)</span> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 17.53029</code></pre>
+</div>
+<p>La stima a posteriori per il parametro <span class="math inline">\(\sigma^2\)</span> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 9.619287</code></pre>
+</div>
+<p>In conclusione, se il campione è piccolo, le stime a posteriori sono fortemente influenzate dalle distribuzioni a priori dei parametri. Quindi, una distribuzione a priori <em>informativa</em> ma molto lontana dal “valore vero” può influenzare fortemente le conclusioni a cui giungiamo. In questo caso le conclusioni risultano fortemente distorte.</p>
+<h2 id="un-campione-più-grande">Un campione più grande</h2>
+<p>Aumentiamo ora l’ampiezza del campione:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>y2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>200</span>, mean<span class='op'>=</span><span class='fl'>3</span>, sd<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Utilizziamo le stesse distribuzioni a priori della simulazione precedente:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>prior2_mu</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>mu</span>, <span class='fl'>30</span>, <span class='fl'>2</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+  
+<span class='va'>prior_sigma2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sigma2</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>dunif</a></span><span class='op'>(</span><span class='va'>sigma2</span>, min<span class='op'>=</span><span class='fl'>0</span>, max<span class='op'>=</span><span class='fl'>100</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Calcoliamo la log-verosimiglianza per i nuovi dati</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>y2</span>
+
+<span class='va'>joint</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>loglikelihood</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>prior2_mu</span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>prior_sigma2</span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>e lanciamo l’algoritmo di Metropolis:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sigma_proposal_mu</span> <span class='op'>&lt;-</span> <span class='fl'>0.002</span>
+<span class='va'>results_m</span> <span class='op'>&lt;-</span> <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Il tasso di accettazione è ragionevole:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>acpt_rate</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>acpt_rate</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.1822413</code></pre>
+</div>
+<p>Esaminiamo i risultati:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>chain_m</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>La stima a posteriori per il parametro <span class="math inline">\(\mu\)</span> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2.975561</code></pre>
+</div>
+<p>La stima a posteriori per il parametro <span class="math inline">\(\sigma^2\)</span> è:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9684834</code></pre>
+</div>
+<p>In conclusione, all’aumentare della grandezza del campione la verosimiglianza si rafforza e la distribuzione a posteriori dei parametri risulta influenzata in maniera molto minore dalla distribuzione a priori. Per cui, se abbiamo tante informazioni, ovvero un campione grande di dati, non importa quali distribuzione a priori scegliamo: la soluzione a posteriori converge sul risultato corretto.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

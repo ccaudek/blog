@@ -1,0 +1,545 @@
+---
+title: "Un tutorial sull'algoritmo di Metropolis"
+description: |
+  A short description of the post.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-25-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introduzione
+
+L'obiettivo di questo tutorial è dimostrare come funziona l'algoritmo Metropolis quando viene applicato a un caso specifico in cui la distribuzione a posteriori (o distribuzione target) è  nota. Nella presente simulazione useremo una distribuzione target Normale di parametri $\mu$ = 3 e $\sigma^2$ = 1.
+
+Supponiamo però di non conoscere le proprietà della distribuzione target, ma di avere a disposizione solo un campione casuale di $n$ osservazioni tratte da questa distribuzione. Il problema che ci poniamo è quello di stimare i parametri della distribuzione, ipotizzando che sia una Normale, alla luce dei dati osservati. 
+
+I dati sono contenuti in un vettore chiamato $y$, con $y_1, y_2, \dots, y_n$. In `R` abbiamo:
+
+```{r}
+set.seed(123)
+y <- rnorm(20, mean=3, sd=1)
+```
+
+# Obiettivo
+
+Il nostro obiettivo è quello di trovare la distribuzione a posteriori congiunta dei parametri sconosciuti $\mu$ e $\sigma^2$ di una distribuzione Normale. Ipotizziamo infatti che i nostri dati provengano da una tale distribuzione e vogliamo trovare i parametri maggiormente plausibili della distribuzione, alla luce dei dati osservati. 
+
+Se applichiamo il teorema  di Bayes otteniamo la seguente espressione:
+
+$$
+p(\mu, \sigma^2 \mid y) = \frac{p(y \mid \mu, \sigma^2) \cdot p(\mu, \sigma^2)}{\int\int p(y \mid \mu, \sigma^2) \cdot p(\mu, \sigma^2) \cdot d\mu \cdot d\sigma^2}.
+$$
+
+Ci focalizziamo qui sul numeratore in quanto il denominatore è solo una costante:
+
+$$
+p(\mu, \sigma^2 \mid y) \propto p(y \mid \mu, \sigma^2) \cdot p(\mu, \sigma^2).
+$$
+
+Non siamo tanto interessati alla distribuzione a posteriori congiunta dei parametri, quanto alle distribuzioni marginali a posteriori per ciascun parametro sconosciuto: $p(\mu \mid y)$ e $p(\sigma^2 \mid y)$.
+
+I vari termini dell'espressione precedente corrispondono alle quantità seguenti:
+
+- distribuzione a posteriori congiunta: $p(\mu, \sigma^2 \mid y)$,
+- verosimiglianza, $p(y \mid \mu, \sigma^2)$,
+- distribuzione a priori, $p(\mu, \sigma^2)$.
+
+Esplicitiamo ora ciascuno dei termini precedenti.
+
+
+# Distribuzioni a priori
+
+Se assumiamo che $\mu$ e $\sigma^2$ sono indipendenti, possiamo riscrivere la distribuzione a priori congiunta come il prodotto di due distribuzioni a priori:
+
+$$
+p(\mu, \sigma^2) = p(\mu) \cdot p(\sigma^2).
+$$
+
+Per iniziare, assumiamo una distribuzione a priori uniforme per entrambi i parametri $\mu$ e $\sigma^2$, ipotizzando un qualche intervallo ragionevole:
+
+$$
+p(\mu) = Unif(-50, 50),\\
+p(\sigma^2) = Unif(0, 100).
+$$
+
+Creaiamo una funzione `R` che ritorna le densità a priori per $\mu$ e $\sigma^2$. Per comodità le esprimiamo su una scala logaritmica:
+
+```{r}
+prior_mu <- function(mu) {
+  dunif(mu, min=-50, max=50, log=TRUE)
+}
+  
+prior_sigma2 <- function(sigma2) {
+  dunif(sigma2, min=0, max=100, log=TRUE)
+}
+```
+
+Esaminiamo le distribuzioni a priori:
+
+```{r}
+par(mfrow = c(1, 2))
+
+mus <- seq(from=-50, to=50, length.out = 100)
+sigmas2 <- seq(from=0, to=100, length.out = 100)
+
+# Densità di mu
+plot(
+  mus, 
+  prior_mu(mus), 
+  type = 'l', 
+  col = "red", 
+  xlab = expression(mu), 
+  ylab = "Densità"
+)
+
+# Densità di sigma2
+plot(
+  sigmas2, 
+  prior_sigma2(sigmas2), 
+  type = 'l', 
+  col = "red", 
+  xlab = expression(sigma^2), 
+  ylab = "Densità"
+)
+```
+
+# Verosimiglianza
+
+Per $n$ osservazioni indipendenti tratte da una Normale, la verosimiglianza è data dalla seguente espressione:
+
+$$
+p(y \mid \mu, \sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}}.
+$$
+
+Dato che le osservazioni sono indipendenti, la verosimiglianza che si verifichino simultaneamente è data dal prodotto della verosimiglianza di ciascuna separata osservazione.
+Ma qual è la verosimiglianza che una singola osservazione si verifichi? Ciascuna osservazione è una realizzazione di una Normale di parametri $\mu$ e $\sigma^2$, dunque la plausibilita di $X=x$ è data dalla curva di densità di una Normale di parametri $\mu$ e $\sigma^2$. Il nostro problema è che non conosciamo $\mu$ e $\sigma^2$, ma questo non è un problema. Sappiamo infatti che la funzione di verosimiglianza descrive la verosimiglianza relativa dei dati considerati tutti i possibili valori che i parametri possono assumere. 
+
+Se sappiamo calcolare la funzione di verosimiglianza per una singola osservazione $y$, è facile trovare la verosimiglianza congiunta per tutte le osservazioni del campione. Se il campione è casuale, allora le osservazioni sono indipendenti ed è sufficiente fare il prodotto delle singole verosimiglianze. La seguente funzione `R` ci consente di calcolare tale verosimiglianza congiunta per tutte le osservazioni del campione:
+
+```{r}
+likelihood <- function(data, mu, sigma){
+  prod(dnorm(data, mean=mu, sd=sigma))
+}
+```
+
+Per creare una rappresentazione grafica del risultato che abbiamo ottenuto, consideriamo una sequenza di valori possibili per il parametro $\mu$ e teniamo costante il valore $\sigma^2$. In questo modo otterremo una curva anziché una superficie. Per la presente simulazione utilizziamo i valori indicati qui sotto:
+
+```{r}
+# Valori per il parametro mu
+mus <- seq(from=-5, to=10, length.out = 1e3)
+# Teniamo costante il valore sigma2
+std <- sqrt(4)
+# Utilizziamo i dati del campione
+data <- y
+# Calcoliamo i valori della funzione di verosimiglianza per mu
+likelihood_vector <- 0
+for (i in 1:length(mus)) {
+  likelihood_vector[i] <- likelihood(data, mu=mus[i], sigma=std)
+}
+```
+
+Creaimo un grafico della verosimiglianza:
+
+```{r}
+plot(
+  mus,
+  likelihood_vector,
+  type = 'l',
+  col = "red",
+  xlab = expression(mu),
+  ylab = "Verosimiglianza"
+)
+```
+
+Si noti che i valori di verosimiglianza sono molto piccoli. Per evitare problemi numerici nei calcoli usiamo i logaritmi. Di conseguenza, possiamo ri-scrivere il prodotto della distribuzione Normale come una somma di elementi. 
+
+```{r}
+loglikelihood <- function(data, mu, sigma){
+  sum(dnorm(data, mean=mu, sd=sigma, log=TRUE))
+}
+```
+
+Creaiamo il diagramma per la log-verosimiglianza:
+
+```{r}
+mus <- seq(from=-5, to=10, length.out = 1e3)
+std <- sqrt(4)
+data <- y
+loglikelihood_vector <- 0
+
+for(i in 1:length(mus)){
+  loglikelihood_vector[i] <- loglikelihood(data, mu=mus[i], sigma=std)
+}
+
+plot(
+  mus, 
+  loglikelihood_vector,
+  type='l',
+  col="red",
+  xlab=expression(mu),
+  ylab="Log-verosimiglianza")
+```
+
+## L'algoritmo di Metropolis
+
+Siamo ora pronti per applicare l'algoritmo Metropolis in modo da poter campionare dalla distribuzione a posteriori congiunta dei parametri $\mu$ e $\sigma^2$.
+Quello che facciamo in ciascuna interazione è trovare una coppia di valori proposti per i parametri sconosciuti $\mu$ e $\sigma^2$ per poi se accettare o meno la proposta fatta. L'algoritmo di Metropolis può essere descritto nel modo seguente.
+
+__a.__ Inizializziamo il vettore dei parametri $\theta^0 = (\mu^0, sigma^0)$ (per semplificare la notazione facciamo qui riferimento alla deviazione standard anziché alla varianza).
+
+__b.__ Scegliamo a caso due valori proposti  $\mu^p$ e $\sigma^p$ estraendoli dalla distribuzione proposta. La distribuzione proposta è una distribuzione simmetrica centrata sul valore del parametro nel passo precedente della catena. Qui utilizzo, quale distribuzione proposta, una distribuzione Normale.
+
+__c.__ Calcoliamo il rapporto tra le densità
+
+$$
+r = \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)} = \frac{p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)}{p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})}.
+$$
+
+Il termine al numeratore rappresenta il prodotto tra la verosimiglianza dei dati alla luce dei valori proposti dei parametri e le distribuzioni a priori assegnate ai valori proposti dei parametri, nell'ipotesi che $\mu$ e $\sigma$ siano indipendenti. In altri termini, il numeratore corrisponde alla densità a posteriori del valore proposto dei parametri, alla luce dei dati. Al denominatore abbiamo la densità a posteriori del valore dei parametri nel passo precedente della catena, alla luce dei dati.
+
+Il rapporto tra queste due densità (ovvero tra le ordinate delle due funzioni a posteriori) si chiede la seguente domanda: alla luce dei dati, risultano più plausibili i valori proposti dei parametri o quelli del passo precedente della catena? 
+
+Se il rapporto è maggiore di 1 allora i valori proposti vengono sempre accettati in quanto la densità a posteriori calcolata con i nuovi parametri proposti è maggiore della densità a posteriore calcolata con i valori dei parametri definiti nell'interazione precedente della catena.
+
+Altrimenti, decidiamo di tenere i valori proposti con una probabilità minore di 1, ovvero non sempre, ma soltanto con una probabilità definita dal metodo descritto nei punti __d__, __e__.
+In altri termini, la probabilità con la quale i valori proposti sono accettati è uguale al rapporto $r$: se $r$ è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell'interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L'effetto di questo algoritmo è quello di consentirci di "campionare" la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.   
+
+In termini logaritmici, il rapporto $r$ descritto sopra diventa:
+
+$$
+log(r) = log \Bigg( \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)}\Bigg) = log\Big(p(y \mid \mu^p, \sigma^p)p(\mu^p)p(\sigma^p)\Big) - log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})p(\mu^{i-1})p(\sigma^{i-1})\Big),
+$$
+
+ovvero
+
+$$
+\begin{align}
+log(r) = \Bigg(&log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\Big) + log \Big( p(\sigma^p)\Big)\Bigg) - \notag\\
+\Bigg(&log\Big(p(y \mid \mu^{i-1}, \sigma^{i-1})\Big) + log\Big( p(\mu^{i-1})\Big) + log \Big( p(\sigma^{i-1})\Big)\Bigg). \notag
+\end{align}
+$$
+
+__d.__ Scegliamo un `u` a caso da una distribuzione uniforme, $Unif(0, 1)$.
+
+__e.__ Decidiamo se tenere i valori proposti dei parametri: se $u < min(1, r)$ allora
+
+$$
+\theta^{i+1} = \theta^p,
+$$
+
+altrimenti
+
+$$
+\theta^{i+1} = \theta^i.
+$$
+
+__f.__ Ritorniamo al punto __b__ dell'algoritmo di Metropolis e ripetiamo il processo fino a raggiungere il numero prefissato di iterazioni.
+
+
+## Implementazione in `R`
+
+Usiamo i dati contenuti nel vettore `y`:
+
+```{r}
+data <- y
+```
+
+Definiamo la funzione di log-verosimiglianza:
+
+```{r}
+joint <- function(data, mu, sigma){
+  loglikelihood(data, mu, sigma) + prior_mu(mu) + prior_sigma2(sigma^2)
+}
+```
+
+Scriviamo una funzione `R` per l'algoritmo di Metropolis:
+
+```{r}
+run_metropolis <- function(data, startvalue, iterations, sigma_proposal_mu) {
+  
+  # Matrice dove salvare i due parametri della catena
+  # numero di righe = numero di iterazioni + 1 
+  # numbero delle colonne = numero dei parametri (ovvero 2)
+  chain <- array(dim = c(iterations+1, 2))
+  
+  # Inizializzo la prima riga della catena con i valori iniziali (arbitrari) dei parametri
+  chain[1, ] = startvalue
+  
+  # variabili che consentono di salvare il numero di valori accettati e rigettati
+  n_accept <- 0
+  n_reject <- 0
+  
+  # Loop con l'algoritmo di Metropolis 
+  for (i in 1:iterations) {
+    
+    # Il valore proposto mu è estratto a caso da una Normale con media uguale al 
+    # valore mu dell'interazione precedente e deviazione standard pari a 
+    # sigma_proposal_mu.
+    proposal_mu <- rnorm(1, mean=chain[i, 1], sd=sigma_proposal_mu)
+  
+    # Il valore proposto sigma è estratto a caso da una distribuzione 
+    # Uniforme(-0.5, 0.5) che viene sommato al valore del parametro sigma 
+    # nell'interazione precedente 
+    proposal_sigma <- chain[i,2] + runif(1, min = -0.5, max=0.5)
+    # Logaritmo del rapporto tra le densità a posteriori: al mumeratore la 
+    # densità calcolata con i parametri prposti, al denominatore quella 
+    # calcolata con i parametri dell'interazione precedente.
+    r_ratio <- joint(data, proposal_mu, proposal_sigma) - joint(data, chain[i, 1],chain[i, 2])
+    
+    # Qui viene affronatato un problema prettamente numerico: se per qualche 
+    # ragione il rapporto r_ratio non è un valore numerico, allora si ripete il 
+    # presente passo della catena.
+    if (exp(r_ratio) == "NaN") {
+      chain[i+1,] <- chain[i, ]
+      n_reject <- n_reject+1
+    }
+    else
+    # Si estrae un numero casuale tra 0 e 1 e lo si confronta con il valore di 
+    # r_ratio. Dal momento che abbiamo preso il logaritmo di r_ratio, è 
+    # necessario esponenziare per riportare r_ratio sulla scala corretta.
+      if (runif(1, 0, 1) < min(1, exp(r_ratio))) {
+        chain[i+1, ] <- c(proposal_mu, proposal_sigma)
+        # Si conta il numero di volte in cui i parametri proposti vengono 
+        # accettati -- un valore sensato del tasso di accettazione è di circa il
+        # 20%
+        n_accept <- n_accept+1
+      }
+    
+    else {
+      # Rigetto i valori proposti e, per il prossimo passo della catena, tengo 
+      # i valori correnti dei parametri  
+      chain[i+1,] = chain[i,]
+      n_reject = n_reject+1
+    }
+  }
+  # Creo una lista in cui salverò i valori dei parametri nella catena e il
+  # numero dei valori dei parametri che vengono accettati dall'algoritmo di 
+  # Metropolis e il numero dei valori che vengono rifiutati 
+  list_c = list(chain, n_accept, n_reject)
+  
+  return(list_c)
+}
+```
+
+Prima di lanciare la simulazione definiamo i parametri necessari:
+
+```{r}
+# Numero di iterazioni
+iterations <- 1e6
+# Valori iniziali dei parametri mu e sigma
+startvalue <- c(1, 1)
+# I dati
+data <- y
+# Per manipolare il tasso di accettazione, trovo empiricamente un valore 
+# per la varianza della distribuzione proposta del parametro mu.
+sigma_proposal_mu <- 1.0
+```
+
+Lancio ora l'algoritmo di Metropolis e salvo l'output nella lista ´results_m´:
+
+```{r}
+results_m <- run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
+```
+
+Calcolo il tasso di accettazione:
+
+```{r}
+acpt_rate <- results_m[[2]] / (results_m[[3]])
+acpt_rate
+```
+
+Il primo elemento della lista `chain_n` è una matrice che contiene i valori che
+sono stati campionati dall'algoritmo di Metropolis dalla distribuzione a 
+posteriori dei parametri:
+
+```{r}
+chain_m <- results_m[[1]]
+```
+
+Una rappresentazione grafica dei risultati prodotti dall'algoritmo di Metropolis 
+è fornita qui di seguito.
+
+```{r}
+par(mfrow=c(2, 2))
+
+plot(chain_m[, 1], type="l", ylab=expression(mu), xlab="Iterazione")
+abline(h=mean(chain_m[-5000, 1]), col="red")
+abline(h=3, col="blue", lty=2)
+
+plot(chain_m[, 2], type="l", ylab=expression(sigma), xlab="Iterazione")
+abline(h=mean(chain_m[-5000,2]), col="red")
+abline(h=1, col="blue", lty=2)
+legend(8000, 5.6, c("Media della catena","Valore vero della media"), col=c("red","blue"), lty=c(1,2), cex=1, border="black", bty="o", box.lwd = 1, box.col = "black", bg = "white")
+
+plot(density(chain_m[, 1], bw=0.05), type="l", xlab=expression(mu), main="")
+abline(v=mean(chain_m[-5000,1]), col="red", lty=1)
+abline(v=3,col="blue",lty=2)
+
+plot(density(chain_m[-5000,2]), type="l", xlab=expression(sigma), main="")
+abline(v=mean(chain_m[-5000,2]), col="red", lty=1)
+abline(v=1, col="blue", lty=2)
+```
+
+La stima a posteriori per il parametro $\mu$ è:
+
+```{r}
+mean(chain_m[-5000, 1])
+```
+
+La stima a posteriori per il parametro $\sigma^2$ è:
+
+```{r}
+mean(chain_m[-5000, 2])
+```
+
+In conclusione, l'algoritmo ha funzionato: sulla base delle informazioni fornite dai dati siamo riusciti a trovare delle stime ragionevoli dei parametri della distribuzione Normale da cui il campione di dati è stato estratto.
+
+
+## Distribuzione a priori non uniforme per $\mu$
+
+Poniamoci ora il problema di studiare l'influenza delle distribuzoni a priori. Nella simulazione precedente abbiamo utilizzato delle distribuzioni a priori uniformi. Ma che cosa succede se vengono utilizzate delle distribuzioni a priori centrata su valori molto lontani dai valori veri dei parametri? 
+
+Per rispondere a questa domanda, lasciamo inalterata la distribuzione a priori di $\sigma^2$ e scegliamo la seguente distribuzione a priori per il parametro $\mu$: $\mathcal{N}(\mu=20, \sigma=1)$.  In altri termini, affermiamo che, prima di guardare i dati, i valori plausibili per il parametro $\mu$ sono valori nell'interno di 20. In realtà, sappiamo che, nella simulazione, il valore corretto è $\mu$ = 3. Pertanto, definendo una distribuzione a priori per $\mu$ molto lontana dal "valore vero" di $\mu$, ci chiediamo che effetto avrà questa credenza a priori sulla distribuzione a posteriori.
+
+Ricordiamo che, come nella simulazione precedente, anche ora il campione è molto piccolo: $n$ = 20.
+
+```{r}
+prior2_mu <- function(mu) {
+  dnorm(mu, 30, 2, log=TRUE)
+}
+  
+prior_sigma2 <- function(sigma2) {
+  dunif(sigma2, min=0, max=100, log=TRUE)
+}
+```
+
+Calcoliamo la log-verosimiglianza
+
+```{r}
+data <- y
+joint <- function(data, mu, sigma){
+  loglikelihood(data, mu, sigma) + prior2_mu(mu) + prior_sigma2(sigma^2)
+}
+```
+
+e lanciamo l'algoritmo di Metropolis:
+
+```{r}
+sigma_proposal_mu <- 6.0
+results_m <- run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
+```
+
+Il tasso di accettazione è ragionevole:
+
+```{r}
+acpt_rate <- results_m[[2]] / (results_m[[3]])
+acpt_rate
+```
+
+Esaminiamo i risultati:
+```{r}
+chain_m <- results_m[[1]]
+```
+
+La stima a posteriori per il parametro $\mu$ è:
+
+```{r}
+mean(chain_m[-5000, 1])
+```
+
+La stima a posteriori per il parametro $\sigma^2$ è:
+
+```{r}
+mean(chain_m[-5000, 2])
+```
+
+In conclusione, se il campione è piccolo, le stime a posteriori sono fortemente influenzate dalle distribuzioni a priori dei parametri. Quindi, una distribuzione a priori _informativa_ ma molto lontana dal "valore vero" può influenzare fortemente le conclusioni a cui giungiamo. In questo caso le conclusioni risultano fortemente distorte.
+
+
+## Un campione più grande
+
+Aumentiamo ora l'ampiezza del campione:
+
+```{r}
+set.seed(123)
+y2 <- rnorm(200, mean=3, sd=1)
+```
+
+Utilizziamo le stesse distribuzioni a priori della simulazione precedente:
+
+```{r}
+prior2_mu <- function(mu) {
+  dnorm(mu, 30, 2, log=TRUE)
+}
+  
+prior_sigma2 <- function(sigma2) {
+  dunif(sigma2, min=0, max=100, log=TRUE)
+}
+```
+
+Calcoliamo la log-verosimiglianza per i nuovi dati
+
+```{r}
+data <- y2
+
+joint <- function(data, mu, sigma) {
+  loglikelihood(data, mu, sigma) + prior2_mu(mu) + prior_sigma2(sigma^2)
+}
+```
+
+e lanciamo l'algoritmo di Metropolis:
+
+```{r}
+sigma_proposal_mu <- 0.002
+results_m <- run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
+```
+
+Il tasso di accettazione è ragionevole:
+
+```{r}
+acpt_rate <- results_m[[2]] / (results_m[[3]])
+acpt_rate
+```
+
+Esaminiamo i risultati:
+
+```{r}
+chain_m <- results_m[[1]]
+```
+
+La stima a posteriori per il parametro $\mu$ è:
+
+```{r}
+mean(chain_m[-5000, 1])
+```
+
+La stima a posteriori per il parametro $\sigma^2$ è:
+
+```{r}
+mean(chain_m[-5000, 2])
+```
+
+In conclusione, all'aumentare della grandezza del campione la verosimiglianza si rafforza e la distribuzione a posteriori dei parametri risulta influenzata in maniera molto minore dalla distribuzione a priori. Per cui, se abbiamo tante informazioni, ovvero un campione grande di dati, non importa quali distribuzione a priori scegliamo: la soluzione a posteriori converge sul risultato corretto.
+
+
+
+
+
