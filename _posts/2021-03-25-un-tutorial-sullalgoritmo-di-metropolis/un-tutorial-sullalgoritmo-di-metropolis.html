@@ -1725,7 +1725,8 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
   <span class='co'># numbero delle colonne = numero dei parametri (ovvero 2)</span>
   <span class='va'>chain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span><span class='op'>(</span>dim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>iterations</span><span class='op'>+</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
   
-  <span class='co'># Inizializzo la prima riga della catena con i valori iniziali (arbitrari) dei parametri</span>
+  <span class='co'># Inizializzo la prima riga della catena con i valori iniziali (arbitrari) dei </span>
+  <span class='co'># parametri</span>
   <span class='va'>chain</span><span class='op'>[</span><span class='fl'>1</span>, <span class='op'>]</span> <span class='op'>=</span> <span class='va'>startvalue</span>
   
   <span class='co'># variabili che consentono di salvare il numero di valori accettati e rigettati</span>
@@ -1747,7 +1748,8 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
     <span class='co'># Logaritmo del rapporto tra le densità a posteriori: al mumeratore la </span>
     <span class='co'># densità calcolata con i parametri prposti, al denominatore quella </span>
     <span class='co'># calcolata con i parametri dell'interazione precedente.</span>
-    <span class='va'>r_ratio</span> <span class='op'>&lt;-</span> <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>proposal_mu</span>, <span class='va'>proposal_sigma</span><span class='op'>)</span> <span class='op'>-</span> <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>1</span><span class='op'>]</span>,<span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+    <span class='va'>r_ratio</span> <span class='op'>&lt;-</span> <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>proposal_mu</span>, <span class='va'>proposal_sigma</span><span class='op'>)</span> <span class='op'>-</span> 
+      <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>1</span><span class='op'>]</span>,<span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
     
     <span class='co'># Qui viene affronatato un problema prettamente numerico: se per qualche </span>
     <span class='co'># ragione il rapporto r_ratio non è un valore numerico, allora si ripete il </span>
@@ -1803,7 +1805,8 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
 <p>Lancio ora l’algoritmo di Metropolis e salvo l’output nella lista ´results_m´:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results_m</span> <span class='op'>&lt;-</span> <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results_m</span> <span class='op'>&lt;-</span> 
+  <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -1835,7 +1838,11 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>, type<span class='op'>=</span><span class='st'>"l"</span>, ylab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>sigma</span><span class='op'>)</span>, xlab<span class='op'>=</span><span class='st'>"Iterazione"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fl'>1</span>, col<span class='op'>=</span><span class='st'>"blue"</span>, lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='fl'>8000</span>, <span class='fl'>5.6</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Media della catena"</span>,<span class='st'>"Valore vero della media"</span><span class='op'>)</span>, col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>,<span class='st'>"blue"</span><span class='op'>)</span>, lty<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, cex<span class='op'>=</span><span class='fl'>1</span>, border<span class='op'>=</span><span class='st'>"black"</span>, bty<span class='op'>=</span><span class='st'>"o"</span>, box.lwd <span class='op'>=</span> <span class='fl'>1</span>, box.col <span class='op'>=</span> <span class='st'>"black"</span>, bg <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span>
+  <span class='fl'>8000</span>, <span class='fl'>5.6</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Media della catena"</span>,<span class='st'>"Valore vero della media"</span><span class='op'>)</span>, 
+  col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>,<span class='st'>"blue"</span><span class='op'>)</span>, lty<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, cex<span class='op'>=</span><span class='fl'>1</span>, border<span class='op'>=</span><span class='st'>"black"</span>, bty<span class='op'>=</span><span class='st'>"o"</span>, 
+  box.lwd<span class='op'>=</span><span class='fl'>1</span>, box.col<span class='op'>=</span><span class='st'>"black"</span>, bg<span class='op'>=</span><span class='st'>"white"</span>
+<span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>, bw<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"l"</span>, xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>mu</span><span class='op'>)</span>, main<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>chain_m</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5000</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"red"</span>, lty<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
@@ -1895,7 +1902,8 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sigma_proposal_mu</span> <span class='op'>&lt;-</span> <span class='fl'>6.0</span>
-<span class='va'>results_m</span> <span class='op'>&lt;-</span> <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+<span class='va'>results_m</span> <span class='op'>&lt;-</span> 
+  <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -1908,7 +1916,7 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
 </div>
 <pre><code>[1] 0.2327735</code></pre>
 </div>
-Esaminiamo i risultati:
+<p>Esaminiamo i risultati:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>chain_m</span> <span class='op'>&lt;-</span> <span class='va'>results_m</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
@@ -1969,7 +1977,8 @@ Esaminiamo i risultati:
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sigma_proposal_mu</span> <span class='op'>&lt;-</span> <span class='fl'>0.002</span>
-<span class='va'>results_m</span> <span class='op'>&lt;-</span> <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
+<span class='va'>results_m</span> <span class='op'>&lt;-</span> 
+  <span class='fu'>run_metropolis</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>startvalue</span>, <span class='va'>iterations</span>, <span class='va'>sigma_proposal_mu</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>

@@ -283,7 +283,8 @@ run_metropolis <- function(data, startvalue, iterations, sigma_proposal_mu) {
   # numbero delle colonne = numero dei parametri (ovvero 2)
   chain <- array(dim = c(iterations+1, 2))
   
-  # Inizializzo la prima riga della catena con i valori iniziali (arbitrari) dei parametri
+  # Inizializzo la prima riga della catena con i valori iniziali (arbitrari) dei 
+  # parametri
   chain[1, ] = startvalue
   
   # variabili che consentono di salvare il numero di valori accettati e rigettati
@@ -305,7 +306,8 @@ run_metropolis <- function(data, startvalue, iterations, sigma_proposal_mu) {
     # Logaritmo del rapporto tra le densità a posteriori: al mumeratore la 
     # densità calcolata con i parametri prposti, al denominatore quella 
     # calcolata con i parametri dell'interazione precedente.
-    r_ratio <- joint(data, proposal_mu, proposal_sigma) - joint(data, chain[i, 1],chain[i, 2])
+    r_ratio <- joint(data, proposal_mu, proposal_sigma) - 
+      joint(data, chain[i, 1],chain[i, 2])
     
     # Qui viene affronatato un problema prettamente numerico: se per qualche 
     # ragione il rapporto r_ratio non è un valore numerico, allora si ripete il 
@@ -359,7 +361,8 @@ sigma_proposal_mu <- 1.0
 Lancio ora l'algoritmo di Metropolis e salvo l'output nella lista ´results_m´:
 
 ```{r}
-results_m <- run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
+results_m <- 
+  run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
 ```
 
 Calcolo il tasso di accettazione:
@@ -390,7 +393,11 @@ abline(h=3, col="blue", lty=2)
 plot(chain_m[, 2], type="l", ylab=expression(sigma), xlab="Iterazione")
 abline(h=mean(chain_m[-5000,2]), col="red")
 abline(h=1, col="blue", lty=2)
-legend(8000, 5.6, c("Media della catena","Valore vero della media"), col=c("red","blue"), lty=c(1,2), cex=1, border="black", bty="o", box.lwd = 1, box.col = "black", bg = "white")
+legend(
+  8000, 5.6, c("Media della catena","Valore vero della media"), 
+  col=c("red","blue"), lty=c(1,2), cex=1, border="black", bty="o", 
+  box.lwd=1, box.col="black", bg="white"
+)
 
 plot(density(chain_m[, 1], bw=0.05), type="l", xlab=expression(mu), main="")
 abline(v=mean(chain_m[-5000,1]), col="red", lty=1)
@@ -447,7 +454,8 @@ e lanciamo l'algoritmo di Metropolis:
 
 ```{r}
 sigma_proposal_mu <- 6.0
-results_m <- run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
+results_m <- 
+  run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
 ```
 
 Il tasso di accettazione è ragionevole:
@@ -458,6 +466,7 @@ acpt_rate
 ```
 
 Esaminiamo i risultati:
+
 ```{r}
 chain_m <- results_m[[1]]
 ```
@@ -512,7 +521,8 @@ e lanciamo l'algoritmo di Metropolis:
 
 ```{r}
 sigma_proposal_mu <- 0.002
-results_m <- run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
+results_m <- 
+  run_metropolis(data, startvalue, iterations, sigma_proposal_mu)
 ```
 
 Il tasso di accettazione è ragionevole:
