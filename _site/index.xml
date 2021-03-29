@@ -9,15 +9,6 @@
     <generator>Distill</generator>
     <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Un po' di algebra matriciale</title>
-      <dc:creator>Corrado Caudek</dc:creator>
-      <link>https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale</link>
-      <description>Usiamo R per le operazioni di base dell'algebra lineare.</description>
-      <category>R</category>
-      <guid>https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale</guid>
-      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>La verosimiglianza e il mappamondo</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo</link>
@@ -27,6 +18,16 @@
       <guid>https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo</guid>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       <media:content url="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Un po' di algebra matriciale</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale</link>
+      <description>Usiamo R per le operazioni di base dell'algebra lineare.</description>
+      <category>R</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale</guid>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/preview.png" medium="image" type="image/png" width="834" height="338"/>
     </item>
     <item>
       <title>Catena di Markov Monte Carlo</title>
