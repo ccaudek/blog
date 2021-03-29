@@ -1,0 +1,175 @@
+---
+title: "Un'introduzione alle funzionalità di purrr"
+description: |
+  Ovvero: come manipolare le liste in R.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-28-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: true
+creative_commons: CC BY
+categories:
+  - R
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduzione
+
+L'obiettivo di questo tutorial è quello di mostrare come si possono manipolare le liste in `R`. Tutte le operazioni che verranno discusse si posso ottenere usando le funzioni base di `R`. Invece di fare questo, discuterò qui le funzioni del pacchetto `purrr` in quanto, usando tali funzioni, è possibile semplificare il flusso di lavoro.
+In ciò che segue mi limiterò a fare un riassunto dell'ottimo tutorial fornito da Jenny Bryan nelle seguenti [pagine web](https://jennybc.github.io/purrr-tutorial/about.html).
+
+Jenny Bryan usa, quale esempio, un insieme di dati contenuto in una lista, ovvero le informazioni sui caratteri di Game of Thrones che sono fornite dal pacchetto `repurrrsive`. Io non farò altro che discutere, spesso semplificandoli, gli esempi forniti da Jenny Bryan.
+
+Inizio caricando i pacchetti che userò nel seguito del tutorial.  
+
+```{r}
+library("tidyverse", warn.conflicts = FALSE)
+library("purrr")
+library("repurrrsive")
+library("magrittr")
+```
+
+
+# Liste
+
+Iniziamo a ricordare cosa sono le liste in `R`.
+
+Le liste (`list`) sono simili ai vettori atomici perchè raggruppano i dati in un insieme. Tuttavia, gli elementi degli insiemi ordinati che costituiscono una lista sono oggetti di `R` come vettori atomici o altre liste. Per sempio, si può creare una lista che contenga un vettore numerico di lunghezza 20 come il primo elemento, un vettore di caratteri di lunghezza 2 come secondo elemento e così via.
+
+Per creare una lista dobbiamo usare la funzione list()`.
+
+```{r}
+list1 <- list(
+  primo_elemento = 100:120,
+  secondo_elemento = c("A", "B", "C"), 
+  terzo_elemento = list(TRUE, FALSE)
+)
+list1
+```
+
+Come si può facilmente immaginare, la struttura di una lista può diventare piuttosto complicata, ma questa flessibilità rende le liste un utile strumento di archiviazione in `R`: all'interno di una lista possiamo ragruppare qualsiasi cosa.
+
+
+# Indicizzazione
+
+Sono disponibili tre metodi per estrarre gli elementi di una lista.
+
+- L'operatore `$`:
+
+```{r}
+list1$primo_elemento
+```
+
+- la doppia parentesi quadra con il nome dell'elemento tra virgolette:
+
+```{r}
+list1[["terzo_elemento"]]
+```
+
+Oppure possiamo inserire un indice all'interno della doppia parentesi quadra:
+
+```{r}
+list1[[3]]
+```
+
+- Una singola parentesi quadra:
+
+```{r}
+list1["secondo_elemento"]
+```
+
+# Funzione str()
+
+Possiamo ispezionare il contenuto di una lista con `str()`:
+
+```{r}
+str(list1)
+```
+
+oppure, in maniera equivalente, con `dplyr::glimpse()`
+
+```{r}
+glimpse(list1)
+```
+
+Consideriamo un caso più complesso, che riguarda i caratteri di Game of Thrones, e esaminiamo la struttura dei primi quattro elementi della lista:
+
+```{r}
+glimpse(repurrrsive::got_chars[1:4])
+```
+
+
+# Funzione `purrr::map()`
+
+Supponiamo di volere estrarre soltanto l'elemento "name" di ciascun carattere di Game of Thrones. Questo risultato può essere ottenuto con la funzione `purrrr::map()`:
+
+```{r}
+got_chars %>% 
+  map("name")
+```
+
+Lo stesso risultato si ottiene utilizzando l'inidice corrispondente:
+
+```{r}
+got_chars %>% 
+  map(3)
+```
+
+La funzione `map()` ritorna una lista.  Ma nel caso che stiamo esaminando può essere preferibile ottenere un oggetto più semplice, ovvero un vettore atomico. Dato che gli elementi sono di tipo `char`, usiamo `map_chr()`:
+
+```{r}
+foo <- got_chars %>% 
+  map_chr("name")
+is.vector(foo)
+```
+
+```{r}
+foo
+```
+
+Possiamo estrarre diversi attributi, ad esempio del terzo carattere, nel modo seguente:
+
+```{r}
+got_chars[[3]][c("name", "culture", "gender", "born")]
+```
+
+oppure con
+
+```{r}
+map(
+  got_chars, 
+  magrittr::extract, 
+  c("name", "culture", "gender", "born")
+)[[3]]
+```
+
+usando la funzione `magrittr::extract()`.
+
+
+# Data frame output
+
+Abbiamo imparato come estrarre più elementi per ciascun carattere di Game of Thrones usando `[`. Tuttavia, usando `[` gli elementi di ogni carattere di Game of Thrones vengono restituiti in una lista. E anche `map()` ci restituisce una lista. Siamo dunque passati dalla struttura di una lista ad una nuova struttura che, anch'essa, è una lista, anche se leggermente meno complicata.
+
+Vorremmo però organizzare questi risultati in una struttuera più semplice, ovvero in modo tale da avere una riga per ciascun carattere di Game of Thrones e colonne per variabili per "nome", "sesso", ecc.. Un data frame è la struttura dati perfetta per queste informazioni. 
+
+Questo è lo scopo di `map_dfr()`.
+
+
+```{r}
+map_dfr(
+  got_chars, 
+  magrittr::extract, 
+  c("name", "culture", "gender", "id", "born", "alive")
+)
+```
+

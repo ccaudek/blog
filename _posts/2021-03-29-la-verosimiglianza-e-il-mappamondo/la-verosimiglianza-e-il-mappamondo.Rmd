@@ -1,0 +1,356 @@
+---
+title: "La verosimiglianza e il mappamondo"
+description: |
+  La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-29-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: true
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Pacchetti
+
+```{r}
+library("tidyverse", warn.conflicts = FALSE)
+library("bayesplot")
+```
+
+
+
+# Definizione
+
+Iniziamo con una definizione:
+
+> La funzione di verosimiglianza è la funzione di massa o di densità di probabilità dei dati vista come una funzione dei parametri sconosciuti.
+
+
+# Un esempio
+
+Nella discussione seguente ci focalizzeremo sul caso di un'unico parametro sconosciuto e prenderemo in esame la distribuzione Binomiale.
+
+McElreath (2020) propone il seguente esempio. 
+
+Supponiamo di tenere in mano un mappamondo gonfiabile e di chiederci: "qual’è la proporzione della superficie terreste ricoperta d’acqua?" Sembra una domanda a cui è difficile rispondere. Ma ci viene in mente questa idea brillante: lanciamo in aria il mappamondo e, quando lo riprendiamo, osserviamo se la superfice del mappamondo sotto il nostro dito indice destro rappresenta acqua o terra. Possiamo ripetere questa procedura più volte, così da ottenere un campione causale di diverse porzioni della superficie dal mappamondo. Eseguiamo il nostro esperimento lanciando in aria il mappamondo nove volte e osserviamo i seguenti risultati: A, T, A, A, A, T, A, T, A, dove “A” indica acqua e “T” indica terra. 
+
+# Modello statistico
+
+Qual è il modello statistico che potrebbe avere generato i dati che abbiamo osservato? Per l’esempio del mappamondo possiamo dire quanto segue:
+
+- la proporzione del pianeta Terra ricoperta d’acqua è _p_;
+- un singolo lancio del mappamondo ha una probabilità _p_ di produrre l’osservazione “acqua” (A);
+- i lanci del mappamondo sono indipendenti (nel senso che il risultato di un lancio non influenza i risultati degli altri lanci).
+
+Le caratteristiche descritte sopra definiscono il processo generativo dei dati che sta alla base della distribuzione Binomiale. Nel caso presente, il parametro sconosciuto è _p_.
+
+Sappiamo dunque che legge Binomiale illustra la relazione tra i dati osservati e il parametri sconosciuto _p_:
+
+$$
+p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+# Coefficiente binomiale
+
+Il coefficiente binomiale è
+
+$$
+\binom{n}{k} = \frac{n!}{k! (n-k)!}
+$$
+In `R` la funzione che restituisce come risultato il fattoriale di $a$ è
+`factorial()`. Per esempio:
+
+```{r}
+factorial(3)
+```
+
+Ma il risultato del coefficiente binomiale viene calcolato direttamente dalla funzione `choose()`. Per esempio, consideriamo il caso in cui _n_ = 9 e _k_ = 6:
+
+```{r}
+choose(9, 6)
+```
+ovvero
+
+```{r}
+factorial(9) / (factorial(6) * factorial(3))
+```
+
+Dunque, possiamo implementare la legge binomiale in una funzione `R` nel modo seguente:
+
+```{r}
+binomial <- function(k, n, p) {
+  choose(n, k) * p^k * (1 - p)^(n - k)
+}
+```
+
+Ovviamemente, tale funzione è già presente in `R` ed è data da `dbinom()`. Controlliamo:
+
+```{r}
+binomial(6, 9, 0.2)
+```
+
+```{r}
+dbinom(6, 9, 0.2)
+```
+
+
+# La funzione di verosimiglianza
+
+Adesso poniamoci il problema di capire come si crea la figura che ho preso dal seguente [script](https://bookdown.org/content/4857/small-worlds-and-large-worlds.html#building-a-model) la quale implementa in `R` la figura riportata da McElreath (2020).
+
+Inziamo a definire un vettore che contiene i dati:
+
+```{r}
+d <- tibble(toss = c("w", "l", "w", "w", "w", "l", "w", "l", "w"))
+d <- d %>% 
+  mutate(n_trials  = 1:9,
+         n_success = cumsum(toss == "w"))
+d
+```
+
+```{r}
+sequence_length <- 50
+
+d %>%
+  expand(
+    nesting(
+      n_trials, toss, n_success
+    ),
+    p_water = seq(
+      from = 0, to = 1,
+      length.out = sequence_length
+    )
+  ) %>%
+  group_by(p_water) %>%
+  mutate(
+    lagged_n_trials = lag(n_trials, k = 1),
+    lagged_n_success = lag(n_success, k = 1)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    prior = ifelse(
+      n_trials == 1, .5,
+      dbinom(
+        x = lagged_n_success,
+        size = lagged_n_trials,
+        prob = p_water
+      )
+    ),
+    likelihood = dbinom(
+      x = n_success,
+      size = n_trials,
+      prob = p_water
+    ),
+    strip = str_c("n = ", n_trials)
+  ) %>%
+  # the next three lines allow us to normalize the prior and the likelihood,
+  # putting them both in a probability metric
+  group_by(n_trials) %>%
+  mutate(
+    prior = prior / sum(prior),
+    likelihood = likelihood / sum(likelihood)
+  ) %>%
+  # plot!
+  ggplot(aes(x = p_water)) +
+  geom_line(aes(y = prior),
+    linetype = 2
+  ) +
+  geom_line(aes(y = likelihood)) +
+  scale_x_continuous("proportion water", breaks = c(0, .5, 1)) +
+  scale_y_continuous("plausibility", breaks = NULL) +
+  theme(panel.grid = element_blank()) +
+  facet_wrap(~strip, scales = "free_y")
+```
+
+Le curve in tutti i pannelli della figura precedenti sono funzioni di verosimiglianza calcolate utilizzando la legge Binomiale, ma considierando insimi diversi di dati. Nel pannello _n = 1_ ci chiediamo qual è la plausibilità dei possibili valori del parametro sconosciuto _p_ se abbiamo osservato solo un insuccesso in 9 prove. Nel secondo pannello, _n = 2_ ci facciamo la stessa domanda, ma avendo osservato un insuccesso e un successo. E così via.
+
+
+Iniziamo dal pannello _n = 1_. 
+
+La definizione di funzione di verosimiglianza ci dice che dobbiamo usare la legge Binomiale __tenendo costanti i dati__. Questo significa che __dobbiamo variare__ i valori del parametro _p_. Quali valori può assumere _p_?  Tutti i valori nell'intervallo [0, 1]. Ne considereremo qui 50:
+
+```{r}
+p <- seq(0, 1, length.out = 50)
+p
+```
+
+Quali sono i nostri dati?  Se abbiamo ottenuto "acqua" avendo lanciato una volta in aria il mappadondo, allora i nostri dati sono: _k_ = 1, con _n_ = 1. Inseriamo dunque tali dati nella formula della Binomiale:
+
+```{r}
+l <- binomial(1, 1, p)
+l
+```
+
+Creaimo un diagramma con il risultato ottenuto.
+
+```{r}
+like <- data.frame(
+  l = l
+)
+like %>% 
+  ggplot(aes(x = p)) +
+  geom_line(aes(y = l),
+    linetype = 1
+  ) +
+  labs(
+    y = "plausibility",
+    x = "proportion water"
+  ) +
+  theme(panel.grid = element_blank()) 
+```
+
+La figura ci dice che, avendo osservato un successo in una prova, la plausibilità che _p_ sia uguale a 1 è massima.  La plausibilità di _p_ diminuisce allonandoci dal valore possibile _p_ = 1, fino ad arrivare al valore minimo, ovvero 0, in corrispondenza dell'ipotesi secondo la quale _p_ = 0. È infatti impossibile che _p_ = 0 dato che abbiamo osservato un successo. Quindi deve essere vero che _p_ $>$ 0.
+
+Adesso lanciamo il mappamondo una seconda volta.  Osserviamo "terra".  Ripetiamo la procedura descritta sopra.
+
+```{r}
+l <- binomial(1, 2, p)
+like <- data.frame(
+  l = l
+)
+like %>% 
+  ggplot(aes(x = p)) +
+  geom_line(aes(y = l),
+    linetype = 1
+  ) +
+  labs(
+    y = "plausibility",
+    x = "proportion water"
+  ) +
+  theme(panel.grid = element_blank()) 
+```
+
+La figura ci dice che ci sono due valori del parametro _p_ che sono impossibili: _p_ = 0, perché abbiamo osservato un successo e _p_ = 1, in quanto abbiamo osservato un insuccesso. In tali condizioni, è inuitivo che il valore _p_ più plausibile sia nell'intorno di 0.5. Infatti, la figura ci dice proprio questo.
+
+Evidentemente non abbiamo bisogno di usare la nostra funzione `binomial()` per ottenere i risultati descritti sopra. Gli stessi risultati si ottengono con la funzione `dbinom()`:
+
+```{r}
+l <- dbinom(1, 2, p)
+like <- data.frame(
+  l = l
+)
+like %>% 
+  ggplot(aes(x = p)) +
+  geom_line(aes(y = l),
+    linetype = 1
+  ) +
+  labs(
+    y = "plausibility",
+    x = "proportion water"
+  ) +
+  theme(panel.grid = element_blank()) 
+```
+
+Ripetendo questo ragionamento, ovvero ripercorrendo i vari passi dell'esempio fino ad ottenere 6 successi in 9 prove, riusciamo a costruire la figura con nove pannelli riportata sopra.
+
+
+# Verosimiglianza per una Normale
+
+Poniamoci ora il problema di calcolare la verosimiglianza per i parametri sconosciuti di una distribuzione Normale avendo a disposizione un campione casuale di osservazioni. Essendo il campione casuale, la distribuzione di probabilità congiunta dei dati, dati i parametri, è data dal prodotto della densità di ciascuna singola osservazione:
+
+Come troviamo la densità di una singola osservazione?  È ovviamente data da 
+
+```{r, eval=FALSE}
+dnorm(x, mean = mu, sigma = sigma)
+```
+
+Se il nostro campione è costituito da 30 osservazioni sarà dunque necessario fare il prodotto di 30 densità. Il problema di procedere in questo modo, però, è che il risultato numerico di questo prodotto divenerà molto piccolo, e i computer hanno difficoltà a manipolare numeri così piccoli. Tale problema può essere risolto prendendo il logaritmo. Per le proprietà dei logaritmi, inoltre, il logaritmo di un prodotto è uguale alla somma dei logaritmi. Per esempio,
+
+```{r}
+log(3 * 4 * 5)
+log(3) + log(4) + log(5)
+```
+Dunque, se vogliamo costruire la funzione di log-verosimiglianza per un campione di 30 osservazioni sarà sufficiente sommare le 30 log-verosimiglianze.  
+
+Consideriamo i dati delle dispense:
+
+```{r}
+d <- data.frame(
+  x = c(26, 35, 30, 25, 44, 30, 33, 43, 22, 43, 24, 19, 39, 31, 25, 
+        28, 35, 30, 26, 31, 41, 36, 26, 35, 33, 28, 27, 34, 27, 22)
+  )
+```
+
+Per semplificare il problema, poniamoci l'obiettivo di stimare solo uno dei due parametri sconosciuti, ovvero $\mu$, tenendo $\sigma$ uguale alla deviazione standard campionaria:
+
+```{r}
+true_sigma <- sd(d$x)
+```
+
+Definiamo la funzione di log-verosimiglianza:
+
+```{r}
+log_likelihood <- function(x, mu, sigma=true_sigma) {
+  sum(dnorm(x, mu, sigma, log=TRUE))
+}
+```
+
+L'argomento `log=TRUE` nella funzione `dnorm()` specifica che vogliamo il logaritmo della densità Normale. 
+
+La situazione è dunque simile a quella che abbiamo discusso nel caso della Binomiale.  La complicazione è che dobbiamo fare una somma di 30 addendi, ma tale somma viene calcolata all'interno della funzione `log_likelihood()` per cui non ci preoccupiamo di essa.
+
+Notiamo invece che della funzione `log_likelihood()` richiede tre argomenti: il primo argomento `x` corrisponde al vettore che contiene i dati; il secondo argomento `mu` è il parametro sconosciuto; il terzo argomento, nell'esempio che stiamo discutendo, viene mantenuto costante.
+
+Come abbiao fatto per l'esempio sulla verosimiglianza di una Binomiale, definiamo una serie di valori per il parametro sconosciuto `mu`:
+
+```{r}
+nrep <- 1e5
+mu <- seq(
+  mean(d$x) - sd(d$x), 
+  mean(d$x) + sd(d$x), 
+  length.out = nrep
+)
+```
+
+Nel caso presente esamineremo un grande numero di valri possibili per il parametro sconosciuto: 1e5.
+
+Siamo ora nelle condizioni di trovare i valori della log-verosimiglianza:
+
+```{r}
+ll <- rep(NA, nrep)
+for (i in 1:nrep) {
+  ll[i] <- log_likelihood(d$x, mu[i], true_sigma)
+}
+```
+
+
+```{r}
+data.frame(mu, ll) %>% 
+ggplot(aes(x=mu, y=ll)) +
+  geom_line() +
+  vline_at(mean(d$x), color="red", linetype="dashed") +
+  labs(
+    y="Log-verosimiglianza",
+    x=c("Parametro \u03BC")
+  ) 
+```
+
+```{r}
+mean(d$x)
+```
+
+```{r}
+mu[which.max(ll)]
+```
+
+
+# Log-verosimiglianza
+
+
+
+
+

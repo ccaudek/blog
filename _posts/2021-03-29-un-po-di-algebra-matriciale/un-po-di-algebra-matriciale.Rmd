@@ -1,0 +1,213 @@
+---
+title: "Un po' di algebra matriciale"
+description: |
+  Usiamo R per le operazioni di base dell'algebra lineare.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-29-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("matlib")
+```
+
+
+# Vettori
+
+Definiamo il vettore __a__
+
+```{r}
+a <- matrix(
+  c(1, 3, -2, 4), 
+  nrow = 4, 
+  byrow = TRUE
+)
+a
+```
+
+e il vettore __b__
+
+```{r}
+b <- matrix(
+  c(2, 0, 1, -1), 
+  nrow = 4, 
+  byrow = TRUE
+)
+b
+```
+
+Somma e differenza si svolgono elemento per elemento, per cui:
+
+```{r}
+a + b
+```
+
+e
+
+```{r}
+a - b
+```
+
+### Prodotto interno
+
+Il prodotto interno produce uno scalare:
+
+```{r}
+t(a) %*% b
+```
+
+Si noti che, quando dobbiamo moltiplicare vettori riga e vettori colonna, ovvero quando dobbiamo moltiplicare matrici, usiamo l'operatore `%*%`.
+
+Ovviamente qui l'ordine con il quale svolgiamo la moltiplicazione non conta:
+
+```{r}
+t(b) %*% a
+```
+
+### Prodotto esterno
+
+Il prodotto esterno produce una matrice:
+
+```{r}
+a %*% t(b)
+```
+
+Qui invece l'ordine è importante:
+
+```{r}
+b %*% t(a)
+```
+
+# Moltiplicazione di matrici 
+
+Due matrici si possono moltiplicare quando sono _conformabili_ (ovvero quando il numero di colonne della prima è uguale al numero di righe della seconda matrice). La matrice __A__ è di ordine 2 $\times$ 4:
+
+```{r}
+A <- matrix(
+  c(1, 3, -2, 4, 
+    4, 1,  0, 1), 
+  nrow = 2, 
+  byrow = TRUE
+)
+A
+```
+La matrice __B__ è di ordine 4 $\times$ 3:
+
+```{r}
+B <- matrix(
+  c(1, 1, -2, 
+    2, 1,  0,
+    1, 1, 0, 
+    -2, 1, 0), 
+  nrow = 4, 
+  byrow = TRUE
+)
+B
+```
+
+Il risultato è una matrice 2 $\times$ 3:
+
+```{r}
+A %*% B
+```
+
+# Inversa di una matrice
+
+In `R` si usa la funzione `solve()` per trovare l'inversa di una matrice 
+
+```{r}
+C <- matrix(
+  c(3, -2, 
+    2, 2), 
+  nrow = 2, 
+  byrow = TRUE
+)
+C
+```
+
+```{r}
+solve(C)
+```
+
+```{r}
+round(solve(C) %*% C, 3)
+```
+
+```{r}
+round(C %*% solve(C), 3)
+```
+
+### Il metodo della matrice aggiunta 
+
+Calcoliamo il determinante
+
+```{r}
+det(C)
+```
+
+e la matrice aggiunta (in inglese adjoint)
+
+```{r}
+adjoint <- function(A) det(A)*solve(A)
+```
+
+```{r}
+adjoint(C)
+```
+L'inversa diventa
+
+```{r}
+1 / det(C) * adjoint(C)
+```
+
+quindi
+
+```{r}
+round(C %*% (1 / det(C) * adjoint(C)), 3)
+```
+
+# Traccia
+
+La traccia di una matrice è data dalla somma degli elementi sulla diagonale principale:
+
+```{r}
+sum(diag(C))
+```
+
+Oppure
+
+```{r}
+trace <- function(A) {
+  n <- dim(A)[1] # get dimension of matrix
+  tr <- 0 # initialize trace value
+  
+  # Loop over the diagonal elements of the supplied matrix and add the element to tr
+  for (k in 1:n) {
+    l <- A[k,k]
+    tr <- tr + l
+  }
+  return(tr[[1]])
+}
+```
+
+```{r}
+trace(C)
+```
+
+

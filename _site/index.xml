@@ -7,7 +7,16 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Un po' di algebra matriciale</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale</link>
+      <description>Usiamo R per le operazioni di base dell'algebra lineare.</description>
+      <category>R</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale</guid>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Catena di Markov Monte Carlo</title>
       <dc:creator>Corrado Caudek</dc:creator>
