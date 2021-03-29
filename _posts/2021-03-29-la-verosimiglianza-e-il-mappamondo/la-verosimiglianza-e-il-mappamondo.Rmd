@@ -11,26 +11,19 @@ output:
     self_contained: false
     toc: true
     toc_depth: 2
-draft: true
+draft: false
 creative_commons: CC BY
 categories:
   - R
   - Psicometria
 preview: preview.png
+bibliography: bibliography.bib
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# Pacchetti
-
-```{r}
-library("tidyverse", warn.conflicts = FALSE)
-library("bayesplot")
-```
-
 
 
 # Definizione
@@ -39,14 +32,20 @@ Iniziamo con una definizione:
 
 > La funzione di verosimiglianza è la funzione di massa o di densità di probabilità dei dati vista come una funzione dei parametri sconosciuti.
 
+# Pacchetti
+
+Carico i pacchetti che userò in questo tutorial.
+
+```{r}
+library("tidyverse", warn.conflicts = FALSE)
+library("bayesplot")
+```
 
 # Un esempio
 
 Nella discussione seguente ci focalizzeremo sul caso di un'unico parametro sconosciuto e prenderemo in esame la distribuzione Binomiale.
 
-McElreath (2020) propone il seguente esempio. 
-
-Supponiamo di tenere in mano un mappamondo gonfiabile e di chiederci: "qual’è la proporzione della superficie terreste ricoperta d’acqua?" Sembra una domanda a cui è difficile rispondere. Ma ci viene in mente questa idea brillante: lanciamo in aria il mappamondo e, quando lo riprendiamo, osserviamo se la superfice del mappamondo sotto il nostro dito indice destro rappresenta acqua o terra. Possiamo ripetere questa procedura più volte, così da ottenere un campione causale di diverse porzioni della superficie dal mappamondo. Eseguiamo il nostro esperimento lanciando in aria il mappamondo nove volte e osserviamo i seguenti risultati: A, T, A, A, A, T, A, T, A, dove “A” indica acqua e “T” indica terra. 
+@mcelreath2020statistical propone il seguente esempio. Supponiamo di tenere in mano un mappamondo gonfiabile e di chiederci: "qual’è la proporzione della superficie terreste ricoperta d’acqua?" Sembra una domanda a cui è difficile rispondere. Ma ci viene in mente questa idea brillante: lanciamo in aria il mappamondo e, quando lo riprendiamo, osserviamo se la superfice del mappamondo sotto il nostro dito indice destro rappresenta acqua o terra. Possiamo ripetere questa procedura più volte, così da ottenere un campione causale di diverse porzioni della superficie dal mappamondo. Eseguiamo il nostro esperimento lanciando in aria il mappamondo nove volte e osserviamo i seguenti risultati: A, T, A, A, A, T, A, T, A, dove “A” indica acqua e “T” indica terra. 
 
 # Modello statistico
 
@@ -176,12 +175,11 @@ d %>%
   facet_wrap(~strip, scales = "free_y")
 ```
 
-Le curve in tutti i pannelli della figura precedenti sono funzioni di verosimiglianza calcolate utilizzando la legge Binomiale, ma considierando insimi diversi di dati. Nel pannello _n = 1_ ci chiediamo qual è la plausibilità dei possibili valori del parametro sconosciuto _p_ se abbiamo osservato solo un insuccesso in 9 prove. Nel secondo pannello, _n = 2_ ci facciamo la stessa domanda, ma avendo osservato un insuccesso e un successo. E così via.
-
+La curva rappresentata in ciascun pannello della figura precedente è la funzione di verosimiglianza calcolata utilizzando la legge Binomiale, ma considierando campioni diversi di dati. Nel pannello _n = 1_ è rappresentata la verosimiglianza dei possibili valori del parametro sconosciuto _p_ se abbiamo osservato solo un successo in 1 prova dell'esperimento casuale. Nel secondo pannello, _n = 2_ è rappresentata la verosimiglianza che si ottiene avendo osservato un successo e un insuccesso in due prove successive dell'esperimento casuale. E così via.
 
 Iniziamo dal pannello _n = 1_. 
 
-La definizione di funzione di verosimiglianza ci dice che dobbiamo usare la legge Binomiale __tenendo costanti i dati__. Questo significa che __dobbiamo variare__ i valori del parametro _p_. Quali valori può assumere _p_?  Tutti i valori nell'intervallo [0, 1]. Ne considereremo qui 50:
+La definizione della funzione di verosimiglianza ci dice che dobbiamo usare la legge Binomiale __tenendo costanti i dati__. Questo significa che __dobbiamo variare__ i valori del parametro _p_. Quali valori può assumere _p_?  Tutti i valori nell'intervallo [0, 1]. Ne considereremo qui 50:
 
 ```{r}
 p <- seq(0, 1, length.out = 50)
@@ -327,6 +325,41 @@ for (i in 1:nrep) {
 }
 ```
 
+Facciamo un esempio. Consideriamo un valore preso a caso per il parametro _mu_, per esempio, 28, e svolgiamo i calcoli. Dobbiamo calcolare il valore che viene ritornato da ´dnorm(..., log=TRUE)´ per ciascuno dei valori `x` del campione, tenendo costanti i valori `sigma = s` e `mu = 28`:
+
+```{r}
+mu_test <- 28
+dnorm(d$x, mu_test, true_sigma, log=TRUE)
+```
+
+La somma di questi valori è
+
+```{r}
+sum(dnorm(d$x, mu_test, true_sigma, log=TRUE))
+```
+
+Nello script precedente, questi calcoli sono stati svolti per tutti gli 1e5 valori ipotizzati per `mu`. Verifichiamo. Chiediamoci intanto a quale indice del vettore `mu` corrisponde il valore di `mu_test` = 28.  Nel vettore che abbiamo creato, il valore più prossimo a 28 corrisponde all'elemento in posizione 
+
+```{r}
+mu_index <- which.min(abs(mu - mu_test))
+mu_index
+```
+ovvero 
+
+```{r}
+mu[mu_index]
+```
+Chiediamoci dunque qual è il valore dell'elemento pari a `mu_index` del vettore `ll`:
+
+```{r}
+ll[mu_index]
+```
+
+il che conferma il risultato dei calcoli che abbiamo svolto in precedenza.
+
+# La log-verosimiglianza
+
+Disegnamo ora la funzione di log-verosimiglianza per il parametro sconosciuto $\mu$:
 
 ```{r}
 data.frame(mu, ll) %>% 
@@ -336,19 +369,21 @@ ggplot(aes(x=mu, y=ll)) +
   labs(
     y="Log-verosimiglianza",
     x=c("Parametro \u03BC")
-  ) 
+  ) +
+  theme(panel.grid = element_blank()) 
 ```
+
+La funzione di log-verosimiglianza ha un massimo.  Il valore $\mu$ corrispondente a tale massimo è lo stimatore di massima verosimiglianza per la media sconosciuta della popolazione. 
+Noi sappiamo che tale stimatore non è altro che la media del campione.  Controlliamo:
 
 ```{r}
 mean(d$x)
 ```
+ovvero
 
 ```{r}
 mu[which.max(ll)]
 ```
-
-
-# Log-verosimiglianza
 
 
 

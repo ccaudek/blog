@@ -86,11 +86,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>Il blog di Corrado Caudek: Un po' di algebra matriciale</title>
+<title>Il blog di Corrado Caudek: La verosimiglianza e il mappamondo</title>
 
-<meta property="description" itemprop="description" content="Usiamo R per le operazioni di base dell&#39;algebra lineare."/>
+<meta property="description" itemprop="description" content="La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking."/>
 
-<link rel="canonical" href="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/"/>
+<link rel="canonical" href="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/"/>
 <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
 <!--  https://schema.org/Article -->
@@ -99,44 +99,46 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Corrado Caudek"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Il blog di Corrado Caudek: Un po&#39; di algebra matriciale"/>
+<meta property="og:title" content="Il blog di Corrado Caudek: La verosimiglianza e il mappamondo"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Usiamo R per le operazioni di base dell&#39;algebra lineare."/>
-<meta property="og:url" content="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/"/>
-<meta property="og:image" content="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/preview.png"/>
-<meta property="og:image:width" content="834"/>
-<meta property="og:image:height" content="338"/>
+<meta property="og:description" content="La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking."/>
+<meta property="og:url" content="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/"/>
+<meta property="og:image" content="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png"/>
+<meta property="og:image:width" content="1248"/>
+<meta property="og:image:height" content="768"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Il blog di Corrado Caudek"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="Il blog di Corrado Caudek: Un po&#39; di algebra matriciale"/>
-<meta property="twitter:description" content="Usiamo R per le operazioni di base dell&#39;algebra lineare."/>
-<meta property="twitter:url" content="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/"/>
-<meta property="twitter:image" content="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/preview.png"/>
-<meta property="twitter:image:width" content="834"/>
-<meta property="twitter:image:height" content="338"/>
+<meta property="twitter:title" content="Il blog di Corrado Caudek: La verosimiglianza e il mappamondo"/>
+<meta property="twitter:description" content="La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking."/>
+<meta property="twitter:url" content="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/"/>
+<meta property="twitter:image" content="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png"/>
+<meta property="twitter:image:width" content="1248"/>
+<meta property="twitter:image:height" content="768"/>
 <meta property="twitter:site" content="@ccaudek"/>
 <meta property="twitter:creator" content="@ccaudek"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Il blog di Corrado Caudek: Un po&#39; di algebra matriciale"/>
-<meta name="citation_fulltext_html_url" content="https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/"/>
+<meta name="citation_title" content="Il blog di Corrado Caudek: La verosimiglianza e il mappamondo"/>
+<meta name="citation_fulltext_html_url" content="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/"/>
 <meta name="citation_fulltext_world_readable" content=""/>
 <meta name="citation_online_date" content="2021/03/29"/>
 <meta name="citation_publication_date" content="2021/03/29"/>
 <meta name="citation_author" content="Corrado Caudek"/>
 <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Statistical rethinking: A Bayesian course with examples in R and Stan;citation_publication_date=2020;citation_publisher=CRC press;citation_author=Richard McElreath"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Un po' di algebra matriciale"]},{"type":"character","attributes":{},"value":["Usiamo R per le operazioni di base dell'algebra lineare."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["03-29-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R"]},{"type":"character","attributes":{},"value":["preview.png"]},{"type":"character","attributes":{},"value":["https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/"]},{"type":"character","attributes":{},"value":["https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories","preview","bibliography","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["La verosimiglianza e il mappamondo"]},{"type":"character","attributes":{},"value":["La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["03-29-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R","Psicometria"]},{"type":"character","attributes":{},"value":["preview.png"]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/"]},{"type":"character","attributes":{},"value":["https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["un-po-di-algebra-matriciale_files/anchor-4.2.2/anchor.min.js","un-po-di-algebra-matriciale_files/bowser-1.9.3/bowser.min.js","un-po-di-algebra-matriciale_files/distill-2.2.21/template.v2.js","un-po-di-algebra-matriciale_files/header-attrs-2.7/header-attrs.js","un-po-di-algebra-matriciale_files/jquery-1.11.3/jquery.min.js","un-po-di-algebra-matriciale_files/popper-2.6.0/popper.min.js","un-po-di-algebra-matriciale_files/tippy-6.2.7/tippy-bundle.umd.min.js","un-po-di-algebra-matriciale_files/tippy-6.2.7/tippy-light-border.css","un-po-di-algebra-matriciale_files/tippy-6.2.7/tippy.css","un-po-di-algebra-matriciale_files/tippy-6.2.7/tippy.umd.min.js","un-po-di-algebra-matriciale_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["bibliography.bib","la-verosimiglianza-e-il-mappamondo_files/anchor-4.2.2/anchor.min.js","la-verosimiglianza-e-il-mappamondo_files/bowser-1.9.3/bowser.min.js","la-verosimiglianza-e-il-mappamondo_files/distill-2.2.21/template.v2.js","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-12-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-13-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-14-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-22-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-27-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png","la-verosimiglianza-e-il-mappamondo_files/header-attrs-2.7/header-attrs.js","la-verosimiglianza-e-il-mappamondo_files/jquery-1.11.3/jquery.min.js","la-verosimiglianza-e-il-mappamondo_files/popper-2.6.0/popper.min.js","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy-bundle.umd.min.js","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy-light-border.css","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy.css","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy.umd.min.js","la-verosimiglianza-e-il-mappamondo_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2429,7 +2431,7 @@ gtag('config', 'G-VTS54G9ZSV');
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Un po' di algebra matriciale","description":"Usiamo R per le operazioni di base dell'algebra lineare.","authors":[{"author":"Corrado Caudek","authorURL":"https://caudekblog.netlify.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-29T00:00:00.000+00:00","citationText":"Caudek, 2021"}
+{"title":"La verosimiglianza e il mappamondo","description":"La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking.","authors":[{"author":"Corrado Caudek","authorURL":"https://caudekblog.netlify.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-29T00:00:00.000+00:00","citationText":"Caudek, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2462,13 +2464,14 @@ gtag('config', 'G-VTS54G9ZSV');
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Un po’ di algebra matriciale</h1>
+<h1>La verosimiglianza e il mappamondo</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:R" class="dt-tag">R</a>
+  <a href="../../index.html#category:Psicometria" class="dt-tag">Psicometria</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Usiamo R per le operazioni di base dell’algebra lineare.</p></p>
+<p><p>La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2482,299 +2485,448 @@ gtag('config', 'G-VTS54G9ZSV');
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#vettori">Vettori</a></li>
-<li><a href="#moltiplicazione-di-matrici">Moltiplicazione di matrici</a></li>
-<li><a href="#inversa-di-una-matrice">Inversa di una matrice</a></li>
-<li><a href="#traccia">Traccia</a></li>
+<li><a href="#definizione">Definizione</a></li>
+<li><a href="#pacchetti">Pacchetti</a></li>
+<li><a href="#un-esempio">Un esempio</a></li>
+<li><a href="#modello-statistico">Modello statistico</a></li>
+<li><a href="#coefficiente-binomiale">Coefficiente binomiale</a></li>
+<li><a href="#la-funzione-di-verosimiglianza">La funzione di verosimiglianza</a></li>
+<li><a href="#verosimiglianza-per-una-normale">Verosimiglianza per una Normale</a></li>
+<li><a href="#la-log-verosimiglianza">La log-verosimiglianza</a></li>
 </ul>
 </nav>
 </div>
+<h1 id="definizione">Definizione</h1>
+<p>Iniziamo con una definizione:</p>
+<blockquote>
+<p>La funzione di verosimiglianza è la funzione di massa o di densità di probabilità dei dati vista come una funzione dei parametri sconosciuti.</p>
+</blockquote>
+<h1 id="pacchetti">Pacchetti</h1>
+<p>Carico i pacchetti che userò in questo tutorial.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/friendly/matlib'>"matlib"</a></span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span>, warn.conflicts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://mc-stan.org/bayesplot/'>"bayesplot"</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<h1 id="vettori">Vettori</h1>
-<p>Definiamo il vettore <strong>a</strong></p>
+<h1 id="un-esempio">Un esempio</h1>
+<p>Nella discussione seguente ci focalizzeremo sul caso di un’unico parametro sconosciuto e prenderemo in esame la distribuzione Binomiale.</p>
+<p><span class="citation" data-cites="mcelreath2020statistical"><a href="#ref-mcelreath2020statistical" role="doc-biblioref">McElreath</a> (<a href="#ref-mcelreath2020statistical" role="doc-biblioref">2020</a>)</span> propone il seguente esempio. Supponiamo di tenere in mano un mappamondo gonfiabile e di chiederci: “qual’è la proporzione della superficie terreste ricoperta d’acqua?” Sembra una domanda a cui è difficile rispondere. Ma ci viene in mente questa idea brillante: lanciamo in aria il mappamondo e, quando lo riprendiamo, osserviamo se la superfice del mappamondo sotto il nostro dito indice destro rappresenta acqua o terra. Possiamo ripetere questa procedura più volte, così da ottenere un campione causale di diverse porzioni della superficie dal mappamondo. Eseguiamo il nostro esperimento lanciando in aria il mappamondo nove volte e osserviamo i seguenti risultati: A, T, A, A, A, T, A, T, A, dove “A” indica acqua e “T” indica terra.</p>
+<h1 id="modello-statistico">Modello statistico</h1>
+<p>Qual è il modello statistico che potrebbe avere generato i dati che abbiamo osservato? Per l’esempio del mappamondo possiamo dire quanto segue:</p>
+<ul>
+<li>la proporzione del pianeta Terra ricoperta d’acqua è <em>p</em>;</li>
+<li>un singolo lancio del mappamondo ha una probabilità <em>p</em> di produrre l’osservazione “acqua” (A);</li>
+<li>i lanci del mappamondo sono indipendenti (nel senso che il risultato di un lancio non influenza i risultati degli altri lanci).</li>
+</ul>
+<p>Le caratteristiche descritte sopra definiscono il processo generativo dei dati che sta alla base della distribuzione Binomiale. Nel caso presente, il parametro sconosciuto è <em>p</em>.</p>
+<p>Sappiamo dunque che legge Binomiale illustra la relazione tra i dati osservati e il parametri sconosciuto <em>p</em>:</p>
+<p><span class="math display">\[
+p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
+\]</span></p>
+<h1 id="coefficiente-binomiale">Coefficiente binomiale</h1>
+<p>Il coefficiente binomiale è</p>
+<p><span class="math display">\[
+\binom{n}{k} = \frac{n!}{k! (n-k)!}
+\]</span> In <code>R</code> la funzione che restituisce come risultato il fattoriale di <span class="math inline">\(a\)</span> è <code>factorial()</code>. Per esempio:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span>, 
-  nrow <span class='op'>=</span> <span class='fl'>4</span>, 
-  byrow <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-<span class='va'>a</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Special.html'>factorial</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>     [,1]
-[1,]    1
-[2,]    3
-[3,]   -2
-[4,]    4</code></pre>
+<pre><code>[1] 6</code></pre>
 </div>
-<p>e il vettore <strong>b</strong></p>
+<p>Ma il risultato del coefficiente binomiale viene calcolato direttamente dalla funzione <code>choose()</code>. Per esempio, consideriamo il caso in cui <em>n</em> = 9 e <em>k</em> = 6:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>, 
-  nrow <span class='op'>=</span> <span class='fl'>4</span>, 
-  byrow <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-<span class='va'>b</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Special.html'>choose</a></span><span class='op'>(</span><span class='fl'>9</span>, <span class='fl'>6</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>     [,1]
-[1,]    2
-[2,]    0
-[3,]    1
-[4,]   -1</code></pre>
+<pre><code>[1] 84</code></pre>
 </div>
-<p>Somma e differenza si svolgono elemento per elemento, per cui:</p>
+<p>ovvero</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>+</span> <span class='va'>b</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Special.html'>factorial</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>)</span> <span class='op'>/</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Special.html'>factorial</a></span><span class='op'>(</span><span class='fl'>6</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/Special.html'>factorial</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>     [,1]
-[1,]    3
-[2,]    3
-[3,]   -1
-[4,]    3</code></pre>
+<pre><code>[1] 84</code></pre>
 </div>
-<p>e</p>
+<p>Dunque, possiamo implementare la legge binomiale in una funzione <code>R</code> nel modo seguente:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>-</span> <span class='va'>b</span>
-</code></pre>
-</div>
-<pre><code>     [,1]
-[1,]   -1
-[2,]    3
-[3,]   -3
-[4,]    5</code></pre>
-</div>
-<h3 id="prodotto-interno">Prodotto interno</h3>
-<p>Il prodotto interno produce uno scalare:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span> <span class='op'>%*%</span> <span class='va'>b</span>
-</code></pre>
-</div>
-<pre><code>     [,1]
-[1,]   -4</code></pre>
-</div>
-<p>Si noti che, quando dobbiamo moltiplicare vettori riga e vettori colonna, ovvero quando dobbiamo moltiplicare matrici, usiamo l’operatore <code>%*%</code>.</p>
-<p>Ovviamente qui l’ordine con il quale svolgiamo la moltiplicazione non conta:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span> <span class='op'>%*%</span> <span class='va'>a</span>
-</code></pre>
-</div>
-<pre><code>     [,1]
-[1,]   -4</code></pre>
-</div>
-<h3 id="prodotto-esterno">Prodotto esterno</h3>
-<p>Il prodotto esterno produce una matrice:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2] [,3] [,4]
-[1,]    2    0    1   -1
-[2,]    6    0    3   -3
-[3,]   -4    0   -2    2
-[4,]    8    0    4   -4</code></pre>
-</div>
-<p>Qui invece l’ordine è importante:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>b</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2] [,3] [,4]
-[1,]    2    6   -4    8
-[2,]    0    0    0    0
-[3,]    1    3   -2    4
-[4,]   -1   -3    2   -4</code></pre>
-</div>
-<h1 id="moltiplicazione-di-matrici">Moltiplicazione di matrici</h1>
-<p>Due matrici si possono moltiplicare quando sono <em>conformabili</em> (ovvero quando il numero di colonne della prima è uguale al numero di righe della seconda matrice). La matrice <strong>A</strong> è di ordine 2 <span class="math inline">\(\times\)</span> 4:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>2</span>, <span class='fl'>4</span>, 
-    <span class='fl'>4</span>, <span class='fl'>1</span>,  <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, 
-  nrow <span class='op'>=</span> <span class='fl'>2</span>, 
-  byrow <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-<span class='va'>A</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2] [,3] [,4]
-[1,]    1    3   -2    4
-[2,]    4    1    0    1</code></pre>
-</div>
-<p>La matrice <strong>B</strong> è di ordine 4 <span class="math inline">\(\times\)</span> 3:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='op'>-</span><span class='fl'>2</span>, 
-    <span class='fl'>2</span>, <span class='fl'>1</span>,  <span class='fl'>0</span>,
-    <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>0</span>, 
-    <span class='op'>-</span><span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>, 
-  nrow <span class='op'>=</span> <span class='fl'>4</span>, 
-  byrow <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-<span class='va'>B</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2] [,3]
-[1,]    1    1   -2
-[2,]    2    1    0
-[3,]    1    1    0
-[4,]   -2    1    0</code></pre>
-</div>
-<p>Il risultato è una matrice 2 <span class="math inline">\(\times\)</span> 3:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>A</span> <span class='op'>%*%</span> <span class='va'>B</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2] [,3]
-[1,]   -3    6   -2
-[2,]    4    6   -8</code></pre>
-</div>
-<h1 id="inversa-di-una-matrice">Inversa di una matrice</h1>
-<p>In <code>R</code> si usa la funzione <code>solve()</code> per trovare l’inversa di una matrice</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>C</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>2</span>, 
-    <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span>, 
-  nrow <span class='op'>=</span> <span class='fl'>2</span>, 
-  byrow <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-<span class='va'>C</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]    3   -2
-[2,]    2    2</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/solve.html'>solve</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]  0.2  0.2
-[2,] -0.2  0.3</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/solve.html'>solve</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span> <span class='op'>%*%</span> <span class='va'>C</span>, <span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]    1    0
-[2,]    0    1</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>C</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/solve.html'>solve</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]    1    0
-[2,]    0    1</code></pre>
-</div>
-<h3 id="il-metodo-della-matrice-aggiunta">Il metodo della matrice aggiunta</h3>
-<p>Calcoliamo il determinante</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/det.html'>det</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 10</code></pre>
-</div>
-<p>e la matrice aggiunta (in inglese adjoint)</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>adjoint</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>A</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/det.html'>det</a></span><span class='op'>(</span><span class='va'>A</span><span class='op'>)</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/solve.html'>solve</a></span><span class='op'>(</span><span class='va'>A</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/matlib/man/adjoint.html'>adjoint</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]    2    2
-[2,]   -2    3</code></pre>
-</div>
-<p>L’inversa diventa</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fl'>1</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/det.html'>det</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/pkg/matlib/man/adjoint.html'>adjoint</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]  0.2  0.2
-[2,] -0.2  0.3</code></pre>
-</div>
-<p>quindi</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>C</span> <span class='op'>%*%</span> <span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/det.html'>det</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/pkg/matlib/man/adjoint.html'>adjoint</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>     [,1] [,2]
-[1,]    1    0
-[2,]    0    1</code></pre>
-</div>
-<h1 id="traccia">Traccia</h1>
-<p>La traccia di una matrice è data dalla somma degli elementi sulla diagonale principale:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 5</code></pre>
-</div>
-<p>Oppure</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>trace</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>A</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>A</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='co'># get dimension of matrix</span>
-  <span class='va'>tr</span> <span class='op'>&lt;-</span> <span class='fl'>0</span> <span class='co'># initialize trace value</span>
-  
-  <span class='co'># Loop over the diagonal elements of the supplied matrix and add the element to tr</span>
-  <span class='kw'>for</span> <span class='op'>(</span><span class='va'>k</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='va'>l</span> <span class='op'>&lt;-</span> <span class='va'>A</span><span class='op'>[</span><span class='va'>k</span>,<span class='va'>k</span><span class='op'>]</span>
-    <span class='va'>tr</span> <span class='op'>&lt;-</span> <span class='va'>tr</span> <span class='op'>+</span> <span class='va'>l</span>
-  <span class='op'>}</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>tr</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>binomial</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>k</span>, <span class='va'>n</span>, <span class='va'>p</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/Special.html'>choose</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>k</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>p</span><span class='op'>^</span><span class='va'>k</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>p</span><span class='op'>)</span><span class='op'>^</span><span class='op'>(</span><span class='va'>n</span> <span class='op'>-</span> <span class='va'>k</span><span class='op'>)</span>
 <span class='op'>}</span>
 </code></pre>
 </div>
 </div>
+<p>Ovviamemente, tale funzione è già presente in <code>R</code> ed è data da <code>dbinom()</code>. Controlliamo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/trace.html'>trace</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/family.html'>binomial</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>9</span>, <span class='fl'>0.2</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 5</code></pre>
+<pre><code>[1] 0.002752512</code></pre>
 </div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>9</span>, <span class='fl'>0.2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.002752512</code></pre>
+</div>
+<h1 id="la-funzione-di-verosimiglianza">La funzione di verosimiglianza</h1>
+<p>Adesso poniamoci il problema di capire come si crea la figura che ho preso dal seguente <a href="https://bookdown.org/content/4857/small-worlds-and-large-worlds.html#building-a-model">script</a> la quale implementa in <code>R</code> la figura riportata da McElreath (2020).</p>
+<p>Inziamo a definire un vettore che contiene i dati:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>toss <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"w"</span>, <span class='st'>"l"</span>, <span class='st'>"w"</span>, <span class='st'>"w"</span>, <span class='st'>"w"</span>, <span class='st'>"l"</span>, <span class='st'>"w"</span>, <span class='st'>"l"</span>, <span class='st'>"w"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>n_trials  <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span>,
+         n_success <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='va'>toss</span> <span class='op'>==</span> <span class='st'>"w"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>d</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 9 x 3
+  toss  n_trials n_success
+  &lt;chr&gt;    &lt;int&gt;     &lt;int&gt;
+1 w            1         1
+2 l            2         1
+3 w            3         2
+4 w            4         3
+5 w            5         4
+6 l            6         4
+7 w            7         5
+8 l            8         5
+9 w            9         6</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sequence_length</span> <span class='op'>&lt;-</span> <span class='fl'>50</span>
+
+<span class='va'>d</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>expand</span><span class='op'>(</span>
+    <span class='fu'>nesting</span><span class='op'>(</span>
+      <span class='va'>n_trials</span>, <span class='va'>toss</span>, <span class='va'>n_success</span>
+    <span class='op'>)</span>,
+    p_water <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>
+      from <span class='op'>=</span> <span class='fl'>0</span>, to <span class='op'>=</span> <span class='fl'>1</span>,
+      length.out <span class='op'>=</span> <span class='va'>sequence_length</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>p_water</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    lagged_n_trials <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>n_trials</span>, k <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+    lagged_n_success <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>n_success</span>, k <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    prior <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span>
+      <span class='va'>n_trials</span> <span class='op'>==</span> <span class='fl'>1</span>, <span class='fl'>.5</span>,
+      <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span>
+        x <span class='op'>=</span> <span class='va'>lagged_n_success</span>,
+        size <span class='op'>=</span> <span class='va'>lagged_n_trials</span>,
+        prob <span class='op'>=</span> <span class='va'>p_water</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>,
+    likelihood <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span>
+      x <span class='op'>=</span> <span class='va'>n_success</span>,
+      size <span class='op'>=</span> <span class='va'>n_trials</span>,
+      prob <span class='op'>=</span> <span class='va'>p_water</span>
+    <span class='op'>)</span>,
+    strip <span class='op'>=</span> <span class='fu'>str_c</span><span class='op'>(</span><span class='st'>"n = "</span>, <span class='va'>n_trials</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># the next three lines allow us to normalize the prior and the likelihood,</span>
+  <span class='co'># putting them both in a probability metric</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>n_trials</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    prior <span class='op'>=</span> <span class='va'>prior</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>prior</span><span class='op'>)</span>,
+    likelihood <span class='op'>=</span> <span class='va'>likelihood</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>likelihood</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># plot!</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p_water</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>prior</span><span class='op'>)</span>,
+    linetype <span class='op'>=</span> <span class='fl'>2</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>likelihood</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span><span class='st'>"proportion water"</span>, breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>.5</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_continuous</span><span class='op'>(</span><span class='st'>"plausibility"</span>, breaks <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>strip</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>La curva rappresentata in ciascun pannello della figura precedente è la funzione di verosimiglianza calcolata utilizzando la legge Binomiale, ma considierando campioni diversi di dati. Nel pannello <em>n = 1</em> è rappresentata la verosimiglianza dei possibili valori del parametro sconosciuto <em>p</em> se abbiamo osservato solo un successo in 1 prova dell’esperimento casuale. Nel secondo pannello, <em>n = 2</em> è rappresentata la verosimiglianza che si ottiene avendo osservato un successo e un insuccesso in due prove successive dell’esperimento casuale. E così via.</p>
+<p>Iniziamo dal pannello <em>n = 1</em>.</p>
+<p>La definizione della funzione di verosimiglianza ci dice che dobbiamo usare la legge Binomiale <strong>tenendo costanti i dati</strong>. Questo significa che <strong>dobbiamo variare</strong> i valori del parametro <em>p</em>. Quali valori può assumere <em>p</em>? Tutti i valori nell’intervallo [0, 1]. Ne considereremo qui 50:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, length.out <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
+<span class='va'>p</span>
+</code></pre>
+</div>
+<pre><code> [1] 0.00000000 0.02040816 0.04081633 0.06122449 0.08163265 0.10204082
+ [7] 0.12244898 0.14285714 0.16326531 0.18367347 0.20408163 0.22448980
+[13] 0.24489796 0.26530612 0.28571429 0.30612245 0.32653061 0.34693878
+[19] 0.36734694 0.38775510 0.40816327 0.42857143 0.44897959 0.46938776
+[25] 0.48979592 0.51020408 0.53061224 0.55102041 0.57142857 0.59183673
+[31] 0.61224490 0.63265306 0.65306122 0.67346939 0.69387755 0.71428571
+[37] 0.73469388 0.75510204 0.77551020 0.79591837 0.81632653 0.83673469
+[43] 0.85714286 0.87755102 0.89795918 0.91836735 0.93877551 0.95918367
+[49] 0.97959184 1.00000000</code></pre>
+</div>
+<p>Quali sono i nostri dati? Se abbiamo ottenuto “acqua” avendo lanciato una volta in aria il mappadondo, allora i nostri dati sono: <em>k</em> = 1, con <em>n</em> = 1. Inseriamo dunque tali dati nella formula della Binomiale:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/family.html'>binomial</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='va'>p</span><span class='op'>)</span>
+<span class='va'>l</span>
+</code></pre>
+</div>
+<pre><code> [1] 0.00000000 0.02040816 0.04081633 0.06122449 0.08163265 0.10204082
+ [7] 0.12244898 0.14285714 0.16326531 0.18367347 0.20408163 0.22448980
+[13] 0.24489796 0.26530612 0.28571429 0.30612245 0.32653061 0.34693878
+[19] 0.36734694 0.38775510 0.40816327 0.42857143 0.44897959 0.46938776
+[25] 0.48979592 0.51020408 0.53061224 0.55102041 0.57142857 0.59183673
+[31] 0.61224490 0.63265306 0.65306122 0.67346939 0.69387755 0.71428571
+[37] 0.73469388 0.75510204 0.77551020 0.79591837 0.81632653 0.83673469
+[43] 0.85714286 0.87755102 0.89795918 0.91836735 0.93877551 0.95918367
+[49] 0.97959184 1.00000000</code></pre>
+</div>
+<p>Creaimo un diagramma con il risultato ottenuto.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>like</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  l <span class='op'>=</span> <span class='va'>l</span>
+<span class='op'>)</span>
+<span class='va'>like</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>l</span><span class='op'>)</span>,
+    linetype <span class='op'>=</span> <span class='fl'>1</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='st'>"plausibility"</span>,
+    x <span class='op'>=</span> <span class='st'>"proportion water"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+</div>
+<p>La figura ci dice che, avendo osservato un successo in una prova, la plausibilità che <em>p</em> sia uguale a 1 è massima. La plausibilità di <em>p</em> diminuisce allonandoci dal valore possibile <em>p</em> = 1, fino ad arrivare al valore minimo, ovvero 0, in corrispondenza dell’ipotesi secondo la quale <em>p</em> = 0. È infatti impossibile che <em>p</em> = 0 dato che abbiamo osservato un successo. Quindi deve essere vero che <em>p</em> <span class="math inline">\(&gt;\)</span> 0.</p>
+<p>Adesso lanciamo il mappamondo una seconda volta. Osserviamo “terra.” Ripetiamo la procedura descritta sopra.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/family.html'>binomial</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='va'>p</span><span class='op'>)</span>
+<span class='va'>like</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  l <span class='op'>=</span> <span class='va'>l</span>
+<span class='op'>)</span>
+<span class='va'>like</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>l</span><span class='op'>)</span>,
+    linetype <span class='op'>=</span> <span class='fl'>1</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='st'>"plausibility"</span>,
+    x <span class='op'>=</span> <span class='st'>"proportion water"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<p>La figura ci dice che ci sono due valori del parametro <em>p</em> che sono impossibili: <em>p</em> = 0, perché abbiamo osservato un successo e <em>p</em> = 1, in quanto abbiamo osservato un insuccesso. In tali condizioni, è inuitivo che il valore <em>p</em> più plausibile sia nell’intorno di 0.5. Infatti, la figura ci dice proprio questo.</p>
+<p>Evidentemente non abbiamo bisogno di usare la nostra funzione <code>binomial()</code> per ottenere i risultati descritti sopra. Gli stessi risultati si ottengono con la funzione <code>dbinom()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='va'>p</span><span class='op'>)</span>
+<span class='va'>like</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  l <span class='op'>=</span> <span class='va'>l</span>
+<span class='op'>)</span>
+<span class='va'>like</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>l</span><span class='op'>)</span>,
+    linetype <span class='op'>=</span> <span class='fl'>1</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='st'>"plausibility"</span>,
+    x <span class='op'>=</span> <span class='st'>"proportion water"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<p>Ripetendo questo ragionamento, ovvero ripercorrendo i vari passi dell’esempio fino ad ottenere 6 successi in 9 prove, riusciamo a costruire la figura con nove pannelli riportata sopra.</p>
+<h1 id="verosimiglianza-per-una-normale">Verosimiglianza per una Normale</h1>
+<p>Poniamoci ora il problema di calcolare la verosimiglianza per i parametri sconosciuti di una distribuzione Normale avendo a disposizione un campione casuale di osservazioni. Essendo il campione casuale, la distribuzione di probabilità congiunta dei dati, dati i parametri, è data dal prodotto della densità di ciascuna singola osservazione:</p>
+<p>Come troviamo la densità di una singola osservazione? È ovviamente data da</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='va'>mu</span>, sigma <span class='op'>=</span> <span class='va'>sigma</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Se il nostro campione è costituito da 30 osservazioni sarà dunque necessario fare il prodotto di 30 densità. Il problema di procedere in questo modo, però, è che il risultato numerico di questo prodotto divenerà molto piccolo, e i computer hanno difficoltà a manipolare numeri così piccoli. Tale problema può essere risolto prendendo il logaritmo. Per le proprietà dei logaritmi, inoltre, il logaritmo di un prodotto è uguale alla somma dei logaritmi. Per esempio,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>3</span> <span class='op'>*</span> <span class='fl'>4</span> <span class='op'>*</span> <span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 4.094345</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 4.094345</code></pre>
+</div>
+<p>Dunque, se vogliamo costruire la funzione di log-verosimiglianza per un campione di 30 osservazioni sarà sufficiente sommare le 30 log-verosimiglianze.</p>
+<p>Consideriamo i dati delle dispense:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>26</span>, <span class='fl'>35</span>, <span class='fl'>30</span>, <span class='fl'>25</span>, <span class='fl'>44</span>, <span class='fl'>30</span>, <span class='fl'>33</span>, <span class='fl'>43</span>, <span class='fl'>22</span>, <span class='fl'>43</span>, <span class='fl'>24</span>, <span class='fl'>19</span>, <span class='fl'>39</span>, <span class='fl'>31</span>, <span class='fl'>25</span>, 
+        <span class='fl'>28</span>, <span class='fl'>35</span>, <span class='fl'>30</span>, <span class='fl'>26</span>, <span class='fl'>31</span>, <span class='fl'>41</span>, <span class='fl'>36</span>, <span class='fl'>26</span>, <span class='fl'>35</span>, <span class='fl'>33</span>, <span class='fl'>28</span>, <span class='fl'>27</span>, <span class='fl'>34</span>, <span class='fl'>27</span>, <span class='fl'>22</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Per semplificare il problema, poniamoci l’obiettivo di stimare solo uno dei due parametri sconosciuti, ovvero <span class="math inline">\(\mu\)</span>, tenendo <span class="math inline">\(\sigma\)</span> uguale alla deviazione standard campionaria:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>true_sigma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Definiamo la funzione di log-verosimiglianza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>log_likelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>=</span><span class='va'>true_sigma</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>L’argomento <code>log=TRUE</code> nella funzione <code>dnorm()</code> specifica che vogliamo il logaritmo della densità Normale.</p>
+<p>La situazione è dunque simile a quella che abbiamo discusso nel caso della Binomiale. La complicazione è che dobbiamo fare una somma di 30 addendi, ma tale somma viene calcolata all’interno della funzione <code>log_likelihood()</code> per cui non ci preoccupiamo di essa.</p>
+<p>Notiamo invece che della funzione <code>log_likelihood()</code> richiede tre argomenti: il primo argomento <code>x</code> corrisponde al vettore che contiene i dati; il secondo argomento <code>mu</code> è il parametro sconosciuto; il terzo argomento, nell’esempio che stiamo discutendo, viene mantenuto costante.</p>
+<p>Come abbiao fatto per l’esempio sulla verosimiglianza di una Binomiale, definiamo una serie di valori per il parametro sconosciuto <code>mu</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrep</span> <span class='op'>&lt;-</span> <span class='fl'>1e5</span>
+<span class='va'>mu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>, 
+  <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>, 
+  length.out <span class='op'>=</span> <span class='va'>nrep</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Nel caso presente esamineremo un grande numero di valri possibili per il parametro sconosciuto: 1e5.</p>
+<p>Siamo ora nelle condizioni di trovare i valori della log-verosimiglianza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ll</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='va'>nrep</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>nrep</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>ll</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'>log_likelihood</span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>mu</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>, <span class='va'>true_sigma</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Facciamo un esempio. Consideriamo un valore preso a caso per il parametro <em>mu</em>, per esempio, 28, e svolgiamo i calcoli. Dobbiamo calcolare il valore che viene ritornato da ´dnorm(…, log=TRUE)´ per ciascuno dei valori <code>x</code> del campione, tenendo costanti i valori <code>sigma = s</code> e <code>mu = 28</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu_test</span> <span class='op'>&lt;-</span> <span class='fl'>28</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>mu_test</span>, <span class='va'>true_sigma</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] -2.852865 -3.368322 -2.852865 -2.910138 -5.739425 -2.852865
+ [7] -3.093412 -5.384332 -3.219412 -5.384332 -2.990320 -3.734870
+[13] -4.193054 -2.910138 -2.910138 -2.807047 -3.368322 -2.852865
+[19] -2.852865 -2.910138 -4.742875 -3.540141 -2.852865 -3.368322
+[25] -3.093412 -2.807047 -2.818501 -3.219412 -2.818501 -3.219412</code></pre>
+</div>
+<p>La somma di questi valori è</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>mu_test</span>, <span class='va'>true_sigma</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] -101.6682</code></pre>
+</div>
+<p>Nello script precedente, questi calcoli sono stati svolti per tutti gli 1e5 valori ipotizzati per <code>mu</code>. Verifichiamo. Chiediamoci intanto a quale indice del vettore <code>mu</code> corrisponde il valore di <code>mu_test</code> = 28. Nel vettore che abbiamo creato, il valore più prossimo a 28 corrisponde all’elemento in posizione</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.min</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>mu</span> <span class='op'>-</span> <span class='va'>mu_test</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>mu_index</span>
+</code></pre>
+</div>
+<pre><code>[1] 27802</code></pre>
+</div>
+<p>ovvero</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu</span><span class='op'>[</span><span class='va'>mu_index</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] 28.00006</code></pre>
+</div>
+<p>Chiediamoci dunque qual è il valore dell’elemento pari a <code>mu_index</code> del vettore <code>ll</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ll</span><span class='op'>[</span><span class='va'>mu_index</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] -101.6681</code></pre>
+</div>
+<p>il che conferma il risultato dei calcoli che abbiamo svolto in precedenza.</p>
+<h1 id="la-log-verosimiglianza">La log-verosimiglianza</h1>
+<p>Disegnamo ora la funzione di log-verosimiglianza per il parametro sconosciuto <span class="math inline">\(\mu\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>mu</span>, <span class='va'>ll</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mu</span>, y<span class='op'>=</span><span class='va'>ll</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://mc-stan.org/bayesplot/reference/bayesplot-helpers.html'>vline_at</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>, color<span class='op'>=</span><span class='st'>"red"</span>, linetype<span class='op'>=</span><span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y<span class='op'>=</span><span class='st'>"Log-verosimiglianza"</span>,
+    x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Parametro \u03BC"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-27-1.png" width="624" /></p>
+</div>
+<p>La funzione di log-verosimiglianza ha un massimo. Il valore <span class="math inline">\(\mu\)</span> corrispondente a tale massimo è lo stimatore di massima verosimiglianza per la media sconosciuta della popolazione. Noi sappiamo che tale stimatore non è altro che la media del campione. Controlliamo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 30.93333</code></pre>
+</div>
+<p>ovvero</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.max</a></span><span class='op'>(</span><span class='va'>ll</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] 30.93327</code></pre>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-mcelreath2020statistical" class="csl-entry" role="doc-biblioentry">
+McElreath, Richard. 2020. <em>Statistical Rethinking: <span>A</span> <span>Bayesian</span> Course with Examples in <span>R</span> and <span>Stan</span></em>. CRC press.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
     <span class="article-sharing">
       Share: &nbsp;
-      <a href="https://twitter.com/share?text=Un%20po%27%20di%20algebra%20matriciale&amp;url=https%3A%2F%2Fgithub.com%2Fccaudek%2Fblog%2Fposts%2F2021-03-29-un-po-di-algebra-matriciale%2F">
+      <a href="https://twitter.com/share?text=La%20verosimiglianza%20e%20il%20mappamondo&amp;url=https%3A%2F%2Fgithub.com%2Fccaudek%2Fblog%2Fposts%2F2021-03-29-la-verosimiglianza-e-il-mappamondo%2F">
         <i class="fab fa-twitter"></i>
       </a>
     </span>
@@ -2800,16 +2952,18 @@ gtag('config', 'G-VTS54G9ZSV');
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom">
+  <h3 id="references">References</h3>
+  <div id="references-listing"></div>
   <h3 id="reuse">Reuse</h3>
   <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Caudek (2021, March 29). Il blog di Corrado Caudek: Un po' di algebra matriciale. Retrieved from https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/</pre>
+  <pre class="citation-appendix short">Caudek (2021, March 29). Il blog di Corrado Caudek: La verosimiglianza e il mappamondo. Retrieved from https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/</pre>
   <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{caudek2021un,
+  <pre class="citation-appendix long">@misc{caudek2021la,
   author = {Caudek, Corrado},
-  title = {Il blog di Corrado Caudek: Un po' di algebra matriciale},
-  url = {https://github.com/ccaudek/blog/posts/2021-03-29-un-po-di-algebra-matriciale/},
+  title = {Il blog di Corrado Caudek: La verosimiglianza e il mappamondo},
+  url = {https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/},
   year = {2021}
 }</pre>
 </div>

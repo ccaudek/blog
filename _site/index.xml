@@ -18,6 +18,17 @@
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
+      <title>La verosimiglianza e il mappamondo</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo</link>
+      <description>La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo</guid>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-29-la-verosimiglianza-e-il-mappamondo/la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
       <title>Catena di Markov Monte Carlo</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-03-25-un-tutorial-sullalgoritmo-di-metropolis</link>
