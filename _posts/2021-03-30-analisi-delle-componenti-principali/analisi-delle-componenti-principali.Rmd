@@ -97,7 +97,7 @@ Il primo autovettore è dato da:
 first_eigenvector <- ee$vectors[, 1]
 first_eigenvector
 ```
-Usiamo l'algebra matriciale per calcolare la [proiezione di un punto su un vettore](# https://en.wikipedia.org/wiki/Vector_projection). A tale scopo, definiamo la seguente funzione:
+Usiamo l'algebra matriciale per calcolare la [proiezione di un punto su un vettore](https://en.wikipedia.org/wiki/Vector_projection). A tale scopo, definiamo la seguente funzione:
 
 ```{r}
 ortho_proj <- function(x, y, eigenvector) {
