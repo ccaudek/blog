@@ -105,6 +105,8 @@ ortho_proj <- function(x, y, eigenvector) {
 }
 ```
 
+Nel caso presente non è necessario dividere per la lunghezza dell'autovettore perché, per convenzione, gli autovettori specificati da `R` hanno lunghezza unitaria.
+
 Siamo ora nelle condizioni di calcolare la proiezione dei 20 punti dell'esempio considerato sull'asse specificato dal primo autovettore:
 
 ```{r}
