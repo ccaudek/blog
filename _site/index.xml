@@ -7,7 +7,17 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Analisi delle componenti principali</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali</link>
+      <description>Ovvero, la proiezione dei punti nella direzione di massima dispersione dei dati.</description>
+      <category>R</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali</guid>
+      <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1152" height="1152"/>
+    </item>
     <item>
       <title>La verosimiglianza e il mappamondo</title>
       <dc:creator>Corrado Caudek</dc:creator>

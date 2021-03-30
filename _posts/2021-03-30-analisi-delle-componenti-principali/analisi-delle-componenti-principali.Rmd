@@ -1,0 +1,126 @@
+---
+title: "Analisi delle componenti principali"
+description: |
+  Ovvero, la proiezione dei punti nella direzione di massima dispersione dei dati.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 03-30-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Avendo calcolato gli autovalori e gli autovettori di una matrice di varianze/covarianze è facile eseguire i calcoli dell'analisi delle componenti principali.
+
+Simuliamo i dati di due variabili correlate tra loro. Per semplicità, le due variabili sono standardizzate:
+
+```{r}
+library("car")
+
+set.seed(123456)
+
+npoints <- 20
+x <- as.numeric(scale(rnorm(npoints, 0, 1)))
+y <- as.numeric(scale(3 * x + rnorm(npoints, 0, 2)))
+
+Y <- as.matrix(
+  data.frame(x, y)
+)
+```
+
+Racchiudiamo le osservazioni con un'ellisse (nel caso presente, il contorno di isodensità al 95%). In tali circostanze, 
+
+- la lunghezza dei semiassi maggiori e minori dell'ellisse è proporzionale alla radice quadrata dei due autovalori;
+- l'asse maggiore è la linea passante per il punto specificato dal primo autovettore e l'asse minore è la linea passante per il punto specificato dal secondo autovettore. 
+
+Poniamoci il problema di calcolare la prima componente principale.
+
+Sappiamo che essa corrisponde alla proiezione ortogonale dei punti del diagramma a dispersione sull'asse coincidente con l'asse maggiore dell'ellisse rappresentata nella figura.  
+
+La seconda componente principale corrisponde alla proiezione dei punti sull'asse  ortogonale a quello descritto in precedenza.
+
+Calcoliamo autovettori e autovalori:
+
+```{r}
+s <- cov(Y)
+ee <- eigen(s)
+ee
+```
+
+Usiamo queste informazioni per aggiungere le due frecce rosse nella figura:
+
+```{r, fig.width=6, fig.height=6}
+car:::dataEllipse(
+  Y[, 1], Y[, 2],
+  levels = 0.95,
+  lty = 2,
+  ylim = c(-3, 3),
+  xlim = c(-3, 3)
+)
+
+k <- 2.65 
+arrows(
+  0,0,
+  k * sqrt(ee$values[1]) * ee$vectors[1],
+  k * sqrt(ee$values[1]) * ee$vectors[2],
+  code = 2,
+  col = "red",
+  lwd = 2
+)
+
+arrows(
+  0, 0,
+  k * sqrt(ee$values[2]) * ee$vectors[1],
+  k * sqrt(ee$values[2]) * -ee$vectors[2],
+  code = 2,
+  col = "red",
+  lwd = 2
+)
+```
+
+Il primo autovettore è dato da:
+
+```{r}
+first_eigenvector <- ee$vectors[, 1]
+first_eigenvector
+```
+Usiamo l'algebra matriciale per calcolare la [proiezione di un punto su un vettore](# https://en.wikipedia.org/wiki/Vector_projection). A tale scopo, definiamo la seguente funzione:
+
+```{r}
+ortho_proj <- function(x, y, eigenvector) {
+  cbind(x, y) %*% eigenvector 
+}
+```
+
+Siamo ora nelle condizioni di calcolare la proiezione dei 20 punti dell'esempio considerato sull'asse specificato dal primo autovettore:
+
+```{r}
+pc1 <- ortho_proj(Y[1:20, 1], Y[1:20, 2], first_eigenvector)
+```
+
+Tali proiezioni costituiscono la prima componente principale.  È facile verificare che questo è vero. Infatti, la varianza della prima componente principale (che abbiamo appena calcolato)
+
+```{r}
+var(pc1) 
+```
+
+è uguale al primo autovettore
+
+```{r}
+ee$values[1]
+```
+
+come ci aspettiamo che sia.
