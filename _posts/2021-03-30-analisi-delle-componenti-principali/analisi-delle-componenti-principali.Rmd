@@ -119,7 +119,7 @@ Tali proiezioni costituiscono la prima componente principale.  È facile verific
 var(pc1) 
 ```
 
-è uguale al primo autovettore
+è uguale al primo autovalore
 
 ```{r}
 ee$values[1]
