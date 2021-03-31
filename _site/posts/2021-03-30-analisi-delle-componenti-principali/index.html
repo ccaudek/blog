@@ -103,7 +103,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Ovvero, la proiezione dei punti nella direzione di massima dispersione dei dati."/>
 <meta property="og:url" content="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/"/>
-<meta property="og:image" content="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-3-1.png"/>
+<meta property="og:image" content="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-2-1.png"/>
 <meta property="og:image:width" content="1152"/>
 <meta property="og:image:height" content="1152"/>
 <meta property="og:locale" content="en_US"/>
@@ -114,7 +114,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="twitter:title" content="Il blog di Corrado Caudek: Analisi delle componenti principali"/>
 <meta property="twitter:description" content="Ovvero, la proiezione dei punti nella direzione di massima dispersione dei dati."/>
 <meta property="twitter:url" content="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/"/>
-<meta property="twitter:image" content="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-3-1.png"/>
+<meta property="twitter:image" content="https://github.com/ccaudek/blog/posts/2021-03-30-analisi-delle-componenti-principali/analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-2-1.png"/>
 <meta property="twitter:image:width" content="1152"/>
 <meta property="twitter:image:height" content="1152"/>
 <meta property="twitter:site" content="@ccaudek"/>
@@ -136,7 +136,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["analisi-delle-componenti-principali_files/anchor-4.2.2/anchor.min.js","analisi-delle-componenti-principali_files/bowser-1.9.3/bowser.min.js","analisi-delle-componenti-principali_files/distill-2.2.21/template.v2.js","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-2-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-3-1.png","analisi-delle-componenti-principali_files/header-attrs-2.7/header-attrs.js","analisi-delle-componenti-principali_files/jquery-1.11.3/jquery.min.js","analisi-delle-componenti-principali_files/popper-2.6.0/popper.min.js","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy-bundle.umd.min.js","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy-light-border.css","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy.css","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy.umd.min.js","analisi-delle-componenti-principali_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["analisi-delle-componenti-principali_files/anchor-4.2.2/anchor.min.js","analisi-delle-componenti-principali_files/bowser-1.9.3/bowser.min.js","analisi-delle-componenti-principali_files/distill-2.2.21/template.v2.js","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-11-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-12-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-13-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-14-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-15-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-2-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-3-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-4-1.png","analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-5-1.png","analisi-delle-componenti-principali_files/header-attrs-2.7/header-attrs.js","analisi-delle-componenti-principali_files/jquery-1.11.3/jquery.min.js","analisi-delle-componenti-principali_files/popper-2.6.0/popper.min.js","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy-bundle.umd.min.js","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy-light-border.css","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy.css","analisi-delle-componenti-principali_files/tippy-6.2.7/tippy.umd.min.js","analisi-delle-componenti-principali_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2478,12 +2478,33 @@ gtag('config', 'G-VTS54G9ZSV');
 </div>
 
 <div class="d-article">
-<p>Avendo calcolato gli autovalori e gli autovettori di una matrice di varianze/covarianze è facile eseguire i calcoli dell’analisi delle componenti principali.</p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#i-dati">I dati</a></li>
+<li><a href="#autovalori-e-autovettori">Autovalori e autovettori</a>
+<ul>
+<li><a href="#interpretazione-geometrica">Interpretazione geometrica</a></li>
+</ul></li>
+<li><a href="#le-componenti-principali">Le componenti principali</a></li>
+<li><a href="#i-valori-di-pc1">I valori di PC1</a></li>
+<li><a href="#la-pca-con-r">LA PCA con R</a></li>
+<li><a href="#rappresentazione-grafica">Rappresentazione grafica</a></li>
+<li><a href="#interpretazione">Interpretazione</a>
+<ul>
+<li><a href="#autovalori">Autovalori</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h1 id="i-dati">I dati</h1>
 <p>Simuliamo i dati di due variabili correlate tra loro. Per semplicità, le due variabili sono standardizzate:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://r-forge.r-project.org/projects/car/'>"car"</a></span><span class='op'>)</span>
-
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span>, warn.conflicts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span>  <span class='co'># for augment(), tidy()</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123456</span><span class='op'>)</span>
 
 <span class='va'>npoints</span> <span class='op'>&lt;-</span> <span class='fl'>20</span>
@@ -2496,15 +2517,22 @@ gtag('config', 'G-VTS54G9ZSV');
 </code></pre>
 </div>
 </div>
-<p>Racchiudiamo le osservazioni con un’ellisse (nel caso presente, il contorno di isodensità al 95%). In tali circostanze,</p>
-<ul>
-<li>la lunghezza dei semiassi maggiori e minori dell’ellisse è proporzionale alla radice quadrata dei due autovalori;</li>
-<li>l’asse maggiore è la linea passante per il punto specificato dal primo autovettore e l’asse minore è la linea passante per il punto specificato dal secondo autovettore.</li>
-</ul>
-<p>Poniamoci il problema di calcolare la prima componente principale.</p>
-<p>Sappiamo che essa corrisponde alla proiezione ortogonale dei punti del diagramma a dispersione sull’asse coincidente con l’asse maggiore dell’ellisse rappresentata nella figura.</p>
-<p>La seconda componente principale corrisponde alla proiezione dei punti sull’asse ortogonale a quello descritto in precedenza.</p>
-<p>Calcoliamo autovettori e autovalori:</p>
+<p>Racchiudiamo le osservazioni con un’ellisse (nel caso presente, il contorno di isodensità al 95%).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>car</span><span class='fu'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/car/man/Ellipses.html'>dataEllipse</a></span><span class='op'>(</span>
+  <span class='va'>Y</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>, <span class='va'>Y</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>,
+  levels <span class='op'>=</span> <span class='fl'>0.95</span>,
+  lty <span class='op'>=</span> <span class='fl'>2</span>,
+  ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>3</span>, <span class='fl'>3</span><span class='op'>)</span>,
+  xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>3</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-2-1.png" width="576" /></p>
+</div>
+<h1 id="autovalori-e-autovettori">Autovalori e autovettori</h1>
+<p>Calcoliamo autovettori e autovalori con <code>R</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
@@ -2521,6 +2549,11 @@ $vectors
 [1,] 0.7071068 -0.7071068
 [2,] 0.7071068  0.7071068</code></pre>
 </div>
+<h2 id="interpretazione-geometrica">Interpretazione geometrica</h2>
+<ul>
+<li>La lunghezza dei semiassi maggiori e minori dell’ellisse è proporzionale alla radice quadrata dei due autovalori.</li>
+<li>L’asse maggiore è la linea passante per il punto specificato dal primo autovettore e l’asse minore è la linea passante per il punto specificato dal secondo autovettore.</li>
+</ul>
 <p>Usiamo queste informazioni per aggiungere le due frecce rosse nella figura:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2552,8 +2585,16 @@ $vectors
 <span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-3-1.png" width="576" /></p>
+<p><img src="analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-4-1.png" width="576" /></p>
 </div>
+<h1 id="le-componenti-principali">Le componenti principali</h1>
+<p>Avendo calcolato gli autovalori e gli autovettori di una matrice di varianze/covarianze è facile eseguire i calcoli dell’analisi delle componenti principali.</p>
+<ul>
+<li>La prima componente principale corrisponde alla proiezione ortogonale dei punti del diagramma a dispersione sull’asse coincidente con l’asse maggiore dell’ellisse rappresentata nella figura.<br />
+</li>
+<li>La seconda componente principale corrisponde invece alla proiezione dei punti sull’asse ortogonale a quello descritto in precedenza.</li>
+</ul>
+<h1 id="i-valori-di-pc1">I valori di PC1</h1>
 <p>Il primo autovettore è dato da:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2580,7 +2621,8 @@ $vectors
 </code></pre>
 </div>
 </div>
-<p>Tali proiezioni costituiscono la prima componente principale. È facile verificare che questo è vero. Infatti, la varianza della prima componente principale (che abbiamo appena calcolato)</p>
+<p>Tali proiezioni costituiscono la prima componente principale.</p>
+<p>È facile verificare che questo è vero. Infatti, la varianza della prima componente principale (che abbiamo appena calcolato)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>pc1</span><span class='op'>)</span> 
@@ -2598,7 +2640,115 @@ $vectors
 <pre><code>[1] 1.829103</code></pre>
 </div>
 <p>come ci aspettiamo che sia.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="la-pca-con-r">LA PCA con R</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pca_fit</span> <span class='op'>&lt;-</span> <span class='va'>Y</span> <span class='op'>%&gt;%</span>       
+  <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Aggiungiamo le componenti principali ai dati di partenza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pc</span> <span class='op'>&lt;-</span> <span class='va'>pca_fit</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://generics.r-lib.org/reference/augment.html'>augment</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>pc</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 5
+  .rownames      x       y .fittedPC1 .fittedPC2
+  &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 1          0.302 -0.0997     -0.143     0.284 
+2 2         -0.781  0.104       0.478    -0.626 
+3 3         -0.858 -0.600       1.03     -0.182 
+4 4         -0.426 -0.178       0.427    -0.175 
+5 5          1.69   1.64       -2.35      0.0329
+6 6          0.303  0.0734     -0.266     0.162 </code></pre>
+</div>
+<p>Verifichiamo i calcoli eseguiti in precedenza:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>pc1</span>, <span class='va'>pc</span><span class='op'>$</span><span class='va'>.fittedPC1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>     [,1]
+[1,]   -1</code></pre>
+</div>
+<p>Il segno è arbitrario, il che significa che il risultato è corretto.</p>
+<h1 id="rappresentazione-grafica">Rappresentazione grafica</h1>
+<p>Possiamo ottenere una rappresentazione grafica delle due componenti principali nel modo seguente:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pca_fit</span> <span class='op'>%&gt;%</span>
+  <span class='co'># add PCs to the original dataset</span>
+  <span class='fu'><a href='https://generics.r-lib.org/reference/augment.html'>augment</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>.fittedPC1</span>, <span class='va'>.fittedPC2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='st'>"PC1"</span>,
+    y <span class='op'>=</span> <span class='st'>"PC2"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>papaja</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/papaja/man/theme_apa.html'>theme_apa</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<h1 id="interpretazione">Interpretazione</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>arrow_style</span> <span class='op'>&lt;-</span> <span class='fu'>arrow</span><span class='op'>(</span>
+  angle <span class='op'>=</span> <span class='fl'>20</span>, length <span class='op'>=</span> <span class='fu'>grid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='st'>"pt"</span><span class='op'>)</span>,
+  ends <span class='op'>=</span> <span class='st'>"first"</span>, type <span class='op'>=</span> <span class='st'>"closed"</span>
+<span class='op'>)</span>
+<span class='va'>pca_fit</span> <span class='op'>%&gt;%</span>
+  <span class='co'># extract rotation matrix</span>
+  <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span>matrix <span class='op'>=</span> <span class='st'>"rotation"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>pivot_wider</span><span class='op'>(</span>
+    names_from <span class='op'>=</span> <span class='st'>"PC"</span>, values_from <span class='op'>=</span> <span class='st'>"value"</span>,
+    names_prefix <span class='op'>=</span> <span class='st'>"PC"</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>PC1</span>, <span class='va'>PC2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_segment</span><span class='op'>(</span>
+    xend <span class='op'>=</span> <span class='fl'>0</span>, yend <span class='op'>=</span> <span class='fl'>0</span>,
+    arrow <span class='op'>=</span> <span class='va'>arrow_style</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_text</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>column</span><span class='op'>)</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1.5</span>, <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>ylim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>coord_fixed</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>papaja</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/papaja/man/theme_apa.html'>theme_apa</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<ul>
+<li><p>Le due variabili <code>x</code> e <code>y</code> contribuiscono negativamente a PC1, nella stessa misura. Dunque PC1 è l’equivalente di una media aritmetica delle due variabili.</p></li>
+<li><p>PC2 rappresenta invece la differenza tra le dimensioni <code>x</code> e <code>y</code>.</p></li>
+</ul>
+<h2 id="autovalori">Autovalori</h2>
+<p>Una rappresentazione grafica della varianza spiegata dagli autovalori è fornita qui sotto:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pca_fit</span> <span class='op'>%&gt;%</span>
+  <span class='co'># extract eigenvalues</span>
+  <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span>matrix <span class='op'>=</span> <span class='st'>"eigenvalues"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>PC</span>, <span class='va'>percent</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_col</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span>
+    <span class='co'># create one axis tick per PC</span>
+    breaks <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_continuous</span><span class='op'>(</span>
+    name <span class='op'>=</span> <span class='st'>"Varianza spiegata"</span>,
+    <span class='co'># format y axis ticks as percent values</span>
+    label <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/label_percent.html'>label_percent</a></span><span class='op'>(</span>accuracy <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>papaja</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/papaja/man/theme_apa.html'>theme_apa</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="analisi-delle-componenti-principali_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">

@@ -18,18 +18,18 @@ categories:
 preview: preview.png
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Avendo calcolato gli autovalori e gli autovettori di una matrice di varianze/covarianze è facile eseguire i calcoli dell'analisi delle componenti principali.
+# I dati
 
 Simuliamo i dati di due variabili correlate tra loro. Per semplicità, le due variabili sono standardizzate:
 
 ```{r}
 library("car")
-
+library("tidyverse", warn.conflicts = FALSE)
+library(broom)  # for augment(), tidy()
 set.seed(123456)
 
 npoints <- 20
@@ -41,24 +41,32 @@ Y <- as.matrix(
 )
 ```
 
-Racchiudiamo le osservazioni con un'ellisse (nel caso presente, il contorno di isodensità al 95%). In tali circostanze, 
+Racchiudiamo le osservazioni con un'ellisse (nel caso presente, il contorno di isodensità al 95%). 
 
-- la lunghezza dei semiassi maggiori e minori dell'ellisse è proporzionale alla radice quadrata dei due autovalori;
-- l'asse maggiore è la linea passante per il punto specificato dal primo autovettore e l'asse minore è la linea passante per il punto specificato dal secondo autovettore. 
+```{r, fig.width=6, fig.height=6}
+car:::dataEllipse(
+  Y[, 1], Y[, 2],
+  levels = 0.95,
+  lty = 2,
+  ylim = c(-3, 3),
+  xlim = c(-3, 3)
+)
+```
 
-Poniamoci il problema di calcolare la prima componente principale.
+# Autovalori e autovettori
 
-Sappiamo che essa corrisponde alla proiezione ortogonale dei punti del diagramma a dispersione sull'asse coincidente con l'asse maggiore dell'ellisse rappresentata nella figura.  
-
-La seconda componente principale corrisponde alla proiezione dei punti sull'asse  ortogonale a quello descritto in precedenza.
-
-Calcoliamo autovettori e autovalori:
+Calcoliamo autovettori e autovalori con `R`:
 
 ```{r}
 s <- cov(Y)
 ee <- eigen(s)
 ee
 ```
+
+## Interpretazione geometrica
+
+- La lunghezza dei semiassi maggiori e minori dell'ellisse è proporzionale alla radice quadrata dei due autovalori.
+- L'asse maggiore è la linea passante per il punto specificato dal primo autovettore e l'asse minore è la linea passante per il punto specificato dal secondo autovettore. 
 
 Usiamo queste informazioni per aggiungere le due frecce rosse nella figura:
 
@@ -91,6 +99,16 @@ arrows(
 )
 ```
 
+# Le componenti principali
+
+Avendo calcolato gli autovalori e gli autovettori di una matrice di varianze/covarianze è facile eseguire i calcoli dell'analisi delle componenti principali.
+
+- La prima componente principale corrisponde alla proiezione ortogonale dei punti del diagramma a dispersione sull'asse coincidente con l'asse maggiore dell'ellisse rappresentata nella figura.  
+- La seconda componente principale corrisponde invece alla proiezione dei punti sull'asse  ortogonale a quello descritto in precedenza.
+
+
+# I valori di PC1
+
 Il primo autovettore è dato da:
 
 ```{r}
@@ -113,7 +131,9 @@ Siamo ora nelle condizioni di calcolare la proiezione dei 20 punti dell'esempio 
 pc1 <- ortho_proj(Y[1:20, 1], Y[1:20, 2], first_eigenvector)
 ```
 
-Tali proiezioni costituiscono la prima componente principale.  È facile verificare che questo è vero. Infatti, la varianza della prima componente principale (che abbiamo appena calcolato)
+Tali proiezioni costituiscono la prima componente principale.  
+
+È facile verificare che questo è vero. Infatti, la varianza della prima componente principale (che abbiamo appena calcolato)
 
 ```{r}
 var(pc1) 
@@ -126,3 +146,96 @@ ee$values[1]
 ```
 
 come ci aspettiamo che sia.
+
+# LA PCA con R
+
+```{r}
+pca_fit <- Y %>%       
+  prcomp()
+```
+
+Aggiungiamo le componenti principali ai dati di partenza:
+
+```{r}
+pc <- pca_fit %>%
+  augment(Y)
+head(pc)
+```
+
+Verifichiamo i calcoli eseguiti in precedenza:
+
+```{r}
+cor(pc1, pc$.fittedPC1)
+```
+
+Il segno è arbitrario, il che significa che il risultato è corretto.
+
+
+# Rappresentazione grafica
+
+Possiamo ottenere una rappresentazione grafica delle due componenti principali nel modo seguente:
+
+```{r}
+pca_fit %>%
+  # add PCs to the original dataset
+  augment(Y) %>%
+  ggplot(aes(.fittedPC1, .fittedPC2)) +
+  geom_point() +
+  labs(
+    x = "PC1",
+    y = "PC2"
+  ) +
+  papaja::theme_apa()
+```
+
+# Interpretazione
+
+```{r}
+arrow_style <- arrow(
+  angle = 20, length = grid::unit(8, "pt"),
+  ends = "first", type = "closed"
+)
+pca_fit %>%
+  # extract rotation matrix
+  tidy(matrix = "rotation") %>%
+  pivot_wider(
+    names_from = "PC", values_from = "value",
+    names_prefix = "PC"
+  ) %>%
+  ggplot(aes(PC1, PC2)) +
+  geom_segment(
+    xend = 0, yend = 0,
+    arrow = arrow_style
+  ) +
+  geom_text(aes(label = column), hjust = 1) +
+  xlim(-1.5, 0.5) + ylim(-1, 1) + 
+  coord_fixed() +
+  papaja::theme_apa()
+```
+
+- Le due variabili `x` e `y` contribuiscono negativamente a PC1, nella stessa misura. Dunque PC1 è l'equivalente di una media aritmetica delle due variabili.
+
+- PC2 rappresenta invece la differenza tra le dimensioni `x` e `y`.
+
+## Autovalori
+
+Una rappresentazione grafica della varianza spiegata dagli autovalori è fornita qui sotto:
+
+```{r}
+pca_fit %>%
+  # extract eigenvalues
+  tidy(matrix = "eigenvalues") %>%
+  ggplot(aes(PC, percent)) + 
+  geom_col() + 
+  scale_x_continuous(
+    # create one axis tick per PC
+    breaks = 1:2
+  ) +
+  scale_y_continuous(
+    name = "Varianza spiegata",
+    # format y axis ticks as percent values
+    label = scales::label_percent(accuracy = 1)
+  ) +
+  papaja::theme_apa()
+```
+
