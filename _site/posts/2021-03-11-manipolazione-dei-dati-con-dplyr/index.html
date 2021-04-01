@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -103,8 +104,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:description" content="Tutorial sull&#39;uso delle funzionalità di base di dplyr per la manipolazione dei dati."/>
 <meta property="og:url" content="https://github.com/ccaudek/blog/posts/2021-03-11-manipolazione-dei-dati-con-dplyr/"/>
 <meta property="og:image" content="https://github.com/ccaudek/blog/posts/2021-03-11-manipolazione-dei-dati-con-dplyr/preview.png"/>
-<meta property="og:image:width" content="978"/>
-<meta property="og:image:height" content="663"/>
+<meta property="og:image:width" content="1022"/>
+<meta property="og:image:height" content="554"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Il blog di Corrado Caudek"/>
 
@@ -114,8 +115,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="twitter:description" content="Tutorial sull&#39;uso delle funzionalità di base di dplyr per la manipolazione dei dati."/>
 <meta property="twitter:url" content="https://github.com/ccaudek/blog/posts/2021-03-11-manipolazione-dei-dati-con-dplyr/"/>
 <meta property="twitter:image" content="https://github.com/ccaudek/blog/posts/2021-03-11-manipolazione-dei-dati-con-dplyr/preview.png"/>
-<meta property="twitter:image:width" content="978"/>
-<meta property="twitter:image:height" content="663"/>
+<meta property="twitter:image:width" content="1022"/>
+<meta property="twitter:image:height" content="554"/>
 <meta property="twitter:site" content="@ccaudek"/>
 <meta property="twitter:creator" content="@ccaudek"/>
 
@@ -135,7 +136,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["manipolazione-dei-dati-con-dplyr_files/anchor-4.2.2/anchor.min.js","manipolazione-dei-dati-con-dplyr_files/bowser-1.9.3/bowser.min.js","manipolazione-dei-dati-con-dplyr_files/distill-2.2.21/template.v2.js","manipolazione-dei-dati-con-dplyr_files/header-attrs-2.7.3/header-attrs.js","manipolazione-dei-dati-con-dplyr_files/jquery-1.11.3/jquery.min.js","manipolazione-dei-dati-con-dplyr_files/popper-2.6.0/popper.min.js","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy-bundle.umd.min.js","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy-light-border.css","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy.css","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy.umd.min.js","manipolazione-dei-dati-con-dplyr_files/webcomponents-2.0.0/webcomponents.js","preview.png"]}
+  {"type":"character","attributes":{},"value":["manipolazione-dei-dati-con-dplyr_files/anchor-4.2.2/anchor.min.js","manipolazione-dei-dati-con-dplyr_files/bowser-1.9.3/bowser.min.js","manipolazione-dei-dati-con-dplyr_files/distill-2.2.21/template.v2.js","manipolazione-dei-dati-con-dplyr_files/header-attrs-2.7.3/header-attrs.js","manipolazione-dei-dati-con-dplyr_files/jquery-1.11.3/jquery.min.js","manipolazione-dei-dati-con-dplyr_files/popper-2.6.0/popper.min.js","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy-bundle.umd.min.js","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy-light-border.css","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy.css","manipolazione-dei-dati-con-dplyr_files/tippy-6.2.7/tippy.umd.min.js","manipolazione-dei-dati-con-dplyr_files/webcomponents-2.0.0/webcomponents.js","preview.png","previewold.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2400,7 +2401,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.7.3/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.7/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />

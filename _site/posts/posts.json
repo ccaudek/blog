@@ -345,10 +345,10 @@
     ],
     "contents": "\nAggiungo qui il link ad un video-tutorial che ho preparato relativamente alla manipolaizone dei dati usando le funzioni del pacchetto dplyr.\nNel video non faccio altro che commentare un tutorial predisposto da Allison Horst e disponibile seguendo questo link. Il tutorial di Allison Horst è fatto benissimo e non vedo ragioni di tradurlo o cambiarlo in qualche modo. Inoltre, se andate nella pagina web che ho indicato sopra, potete anche fare degli esercizi che vi consentono di verificare se avete capito come utilizzare in pratica le istruzioni R che vengono discusse – le risposte agli esercizi sono immediatamente disponibili il che rende il tutorial di Allison Horst un utilissimo strumento di apprendimento. Buon divertimento!\n\n\n\n",
     "preview": "posts/2021-03-11-manipolazione-dei-dati-con-dplyr/preview.png",
-    "last_modified": "2021-03-11T13:12:28+01:00",
+    "last_modified": "2021-04-01T10:12:20+02:00",
     "input_file": {},
-    "preview_width": 978,
-    "preview_height": 663
+    "preview_width": 1022,
+    "preview_height": 554
   },
   {
     "path": "posts/2021-03-10-introduzione-a-r-markdown/",
