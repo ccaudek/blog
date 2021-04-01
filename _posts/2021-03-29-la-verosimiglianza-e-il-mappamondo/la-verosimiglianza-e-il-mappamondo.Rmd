@@ -1,5 +1,5 @@
 ---
-title: "La verosimiglianza e il mappamondo"
+title: "La verosimiglianza e il pettirosso"
 description: |
   La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking.
 author:
