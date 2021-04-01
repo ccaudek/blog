@@ -25,27 +25,53 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Di solito, quando parliamo di distribuzioni di probabilità, assumiamo di conoscere i valori dei parametri. Nel mondo reale, però, di solito è il contrario.  Quello che abbiamo sono dei dati. I parametri sono quello che vogliamo sapere.
+
+Iniziamo con un esempio. Supponiamo di studiare i pettirossi. Sappiamo che, tra fine aprile e inizio maggio, la femmina di pettirosso depone all'interno del nido quattro o sei uova. Dopo la schiusa, ai piccoli bastano 15/20 giorni per essere in grado di volare e abbandonare il nido. Ma solo pochi sopravvivono a causa dell'alta mortalità infantile.
+
+```{r FigureBF, echo=FALSE, fig.height=3, fig.width=6, fig.cap="", fig.align="center"}
+knitr::include_graphics("pettirosso.jpg", dpi = 20)
+```
+
+Immaginiamo di avere osservato una femmina di pettirosso che cova cinque uova. Di questi, tre neonati sopravvivono e prendono il volo 14 giorni dopo la schiusa delle uova. Cosa ci dice questo della probabilità di un neonato di sopravvivere, per questa femmina?  Cosa ci dicono questi dati della probabilità di sopravvivenza nella popolazione?
+
+Noi sappiamo quale sia la probabilità di sopravvivenza nella popolazione.
+Ma possiamo calcolare la verosimiglianza di ottenere i dati che abbiamo osservato per valori diversi di questo parametro sconosciuto:
+
+```{r}
+dbinom(x=3, size=5, prob=0.1)
+```
+
+Se cambiamo il valore del parametro _p_ (probabilità di sopravvivenza), la verosimiglianza di ottenere i dati cambia:
+
+```{r}
+dbinom(x=3, size=5, prob=0.4)
+```
+
+```{r}
+dbinom(x=3, size=5, prob=0.9)
+```
+
+Dai calcoli precedenti vediamo che è più plausibile osservare 3 "successi" in 5 prove se la probabilità di successo è 0.4 piuttosto che 0.1 o 0.9.
+
+Questo modo di ragionare è così comune in statistica che ha un nome speciale: si chiama __verosimiglianza__. La verosimiglianza descrive la plausibilità di osservare i dati al variare dei valori del parametro di un modello statistico.  Ciò ci conduce alla seguente definizione.
+
 
 # Definizione
 
-Iniziamo con una definizione:
-
 > La funzione di verosimiglianza è la funzione di massa o di densità di probabilità dei dati vista come una funzione dei parametri sconosciuti.
 
-# Pacchetti
 
-Carico i pacchetti che userò in questo tutorial.
+# Un esempio
+
+Per capire meglio cosa significa la definizione precedente ci focalizzeremo sul caso di un'unico parametro sconosciuto e prenderemo in esame la distribuzione Binomiale. Inizio caricando i pacchetti che userò in questo tutorial.
 
 ```{r}
 library("tidyverse", warn.conflicts = FALSE)
 library("bayesplot")
 ```
 
-# Un esempio
-
-Nella discussione seguente ci focalizzeremo sul caso di un'unico parametro sconosciuto e prenderemo in esame la distribuzione Binomiale.
-
-@mcelreath2020statistical propone il seguente esempio. Supponiamo di tenere in mano un mappamondo gonfiabile e di chiederci: "qual’è la proporzione della superficie terreste ricoperta d’acqua?" Sembra una domanda a cui è difficile rispondere. Ma ci viene in mente questa idea brillante: lanciamo in aria il mappamondo e, quando lo riprendiamo, osserviamo se la superfice del mappamondo sotto il nostro dito indice destro rappresenta acqua o terra. Possiamo ripetere questa procedura più volte, così da ottenere un campione causale di diverse porzioni della superficie dal mappamondo. Eseguiamo il nostro esperimento lanciando in aria il mappamondo nove volte e osserviamo i seguenti risultati: A, T, A, A, A, T, A, T, A, dove “A” indica acqua e “T” indica terra. 
+Nella discussione seguente non ci occuperemo più di pettirossi ma esamineremo un esempio discusso da @mcelreath2020statistical. Supponiamo di tenere in mano un mappamondo gonfiabile e di chiederci: "qual’è la proporzione della superficie terreste ricoperta d’acqua?" Sembra una domanda a cui è difficile rispondere. Ma ci viene in mente questa idea brillante: lanciamo in aria il mappamondo e, quando lo riprendiamo, osserviamo se la superfice del mappamondo sotto il nostro dito indice destro rappresenta acqua o terra. Possiamo ripetere questa procedura più volte, così da ottenere un campione causale di diverse porzioni della superficie dal mappamondo. Eseguiamo il nostro esperimento lanciando in aria il mappamondo nove volte e osserviamo i seguenti risultati: A, T, A, A, A, T, A, T, A, dove “A” indica acqua e “T” indica terra. 
 
 # Modello statistico
 
