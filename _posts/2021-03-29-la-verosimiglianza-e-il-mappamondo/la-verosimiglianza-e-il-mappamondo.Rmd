@@ -1,7 +1,7 @@
 ---
 title: "La verosimiglianza e il pettirosso"
 description: |
-  La funzione di verosimiglianza così come spiegata da Richard McElreath in Statistical Rethinking.
+  La funzione di verosimiglianza spiegata da Richard McElreath.
 author:
   - name: Corrado Caudek
     url: https://caudekblog.netlify.app
@@ -33,16 +33,17 @@ Iniziamo con un esempio. Supponiamo di studiare i pettirossi. Sappiamo che, tra 
 knitr::include_graphics("pettirosso.jpg", dpi = 20)
 ```
 
-Immaginiamo di avere osservato una femmina di pettirosso che cova cinque uova. Di questi, tre neonati sopravvivono e prendono il volo 14 giorni dopo la schiusa delle uova. Cosa ci dice questo della probabilità di un neonato di sopravvivere, per questa femmina?  Cosa ci dicono questi dati della probabilità di sopravvivenza nella popolazione?
+Immaginiamo di avere osservato una femmina di pettirosso che cova cinque uova. Dei cinque neonati tre sopravvivono e prendono il volo 14 giorni dopo la schiusa delle uova. 
 
-Noi sappiamo quale sia la probabilità di sopravvivenza nella popolazione.
-Ma possiamo calcolare la verosimiglianza di ottenere i dati che abbiamo osservato per valori diversi di questo parametro sconosciuto:
+Cosa ci dicono questi dati della probabilità di un pettirosso neonato di sopravvivere, per questa particolare femmina?  Cosa ci dicono questi dati della probabilità di sopravvivenza nella popolazione dei pettirossi neonati?
+
+Non conosciamo la probabilità di sopravvivenza dei pettirossi neonati nella popolazione. Ma possiamo calcolare la _verosimiglianza_ di ottenere i dati che abbiamo osservato per valori diversi del parametro sconosciuto _p_ (la probabilità di sopravvivenza):
 
 ```{r}
 dbinom(x=3, size=5, prob=0.1)
 ```
 
-Se cambiamo il valore del parametro _p_ (probabilità di sopravvivenza), la verosimiglianza di ottenere i dati cambia:
+Se cambiamo il valore del parametro _p_ la verosimiglianza dei dati cambia:
 
 ```{r}
 dbinom(x=3, size=5, prob=0.4)
@@ -54,7 +55,7 @@ dbinom(x=3, size=5, prob=0.9)
 
 Dai calcoli precedenti vediamo che è più plausibile osservare 3 "successi" in 5 prove se la probabilità di successo è 0.4 piuttosto che 0.1 o 0.9.
 
-Questo modo di ragionare è così comune in statistica che ha un nome speciale: si chiama __verosimiglianza__. La verosimiglianza descrive la plausibilità di osservare i dati al variare dei valori del parametro di un modello statistico.  Ciò ci conduce alla seguente definizione.
+Questo modo di ragionare è così comune in statistica che ha un nome speciale: si chiama __verosimiglianza__. La verosimiglianza descrive la plausibilità di osservare i dati al variare dei valori del parametro di un modello statistico. Ciò ci conduce alla seguente definizione.
 
 
 # Definizione
@@ -64,7 +65,7 @@ Questo modo di ragionare è così comune in statistica che ha un nome speciale: 
 
 # Un esempio
 
-Per capire meglio cosa significa la definizione precedente ci focalizzeremo sul caso di un'unico parametro sconosciuto e prenderemo in esame la distribuzione Binomiale. Inizio caricando i pacchetti che userò in questo tutorial.
+Per capire meglio cosa significa la definizione precedente ci focalizzeremo sul caso di un'unico parametro sconosciuto (come nell'esempio precedente del pettirosso) e prenderemo in esame la distribuzione Binomiale. Inizio caricando i pacchetti che userò in questo tutorial.
 
 ```{r}
 library("tidyverse", warn.conflicts = FALSE)
