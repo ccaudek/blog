@@ -285,23 +285,60 @@ Ripetendo questo ragionamento, ovvero ripercorrendo i vari passi dell'esempio fi
 
 # Verosimiglianza per una Normale
 
-Poniamoci ora il problema di calcolare la verosimiglianza per i parametri sconosciuti di una distribuzione Normale avendo a disposizione un campione casuale di osservazioni. Essendo il campione casuale, la distribuzione di probabilità congiunta dei dati, dati i parametri, è data dal prodotto della densità di ciascuna singola osservazione:
+Poniamoci ora il problema di calcolare la verosimiglianza per i parametri sconosciuti di una distribuzione Normale avendo a disposizione un campione casuale di osservazioni. 
 
-Come troviamo la densità di una singola osservazione?  È ovviamente data da 
+Iniziamo con il ricordare cosa significano le nozioni di "probabilità" e "densità di probabilità" nel caso di una variabile aleatoria continua.
+La _densità di probabilità_ può essere intesa come una misura di _probabilità relativa_, nel senso che valori della variabile aleatoria in intervalli a cui sono associate probabilità maggiori avranno anche densità di probabilità maggiori. In termini formali si dice che la probabilità è l'integrale della densità di probabilità in un intervallo. Per esempio, la classica curva campanulare associata alla distribuzione Normale è una misura della _densità di probabilità_, mentre la _probabilità_ corrisponde all'area sottesa alla curva in un determinato intervallo di valori della variabile aleatoria.
+
+Se noi assegnamo un modello statistico ad una variabile aleatoria, allora ciascuna realizzazione della variabile aleatoria (chiamiamola $x_i$) avrà una densità di probabilità definita dal modello probabilistico (chiamiamola $f(x_i)$). Se assumiamo che i valori del nostro campione sono statisticamente indipendenti (ovvero, se la probabilità di osservare un certo valore del nostro campione non dipende dagli altri valori che fanno parte del campione), allora la __verosimiglianza__ di osservare l'intero campione (chiamiamola $L(x)$) è definita come il prodotto delle densità di probabilità di ciascuno dei valori del campione, ovvero 
+
+$$
+L(x) = \prod_{i=1}^n f(x_i),
+$$
+dove $n$ è l'ampiezza del campione.
+
+In base al modello statistico che abbiamo scelto, ovvero quello della distribuzione Normale, la densità di una singola osservazione è data da
+
+$$
+ f(x) = \frac{1}{\sigma\sqrt{2\pi}} 
+  \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\!2}\,\right).
+$$
+
+La legge Normale è implementata in `R` nell'istruzione seguente: 
 
 ```{r, eval=FALSE}
 dnorm(x, mean = mu, sigma = sigma)
 ```
 
-Se il nostro campione è costituito da 30 osservazioni sarà dunque necessario fare il prodotto di 30 densità. Il problema di procedere in questo modo, però, è che il risultato numerico di questo prodotto divenerà molto piccolo, e i computer hanno difficoltà a manipolare numeri così piccoli. Tale problema può essere risolto prendendo il logaritmo. Per le proprietà dei logaritmi, inoltre, il logaritmo di un prodotto è uguale alla somma dei logaritmi. Per esempio,
+La verosimiglianza del campione sarà dunque uguale a
+
+$$
+L(x) = \prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} 
+  \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\!2}\,\right).
+$$
+
+Il problema di procedere in questo modo, però, è che il risultato numerico di questo prodotto diventa molto piccolo, e i computer hanno difficoltà a manipolare numeri così piccoli. Tale problema può essere risolto prendendo il logaritmo. Sappiao che, per le proprietà dei logaritmi, il logaritmo di un prodotto è uguale alla somma dei logaritmi. Per esempio,
 
 ```{r}
 log(3 * 4 * 5)
 log(3) + log(4) + log(5)
 ```
-Dunque, se vogliamo costruire la funzione di log-verosimiglianza per un campione di 30 osservazioni sarà sufficiente sommare le 30 log-verosimiglianze.  
 
-Consideriamo i dati delle dispense:
+Dunque, se vogliamo costruire la funzione di log-verosimiglianza per un campione di $n$ osservazioni sarà sufficiente sommare le $n$ log-verosimiglianze:
+
+$$
+log\big(L(x)\big) = \sum_{i=1}^n log \big(f(x_i) \big).
+$$
+
+In `R`, il logaritmo della densità di probabilità Normale è dato da:
+
+```{r, eval=FALSE}
+dnorm(x, mean = mu, sigma = sigma, log = TRUE)
+```
+
+L'argomento `log=TRUE` nella funzione `dnorm()` specifica appunto che vogliamo il logaritmo della densità Normale. 
+
+Faciamo un esempio e consideriamo i dati discussi nelle dispense:
 
 ```{r}
 d <- data.frame(
@@ -310,13 +347,13 @@ d <- data.frame(
   )
 ```
 
-Per semplificare il problema, poniamoci l'obiettivo di stimare solo uno dei due parametri sconosciuti, ovvero $\mu$, tenendo $\sigma$ uguale alla deviazione standard campionaria:
+Per semplificare il problema, poniamoci l'obiettivo di stimare solo uno dei due parametri sconosciuti della distribuzione Normale, ovvero $\mu$, tenendo $\sigma$ uguale alla deviazione standard del campione:
 
 ```{r}
 true_sigma <- sd(d$x)
 ```
 
-Definiamo la funzione di log-verosimiglianza:
+Definiamo in `R` il logaritomo della funzione di verosimiglianza, ovvero la funzione di log-verosimiglianza:
 
 ```{r}
 log_likelihood <- function(x, mu, sigma=true_sigma) {
@@ -324,13 +361,11 @@ log_likelihood <- function(x, mu, sigma=true_sigma) {
 }
 ```
 
-L'argomento `log=TRUE` nella funzione `dnorm()` specifica che vogliamo il logaritmo della densità Normale. 
+La situazione è dunque simile a quella che abbiamo discusso nel caso della Binomiale.  La complicazione è che dobbiamo fare una somma di 30 addendi, ma tale somma viene calcolata all'interno della funzione `log_likelihood()`.
 
-La situazione è dunque simile a quella che abbiamo discusso nel caso della Binomiale.  La complicazione è che dobbiamo fare una somma di 30 addendi, ma tale somma viene calcolata all'interno della funzione `log_likelihood()` per cui non ci preoccupiamo di essa.
+Notiamo che della funzione `log_likelihood()` richiede tre argomenti: il primo argomento `x` corrisponde al vettore che contiene i dati; il secondo argomento `mu` è il parametro sconosciuto; il terzo argomento, $\sigma$, nell'esempio che stiamo discutendo viene mantenuto costante.
 
-Notiamo invece che della funzione `log_likelihood()` richiede tre argomenti: il primo argomento `x` corrisponde al vettore che contiene i dati; il secondo argomento `mu` è il parametro sconosciuto; il terzo argomento, nell'esempio che stiamo discutendo, viene mantenuto costante.
-
-Come abbiao fatto per l'esempio sulla verosimiglianza di una Binomiale, definiamo una serie di valori per il parametro sconosciuto `mu`:
+Come abbiamo fatto nel caso della verosimiglianza di una Binomiale, definiamo una serie di valori per il parametro sconosciuto `mu`:
 
 ```{r}
 nrep <- 1e5
@@ -341,7 +376,7 @@ mu <- seq(
 )
 ```
 
-Nel caso presente esamineremo un grande numero di valri possibili per il parametro sconosciuto: 1e5.
+Per l'esempio presente esamineremo un grande numero di valori possibili per il parametro sconosciuto $\mu$, ovvero 1e5.
 
 Siamo ora nelle condizioni di trovare i valori della log-verosimiglianza:
 
@@ -352,20 +387,20 @@ for (i in 1:nrep) {
 }
 ```
 
-Facciamo un esempio. Consideriamo un valore preso a caso per il parametro _mu_, per esempio, 28, e svolgiamo i calcoli. Dobbiamo calcolare il valore che viene ritornato da ´dnorm(..., log=TRUE)´ per ciascuno dei valori `x` del campione, tenendo costanti i valori `sigma = s` e `mu = 28`:
+Esaminiamo uno dei valori possibili della log-verosimiglianza. Consideriamo un valore qualsiasi del parametro _mu_, per esempio, 28, e svolgiamo i calcoli. Dobbiamo calcolare il valore che viene ritornato da ´dnorm(..., log=TRUE)´ per ciascuno dei valori `x` del campione, tenendo costanti i valori `sigma = s` e `mu = 28`:
 
 ```{r}
 mu_test <- 28
 dnorm(d$x, mu_test, true_sigma, log=TRUE)
 ```
 
-La somma di questi valori è
+La somma di questi valori è data da
 
 ```{r}
 sum(dnorm(d$x, mu_test, true_sigma, log=TRUE))
 ```
 
-Nello script precedente, questi calcoli sono stati svolti per tutti gli 1e5 valori ipotizzati per `mu`. Verifichiamo. Chiediamoci intanto a quale indice del vettore `mu` corrisponde il valore di `mu_test` = 28.  Nel vettore che abbiamo creato, il valore più prossimo a 28 corrisponde all'elemento in posizione 
+Nello script precedente, questi calcoli sono stati svolti per tutti gli 1e5 valori ipotizzati per `mu`. Verifichiamo. Chiediamoci a quale indice del vettore `mu` corrisponde il valore di `mu_test` = 28.  Nel vettore che abbiamo creato, il valore più prossimo a 28 corrisponde all'elemento nella posizione 
 
 ```{r}
 mu_index <- which.min(abs(mu - mu_test))
@@ -376,13 +411,15 @@ ovvero
 ```{r}
 mu[mu_index]
 ```
-Chiediamoci dunque qual è il valore dell'elemento pari a `mu_index` del vettore `ll`:
+
+Chiediamoci qual è il valore dell'elemento di indice pari a `mu_index` all'interno del vettore `ll`:
 
 ```{r}
 ll[mu_index]
 ```
 
-il che conferma il risultato dei calcoli che abbiamo svolto in precedenza.
+Tale valore è identico a quello trovato con i calcoli che abbiamo svolto in precedenza.
+
 
 # La log-verosimiglianza
 
@@ -400,19 +437,19 @@ ggplot(aes(x=mu, y=ll)) +
   theme(panel.grid = element_blank()) 
 ```
 
-La funzione di log-verosimiglianza ha un massimo.  Il valore $\mu$ corrispondente a tale massimo è lo stimatore di massima verosimiglianza per la media sconosciuta della popolazione. 
-Noi sappiamo che tale stimatore non è altro che la media del campione.  Controlliamo:
+La funzione di log-verosimiglianza ha un massimo. Il valore $\mu$ corrispondente a tale massimo è lo stimatore di massima verosimiglianza per la media sconosciuta della popolazione. 
 
-```{r}
-mean(d$x)
-```
-ovvero
+Sappiamo che tale stimatore non è altro che la media del campione.  Controlliamo:
 
 ```{r}
 mu[which.max(ll)]
 ```
 
+infatti
 
+```{r}
+mean(d$x)
+```
 
 
 

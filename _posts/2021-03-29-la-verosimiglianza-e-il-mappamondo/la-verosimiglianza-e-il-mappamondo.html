@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["bibliography.bib","la-verosimiglianza-e-il-mappamondo_files/anchor-4.2.2/anchor.min.js","la-verosimiglianza-e-il-mappamondo_files/bowser-1.9.3/bowser.min.js","la-verosimiglianza-e-il-mappamondo_files/distill-2.2.21/template.v2.js","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-12-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-13-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-14-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-15-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-16-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-17-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-22-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-27-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-30-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png","la-verosimiglianza-e-il-mappamondo_files/header-attrs-2.7/header-attrs.js","la-verosimiglianza-e-il-mappamondo_files/jquery-1.11.3/jquery.min.js","la-verosimiglianza-e-il-mappamondo_files/popper-2.6.0/popper.min.js","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy-bundle.umd.min.js","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy-light-border.css","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy.css","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy.umd.min.js","la-verosimiglianza-e-il-mappamondo_files/webcomponents-2.0.0/webcomponents.js","pettirosso.jpg"]}
+  {"type":"character","attributes":{},"value":["bibliography.bib","la-verosimiglianza-e-il-mappamondo_files/anchor-4.2.2/anchor.min.js","la-verosimiglianza-e-il-mappamondo_files/bowser-1.9.3/bowser.min.js","la-verosimiglianza-e-il-mappamondo_files/distill-2.2.21/template.v2.js","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-12-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-13-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-14-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-15-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-16-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-17-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-22-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-27-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-30-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-31-1.png","la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-9-1.png","la-verosimiglianza-e-il-mappamondo_files/header-attrs-2.7/header-attrs.js","la-verosimiglianza-e-il-mappamondo_files/jquery-1.11.3/jquery.min.js","la-verosimiglianza-e-il-mappamondo_files/popper-2.6.0/popper.min.js","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy-bundle.umd.min.js","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy-light-border.css","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy.css","la-verosimiglianza-e-il-mappamondo_files/tippy-6.2.7/tippy.umd.min.js","la-verosimiglianza-e-il-mappamondo_files/webcomponents-2.0.0/webcomponents.js","pettirosso.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1793,15 +1793,30 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </div>
 <p>Ripetendo questo ragionamento, ovvero ripercorrendo i vari passi dell’esempio fino ad ottenere 6 successi in 9 prove, riusciamo a costruire la figura con nove pannelli riportata sopra.</p>
 <h1 id="verosimiglianza-per-una-normale">Verosimiglianza per una Normale</h1>
-<p>Poniamoci ora il problema di calcolare la verosimiglianza per i parametri sconosciuti di una distribuzione Normale avendo a disposizione un campione casuale di osservazioni. Essendo il campione casuale, la distribuzione di probabilità congiunta dei dati, dati i parametri, è data dal prodotto della densità di ciascuna singola osservazione:</p>
-<p>Come troviamo la densità di una singola osservazione? È ovviamente data da</p>
+<p>Poniamoci ora il problema di calcolare la verosimiglianza per i parametri sconosciuti di una distribuzione Normale avendo a disposizione un campione casuale di osservazioni.</p>
+<p>Iniziamo con il ricordare cosa significano le nozioni di “probabilità” e “densità di probabilità” nel caso di una variabile aleatoria continua. La <em>densità di probabilità</em> può essere intesa come una misura di <em>probabilità relativa</em>, nel senso che valori della variabile aleatoria in intervalli a cui sono associate probabilità maggiori avranno anche densità di probabilità maggiori. In termini formali si dice che la probabilità è l’integrale della densità di probabilità in un intervallo. Per esempio, la classica curva campanulare associata alla distribuzione Normale è una misura della <em>densità di probabilità</em>, mentre la <em>probabilità</em> corrisponde all’area sottesa alla curva in un determinato intervallo di valori della variabile aleatoria.</p>
+<p>Se noi assegnamo un modello statistico ad una variabile aleatoria, allora ciascuna realizzazione della variabile aleatoria (chiamiamola <span class="math inline">\(x_i\)</span>) avrà una densità di probabilità definita dal modello probabilistico (chiamiamola <span class="math inline">\(f(x_i)\)</span>). Se assumiamo che i valori del nostro campione sono statisticamente indipendenti (ovvero, se la probabilità di osservare un certo valore del nostro campione non dipende dagli altri valori che fanno parte del campione), allora la <strong>verosimiglianza</strong> di osservare l’intero campione (chiamiamola <span class="math inline">\(L(x)\)</span>) è definita come il prodotto delle densità di probabilità di ciascuno dei valori del campione, ovvero</p>
+<p><span class="math display">\[
+L(x) = \prod_{i=1}^n f(x_i),
+\]</span> dove <span class="math inline">\(n\)</span> è l’ampiezza del campione.</p>
+<p>In base al modello statistico che abbiamo scelto, ovvero quello della distribuzione Normale, la densità di una singola osservazione è data da</p>
+<p><span class="math display">\[
+ f(x) = \frac{1}{\sigma\sqrt{2\pi}} 
+  \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\!2}\,\right).
+\]</span></p>
+<p>La legge Normale è implementata in <code>R</code> nell’istruzione seguente:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='va'>mu</span>, sigma <span class='op'>=</span> <span class='va'>sigma</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Se il nostro campione è costituito da 30 osservazioni sarà dunque necessario fare il prodotto di 30 densità. Il problema di procedere in questo modo, però, è che il risultato numerico di questo prodotto divenerà molto piccolo, e i computer hanno difficoltà a manipolare numeri così piccoli. Tale problema può essere risolto prendendo il logaritmo. Per le proprietà dei logaritmi, inoltre, il logaritmo di un prodotto è uguale alla somma dei logaritmi. Per esempio,</p>
+<p>La verosimiglianza del campione sarà dunque uguale a</p>
+<p><span class="math display">\[
+L(x) = \prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} 
+  \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\!2}\,\right).
+\]</span></p>
+<p>Il problema di procedere in questo modo, però, è che il risultato numerico di questo prodotto diventa molto piccolo, e i computer hanno difficoltà a manipolare numeri così piccoli. Tale problema può essere risolto prendendo il logaritmo. Sappiao che, per le proprietà dei logaritmi, il logaritmo di un prodotto è uguale alla somma dei logaritmi. Per esempio,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>3</span> <span class='op'>*</span> <span class='fl'>4</span> <span class='op'>*</span> <span class='fl'>5</span><span class='op'>)</span>
@@ -1814,8 +1829,19 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </div>
 <pre><code>[1] 4.094345</code></pre>
 </div>
-<p>Dunque, se vogliamo costruire la funzione di log-verosimiglianza per un campione di 30 osservazioni sarà sufficiente sommare le 30 log-verosimiglianze.</p>
-<p>Consideriamo i dati delle dispense:</p>
+<p>Dunque, se vogliamo costruire la funzione di log-verosimiglianza per un campione di <span class="math inline">\(n\)</span> osservazioni sarà sufficiente sommare le <span class="math inline">\(n\)</span> log-verosimiglianze:</p>
+<p><span class="math display">\[
+log\big(L(x)\big) = \sum_{i=1}^n log \big(f(x_i) \big).
+\]</span></p>
+<p>In <code>R</code>, il logaritmo della densità di probabilità Normale è dato da:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='va'>mu</span>, sigma <span class='op'>=</span> <span class='va'>sigma</span>, log <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>L’argomento <code>log=TRUE</code> nella funzione <code>dnorm()</code> specifica appunto che vogliamo il logaritmo della densità Normale.</p>
+<p>Faciamo un esempio e consideriamo i dati discussi nelle dispense:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
@@ -1825,14 +1851,14 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </code></pre>
 </div>
 </div>
-<p>Per semplificare il problema, poniamoci l’obiettivo di stimare solo uno dei due parametri sconosciuti, ovvero <span class="math inline">\(\mu\)</span>, tenendo <span class="math inline">\(\sigma\)</span> uguale alla deviazione standard campionaria:</p>
+<p>Per semplificare il problema, poniamoci l’obiettivo di stimare solo uno dei due parametri sconosciuti della distribuzione Normale, ovvero <span class="math inline">\(\mu\)</span>, tenendo <span class="math inline">\(\sigma\)</span> uguale alla deviazione standard del campione:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>true_sigma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Definiamo la funzione di log-verosimiglianza:</p>
+<p>Definiamo in <code>R</code> il logaritomo della funzione di verosimiglianza, ovvero la funzione di log-verosimiglianza:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>log_likelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>=</span><span class='va'>true_sigma</span><span class='op'>)</span> <span class='op'>{</span>
@@ -1841,10 +1867,9 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </code></pre>
 </div>
 </div>
-<p>L’argomento <code>log=TRUE</code> nella funzione <code>dnorm()</code> specifica che vogliamo il logaritmo della densità Normale.</p>
-<p>La situazione è dunque simile a quella che abbiamo discusso nel caso della Binomiale. La complicazione è che dobbiamo fare una somma di 30 addendi, ma tale somma viene calcolata all’interno della funzione <code>log_likelihood()</code> per cui non ci preoccupiamo di essa.</p>
-<p>Notiamo invece che della funzione <code>log_likelihood()</code> richiede tre argomenti: il primo argomento <code>x</code> corrisponde al vettore che contiene i dati; il secondo argomento <code>mu</code> è il parametro sconosciuto; il terzo argomento, nell’esempio che stiamo discutendo, viene mantenuto costante.</p>
-<p>Come abbiao fatto per l’esempio sulla verosimiglianza di una Binomiale, definiamo una serie di valori per il parametro sconosciuto <code>mu</code>:</p>
+<p>La situazione è dunque simile a quella che abbiamo discusso nel caso della Binomiale. La complicazione è che dobbiamo fare una somma di 30 addendi, ma tale somma viene calcolata all’interno della funzione <code>log_likelihood()</code>.</p>
+<p>Notiamo che della funzione <code>log_likelihood()</code> richiede tre argomenti: il primo argomento <code>x</code> corrisponde al vettore che contiene i dati; il secondo argomento <code>mu</code> è il parametro sconosciuto; il terzo argomento, <span class="math inline">\(\sigma\)</span>, nell’esempio che stiamo discutendo viene mantenuto costante.</p>
+<p>Come abbiamo fatto nel caso della verosimiglianza di una Binomiale, definiamo una serie di valori per il parametro sconosciuto <code>mu</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrep</span> <span class='op'>&lt;-</span> <span class='fl'>1e5</span>
@@ -1856,7 +1881,7 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </code></pre>
 </div>
 </div>
-<p>Nel caso presente esamineremo un grande numero di valri possibili per il parametro sconosciuto: 1e5.</p>
+<p>Per l’esempio presente esamineremo un grande numero di valori possibili per il parametro sconosciuto <span class="math inline">\(\mu\)</span>, ovvero 1e5.</p>
 <p>Siamo ora nelle condizioni di trovare i valori della log-verosimiglianza:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1867,7 +1892,7 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </code></pre>
 </div>
 </div>
-<p>Facciamo un esempio. Consideriamo un valore preso a caso per il parametro <em>mu</em>, per esempio, 28, e svolgiamo i calcoli. Dobbiamo calcolare il valore che viene ritornato da ´dnorm(…, log=TRUE)´ per ciascuno dei valori <code>x</code> del campione, tenendo costanti i valori <code>sigma = s</code> e <code>mu = 28</code>:</p>
+<p>Esaminiamo uno dei valori possibili della log-verosimiglianza. Consideriamo un valore qualsiasi del parametro <em>mu</em>, per esempio, 28, e svolgiamo i calcoli. Dobbiamo calcolare il valore che viene ritornato da ´dnorm(…, log=TRUE)´ per ciascuno dei valori <code>x</code> del campione, tenendo costanti i valori <code>sigma = s</code> e <code>mu = 28</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu_test</span> <span class='op'>&lt;-</span> <span class='fl'>28</span>
@@ -1880,7 +1905,7 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 [19] -2.852865 -2.910138 -4.742875 -3.540141 -2.852865 -3.368322
 [25] -3.093412 -2.807047 -2.818501 -3.219412 -2.818501 -3.219412</code></pre>
 </div>
-<p>La somma di questi valori è</p>
+<p>La somma di questi valori è data da</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>mu_test</span>, <span class='va'>true_sigma</span>, log<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
@@ -1888,7 +1913,7 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </div>
 <pre><code>[1] -101.6682</code></pre>
 </div>
-<p>Nello script precedente, questi calcoli sono stati svolti per tutti gli 1e5 valori ipotizzati per <code>mu</code>. Verifichiamo. Chiediamoci intanto a quale indice del vettore <code>mu</code> corrisponde il valore di <code>mu_test</code> = 28. Nel vettore che abbiamo creato, il valore più prossimo a 28 corrisponde all’elemento in posizione</p>
+<p>Nello script precedente, questi calcoli sono stati svolti per tutti gli 1e5 valori ipotizzati per <code>mu</code>. Verifichiamo. Chiediamoci a quale indice del vettore <code>mu</code> corrisponde il valore di <code>mu_test</code> = 28. Nel vettore che abbiamo creato, il valore più prossimo a 28 corrisponde all’elemento nella posizione</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.min</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>mu</span> <span class='op'>-</span> <span class='va'>mu_test</span><span class='op'>)</span><span class='op'>)</span>
@@ -1905,7 +1930,7 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </div>
 <pre><code>[1] 28.00006</code></pre>
 </div>
-<p>Chiediamoci dunque qual è il valore dell’elemento pari a <code>mu_index</code> del vettore <code>ll</code>:</p>
+<p>Chiediamoci qual è il valore dell’elemento di indice pari a <code>mu_index</code> all’interno del vettore <code>ll</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ll</span><span class='op'>[</span><span class='va'>mu_index</span><span class='op'>]</span>
@@ -1913,7 +1938,7 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
 </div>
 <pre><code>[1] -101.6681</code></pre>
 </div>
-<p>il che conferma il risultato dei calcoli che abbiamo svolto in precedenza.</p>
+<p>Tale valore è identico a quello trovato con i calcoli che abbiamo svolto in precedenza.</p>
 <h1 id="la-log-verosimiglianza">La log-verosimiglianza</h1>
 <p>Disegnamo ora la funzione di log-verosimiglianza per il parametro sconosciuto <span class="math inline">\(\mu\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1929,23 +1954,24 @@ p(x \mid p) = \binom{n}{k} p^k (1-p)^{n-k}
   <span class='fu'>theme</span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
 </code></pre>
 </div>
-<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-30-1.png" width="624" /></p>
+<p><img src="la-verosimiglianza-e-il-mappamondo_files/figure-html5/unnamed-chunk-31-1.png" width="624" /></p>
 </div>
-<p>La funzione di log-verosimiglianza ha un massimo. Il valore <span class="math inline">\(\mu\)</span> corrispondente a tale massimo è lo stimatore di massima verosimiglianza per la media sconosciuta della popolazione. Noi sappiamo che tale stimatore non è altro che la media del campione. Controlliamo:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 30.93333</code></pre>
-</div>
-<p>ovvero</p>
+<p>La funzione di log-verosimiglianza ha un massimo. Il valore <span class="math inline">\(\mu\)</span> corrispondente a tale massimo è lo stimatore di massima verosimiglianza per la media sconosciuta della popolazione.</p>
+<p>Sappiamo che tale stimatore non è altro che la media del campione. Controlliamo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mu</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.max</a></span><span class='op'>(</span><span class='va'>ll</span><span class='op'>)</span><span class='op'>]</span>
 </code></pre>
 </div>
 <pre><code>[1] 30.93327</code></pre>
+</div>
+<p>infatti</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 30.93333</code></pre>
 </div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
