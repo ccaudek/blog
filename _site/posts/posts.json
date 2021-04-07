@@ -1,7 +1,7 @@
 [
   {
     "path": "posts/2021-04-07-la-distribuzione-campionaria-della-media/",
-    "title": "L'incertezza della stima della media della popolazione",
+    "title": "L'incertezza della stima",
     "description": "Una semplicissima simulazione sulla distribuzione campionaria della media.",
     "author": [
       {
@@ -16,7 +16,7 @@
     ],
     "contents": "\nPresento qui uno script R per un semplice esercizio sulla distribuzione campionaria della media. Lo scopo è quello di chiarire il concetto di distribuzione campionaria della media.\nCarico il pacchetto prob:\n\n\nlibrary(\"prob\")\n\n\n\nNell’esempio useremo una popolazione finita costituita da un numero molto piccolo di elementi:\n\n\nx <- c(2, 1, 6, 4)\nx\n\n\n[1] 2 1 6 4\n\nLa media \\(\\mu\\) della popolazione è\n\n\nmean(x)\n\n\n[1] 3.25\n\nPer calcolare la varianza definisco la funzione my_var() in quanto voglio dividere per n anzicché per n - 1:\n\n\nmy_var <- function(x) {\n  var(x) * (length(x) - 1) / length(x)\n}\n\n\n\nLa varianza della popolazione, \\(\\sigma^2\\), è\n\n\nmy_var(x)\n\n\n[1] 3.6875\n\nMi pongo ora il problema di estrarre dalla popolazione tutti i possibili campioni di ampiezza n = 2. A questo fine userò la funzione prob::urnsamples():\n\n\nss <- unique(urnsamples(x, size = 2, replace = TRUE, ordered = TRUE))\n\n\n\nL’elenco di tutti i possibili campioni di ampiezza n = 2, ovvero 16 campioni, è il seguente:\n\n\nss\n\n\n   X1 X2\n1   2  2\n2   1  2\n3   6  2\n4   4  2\n5   2  1\n6   1  1\n7   6  1\n8   4  1\n9   2  6\n10  1  6\n11  6  6\n12  4  6\n13  2  4\n14  1  4\n15  6  4\n16  4  4\n\nCalcolo ora la media di ciascuno dei 16 campioni:\n\n\nsampling_dist_mean <- rowMeans(ss)\nsampling_dist_mean \n\n\n  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16 \n2.0 1.5 4.0 3.0 1.5 1.0 3.5 2.5 4.0 3.5 6.0 5.0 3.0 2.5 5.0 4.0 \n\nQuesti 16 numeri costituiscono la distribuzione campionaria della media per campioni di ampiezza n = 2 nel caso della popolazione di riferimento che stiamo esaminando. Infatti, questo è l’elenco dei valori della media di tutti i possibili campioni di ampiezza n = 2 che si possono estrarre dalla popolazione.\nLo scopo di questa simulazione è quello di mettere in relazione le proprietà della popolazione con le proprietà della distribuzione campionaria della media.\nLa media della distribuzione campionaria delle medie dei campioni\n\n\nmean(sampling_dist_mean)\n\n\n[1] 3.25\n\nè uguale alla media della popolazione.\nLa varianza della distribuzione campionaria delle medie dei campioni\n\n\nmy_var(sampling_dist_mean)\n\n\n[1] 1.84375\n\nè uguale a\n\\[\n\\sigma^2_{\\bar{X}} = \\frac{\\sigma^2}{n}\n\\]\novvero\n\n\nmy_var(x) / 2\n\n\n[1] 1.84375\n\nIl significato della varianza della distribuzione distribuzione campionaria delle medie dei campioni è il seguente:\n\nla deviazione standard della distribuzione campionaria quantifica l’errore medio che compiamo quando usiamo la media del campione quale stima della media della popolazione.\n\n\n\n\n",
     "preview": "posts/2021-04-07-la-distribuzione-campionaria-della-media/preview.png",
-    "last_modified": "2021-04-07T13:41:52+02:00",
+    "last_modified": "2021-04-07T21:02:06+02:00",
     "input_file": {},
     "preview_width": 696,
     "preview_height": 658

@@ -1,5 +1,5 @@
 ---
-title: "L'incertezza della stima della media della popolazione"
+title: "L'incertezza della stima"
 description: |
   Una semplicissima simulazione sulla distribuzione campionaria della media.
 author:
