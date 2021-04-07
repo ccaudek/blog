@@ -1,0 +1,116 @@
+---
+title: "L'incertezza della stima della media della popolazione"
+description: |
+  Una semplicissima simulazione sulla distribuzione campionaria della media.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 04-07-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Presento qui uno script `R` per un semplice esercizio sulla distribuzione campionaria della media. Lo scopo è quello di chiarire il concetto di _distribuzione campionaria della media_.
+
+Carico il pacchetto `prob`:
+
+```{r}
+library("prob")
+```
+
+Nell'esempio useremo una popolazione finita costituita da un numero molto piccolo di elementi:
+
+```{r}
+x <- c(2, 1, 6, 4)
+x
+```
+
+La media $\mu$ della popolazione è
+
+```{r}
+mean(x)
+```
+
+Per calcolare la varianza definisco la funzione `my_var()` in quanto voglio dividere per _n_ anzicché per _n - 1_:
+
+```{r}
+my_var <- function(x) {
+  var(x) * (length(x) - 1) / length(x)
+}
+```
+
+La varianza della popolazione, $\sigma^2$, è
+
+```{r}
+my_var(x)
+```
+
+Mi pongo ora il problema di estrarre dalla popolazione __tutti__ i possibili campioni di ampiezza _n_ = 2.  A questo fine userò la funzione `prob::urnsamples()`:
+
+```{r}
+ss <- unique(urnsamples(x, size = 2, replace = TRUE, ordered = TRUE))
+```
+
+L'elenco di tutti i possibili campioni di ampiezza _n_ = 2, ovvero 16 campioni, è il seguente:
+
+```{r}
+ss
+```
+
+Calcolo ora la media di ciascuno dei 16 campioni:
+
+```{r}
+sampling_dist_mean <- rowMeans(ss)
+sampling_dist_mean 
+```
+
+Questi 16 numeri costituiscono la __distribuzione campionaria__ della media per campioni di ampiezza _n_ = 2 nel caso della popolazione di riferimento che stiamo esaminando.  Infatti, questo è l'elenco dei valori della media di __tutti i possibili__ campioni di ampiezza _n_ = 2 che si possono estrarre dalla popolazione. 
+
+Lo scopo di questa simulazione è quello di mettere in relazione le proprietà della popolazione con le proprietà della distribuzione campionaria della media. 
+
+La media della distribuzione campionaria delle medie dei campioni
+
+```{r}
+mean(sampling_dist_mean)
+```
+
+è uguale alla media della popolazione.
+
+La varianza della distribuzione campionaria delle medie dei campioni 
+
+```{r}
+my_var(sampling_dist_mean)
+```
+
+è uguale a
+
+$$
+\sigma^2_{\bar{X}} = \frac{\sigma^2}{n}
+$$
+
+ovvero 
+
+```{r}
+my_var(x) / 2
+```
+
+Il significato della varianza della distribuzione distribuzione campionaria delle medie dei campioni è il seguente:
+
+> la deviazione standard della distribuzione campionaria quantifica l'errore medio che compiamo quando usiamo la media del campione quale stima della media della popolazione.
+
+
+

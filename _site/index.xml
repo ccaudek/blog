@@ -7,7 +7,17 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 30 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>L'incertezza della stima della media della popolazione</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-04-07-la-distribuzione-campionaria-della-media</link>
+      <description>Una semplicissima simulazione sulla distribuzione campionaria della media.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-04-07-la-distribuzione-campionaria-della-media</guid>
+      <pubDate>Wed, 07 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Analisi delle componenti principali</title>
       <dc:creator>Corrado Caudek</dc:creator>
