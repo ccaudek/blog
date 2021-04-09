@@ -67,7 +67,7 @@ Forniamo qui solo una descrizione intuitiva della procedura che viene seguita e 
 
 La prima delle due definizioni precedente descrive la logica soggiacente alla procedura di calcolo dell'errore standard, mentre la seconda definizione ci dice qual è il significato dell'errore standard. 
 
-Per capire come si traduce in pratica la definizione precedente, esaminiamo la figura~\ref{fig:like_and_SE}.
+Per capire come si traduce in pratica la definizione precedente, esaminiamo la figura riportata qui sotto.
 Nel pannello di sinistra è riprodotta la funzione di verosimiglianza nel caso di 7 successi in 10 prove Bernoulliane.
 Nel pannello centrale è riportata la verosimiglianza per 70 successi in 100 prove e nel pannello di destra abbiamo la verosimiglianza nel caso di 700 successi in \num{1000} prove.
 Quello che la figura~\ref{fig:like_and_SE} ci dice è che, al crescere del numero di prove, diminuisce la nostra incertezza relativamente al valore del parametro $\pi$ (probabilità di successo, ovvero, la media di tutte le proporzioni campionarie).
