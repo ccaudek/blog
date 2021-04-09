@@ -7,7 +7,16 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 07 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Intervalli di fiducia</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-04-09-intervalli-di-fiducia</link>
+      <description>La descrizione dell'intertezza in termini frequentisti.</description>
+      <guid>https://github.com/ccaudek/blog/posts/2021-04-09-intervalli-di-fiducia</guid>
+      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-04-09-intervalli-di-fiducia/intervalli-di-fiducia_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>L'incertezza della stima</title>
       <dc:creator>Corrado Caudek</dc:creator>

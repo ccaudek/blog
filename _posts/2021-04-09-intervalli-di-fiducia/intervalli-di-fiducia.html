@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Intervalli di fiducia</title>
+
+  <meta property="description" itemprop="description" content="La descrizione dell&#39;intertezza in termini frequentisti."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-04-09"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-04-09"/>
+  <meta name="article:author" content="Corrado Caudek"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Intervalli di fiducia"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="La descrizione dell&#39;intertezza in termini frequentisti."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Intervalli di fiducia"/>
+  <meta property="twitter:description" content="La descrizione dell&#39;intertezza in termini frequentisti."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Intervalli di fiducia"]},{"type":"character","attributes":{},"value":["La descrizione dell'intertezza in termini frequentisti.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["04-09-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["intervalli-di-fiducia_files/anchor-4.2.2/anchor.min.js","intervalli-di-fiducia_files/bowser-1.9.3/bowser.min.js","intervalli-di-fiducia_files/distill-2.2.21/template.v2.js","intervalli-di-fiducia_files/figure-html5/unnamed-chunk-1-1.png","intervalli-di-fiducia_files/figure-html5/unnamed-chunk-3-1.png","intervalli-di-fiducia_files/figure-html5/unnamed-chunk-4-1.png","intervalli-di-fiducia_files/header-attrs-2.7/header-attrs.js","intervalli-di-fiducia_files/jquery-1.11.3/jquery.min.js","intervalli-di-fiducia_files/popper-2.6.0/popper.min.js","intervalli-di-fiducia_files/tippy-6.2.7/tippy-bundle.umd.min.js","intervalli-di-fiducia_files/tippy-6.2.7/tippy-light-border.css","intervalli-di-fiducia_files/tippy-6.2.7/tippy.css","intervalli-di-fiducia_files/tippy-6.2.7/tippy.umd.min.js","intervalli-di-fiducia_files/webcomponents-2.0.0/webcomponents.js","like.pdf"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="intervalli-di-fiducia_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="intervalli-di-fiducia_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="intervalli-di-fiducia_files/popper-2.6.0/popper.min.js"></script>
+  <link href="intervalli-di-fiducia_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="intervalli-di-fiducia_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="intervalli-di-fiducia_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="intervalli-di-fiducia_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="intervalli-di-fiducia_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="intervalli-di-fiducia_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="intervalli-di-fiducia_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Intervalli di fiducia","description":"La descrizione dell'intertezza in termini frequentisti.","authors":[{"author":"Corrado Caudek","authorURL":"https://caudekblog.netlify.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-04-09T00:00:00.000+00:00","citationText":"Caudek, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Intervalli di fiducia</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>La descrizione dell’intertezza in termini frequentisti.</p></p>
+</div>
+
+<div class="d-byline">
+  Corrado Caudek <a href="https://caudekblog.netlify.app" class="uri">https://caudekblog.netlify.app</a> 
+  
+<br/>04-09-2021
+</div>
+
+<div class="d-article">
+<p>L’approccio frequentista è basato sull’idea di probabilità quale frequenza relativa. Tale approccio immagina che un determinato esperimento casuale venga ripetuto infinite volte e si chiede come si distribuiscono i risultati ottenuti. Consideriamo qui, quale esempio, l’esperimento casuale che corrisponde all’estrazione casuale di un campione di <span class="math inline">\(n\)</span> osservazioni da una popolazione e del calcolo della media di quel campione. Dato che si immagina che l’esperimento casuale venga ripetuto infinite volte, dobbiamo immaginare l’esistenza di infiniti campioni casuali di <span class="math inline">\(n\)</span> osservazioni. Dato che ciascuno di tali campioni è costituito da osservazioni diverse, ognuno di essi avrà una media diversa. Tale fenomeno è detto <em>variabilità campionaria</em>. Se usiamo il linguaggio dell’approccio frequentista diremo che la distribuzione dei tutti gli infiniti possibili valori della statistica in questione (nel caso dell’esempio, la media del campione) nell’universo dei campioni si chiama .</p>
+<p>Se lo psicologo usa la media del campione quale stima della media della popolazione, ovviamente commetterà un errore, dato che la statistica campionaria è sempre diversa dal parametro. Il problema dello psicologo è quello di valutare l’entità di tale errore, ovvero quello di valutare il livello di incertezza inerente alla sua stima.</p>
+<p>Per valutare l’incertezza della stima lo psicologo fa riferimento alla variabilità campionaria. Se la deviazione standard della distribuzione campionaria della statistica è piccola, questo significa che ogni campione casuale di ampiezza <span class="math inline">\(n\)</span> produrrà una statistica <span class="math inline">\(\bar{X}\)</span> simile al parametro <span class="math inline">\(\mu\)</span> della popolazione. In tali condizioni (utilizzando i dati di un singolo campione) ci sarà una piccola incertezza relativamente al valore del parametro, perché, in media, <span class="math inline">\(\bar{X}\)</span> è simile a <span class="math inline">\(\mu\)</span>. Se invece la deviazione standard della distribuzione campionaria di <span class="math inline">\(\bar{X}\)</span> è grande, i campioni casuali di ampiezza <span class="math inline">\(n\)</span> produrranno, in media, una statistica <span class="math inline">\(\bar{X}\)</span> molto lontana dal parametro <span class="math inline">\(\mu\)</span>. Utilizzando i dati di un singolo campione, in tali condizioni lo psicologo sarà molto incerto relativamente al vero valore del parametro (in quanto, in media, <span class="math inline">\(\bar{X}\)</span> è molto diverso da <span class="math inline">\(\mu\)</span>).</p>
+<p>La deviazione standard della distribuzione campionaria, detta <em>errore standard</em>, viene dunque utilizzata per quantificare l’incertezza relativamente alla stima di un parametro. Solitamente, l’approccio frequentista quantifica l’incertezza della stima nei termini di una funzione dell’errore standard chiamata <em>intervallo fiduciale</em>. Lo scopo di questo capitolo è quello di introdurre la nozione di errore standard in modo tale da potere fornire un’interpretazione alla nozione di intervallo fiduciale.</p>
+<h1 id="lerrore-standard">L’errore standard</h1>
+<p>Iniziamo con un esempio e chiediamoci: com’è possibile misurare la variabilità della proporzione di studenti promossi, se prendiamo in considerazione tutti i possibili appelli d’esame di Psicometria a Firenze (quelli passati, quelli presenti e anche quelli futuri)? Sappiamo che la statistica più utile per quantificare la variabilità di una variabile è la deviazione standard. Questo fatto fornisce la risposta anche alla domanda che ci siamo posti ora: in linea di principio, potremmo usare la deviazione standard per descrivere di quanto variano, in media, i valori delle proporzioni di studenti promossi in tutti i possibili appelli d’esame di Psicometria a Firenze. Un problema che dobbiamo affrontare, però, riguarda il fatto che la distribuzione di valori a cui facciamo riferimento è una distribuzione di valori virtuali, non è un insieme di dati che abbiamo osservato. Per calcolare la deviazione standard, dunque, dobbiamo procedere in modo diverso da quanto abbiamo fatto in precedenza. Iniziamo con un po’ di terminologia. La stima della deviazione standard della distribuzione di una statistica campionaria (nell’esempio disciusso, la proporzione) viene detta <em>errore standard</em>. Queste considerazioni ci conducono alla seguente definizione.</p>
+<blockquote>
+<p>Si dice  la deviazione standard dei valori una statistica campionaria nell’universo dei campioni.</p>
+</blockquote>
+<p>Il calcolo dell’errore standard è solitamente lasciato ad un software.</p>
+<p>L’errore standard è molto importante perché descrive l’accuratezza della nostra stima. Se l’errore standard è piccolo questo ci dice che, se osserviamo un campione diverso da quello corrente, allora ci aspettiamo che la statistica in esame abbia un valore simile a quello corrente. Un grande errore standard, invece, ci dice che non dobbiamo assegnare troppa fiducia alla stima ottenuta nel campione a disposizione perché, in un altro campione, si otterrà una stima molto diversa, e, in media, i valori ottenuti in campioni diversi saranno lontani dal vero valore del parametro sconosciuto (ovvero, nell’esempio considerato, dalla media di tutte le proporzioni che si possono ottenere).</p>
+<p>Il calcolo dell’errore standard è solitamente lasciato ad un software. Ma come si arriva ad una quantificazione dell’errore standard? Forniamo qui solo una descrizione intuitiva della procedura che viene seguita e forniamo la seguente definizione.</p>
+<blockquote>
+<p>L’errore standard può essere inteso come una misura (del reciproco) della curvatura della verosimiglianza in corrispondenza della stima di massima verosimiglianza per un parametro <span class="math inline">\(\theta\)</span>.</p>
+</blockquote>
+<p>La prima delle due definizioni precedente descrive la logica soggiacente alla procedura di calcolo dell’errore standard, mentre la seconda definizione ci dice qual è il significato dell’errore standard.</p>
+<p>Per capire come si traduce in pratica la definizione precedente, esaminiamo la figura~. Nel pannello di sinistra è riprodotta la funzione di verosimiglianza nel caso di 7 successi in 10 prove Bernoulliane. Nel pannello centrale è riportata la verosimiglianza per 70 successi in 100 prove e nel pannello di destra abbiamo la verosimiglianza nel caso di 700 successi in  prove. Quello che la figura~ ci dice è che, al crescere del numero di prove, diminuisce la nostra incertezza relativamente al valore del parametro <span class="math inline">\(\pi\)</span> (probabilità di successo, ovvero, la media di tutte le proporzioni campionarie). Nel caso di un piccolo numero di prove, la verosimiglianza ha una piccola curvatura e ci fornisce una modesta quantità di informazione concernente il parametro non osservabile <span class="math inline">\(\pi\)</span> – in altri termini, la verosimiglianza definisce un intervallo piuttosto ampio di valori <span class="math inline">\(\pi\)</span> la cui plausibilità relativa è piuttosto grande. Con un grande numero di prove, invece, la verosimiglianza ha un  molto più marcato che associa livelli relativamente alti di plausibilità ad un intervallo molto più piccolo di valori <span class="math inline">\(\pi\)</span>. In altre parole, maggiore è la curvatura della verosimiglianza, maggiore è la quantità di informazione che il campione fornisce rispetto al valore del parametro sconosciuto che vogliamo stimare.</p>
+<p>Ad esempio, esaminiamo qui sotto la funzione di verosimiglianza nel caso di 7 successi in 10 prove Bernoulliane (pannello di sinistra), di 70 successi in 100 prove (pannello centrale) e di 700 successi in 1000 prove (pannello di destra).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://mc-stan.org/bayesplot/'>"bayesplot"</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>theme_set</span><span class='op'>(</span><span class='fu'>bayesplot</span><span class='fu'>::</span><span class='fu'><a href='https://mc-stan.org/bayesplot/reference/theme_default.html'>theme_default</a></span><span class='op'>(</span>base_size<span class='op'>=</span><span class='fl'>16</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://patchwork.data-imaginist.com'>"patchwork"</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/daattali/ggExtra'>"ggExtra"</a></span><span class='op'>)</span>
+
+<span class='va'>log_likelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span> <span class='op'>=</span> <span class='va'>true_sigma</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span>, log <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, length.out <span class='op'>=</span> <span class='fl'>1e3</span><span class='op'>)</span>
+
+<span class='va'>like</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span><span class='fl'>7</span>, <span class='fl'>10</span>, <span class='va'>p</span><span class='op'>)</span>
+
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>like</span><span class='op'>)</span>,
+  <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p</span>, y <span class='op'>=</span> <span class='va'>like</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://mc-stan.org/bayesplot/reference/bayesplot-helpers.html'>vline_at</a></span><span class='op'>(</span><span class='fl'>0.7</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, linetype<span class='op'>=</span><span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='st'>"Verosimiglianza"</span>,
+    x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"\u03C0"</span><span class='op'>)</span>
+  <span class='op'>)</span> 
+
+<span class='va'>like</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span><span class='fl'>70</span>, <span class='fl'>100</span>, <span class='va'>p</span><span class='op'>)</span>
+
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>like</span><span class='op'>)</span>,
+  <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p</span>, y <span class='op'>=</span> <span class='va'>like</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://mc-stan.org/bayesplot/reference/bayesplot-helpers.html'>vline_at</a></span><span class='op'>(</span><span class='fl'>0.7</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, linetype<span class='op'>=</span><span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='st'>""</span>,
+    x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"\u03C0"</span><span class='op'>)</span>
+  <span class='op'>)</span> 
+
+<span class='va'>like</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>dbinom</a></span><span class='op'>(</span><span class='fl'>700</span>, <span class='fl'>1000</span>, <span class='va'>p</span><span class='op'>)</span>
+
+<span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>like</span><span class='op'>)</span>,
+  <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>p</span>, y <span class='op'>=</span> <span class='va'>like</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://mc-stan.org/bayesplot/reference/bayesplot-helpers.html'>vline_at</a></span><span class='op'>(</span><span class='fl'>0.7</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, linetype<span class='op'>=</span><span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='st'>""</span>,
+    x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"\u03C0"</span><span class='op'>)</span>
+  <span class='op'>)</span> 
+
+<span class='va'>p1</span> <span class='op'>+</span> <span class='va'>p2</span> <span class='op'>+</span> <span class='va'>p3</span>
+</code></pre>
+</div>
+<p><img src="intervalli-di-fiducia_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+</div>
+<p>In termini formali, la curvatura è la derivata seconda di una funzione e, appunto, calcolando la derivata seconda della funzione di verosimiglianza possiamo trovare l’errore standard di una statistica. Nel caso presente, l’errore standard della proporzione campionaria è</p>
+<p><span class="math display">\[
+\sigma_{\hat{\pi}} = \sqrt{
+\frac{p (1-p)}{n},
+}
+\]</span></p>
+<p>dove <span class="math inline">\(p\)</span> è la proporzione campionaria e <span class="math inline">\(n\)</span> è il numero di osservazioni. Questa quantità si interpreta come qualunque deviazione standard: nello specifico, ci dice quanto varia in media la proporzione campionari se consideriamo campioni diversi. Si noti che, avendo <span class="math inline">\(n\)</span> al denominatore, la formula riproduce l’intuizione che abbiamo descritto mediante la figura precedente: quando <span class="math inline">\(n\)</span> è grande l’errore standard è piccolo e, viceversa, quando <span class="math inline">\(n\)</span> è piccolo l’errore standard è grande. In altri termini, quando l’errore standard di una stima è piccolo, possiamo attribuire un grande livello di fiducia al valore della stima del parametro. Invece, un grande errore standard ci suggerisce ad essere cauti in qualunque inferenza che potremmo trarre dalla stima che abbiamo ottenuto.</p>
+<h1 id="intervallo-di-fiducia-per-la-media">Intervallo di fiducia per la media</h1>
+<p>I casi più frequenti nelle indagini svolte nell’ambito della psicologia riguardano i test relativi ad una singola media oppure al confronto tra le medie di due campioni. Iniziamo con il caso di una singola media.</p>
+<h2 id="popolazione-con-varianza-nota">Popolazione con varianza nota</h2>
+<p>Sia <span class="math inline">\(X_1,X_2\dots,X_n\)</span> un campione casuale estratto da una popolazione di legge normale di media <span class="math inline">\(\mu\)</span> e varianza <span class="math inline">\(\sigma^2\)</span>. La media campionaria, essendo una combinazione lineare di <span class="math inline">\(n\)</span> variabili aleatorie normali, è anch’essa una variabile normale (si veda la ~): <span class="math inline">\(\bar{X} \sim \mathcal{N}(\mu, \sigma/n)\)</span>. La <em>media campionaria standardizzata</em></p>
+<p><span class="math display">\[
+\begin{equation}
+\frac{\bar{X} - \mu}{\sigma} \sqrt{n}\sim \mathcal{N}(0, 1)\notag
+\end{equation}
+\]</span></p>
+<p>segue dunque una distribuzione normale con media zero e deviazione standard unitaria.</p>
+<p>Fissato il livello fiduciario <span class="math inline">\(\gamma = 1 - \alpha\)</span> (tipicamente 0.95, corrispondente a <span class="math inline">\(\alpha = 0.05\)</span>), indichiamo con <span class="math inline">\(z\)</span> il quantile di ordine <span class="math inline">\(1 - \alpha/2\)</span> della distribuzione normale standard in modo che</p>
+<p><span class="math display">\[
+\begin{equation}
+P(-z \leq Z \leq z) = 1 - \alpha.\notag
+\end{equation}
+\]</span></p>
+<p>Otteniamo dunque</p>
+<p><span class="math display">\[
+\begin{equation}
+P\bigg(-z \leq \frac{\bar{X} - \mu}{\sigma} \sqrt{n} \leq z\bigg) = 1 - \alpha.\notag
+\end{equation}
+\]</span></p>
+<p>Applicando qualche manipolazione algebrica, la diseguaglianza precedente si può scrivere nel modo seguente:</p>
+<p><span class="math display">\[
+\begin{align}
+P\bigg(-z {\frac{\sigma}{\sqrt{n}}} \leq  \bar{X} - \mu \leq z \frac{\sigma}{\sqrt{n}}\bigg) &amp;= 1 - \alpha\notag\\
+P\bigg(-\bar{X}-z {\frac{\sigma}{\sqrt{n}}} \leq -\mu \leq -\bar{X} + z \frac{\sigma}{\sqrt{n}}\bigg) &amp;= 1 - \alpha\notag\\
+P\bigg(\bar{X}+z \frac{\sigma}{\sqrt{n}} \geq \mu \geq  \bar{X} -z \frac{\sigma}{\sqrt{n}}\bigg) &amp;= 1 - \alpha.\notag
+\end{align}
+\]</span></p>
+<p>Se definiamo</p>
+<p><span class="math display">\[
+\begin{equation}
+\hat{a} \triangleq \bar{X}-z \frac{\sigma}{\sqrt{n}},
+\quad \hat{b} \triangleq \bar{X} +z \frac{\sigma}{\sqrt{n}},
+\end{equation}
+\]</span></p>
+<p>avremo che</p>
+<p><span class="math display">\[
+\begin{equation}
+P(\hat{a} \leq \mu \leq \hat{b}) = 1 - \alpha.\notag
+\end{equation}
+\]</span></p>
+<p>L’intervallo <span class="math inline">\([\hat{a}, \hat{b}]\)</span> è detto <em>intervallo di fiducia</em> per una stima della media della popolazione al livello fiduciario <span class="math inline">\(\gamma = 1 -\alpha\)</span>.</p>
+<h2 id="popolazione-con-varianza-incognita">Popolazione con varianza incognita</h2>
+<p>In ogni applicazione concreta, lo sperimentatore estrae un solo campione <span class="math inline">\(x_1, \dots, x_n\)</span> dalla popolazione e la varianza <span class="math inline">\(\sigma^2\)</span>, in aggiunta alla media <span class="math inline">\(\mu\)</span> da determinare, è sconosciuta. In tal caso, per effettuare una stima intervallare di <span class="math inline">\(\mu\)</span> ci si basa sulla densità <span class="math inline">\(t\)</span> di Student. In base ad un Teorema che riguarda la distribuzione <span class="math inline">\(t\)</span>, possiamo scrivere</p>
+<p><span class="math display">\[
+\begin{equation}
+P\bigg(-t^{\ast} \leq \frac{\bar{X} - \mu}{s} \sqrt{n} \leq t^{\ast}\bigg) = 1 -\alpha,
+\end{equation}
+\]</span></p>
+<p>dove <span class="math inline">\(s\)</span> è lo stimatore non distorto di <span class="math inline">\(\sigma\)</span> e <span class="math inline">\(t^{\ast} \triangleq t_{n-1,1-\alpha/2}\)</span> è il quantile di ordine <span class="math inline">\(1 - \alpha/2\)</span> della distribuzione <span class="math inline">\(t_{n-1}\)</span>. Pertanto, il limite inferiore <span class="math inline">\(\hat{a}\)</span> e il limite superiore <span class="math inline">\(\hat{b}\)</span> dell’intervallo di fiducia diventano, rispettivamente, uguali a:</p>
+<p><span class="math display">\[
+\begin{equation}
+\hat{a} \triangleq \bar{X} -t^{\ast} \frac{s}{\sqrt{n}},
+\quad \hat{b} \triangleq \bar{X} + t^{\ast} \frac{s}{\sqrt{n}}.
+\end{equation}
+\]</span></p>
+<p>Si noti che, nel caso di una popolazione con varianza incognita, i limiti fiduciari si ottengono dall’equazione~ sostituendo <span class="math inline">\(\sigma\)</span>, ora incognito, con <span class="math inline">\(s\)</span> (per una ampiezza campionaria <span class="math inline">\(n\)</span> qualsiasi), e il coefficiente <span class="math inline">\(z\)</span> con <span class="math inline">\(t_{n-1,1-\alpha/2}\)</span>.</p>
+<p><strong>Esempio.</strong> Murray, Murphy, von Hippel, Trivers, e Haselton (2017) si pongono il problema dei bias di giudizio che l’evoluzione potrebbe avere imposto sul funzionamento del sistema cognitivo. In particolare, esaminano l’ipotesi secondo la quale i maschi tendono a sovrastimare l’interesse sessuale delle donne (Haselton &amp; Buss, 2000) perché per la loro <em>inclusive fitness</em> è meno costoso inferire un interesse sessuale assente che non notare un interesse sessuale presente.</p>
+<p>Ai partecipanti del loro esperimento veniva chiesto di stimare che cosa una donna direbbe (<em>say</em> question) rispetto alle sue intenzioni sessuali (cioè, sulla propria intenzione di avere un rapporto sessuale con un uomo) e quali potrebbero essere le sue vere intenzioni sessuali (<em>want</em> question) quando essa è coinvolta in vari comportamenti romantici con un uomo (es., tenersi per mano).</p>
+<p>Senza entrare nei dettagli, in una condizione sperimentale, gli autori si aspettano di non trovare differenze tra le condizioni <em>say</em> e <em>want</em>. Riportiamo qui i calcoli per l’intervallo di fiducia sulla differenza tra le stime fornite dai 207 partecipanti alle domande relative alle condizioni <em>say</em> e <em>want</em>.</p>
+<p>I dati sono appaiati e dunque calcoliamo la differenza tra le due condizioni, per ogni partecipante (i dati sono disponibili al seguente indirizzo: ). La media delle differenze è <span class="math inline">\(\bar{X}\)</span> = 0.063, con una deviazione standard pari a 1.338. L’intervallo di fiducia del 95% risulta dunque essere uguale a</p>
+<p><span class="math display">\[
+\bar{X} \pm t_{.975, 206} \frac{s}{\sqrt{n}}  = 0.063 \pm 1.971 \frac{1.338}{\sqrt{207}} = [-0.12,   0.25],
+\]</span></p>
+<p>come riportato dagli autori.</p>
+<p>Dato che l’intervallo di confidenza include lo zero, si è soliti concludere che i dati non forniscono evidenze che la statistica in questione (la differenza tra le medie dei campioni) sia diversa da zero – ovvero, nel caso presente, che non vi è una differenza tra le condizioni <em>say</em> e <em>want</em>.</p>
+<h1 id="ampiezza-campionaria-e-distribuzione-della-popolazione">Ampiezza campionaria e distribuzione della popolazione</h1>
+<p>La formula dell’intervallo di fiducia è stata ricavata nell’ipotesi che la popolazione sia normalmente distribuita e vale anche per piccoli campioni (<span class="math inline">\(n &lt; 30\)</span>) estratti casualmente da questa. Per una popolazione con distribuzione diversa da quella normale, invece, le stime intervallari per la media della popolazione si possono ancora ottenere se la numerosità del campione è sufficientemente elevata (<span class="math inline">\(n \geq 30\)</span>), calcolando i coefficienti fiduciari <span class="math inline">\(z_{\gamma}\)</span> che compaiono nelle formule precedenti, dopo aver sostituito in queste formule la deviazione standard incognita <span class="math inline">\(\sigma\)</span> con il valore empirico della statistica campionaria <span class="math inline">\(s\)</span>.</p>
+<p>In alcuni casi, la distribuzione delle statistiche campionarie approssima la Normale e, in tali casi, l’intervallo fiduciale al 95% è dato da</p>
+<p><span class="math display">\[
+\begin{equation}
+\hat{\theta} \pm 1.96 \cdot \text{SE}, \notag
+\end{equation}
+\]</span></p>
+<p>ovvero, dalla stima del parametro <span class="math inline">\(\pm\)</span> 1.96 volte l’errore standard.</p>
+<p>Conoscendo l’errore standard, è dunque molto semplice calcolare l’intervallo fiduciale. Meno semplice, invece, è interpretare l’intervallo fiduciale nel modo corretto. Per capire quale sia l’interpretazione corretta dell’intervallo fiduciale, iniziamo a definire il concetto di <strong>livello di copertura</strong>.</p>
+<h1 id="il-livello-di-copertura">Il livello di copertura</h1>
+<p>Si indica con <span class="math inline">\(1-\alpha\)</span> il <em>livello di copertura</em> fornito dall’intervallo fiduciale. Il termine <em>probabilità di copertura</em> si riferisce alla probabilità che la procedura per la costruzione degli intervalli di fiducia produca un intervallo che contiene (o copre) il valore reale del parametro di interesse. Esiste infatti sempre una probabilità pari ad <span class="math inline">\(\alpha\)</span> che i dati campionari producano un intervallo che non contiene il valore reale del parametro di interesse.</p>
+<p>Ricordiamo che l’approccio frequentista interpreta la probabilità di un evento come la proporzione di volte in cui tale evento si verifica avendo osservato molte ripetizioni indipendenti di un esperimento casuale. Nel caso presente, l’evento in questione è la risposta alla domanda <em>l’intervallo fiduciale contiene il valore del parametro?</em> mentre l’esperimento casuale corrisponde al calcolo dell’intervallo fiduciale per la statistica in question in un campione casuale di ampiezza <span class="math inline">\(n\)</span>. L’interpretazione frequentista della nozione di <em>livello di copertura</em> può essere chiarita mediante la seguente simulazione.</p>
+<p>Prendiamo in considerazione la distribuzione dell’altezza degli adulti maschi nella popolazione. Sappiamo che l’altezza degli individui segue la distribuzione normale. Sappiamo inoltre che, per esempio, l’altezza media di un italiano adulto maschio è di <span class="math inline">\(175\)</span> cm, con una varianza di <span class="math inline">\(49\)</span> cm<span class="math inline">\(^2\)</span>. Utilizziamo queste informazioni per realizzare la seguente simulazione in <code>R</code>. Nella simulazione prevediamo 100 ripetizioni dell’esperimento casuale che consiste nell’estrazione di un campione di ampiezza <span class="math inline">\(n = 20\)</span> dalla popolazione distribuita come <span class="math inline">\(\mathcal{N}(175, 7)\)</span>. Per ciascun campione casuale così trovato utilizzeremo poi la funzione <code>t.test()</code> per calcolare l’intervallo fiduciale al 95%. Salveremo quindi nella matrice <code>sampling_distribution</code> il limite inferiore e il limite superiore dell’intervallo fiduciale trovato in ciascuno dei 100 campioni.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://scales.r-lib.org'>"scales"</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1235</span><span class='op'>)</span>
+<span class='va'>nrep</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
+<span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='cn'>NA</span>, nrow <span class='op'>=</span> <span class='va'>nrep</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>point_estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='va'>nrep</span><span class='op'>)</span>
+<span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>20</span>
+<span class='va'>mu</span> <span class='op'>&lt;-</span> <span class='fl'>175</span>
+<span class='va'>sigma</span> <span class='op'>&lt;-</span> <span class='fl'>7</span>
+
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>nrep</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>sample_size</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span>
+  <span class='va'>temp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span><span class='op'>(</span><span class='va'>y</span>, conf.level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+  <span class='va'>sampling_distribution</span><span class='op'>[</span><span class='va'>i</span>, <span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>temp</span><span class='op'>$</span><span class='va'>conf.int</span>
+  <span class='va'>point_estimate</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>temp</span><span class='op'>$</span><span class='va'>estimate</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Creiamo poi un data.frame a cui aggiungiamo una colonna che riporta i valori delle medie campionarie.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lcl"</span>, <span class='st'>"ucl"</span><span class='op'>)</span>
+<span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
+<span class='va'>sampling_distribution</span><span class='op'>$</span><span class='va'>mean</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>point_estimate</span><span class='op'>)</span>
+<span class='va'>sampling_distribution</span><span class='op'>$</span><span class='va'>replicate</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>nrep</span>
+<span class='va'>sampling_distribution</span><span class='op'>$</span><span class='va'>captured</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span>
+  <span class='va'>sampling_distribution</span><span class='op'>$</span><span class='va'>lcl</span> <span class='op'>&lt;=</span> <span class='va'>mu</span> <span class='op'>&amp;</span> <span class='va'>sampling_distribution</span><span class='op'>$</span><span class='va'>ucl</span> <span class='op'>&gt;=</span> <span class='va'>mu</span>, 
+  <span class='fl'>1</span>, <span class='fl'>0</span>
+<span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>$</span><span class='va'>captured</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'No'</span>, <span class='st'>'Si'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Utilizzando <code>ggplot()</code> creiamo una figura che riporta i 100 intervalli fiduciali al 95% che abbiamo ottenuto, uno per ciascuno dei 100 diversi campioni casuali estratti dalla distribuzione delle altezze.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span>
+    <span class='fu'>aes</span><span class='op'>(</span>
+      x <span class='op'>=</span> <span class='va'>point_estimate</span>, y <span class='op'>=</span> <span class='va'>replicate</span>, color <span class='op'>=</span> <span class='va'>captured</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_segment</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>
+    y <span class='op'>=</span> <span class='va'>replicate</span>, yend <span class='op'>=</span> <span class='va'>replicate</span>, x <span class='op'>=</span> <span class='va'>lcl</span>, xend <span class='op'>=</span> <span class='va'>ucl</span>,
+    color <span class='op'>=</span> <span class='va'>captured</span>
+  <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_vline</span><span class='op'>(</span>
+    xintercept <span class='op'>=</span> <span class='fl'>175</span>, linetype <span class='op'>=</span> <span class='fl'>2</span>, color <span class='op'>=</span> <span class='st'>"white"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='st'>"Stima puntuale"</span>,
+    y <span class='op'>=</span> <span class='st'>"Campioni simulati"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>guides</span><span class='op'>(</span>color<span class='op'>=</span><span class='fu'>guide_legend</span><span class='op'>(</span><span class='st'>"Parametro contenuto nell'intervallo"</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'>papaja</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/papaja/man/theme_apa.html'>theme_apa</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"bottom"</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="intervalli-di-fiducia_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>La figura precedente riporta i 100 intervalli fiduciali del 95% calcolati nella simulazione descritta sopra e distingue tra intervalli fiduciali che contengono il valore del parametro e intervalli che non lo contengono. Se ripetiamo la simulazione <span class="math inline">\(\num{10000}\)</span> volte troviamo un livello di copertura (ovvero, una proporzione di intervalli fiduciali del 95% che contengono il parametro) pari a 0.9468. Questo valore è molto prossimo al livello nominale <span class="math inline">\(1 - \alpha = 0.95\)</span>.</p>
+<h1 id="intervallo-di-fiducia-per-la-differenza-di-due-medie">Intervallo di fiducia per la differenza di due medie</h1>
+<p>Si considerino due popolazioni distribuite normalmente e aventi la stessa varianza. Le due popolazioni sono dunque distribuite come due variabili aleatorie indipendenti <span class="math inline">\(X \sim \mathcal{N}(\mu_1, \sigma^2)\)</span>, <span class="math inline">\(Y \sim \mathcal{N}(\mu_2, \sigma^2)\)</span>. Ci poniamo il problema di stimare la differenza <span class="math inline">\(\mu_1 - \mu_2\)</span> fra le medie delle due popolazioni.</p>
+<p>Estraiamo un campione casuale da ciascuna popolazione. Siano</p>
+<p><span class="math display">\[
+\begin{equation}
+X_1,\dots,X_{n_1} \sim \mathcal{N}(\mu_1,\sigma_1), \quad Y_1,\dots,Y_{n_2} \sim \mathcal{N}(\mu_2,\sigma_2),\notag
+\end{equation}
+\]</span> due variabili aleatorie indipendenti e siano</p>
+<p><span class="math display">\[
+\begin{equation}
+\bar{X} = \frac{1}{n_1}\sum_{i=1}^{n_1}X_i, \quad s_1^2 = \frac{1}{n_1-1}\sum_{i=1}^{n_1}(X_i-\bar{X})^2,\notag
+\end{equation}
+\]</span> <span class="math display">\[
+\begin{equation}
+\bar{Y} = \frac{1}{n_2}\sum_{i=1}^{n_2}Y_i, \quad s_2^2 = \frac{1}{n_2-1}\sum_{i=1}^{n_2}(Y_i-\bar{Y})^2,\notag
+\end{equation}
+\]</span></p>
+<p>le relative medie (<span class="math inline">\(\bar{X}, \bar{Y}\)</span>) e varianze (<span class="math inline">\(s_1^2, s_2^2\)</span>) campionarie. La varianza <span class="math inline">\(\sigma^2\)</span>, comune a entrambe le popolazioni, può essere stimata utilizzando congiuntamente entrambi i campioni. Infatti, può essere dimostrato che la variabile aleatoria</p>
+<p><span class="math display">\[
+\begin{equation}
+s_p^2 \triangleq  \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2 -2},
+\end{equation}
+\]</span></p>
+<p>detta <em>stima combinata della varianza</em> è uno stimatore corretto di <span class="math inline">\(\sigma^2\)</span>. Può essere inoltre dimostrato che la variabile aleatoria</p>
+<p><span class="math display">\[
+\begin{equation}
+T_n = \frac{(\bar{X} - \bar{Y}) - (\mu_1-\mu_2)}{\sqrt{s_p^2 \big(\frac{1}{n_1} + \frac{1}{n_2}\big) }}
+\end{equation}
+\]</span></p>
+<p>si distribuisce come una variabile <span class="math inline">\(t\)</span>-Student con <span class="math inline">\(\nu = n_1 + n_2 -2\)</span> gradi di libertà.</p>
+<p>Seguendo la procedura descritta nella sezione precedente, possiamo dunque concludere che l’intervallo di fiducia al livello di <span class="math inline">\(\gamma = 1 -\alpha\)</span> per la differenza tra le medie <span class="math inline">\(\mu_1 - \mu_2\)</span> è dato da</p>
+<p><span class="math display">\[
+\begin{equation}
+(\bar{X} -\bar{Y}) - t^{\ast} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} &lt; \mu_1 - \mu_2 &lt; (\bar{X} - \bar{Y}) + t^{\ast} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}},
+\end{equation}
+\]</span></p>
+<p>dove <span class="math inline">\(t^{\ast} = t_{\nu, 1-\alpha/2}\)</span> è il quantile di ordine <span class="math inline">\(1- \alpha/2\)</span> della distribuzione <span class="math inline">\(t\)</span>-Student con <span class="math inline">\(\nu = n_1 + n_2 - 2\)</span> gradi di libertà.</p>
+<p><strong>Dimostrazione.</strong> È facile trovare il valore atteso e la varianza (si veda il denominatore dell’equazione ) della differenza fra due medie campionarie. Siano <span class="math inline">\(X_1,\dots,X_{n_1}\)</span> e <span class="math inline">\(Y_1,\dots,Y_{n_2}\)</span> due variabili aleatorie indipendenti tali che <span class="math inline">\(\mathbb{E}(X) = \mu_X\)</span> e <span class="math inline">\(var(X) = \sigma^2\)</span>; inoltre, <span class="math inline">\(\mathbb{E}(Y) = \mu_Y\)</span> e <span class="math inline">\(var(Y) = \sigma^2\)</span>. Consideriamo qui il caso in cui entrambe le variabili aleatorie <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> hanno la stessa varianza <span class="math inline">\(\sigma^2\)</span>. Il valore atteso della differenza tra le medie <span class="math inline">\(\bar{X} - \bar{Y}\)</span> per campioni di ampiezza <span class="math inline">\(n_X\)</span> e <span class="math inline">\(n_Y\)</span> è</p>
+<p><span class="math display">\[
+\begin{equation}
+\mathbb{E}(\bar{X}-\bar{Y}) = \mathbb{E}(\bar{X})-\mathbb{E}(\bar{Y}) = \mu_X -\mu_Y.
+\end{equation}
+\]</span></p>
+<p>Nell’ipotesi che <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> siano indipendenti, la varianza della differenza delle medie <span class="math inline">\(\bar{X} - \bar{Y}\)</span> per campioni di ampiezza <span class="math inline">\(n_X\)</span> e <span class="math inline">\(n_Y\)</span> è</p>
+<p><span class="math display">\[
+\begin{align}
+var(\bar{X}-\bar{Y}) &amp;= var(\bar{X}) + var(\bar{Y})- 2 cov(\bar{X},\bar{Y}) \notag\\
+&amp;= var(\bar{X}) + var(\bar{Y})  \notag\\
+ &amp;=  \frac{\sigma^2}{n_X} + \frac{\sigma^2}{n_Y} \notag\\ 
+ &amp;= \sigma^2 \Big(\frac{1}{n_X} + \frac{1}{n_Y} \Big).
+\end{align}
+\]</span></p>
+<h1 id="interpretazione">Interpretazione</h1>
+<p>Studenti <em>e</em> ricercatori tendono ad interpretare gli intervalli fiduciali dicendo che “c’è una probabilità del 95% che la vera media della popolazione si trovi all’interno dell’intervallo fiduciale”. Questa è un’interpretazione semplice e cattura l’idea del senso comune secondo la quale una probabilità di 0.95 significa: “sono sicuro al 95%”. Sfortunatamente, l’interpretazione precedente è sbagliata. La precedente interpretazione richiede che la probabilità venga descritta in termini <em>soggettivi</em> e corrisponde a dire: <em>sono fiducioso al 95% che l’intervallo così costruito contenga la media della popolazione, perché questa è la mia opinione</em>. Nella vita di tutti i giorni un tale punto di vista va benissimo, ma parlare di opinioni soggettive e di fiducia è un’idea Bayesiana. Non c’è niente di male con l’idea che la nozione <em>probabilità del 95%</em> possa riferirsi a un’opinione personale. Tuttavia, gli intervalli fiduciali sono una procedura statistica di stampo frequentista, non Bayesiano. Se usiamo degli strumenti statistici frequentisti per costruire l’intervallo fiduciale non possiamo attribuire ad esso un’interpretazione Bayesiana, ma dobbiamo interpretare tale intervallo di valori in maniera coerente con l’impianto teorico frequentista – anche perché gli intervalli di fiducia frequentisti e gli intervalli di credibilità Bayesiani sono numericamente diversi!</p>
+<p>Se l’interpretazione presentata sopra non è corretta, allora qual è l’interpretazione corretta dell’intervallo fiduciale? Dobbiamo ricordare ciò che abbiamo detto sulla probabilità frequentista: in base all’approccio frequentista la probabilità di un evento è alla proporzione di volte con la quale un evento si è verificato in una sequenza di esperimenti casuali. È necessario ripetere tante volte un esperimento casuale, anche solo in maniera ipotetica (come nella simulazione descritta sopra), altrimenti non è possibile parlare di probabilità. L’interpretazione frequentista di un intervallo fiduciale deve avere a che fare con la ripetizione di un esperimento casuale e può essere formulata nel modo seguente.</p>
+<blockquote>
+<p>Se ripetessimo tante volte l’esperimento casuale che consiste nell’estrarre un campione casuale dalla popolazione e nel calcolare l’intervallo fiduciale al 95%, allora nel 95% dei casi gli intervalli così calcolati conterrebbero il vero valore del parametro.</p>
+</blockquote>
+<p>Più in generale, se si estraggono successivamente più campioni indipendenti dalla stessa popolazione e se si determinano i relativi intervalli fiduciali seguendo la procedura indicata dalla statistica frequentista, allora il <span class="math inline">\(100 (1-\alpha)\)</span>% degli intervalli così calcolati conterrà il vero valore del parametro incognito.</p>
+<p>Questa idea è illustrata nella figura che riporta i risultati della simulazione sul livello di copertura, la quale mostra 100 intervalli fiduciali costruiti per stimare l’altezza media di un italiano adulto maschio sulla base di campioni casuali di ampiezza <span class="math inline">\(n = 30\)</span>. Alcuni di questi intervalli fiduciali contengono il valore del parametro, altri non lo contengono. Se la simulazione venisse ripetuta infinite volte si scoprirebbe che esattamente il 95% degli intervalli così calcolati conterrebbe il valore del parametro (e il 5% non lo conterrebbe), dato che, per costruire gli intervalli fiduciali abbiamo usato <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Questa è l’interpretazione corretta che deve essere attribuita alla nozione di intervallo fiduciale al livello <span class="math inline">\(100 (1-\alpha)\)</span>%. È però risaputo come i ricercatori (non solo gli studenti!) spesso attribuiscono agli intervalli fiduciali un’interpretazione errata, come abbiamo descritto sopra. Non poche volte nelle riviste specialistiche si leggono affermazioni del tipo: la probabilità che la media della popolazione <span class="math inline">\(\mu\)</span> sia contenuta nell’intervallo <span class="math inline">\([\hat{a}, \hat{b}]\)</span> è 0.95, mentre in realtà si dovrebbe scrivere: la procedura tramite la quale l’intervallo <span class="math inline">\([\hat{a}, \hat{b}]\)</span> è stato calcolato include <span class="math inline">\(\mu\)</span> nel 95% dei casi.</p>
+<p>In conclusione, la simulazione appena eseguita ci suggerisce quanto segue. Calcolare un intervallo di fiducia al 95% significa utilizzare una procedura che, per ciascun campione, ci consente di trovare due valori: il limite inferiore e il limite superiore dell’intervallo fiduciario. Se consideriamo un numero molto grande di intervalli di fiducia calcolati in questo modo, la proporzione di intervalli che effettivamente contengono il vero valore della media della popolazione sarà uguale a 0.95. Questo è il significato di <em>intervallo di fiducia al 95%</em>.</p>
+<p>La differenza fondamentale è che le affermazioni di tipo bayesiano sono delle affermazioni probabilistiche sulla media della popolazione (cioè, descrivono nostra incertezza relativamente al valore della media della popolazione), mentre affermazioni di questo tipo non sono consentite nell’interpretazione frequentista della probabilità. Nell’interpretazione frequentista, la media della popolazione è fissa e nessuna interpretazione ‘probabilistica’ è sensata a questo proposito.</p>
+<p>Gli estremi dell’intervallo di fiducia, invece, sono delle quantità aleatorie che dipendono da un esperimento casuale: ogni volta che osserviamo un nuovo campione il limite inferiore e il limite superiore dell’intervallo di fiducia assumeranno valori diversi. Pertanto è sensato pensare che la procedura di costruzione dell’intervallo di fiducia possa essere ripetuta. È in riferimento a tali ripetizioni che l’approccio frequentista assegna una probabilità agli intervalli di fiducia: la probabilità è la frequenza relativa (in queste infinite ripetizioni) che un certo evento si verifica (dove l’evento è ovviamente il fatto che l’intervallo include il valore del parametro). Pertanto, dal punto di vista frequentista, è lecito parlare della probabilità che l’intervallo di fiducia (una variabile aleatoria) contenga il parametro; non è invece lecito dire alcunché sulla probabilità che il parametro (un evento non ripetibile) sia compreso nell’intervallo di fiducia.</p>
+<p>Questa non è solo una differenza ‘semantica’. Come ho accennato sopra, le procedure di calcolo per gli intervalli di fiducia frequentisti sono diverse dalle procedure di calcolo per gli intervalli di credibilità bayesiani. %In maniera corrispondente, nei due casi anche le interpretazioni sono diverse – e dobbiamo scegliere quella giusta! %Un altro modo per descrivere questa situazione è quello di dire che ciò che vorremmo conoscere è <span class="math inline">\(P(\theta \mid \text{dati})\)</span>, mentre in realtà quello che l’approccio frequentista ci fornisce è <span class="math inline">\(P(\text{dati} \mid \theta)\)</span>. %Se vengono utilizzati i metodi della statistica bayesiana è invece possibile costruire un  che corrisponde a <span class="math inline">\(P(\theta \mid \text{dati})\)</span>.</p>
+<h1 id="fraintendimenti">Fraintendimenti</h1>
+<p>Hoekstra, Morey, Rouder e Wagenmakers (2014) notano che, essendo ampiamente riconosciuti i limiti del test dell’ipotesi nulla, per l’inferenza statistica viene spesso consigliato l’utilizzo degli intervalli di fiducia. Per esempio, l’<em>American Psychological Association Publication Manual</em> fa riferimento agli intervalli di fiducia affermando che essi rappresentano “in general, the best reporting strategy” (APA, 2001, p. 22; APA, 2009, p. 34). Hoekstra et al. (2014) fanno notare, però, che tali raccomdandazioni hanno dei limiti, in quanto non tengono in considerazione la difficoltà che hanno i ricercatori a fornire agli intervalli di fiducia l’interpretazione corretta. A sostegno di questo punto di vista, Hoekstra et al. (2014) hanno svolto uno studio nel quale si sono posti due domande:</p>
+<ul>
+<li>in che misura gli intervalli di fiducia vengono interpretati in maniera sbagliata da studenti e ricercatori?</li>
+<li>le interpretazioni errate degli intervalli di fiducia diminuiscono con l’esperienza nell’ambito della ricerca?</li>
+</ul>
+<p>Prima di presentare lo studio, Hoekstra et al. ricordano quale sia l’interpretazione corretta degli intervalli di fiducia. Il lettore può mettere in relazione la seguente citazione con ciò che è stato discusso in precedenza.</p>
+<blockquote>
+<p>A CI is a numerical interval constructed around the estimate of a parameter. Such an interval does not, however, directly indicate a property of the parameter; instead, it indicates a property of the procedure, as is typical for a frequentist technique. Specifically, we may find that a particular procedure, when used repeatedly across a series of hypothetical data sets (i.e., the sample space), yields intervals that contain the true parameter value in 95% of the cases. When such a procedure is applied to a particular data set, the resulting interval is said to be a 95% CI. The key point is that the CIs do not provide for a statement about the parameter as it relates to the particular sample at hand; instead, they provide for a statement about the performance of the procedure of drawing such intervals in repeated use. Hence, it is incorrect to interpret a CI as the probability that the true value is within the interval (, Berger &amp; Wolpert, 1988). As is the case with <span class="math inline">\(p\)</span>-values, CIs do not allow one to make probability statements about parameters or hypotheses.</p>
+</blockquote>
+<p>Nello studio, Hoekstra et al. hanno sottoposto il questionario riportato di seguito ad un campione di 596 partecipanti. Il campione includeva 442 studenti di psicologia del primo anno che seguivano un corso introduttivo di statistica presso l’università di Amsterdam, 34 studenti di master e 120 ricercatori (cioè dottorandi e docenti universitari).</p>
+<blockquote>
+<p>Professor Bumbledorf conducts an experiment, analyzes the data, and reports: “The 95% confidence interval for the mean ranges from 0.1 to 0.4!” Please mark each of the statements below as ‘true’ or ‘false’.</p>
+</blockquote>
+<ul>
+<li>The probability that the true mean is greater than 0 is at least 95%.</li>
+<li>The probability that the true mean equals 0 is smaller than 5%.</li>
+<li>The “null hypothesis” that the true mean equals 0 is likely to be incorrect.</li>
+<li>There is a 95% probability that the true mean lies between 0.1 and 0.4.</li>
+<li>We can be 95% confident that the true mean lies between 0.1 and 0.4.</li>
+<li>If we were to repeat the experiment over and over, then 95% of the time the true mean falls between 0.1 and 0.4.</li>
+</ul>
+<p><strong>Le sei affermazioni precedenti sono tutte errate.</strong></p>
+<p>I risultati dello studio di Hoekstra et al. (2014) mostrano però che i partecipanti si sono dichiarati d’accordo con il seguente numero medio di item (su 6): 3.51 (99% CI = [3.35, 3.68]) per gli studenti del primo anno, 3.24 (99% CI = [2.40, 4.07]) per gli studenti di master e 3.45 (99% CI = [3.08, 3.82]) per i ricercatori. Gli intervalli di fiducia al 95% si sovrappongono per le tre categorie di rispondenti il che significa che, a tale livello di fiducia, non c’è ragione di ritenere che vi siano delle differenze tra i tre gruppi di rispondenti. In altre parole, questi dati suggeriscono che i ricercatori tendono a condividere con gli studenti di psicologia del primo anno le stesse opinioni (errate!) relativamente agli intervallo fiduciali.</p>
+<p>Le interpretazioni errate degli intervalli di fiducia sono dunque molto diffuse e l’esperienza pratica nel mondo della ricerca non contribuisce ad una comprensione migliore di tale concetto. In generale, i risultati della ricerca di Hoekstra et al. (2014), e di altre che hanno prodotto risultati simili, mettono in discussione l’utilità degli intervalli fiduciali frequentisti (dato che molto poche persone hanno una comprensione adeguata di tale concetto), favorendo invece l’uso degli intervallo di credibilità Bayesiani ai quali è più facile fornire un’interpretazione corretta, perché tale interpretazione coincide con le nostre intuizioni.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
