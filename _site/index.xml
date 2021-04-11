@@ -7,12 +7,25 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 11 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Limiti dell'inferenza frequentista</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-04-11-limiti-dellinferenza-frequentista</link>
+      <description>Approccio tradizionale e approccio Bayesiano.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-04-11-limiti-dellinferenza-frequentista</guid>
+      <pubDate>Sun, 11 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-04-11-limiti-dellinferenza-frequentista/preview.png" medium="image" type="image/png" width="2042" height="884"/>
+    </item>
     <item>
       <title>Intervalli di fiducia</title>
       <dc:creator>Corrado Caudek</dc:creator>
       <link>https://github.com/ccaudek/blog/posts/2021-04-09-intervalli-di-fiducia</link>
       <description>La descrizione dell'intertezza in termini frequentisti.</description>
+      <category>R</category>
+      <category>Psicometria</category>
       <guid>https://github.com/ccaudek/blog/posts/2021-04-09-intervalli-di-fiducia</guid>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://github.com/ccaudek/blog/posts/2021-04-09-intervalli-di-fiducia/intervalli-di-fiducia_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>

@@ -1,0 +1,31 @@
+---
+title: "Limiti dell'inferenza frequentista"
+description: |
+  Approccio tradizionale e approccio Bayesiano.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 04-11-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[Questo file](./etz_etal_2021.pdf) contiene il capititolo "Statistical inference in behavioral research: traditional and Bayesian approaches" di Etz, Goodmanb, e  Vandekerckhov pubblicato in _Research Integrity in the Behavioral Sciences_. 
+
+Ci sono moltissimi testi che discutono del confronto tra inferenza frequentista e Bayesiana. Questo capitolo però mi sembra particolarmente ben scritto, tocca i temi più  importanti, presenta gli argomenti in maniera succinta, ed è facilmente leggibile. Per queste ragioni, lo metto a disposizione in maniera tale che possa accompagnare la discussione su questo argomento che si svolgerà nelle lezioni di Psicometria.
+
+

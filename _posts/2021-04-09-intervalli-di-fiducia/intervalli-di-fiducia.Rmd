@@ -9,6 +9,14 @@ date: 04-09-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 2
+draft: false
+creative_commons: CC BY
+categories:
+  - R
+  - Psicometria
+preview: preview.png
 ---
 
 
@@ -63,7 +71,6 @@ Ma come si arriva ad una quantificazione dell'errore standard?
 Forniamo qui solo una descrizione intuitiva della procedura che viene seguita e forniamo la seguente definizione.
 
 > L'errore standard può essere inteso come una misura (del reciproco) della curvatura della verosimiglianza in corrispondenza della stima di massima verosimiglianza per un parametro $\theta$.
-
 
 La prima delle due definizioni precedente descrive la logica soggiacente alla procedura di calcolo dell'errore standard, mentre la seconda definizione ci dice qual è il significato dell'errore standard. 
 

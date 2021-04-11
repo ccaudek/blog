@@ -90,6 +90,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <meta property="description" itemprop="description" content="La descrizione dell&#39;intertezza in termini frequentisti."/>
 
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
   <!--  https://schema.org/Article -->
   <meta property="article:published" itemprop="datePublished" content="2021-04-09"/>
@@ -111,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Intervalli di fiducia"]},{"type":"character","attributes":{},"value":["La descrizione dell'intertezza in termini frequentisti.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["04-09-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","creative_commons","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["Intervalli di fiducia"]},{"type":"character","attributes":{},"value":["La descrizione dell'intertezza in termini frequentisti.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Corrado Caudek"]},{"type":"character","attributes":{},"value":["https://caudekblog.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["04-09-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["R","Psicometria"]},{"type":"character","attributes":{},"value":["preview.png"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1467,6 +1468,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-title">
 <h1>Intervalli di fiducia</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">R</div>
+<div class="dt=tag">Psicometria</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>La descrizione dell’intertezza in termini frequentisti.</p></p>
 </div>
@@ -1478,6 +1483,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#lerrore-standard">L’errore standard</a></li>
+<li><a href="#intervallo-di-fiducia-per-la-media">Intervallo di fiducia per la media</a>
+<ul>
+<li><a href="#popolazione-con-varianza-nota">Popolazione con varianza nota</a></li>
+<li><a href="#popolazione-con-varianza-incognita">Popolazione con varianza incognita</a></li>
+</ul></li>
+<li><a href="#ampiezza-campionaria-e-distribuzione-della-popolazione">Ampiezza campionaria e distribuzione della popolazione</a></li>
+<li><a href="#il-livello-di-copertura">Il livello di copertura</a></li>
+<li><a href="#intervallo-di-fiducia-per-la-differenza-di-due-medie">Intervallo di fiducia per la differenza di due medie</a></li>
+<li><a href="#interpretazione">Interpretazione</a></li>
+<li><a href="#fraintendimenti">Fraintendimenti</a></li>
+</ul>
+</nav>
+</div>
 <p>L’approccio frequentista è basato sull’idea di probabilità quale frequenza relativa. Tale approccio immagina che un determinato esperimento casuale venga ripetuto infinite volte e si chiede come si distribuiscono i risultati ottenuti. Consideriamo qui, quale esempio, l’esperimento casuale che corrisponde all’estrazione casuale di un campione di <span class="math inline">\(n\)</span> osservazioni da una popolazione e del calcolo della media di quel campione. Dato che si immagina che l’esperimento casuale venga ripetuto infinite volte, dobbiamo immaginare l’esistenza di infiniti campioni casuali di <span class="math inline">\(n\)</span> osservazioni. Dato che ciascuno di tali campioni è costituito da osservazioni diverse, ognuno di essi avrà una media diversa. Tale fenomeno è detto <em>variabilità campionaria</em>. Se usiamo il linguaggio dell’approccio frequentista diremo che la distribuzione dei tutti gli infiniti possibili valori della statistica in questione (nel caso dell’esempio, la media del campione) nell’universo dei campioni si chiama .</p>
 <p>Se lo psicologo usa la media del campione quale stima della media della popolazione, ovviamente commetterà un errore, dato che la statistica campionaria è sempre diversa dal parametro. Il problema dello psicologo è quello di valutare l’entità di tale errore, ovvero quello di valutare il livello di incertezza inerente alla sua stima.</p>
 <p>Per valutare l’incertezza della stima lo psicologo fa riferimento alla variabilità campionaria. Se la deviazione standard della distribuzione campionaria della statistica è piccola, questo significa che ogni campione casuale di ampiezza <span class="math inline">\(n\)</span> produrrà una statistica <span class="math inline">\(\bar{X}\)</span> simile al parametro <span class="math inline">\(\mu\)</span> della popolazione. In tali condizioni (utilizzando i dati di un singolo campione) ci sarà una piccola incertezza relativamente al valore del parametro, perché, in media, <span class="math inline">\(\bar{X}\)</span> è simile a <span class="math inline">\(\mu\)</span>. Se invece la deviazione standard della distribuzione campionaria di <span class="math inline">\(\bar{X}\)</span> è grande, i campioni casuali di ampiezza <span class="math inline">\(n\)</span> produrranno, in media, una statistica <span class="math inline">\(\bar{X}\)</span> molto lontana dal parametro <span class="math inline">\(\mu\)</span>. Utilizzando i dati di un singolo campione, in tali condizioni lo psicologo sarà molto incerto relativamente al vero valore del parametro (in quanto, in media, <span class="math inline">\(\bar{X}\)</span> è molto diverso da <span class="math inline">\(\mu\)</span>).</p>
@@ -1494,7 +1517,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>L’errore standard può essere inteso come una misura (del reciproco) della curvatura della verosimiglianza in corrispondenza della stima di massima verosimiglianza per un parametro <span class="math inline">\(\theta\)</span>.</p>
 </blockquote>
 <p>La prima delle due definizioni precedente descrive la logica soggiacente alla procedura di calcolo dell’errore standard, mentre la seconda definizione ci dice qual è il significato dell’errore standard.</p>
-<p>Per capire come si traduce in pratica la definizione precedente, esaminiamo la figura~. Nel pannello di sinistra è riprodotta la funzione di verosimiglianza nel caso di 7 successi in 10 prove Bernoulliane. Nel pannello centrale è riportata la verosimiglianza per 70 successi in 100 prove e nel pannello di destra abbiamo la verosimiglianza nel caso di 700 successi in  prove. Quello che la figura~ ci dice è che, al crescere del numero di prove, diminuisce la nostra incertezza relativamente al valore del parametro <span class="math inline">\(\pi\)</span> (probabilità di successo, ovvero, la media di tutte le proporzioni campionarie). Nel caso di un piccolo numero di prove, la verosimiglianza ha una piccola curvatura e ci fornisce una modesta quantità di informazione concernente il parametro non osservabile <span class="math inline">\(\pi\)</span> – in altri termini, la verosimiglianza definisce un intervallo piuttosto ampio di valori <span class="math inline">\(\pi\)</span> la cui plausibilità relativa è piuttosto grande. Con un grande numero di prove, invece, la verosimiglianza ha un  molto più marcato che associa livelli relativamente alti di plausibilità ad un intervallo molto più piccolo di valori <span class="math inline">\(\pi\)</span>. In altre parole, maggiore è la curvatura della verosimiglianza, maggiore è la quantità di informazione che il campione fornisce rispetto al valore del parametro sconosciuto che vogliamo stimare.</p>
+<p>Per capire come si traduce in pratica la definizione precedente, esaminiamo la figura riportata qui sotto. Nel pannello di sinistra è riprodotta la funzione di verosimiglianza nel caso di 7 successi in 10 prove Bernoulliane. Nel pannello centrale è riportata la verosimiglianza per 70 successi in 100 prove e nel pannello di destra abbiamo la verosimiglianza nel caso di 700 successi in  prove. Quello che la figura~ ci dice è che, al crescere del numero di prove, diminuisce la nostra incertezza relativamente al valore del parametro <span class="math inline">\(\pi\)</span> (probabilità di successo, ovvero, la media di tutte le proporzioni campionarie). Nel caso di un piccolo numero di prove, la verosimiglianza ha una piccola curvatura e ci fornisce una modesta quantità di informazione concernente il parametro non osservabile <span class="math inline">\(\pi\)</span> – in altri termini, la verosimiglianza definisce un intervallo piuttosto ampio di valori <span class="math inline">\(\pi\)</span> la cui plausibilità relativa è piuttosto grande. Con un grande numero di prove, invece, la verosimiglianza ha un  molto più marcato che associa livelli relativamente alti di plausibilità ad un intervallo molto più piccolo di valori <span class="math inline">\(\pi\)</span>. In altre parole, maggiore è la curvatura della verosimiglianza, maggiore è la quantità di informazione che il campione fornisce rispetto al valore del parametro sconosciuto che vogliamo stimare.</p>
 <p>Ad esempio, esaminiamo qui sotto la funzione di verosimiglianza nel caso di 7 successi in 10 prove Bernoulliane (pannello di sinistra), di 70 successi in 100 prove (pannello centrale) e di 700 successi in 1000 prove (pannello di destra).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1818,7 +1841,10 @@ var(\bar{X}-\bar{Y}) &amp;= var(\bar{X}) + var(\bar{Y})- 2 cov(\bar{X},\bar{Y}) 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
