@@ -7,7 +7,18 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 11 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>La valutazione dell'incertezza tramite il test dell'ipotesi nulla</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-04-15-la-valutazione-dellincertezza-tramite-il-test-dellipotesi-nulla</link>
+      <description>Il punto di vista frequentista.</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-04-15-la-valutazione-dellincertezza-tramite-il-test-dellipotesi-nulla</guid>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-04-15-la-valutazione-dellincertezza-tramite-il-test-dellipotesi-nulla/la-valutazione-dellincertezza-tramite-il-test-dellipotesi-nulla_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Limiti dell'inferenza frequentista</title>
       <dc:creator>Corrado Caudek</dc:creator>
