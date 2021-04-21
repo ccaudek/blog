@@ -7,7 +7,17 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Stimatori distorti e non distorti della varianza</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-04-21-stimatori-distorti-e-non-distorti-della-varianza</link>
+      <description>Perché dividiamo per (n - 1).</description>
+      <category>R</category>
+      <category>Psicometria</category>
+      <guid>https://github.com/ccaudek/blog/posts/2021-04-21-stimatori-distorti-e-non-distorti-della-varianza</guid>
+      <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>La valutazione dell'incertezza tramite il test dell'ipotesi nulla</title>
       <dc:creator>Corrado Caudek</dc:creator>
