@@ -1,0 +1,228 @@
+---
+title: "Errori di tipo S (sign) e di tipo M (magnitude)"
+description: |
+  Le promesse non mantenute dell'approccio frequentista.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 04-27-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+# Obiettivi di questo tutorial {-}
+
+Alla luce della crisi della riproducibilità dei risultati della ricerca, i ricercatori in molti campi hanno riesaminato la loro relazione con l'approccio frequentista del test dell'ipotesi nulla (_Null Hypothesis Significance Testing_, NHST) sviluppando strumenti per comprendere più pienamente le implicazioni dei loro progetti di ricerca. Un importante corpus di studi in questo ambito è costituito dai lavori di Andrew Gelman, John Carlin, Francis Tuerlinckx e altri che hanno proposto due nuove metriche per meglio comprendere le conseguenze dell'uso della procedura di test di ipotesi in campioni rumorosi. 
+
+Ad esempio, Gelman e Carlin nel loro articolo "Assessing Type S and Type M Errors" del 2014 sostengono che gli usuali strumenti proposti dall'approccio frequentista, ovvero il potere del test e gli errori di tipo I e di tipo II, non sono sufficienti per cogliere appieno i rischi delle analisi NHST, in quanto tali analisi si concentrano eccessivamente sulla significatività statistica. Inoltre, Gelman e Carlin (2014) mostrano come, seguendo l'approccio NHST, i ricercatori finiscono spesso per commettere l'errore per cui la direzione dell'effetto viene stimata in maniera errata (errore di tipo S), o l'errore per cui la dimensione dell'effetto viene sovrastimata (errore di tipo M). Gli errori di tipo S e di tipo M illustrano i pericoli che derivano dall'uso dell'approccio NHST, specialmente nel caso di campioni rumorosi e di piccole dimensioni.
+
+<br>
+
+<style>
+div.blue {background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+In questo tutorial ci poniamo il problema di svolgere una simulazione nella quale viene applicata la procedura del test dell'ipotesi nulla al caso di una piccola dimensione dell'effetto nella popolazione e di un campione di piccole dimensioni --  ovvero viene considerato il caso tipico di un esperimento di psicologia. L'idea è stata proposta da Gelman e Carlin (2014) -- si veda anche Loken & Gelman (2017).
+
+</div>
+
+
+# Carichiamo i pacchetti necessari
+
+```{r}
+suppressPackageStartupMessages(library("tidyverse")) 
+suppressPackageStartupMessages(library("bayesplot"))
+theme_set(bayesplot::theme_default(base_size=16))
+suppressPackageStartupMessages(library("effsize"))
+
+table_nums <- captioner::captioner(prefix = "Tavola")
+figure_nums <- captioner::captioner(prefix = "Figura")
+knitr::opts_chunk$set(fig.align = "center", fig.width=7, fig.height=5)
+
+library("here")
+```
+
+# La dimensione dell'effetto
+
+La dimensione dell'effetto si calcola con la statistica $d$ di Cohen definita come segue:
+
+$$
+d = \frac{\bar{X}_1 - \bar{X}_2}{s_p}
+$$
+dove
+
+$$
+s_p = \sqrt{
+\frac{s_1^2 (n_1 - 1) + s_2^2 (n_2 - 1)}{n_1 + n_2 - 2}
+}
+$$
+
+La statistica $d$ di Cohen si interpreta nel modo seguente:
+
+- d = 0.2  effetto piccolo
+- d = 0.5  effetto medio
+- d = 0.8  effetto grande
+
+
+# Una piccola dimensione dell'effetto nella popolazione
+
+Consideriamo due 'popolazioni' la cui distribiuzione è Normale di media 103 (la prima) e 100 (la seconda). La deviazione standard è sempre uguale a 15.
+
+```{r}
+# Popolazione 1
+mu_1 <- 103
+# Popolazione 2
+mu_2 <- 100
+
+sigma <- 15
+```
+
+La dimensione dell'effetto nella popolazione è dunque uguale a
+
+```{r}
+(mu_2 - mu_1) / sigma
+```
+
+Se prendiamo dei campioni enormi
+
+```{r}
+x1 <- rnorm(1e5, mu_1, sigma)
+x2 <- rnorm(1e5, mu_2, sigma)
+```
+
+e applichiamo la formula precedente, otteniamo
+
+```{r}
+nn <- length(x1) - 1
+
+sp <- sqrt(
+  (var(x1) * nn + var(x2) * nn) / (nn + nn)
+)
+sp
+```
+
+```{r}
+(mean(x1) - mean(x2)) / sp
+```
+
+```{r}
+dc <- cohen.d(x1, x2)
+dc
+```
+
+```{r}
+nrep <- 1e5
+nsample <- 30
+alpha <- 0.05
+significant <- rep(NA, nrep)
+cohen_d <- rep(NA, nrep)
+for (i in 1:nrep) {
+  x1 <- rnorm(nsample, mu_1, sigma)
+  x2 <- rnorm(nsample, mu_2, sigma)
+  out <- t.test(x1, x2)
+  significant[i] <- ifelse(out$p.value < alpha, 1, 0)
+  dc <- cohen.d(x1, x2)
+  cohen_d[i] <- dc$estimate
+}
+```
+
+Quanti campioni producono risultati "pubblicabili"?
+
+```{r}
+summary(significant)
+```
+
+Seleziono solo i risultati "statisticamente significativi":
+
+```{r}
+d <- data.frame(
+  is_significant = significant,
+  d = cohen_d
+)
+
+dim(d)
+
+d_pub <- d %>% 
+  dplyr::filter(
+    is_significant == 1
+  )
+
+dim(d_pub)
+```
+
+Creo un istogramma della dimensione dell'effetto calcolata sui campioni nei quali l'effetto è "statisticamente significativo":
+
+```{r}
+hist(
+  d_pub$d,
+  xlab = "Cohen's d",
+  ylab = "Density",
+  main = "Solo risultati 'pubblicabili'",
+  freq = FALSE
+  )
+abline(v = 0.2, lty = 2, col = "blue")
+```
+
+# Una soluzione (sbagliata)
+
+Per risolvere questo problema è stato prposto da diversi ricercatori di utilizzare un livello $\alpha$ più "conservativo".
+
+```{r}
+nrep <- 1e5
+nsample <- 30
+alpha <- 0.001
+significant <- rep(NA, nrep)
+cohen_d <- rep(NA, nrep)
+for (i in 1:nrep) {
+  x1 <- rnorm(nsample, mu_1, sigma)
+  x2 <- rnorm(nsample, mu_2, sigma)
+  out <- t.test(x1, x2)
+  significant[i] <- ifelse(out$p.value < alpha, 1, 0)
+  dc <- cohen.d(x1, x2)
+  cohen_d[i] <- dc$estimate
+}
+
+d <- data.frame(
+  is_significant = significant,
+  d = cohen_d
+)
+
+d_pub <- d %>% 
+  dplyr::filter(
+    is_significant == 1
+  )
+
+hist(
+  d_pub$d,
+  xlab = "Cohen's d",
+  ylab = "Density",
+  main = "Solo risultati 'pubblicabili'",
+  freq = FALSE
+  )
+abline(v = 0.2, lty = 2, col = "blue")
+```
+
+Usare un livello  $\alpha$ più "conservativo" semplicemente peggiora le cose.
+
+
+### Bibliografia
+
+Loken, E., & Gelman, A. (2017). Measurement error and the replication crisis. _Science_, _355_(6325), 584-585.
+
+# Original computing environment {-}
+
+```{r}
+sessionInfo()
+```
+
+
+

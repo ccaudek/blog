@@ -7,7 +7,16 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Errori di tipo S (sign) e di tipo M (magnitude)</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-04-27-promesse-non-mantenute</link>
+      <description>Le promesse non mantenute dell'approccio frequentista.</description>
+      <guid>https://github.com/ccaudek/blog/posts/2021-04-27-promesse-non-mantenute</guid>
+      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-04-27-promesse-non-mantenute/promesse-non-mantenute_files/figure-html5/unnamed-chunk-11-1.png" medium="image" type="image/png" width="1344" height="960"/>
+    </item>
     <item>
       <title>Stimatori distorti e non distorti della varianza</title>
       <dc:creator>Corrado Caudek</dc:creator>
