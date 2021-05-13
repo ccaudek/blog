@@ -64,7 +64,6 @@ I vari termini dell'espressione precedente corrispondono alle quantità seguenti
 
 Esplicitiamo ora ciascuno dei termini precedenti.
 
-
 # Distribuzioni a priori
 
 Se assumiamo che $\mu$ e $\sigma^2$ sono indipendenti, possiamo riscrivere la distribuzione a priori congiunta come il prodotto di due distribuzioni a priori:
@@ -130,9 +129,9 @@ p(y \mid \mu, \sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\fra
 $$
 
 Dato che le osservazioni sono indipendenti, la verosimiglianza che si verifichino simultaneamente è data dal prodotto della verosimiglianza di ciascuna separata osservazione.
-Ma qual è la verosimiglianza che una singola osservazione si verifichi? Ciascuna osservazione è una realizzazione di una Normale di parametri $\mu$ e $\sigma^2$, dunque la plausibilita di $X=x$ è data dalla curva di densità di una Normale di parametri $\mu$ e $\sigma^2$. Il nostro problema è che non conosciamo $\mu$ e $\sigma^2$, ma questo non è un problema. Sappiamo infatti che la funzione di verosimiglianza descrive la verosimiglianza relativa dei dati considerati tutti i possibili valori che i parametri possono assumere. 
-
-Se sappiamo calcolare la funzione di verosimiglianza per una singola osservazione $y$, è facile trovare la verosimiglianza congiunta per tutte le osservazioni del campione. Se il campione è casuale, allora le osservazioni sono indipendenti ed è sufficiente fare il prodotto delle singole verosimiglianze. La seguente funzione `R` ci consente di calcolare tale verosimiglianza congiunta per tutte le osservazioni del campione:
+<!-- Ma qual è la verosimiglianza che una singola osservazione si verifichi? Ciascuna osservazione è una realizzazione di una Normale di parametri $\mu$ e $\sigma^2$, dunque la plausibilita di $X=x$ è data dalla curva di densità di una Normale di parametri $\mu$ e $\sigma^2$. Il nostro problema è che non conosciamo $\mu$ e $\sigma^2$, ma questo non è un problema. Sappiamo infatti che la funzione di verosimiglianza descrive la verosimiglianza relativa dei dati considerati tutti i possibili valori che i parametri possono assumere.  -->
+<!-- Se sappiamo calcolare la funzione di verosimiglianza per una singola osservazione $y$, è facile trovare la verosimiglianza congiunta per tutte le osservazioni del campione. Se il campione è casuale, allora le osservazioni sono indipendenti ed è sufficiente fare il prodotto delle singole verosimiglianze.  -->
+La seguente funzione `R` ci consente di calcolare tale verosimiglianza congiunta per tutte le osservazioni del campione:
 
 ```{r}
 likelihood <- function(data, mu, sigma){
@@ -169,7 +168,7 @@ plot(
 )
 ```
 
-Si noti che i valori di verosimiglianza sono molto piccoli. Per evitare problemi numerici nei calcoli usiamo i logaritmi. Di conseguenza, possiamo ri-scrivere il prodotto della distribuzione Normale come una somma di elementi. 
+Si noti che i valori di verosimiglianza sono molto piccoli. Per evitare problemi numerici nei calcoli usiamo i logaritmi. Di conseguenza, possiamo riscrivere il prodotto come una somma di elementi. 
 
 ```{r}
 loglikelihood <- function(data, mu, sigma){
@@ -177,7 +176,7 @@ loglikelihood <- function(data, mu, sigma){
 }
 ```
 
-Creaiamo il diagramma per la log-verosimiglianza:
+Creiamo il diagramma per la log-verosimiglianza:
 
 ```{r}
 mus <- seq(from=-5, to=10, length.out = 1e3)
@@ -220,7 +219,7 @@ Il rapporto tra queste due densità (ovvero tra le ordinate delle due funzioni a
 Se il rapporto è maggiore di 1 allora i valori proposti vengono sempre accettati in quanto la densità a posteriori calcolata con i nuovi parametri proposti è maggiore della densità a posteriore calcolata con i valori dei parametri definiti nell'interazione precedente della catena.
 
 Altrimenti, decidiamo di tenere i valori proposti con una probabilità minore di 1, ovvero non sempre, ma soltanto con una probabilità definita dal metodo descritto nei punti __d__, __e__.
-In altri termini, la probabilità con la quale i valori proposti sono accettati è uguale al rapporto $r$: se $r$ è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell'interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L'effetto di questo algoritmo è quello di consentirci di "campionare" la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.   
+In altri termini, la probabilità con la quale i valori proposti saranno accettati è uguale al rapporto $r$: se $r$ è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell'interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L'effetto di questo algoritmo è quello di consentirci di "campionare" la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.   
 
 In termini logaritmici, il rapporto $r$ descritto sopra diventa:
 
@@ -308,7 +307,6 @@ run_metropolis <- function(data, startvalue, iterations, sigma_proposal_mu) {
     # calcolata con i parametri dell'interazione precedente.
     r_ratio <- joint(data, proposal_mu, proposal_sigma) - 
       joint(data, chain[i, 1],chain[i, 2])
-    
     # Qui viene affronatato un problema prettamente numerico: se per qualche 
     # ragione il rapporto r_ratio non è un valore numerico, allora si ripete il 
     # presente passo della catena.
@@ -327,8 +325,7 @@ run_metropolis <- function(data, startvalue, iterations, sigma_proposal_mu) {
         # 20%
         n_accept <- n_accept+1
       }
-    
-    else {
+   else {
       # Rigetto i valori proposti e, per il prossimo passo della catena, tengo 
       # i valori correnti dei parametri  
       chain[i+1,] = chain[i,]

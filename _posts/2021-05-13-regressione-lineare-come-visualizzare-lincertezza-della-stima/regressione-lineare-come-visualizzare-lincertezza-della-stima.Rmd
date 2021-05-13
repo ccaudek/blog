@@ -1,0 +1,164 @@
+---
+title: "Regressione lineare: come visualizzare l'incertezza della stima"
+description: |
+  In questo post presento il metodo descritto da McElreath (2020) per  visualizzare l'incertezza della stima a posteriori della retta di regressione.
+author:
+  - name: Corrado Caudek
+    url: https://caudekblog.netlify.app
+date: 05-13-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Carico i pacchetti necessari:
+
+```{r }
+library("here")
+library("rethinking")
+library("tidyverse")
+library("rstanarm")
+library("bayesplot")
+theme_set(bayesplot::theme_default(base_family = "sans"))
+```
+
+Leggo i dati:
+
+
+```{r }
+kidiq <- read.csv(here("data", "kidiq.csv"))
+head(kidiq)
+```
+
+Eseguo l'analisi di regressione per il modello
+
+$$
+\text{kid_score} = a + b \times \text{mom_iq} + \text{error}
+$$
+
+usando la funzione `stan_glm()` del pacchetto `rstanarm`:
+
+```{r }
+fit_2 <- stan_glm(kid_score ~ mom_iq, data=kidiq, refresh = 0)
+print(fit_2)
+```
+
+Visualizzo la retta di regressione che descrive la relazione tra le abiltà cognitive dei bambini e il quoziente d'intelligenza della madri:
+
+```{r }
+ggplot(kidiq, aes(mom_iq, kid_score)) +
+  geom_point() +
+  geom_abline(intercept = coef(fit_2)[1], slope = coef(fit_2)[2]) +
+  labs(x = "Mother IQ score", y = "Child test score")
+```
+
+Userò ora le funzioni del pacchetto `rethinking`. Per il parametro $\sigma$ userò la distribuzione di Cauchy di parametri `location` = 5 e `scale` = 15 quale distribuzione a priori:
+
+```{r}
+x <- seq(0, 100, length.out = 1000)
+y <- dcauchy(x, location = 5, scale = 15)
+plot(x, y, type = 'l')
+```
+
+Definisco il modello di regressione:
+
+```{r}
+flist <- alist(
+  kid_score ~ dnorm(mu, sigma),
+  mu <- a + b * mom_iq,
+  a ~ dnorm(0, 40),
+  b ~ dnorm(0, 0.5),
+  sigma ~ dcauchy(5, 15)
+)
+```
+
+Adatto il modello ai dati:
+
+```{r}
+m1 <- quap(
+  flist,
+  data = kidiq
+)
+```
+
+Esamino la soluzione ottenuta:
+
+```{r}
+precis(m1, prob = 0.95)
+```
+
+Estraggo dei campioni casuali dalla distribuzione a posteriori dei parametri:
+
+```{r}
+post <- extract.samples(m1)
+post[1:5, ]
+```
+
+Ripeto l'operazione precedente limitandomi a perndere 20 campioni casuali:
+
+```{r}
+nsim <- 20
+post1 <- extract.samples(m1, n = nsim)
+```
+
+Disegno il diagramma a dispersione delle due variabili. A tale diagramma aggiungo 20 rette di regressione, ciascuna definita dai parametri $a$ e $b$ che ho estratto dalla distribuzione a posteriori. Tali rette sono disegnate in grigio. Infine, disegno (usando il colore nero) la retta che corrisponde alla stima puntuale a posteriori dei parametri $a$ e $b$ (in questo caso, ho utilizzato la mediana a posteriori):
+
+```{r}
+plot(
+  kidiq$mom_iq, 
+  kidiq$kid_score,
+  xlab = "mom_iq",
+  ylab = "kid_score",
+  pch = 20
+)
+
+for (i in 1:nsim){
+  abline(post1[i, 1], post1[i, 2], col = "gray")
+}
+abline(median(post[, 1]), median(post[, 2]), col = "black")
+```
+
+In questo caso c'è una piccola intertezza nella stima a posteriori relativamente alla retta di regressione: le 20 rette che ho disegnato utilizzando la distribuzione a posteriori dei parametri $a$ e $b$ sono molto simili le une alle altre.
+
+Consideriamo ora un caso diverso. Immaginiamo di avere un numero più piccolo di osservazioni. In tale situazione l'incertezza sarà maggiore. Per illustrare questo caso, considero soltanto le prime 20 righe del data.frame `kidiq`:
+
+```{r}
+N <- 20
+dN <- kidiq[1:N, ]
+```
+
+Ripeto ora tutta la procedura descritta in precedenza:
+
+```{r}
+m2 <- quap(
+  flist,
+  data = dN
+)
+
+precis(m2, prob = 0.95)
+```
+
+```{r}
+# extract 20 samples from the posterior
+nsim <- 20
+post2 <- extract.samples(m2, n = nsim)
+
+plot(
+  dN$mom_iq, 
+  dN$kid_score,
+  xlab = "mom_iq",
+  ylab = "kid_score",
+  pch = 20
+)
+for (i in 1:nsim){
+  abline(post2[i, 1], post2[i, 2], col = "gray")
+}
+abline(median(post2[, 1]), median(post2[, 2]), col = "black")
+```
+
+È chiaro che, in questo secondo caso, l'incertezza della stima a posteriori della retta di regressione è molto maggiore rispetto al caso precedente.

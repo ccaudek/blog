@@ -136,7 +136,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["un-tutorial-sullalgoritmo-di-metropolis_files/anchor-4.2.2/anchor.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/bowser-1.9.3/bowser.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/distill-2.2.21/template.v2.js","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-12-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-15-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-16-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-3-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-5-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-6-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-7-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-8-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/header-attrs-2.7.3/header-attrs.js","un-tutorial-sullalgoritmo-di-metropolis_files/jquery-1.11.3/jquery.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/popper-2.6.0/popper.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-bundle.umd.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-light-border.css","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.css","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.umd.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["un-tutorial-sullalgoritmo-di-metropolis_files/anchor-4.2.2/anchor.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/bowser-1.9.3/bowser.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/distill-2.2.21/template.v2.js","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-12-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-15-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-16-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-3-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-5-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-6-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-7-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-8-1.png","un-tutorial-sullalgoritmo-di-metropolis_files/header-attrs-2.7.3/header-attrs.js","un-tutorial-sullalgoritmo-di-metropolis_files/header-attrs-2.7/header-attrs.js","un-tutorial-sullalgoritmo-di-metropolis_files/jquery-1.11.3/jquery.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/popper-2.6.0/popper.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-bundle.umd.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy-light-border.css","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.css","un-tutorial-sullalgoritmo-di-metropolis_files/tippy-6.2.7/tippy.umd.min.js","un-tutorial-sullalgoritmo-di-metropolis_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2401,7 +2401,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.7.3/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.7/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2584,8 +2584,7 @@ p(\sigma^2) = Unif(0, 100).
 <p><span class="math display">\[
 p(y \mid \mu, \sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}}.
 \]</span></p>
-<p>Dato che le osservazioni sono indipendenti, la verosimiglianza che si verifichino simultaneamente è data dal prodotto della verosimiglianza di ciascuna separata osservazione. Ma qual è la verosimiglianza che una singola osservazione si verifichi? Ciascuna osservazione è una realizzazione di una Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>, dunque la plausibilita di <span class="math inline">\(X=x\)</span> è data dalla curva di densità di una Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Il nostro problema è che non conosciamo <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>, ma questo non è un problema. Sappiamo infatti che la funzione di verosimiglianza descrive la verosimiglianza relativa dei dati considerati tutti i possibili valori che i parametri possono assumere.</p>
-<p>Se sappiamo calcolare la funzione di verosimiglianza per una singola osservazione <span class="math inline">\(y\)</span>, è facile trovare la verosimiglianza congiunta per tutte le osservazioni del campione. Se il campione è casuale, allora le osservazioni sono indipendenti ed è sufficiente fare il prodotto delle singole verosimiglianze. La seguente funzione <code>R</code> ci consente di calcolare tale verosimiglianza congiunta per tutte le osservazioni del campione:</p>
+<p>Dato che le osservazioni sono indipendenti, la verosimiglianza che si verifichino simultaneamente è data dal prodotto della verosimiglianza di ciascuna separata osservazione. <!-- Ma qual è la verosimiglianza che una singola osservazione si verifichi? Ciascuna osservazione è una realizzazione di una Normale di parametri $\mu$ e $\sigma^2$, dunque la plausibilita di $X=x$ è data dalla curva di densità di una Normale di parametri $\mu$ e $\sigma^2$. Il nostro problema è che non conosciamo $\mu$ e $\sigma^2$, ma questo non è un problema. Sappiamo infatti che la funzione di verosimiglianza descrive la verosimiglianza relativa dei dati considerati tutti i possibili valori che i parametri possono assumere.  --> <!-- Se sappiamo calcolare la funzione di verosimiglianza per una singola osservazione $y$, è facile trovare la verosimiglianza congiunta per tutte le osservazioni del campione. Se il campione è casuale, allora le osservazioni sono indipendenti ed è sufficiente fare il prodotto delle singole verosimiglianze.  --> La seguente funzione <code>R</code> ci consente di calcolare tale verosimiglianza congiunta per tutte le osservazioni del campione:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>likelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span><span class='op'>{</span>
@@ -2626,7 +2625,7 @@ p(y \mid \mu, \sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\fra
 </div>
 <p><img src="un-tutorial-sullalgoritmo-di-metropolis_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-<p>Si noti che i valori di verosimiglianza sono molto piccoli. Per evitare problemi numerici nei calcoli usiamo i logaritmi. Di conseguenza, possiamo ri-scrivere il prodotto della distribuzione Normale come una somma di elementi.</p>
+<p>Si noti che i valori di verosimiglianza sono molto piccoli. Per evitare problemi numerici nei calcoli usiamo i logaritmi. Di conseguenza, possiamo riscrivere il prodotto come una somma di elementi.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>loglikelihood</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span><span class='op'>{</span>
@@ -2635,7 +2634,7 @@ p(y \mid \mu, \sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\fra
 </code></pre>
 </div>
 </div>
-<p>Creaiamo il diagramma per la log-verosimiglianza:</p>
+<p>Creiamo il diagramma per la log-verosimiglianza:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='op'>-</span><span class='fl'>5</span>, to<span class='op'>=</span><span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1e3</span><span class='op'>)</span>
@@ -2669,7 +2668,7 @@ r = \frac{p(\mu^p, \sigma^p \mid y)}{p(\mu^{i-1}, \sigma^{i-1} \mid y)} = \frac{
 <p>Il termine al numeratore rappresenta il prodotto tra la verosimiglianza dei dati alla luce dei valori proposti dei parametri e le distribuzioni a priori assegnate ai valori proposti dei parametri, nell’ipotesi che <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> siano indipendenti. In altri termini, il numeratore corrisponde alla densità a posteriori del valore proposto dei parametri, alla luce dei dati. Al denominatore abbiamo la densità a posteriori del valore dei parametri nel passo precedente della catena, alla luce dei dati.</p>
 <p>Il rapporto tra queste due densità (ovvero tra le ordinate delle due funzioni a posteriori) si chiede la seguente domanda: alla luce dei dati, risultano più plausibili i valori proposti dei parametri o quelli del passo precedente della catena?</p>
 <p>Se il rapporto è maggiore di 1 allora i valori proposti vengono sempre accettati in quanto la densità a posteriori calcolata con i nuovi parametri proposti è maggiore della densità a posteriore calcolata con i valori dei parametri definiti nell’interazione precedente della catena.</p>
-<p>Altrimenti, decidiamo di tenere i valori proposti con una probabilità minore di 1, ovvero non sempre, ma soltanto con una probabilità definita dal metodo descritto nei punti <strong>d</strong>, <strong>e</strong>. In altri termini, la probabilità con la quale i valori proposti sono accettati è uguale al rapporto <span class="math inline">\(r\)</span>: se <span class="math inline">\(r\)</span> è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell’interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L’effetto di questo algoritmo è quello di consentirci di “campionare” la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.</p>
+<p>Altrimenti, decidiamo di tenere i valori proposti con una probabilità minore di 1, ovvero non sempre, ma soltanto con una probabilità definita dal metodo descritto nei punti <strong>d</strong>, <strong>e</strong>. In altri termini, la probabilità con la quale i valori proposti saranno accettati è uguale al rapporto <span class="math inline">\(r\)</span>: se <span class="math inline">\(r\)</span> è uguale a 0.10, ad esempio, questo significa che la densità a posteriori calcolata con i valori proposti è 10 volte più piccola della densità a posteriori calcolata con i valori dell’interazione precedente. In queste circostanze, i valori proposti verranno accettati solo il 10% delle volte. L’effetto di questo algoritmo è quello di consentirci di “campionare” la distribuzione a posteriori in modo tale che la scelta dei valori accettati sia proporzionale alla densità dei valori nella distribuzione a posteriori.</p>
 <p>In termini logaritmici, il rapporto <span class="math inline">\(r\)</span> descritto sopra diventa:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -2746,7 +2745,6 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
     <span class='co'># calcolata con i parametri dell'interazione precedente.</span>
     <span class='va'>r_ratio</span> <span class='op'>&lt;-</span> <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>proposal_mu</span>, <span class='va'>proposal_sigma</span><span class='op'>)</span> <span class='op'>-</span> 
       <span class='fu'>joint</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>1</span><span class='op'>]</span>,<span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
-    
     <span class='co'># Qui viene affronatato un problema prettamente numerico: se per qualche </span>
     <span class='co'># ragione il rapporto r_ratio non è un valore numerico, allora si ripete il </span>
     <span class='co'># presente passo della catena.</span>
@@ -2765,8 +2763,7 @@ log(r) = \Bigg(&amp;log\Big(p(y \mid \mu^p, \sigma^p)\Big) + log\Big( p(\mu^p)\B
         <span class='co'># 20%</span>
         <span class='va'>n_accept</span> <span class='op'>&lt;-</span> <span class='va'>n_accept</span><span class='op'>+</span><span class='fl'>1</span>
       <span class='op'>}</span>
-    
-    <span class='kw'>else</span> <span class='op'>{</span>
+   <span class='kw'>else</span> <span class='op'>{</span>
       <span class='co'># Rigetto i valori proposti e, per il prossimo passo della catena, tengo </span>
       <span class='co'># i valori correnti dei parametri  </span>
       <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span><span class='op'>+</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>=</span> <span class='va'>chain</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span>

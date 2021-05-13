@@ -7,7 +7,16 @@
     <description>Materiali per laureandi, tirocinanti, studenti
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 27 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 May 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Regressione lineare: come visualizzare l'incertezza della stima</title>
+      <dc:creator>Corrado Caudek</dc:creator>
+      <link>https://github.com/ccaudek/blog/posts/2021-05-13-regressione-lineare-come-visualizzare-lincertezza-della-stima</link>
+      <description>In questo post presento il metodo descritto da McElreath (2020) per  visualizzare l'incertezza della stima a posteriori della retta di regressione.</description>
+      <guid>https://github.com/ccaudek/blog/posts/2021-05-13-regressione-lineare-come-visualizzare-lincertezza-della-stima</guid>
+      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/ccaudek/blog/posts/2021-05-13-regressione-lineare-come-visualizzare-lincertezza-della-stima/regressione-lineare-come-visualizzare-lincertezza-della-stima_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Errori di tipo S (sign) e di tipo M (magnitude)</title>
       <dc:creator>Corrado Caudek</dc:creator>
